@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import { connect } from 'react-redux'
 
 const EmbedMap = props => {
-  const [coords, setCoords] = useState({ lat: 0, lng: 0 });
+  const { lat, lng } = props.coords
 
   const onClickHandler = e => {
-    setCoords({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+    props.changeCoords({ lat: e.latLng.lat(), lng: e.latLng.lng() });
   };
 
   const getCurrentLocation = () => {
     if (window.navigator && window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition(pos => {
-        setCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        props.changeCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude });
       });
     }
   };
@@ -23,23 +24,37 @@ const EmbedMap = props => {
   return (
     <>
       <div id="location" style={{ margin: "20px" }}>
-        {coords.lat.toFixed(3)}, {coords.lng.toFixed(3)}
+        {lat.toFixed(3)}, {lng.toFixed(3)}
       </div>
       <div id="map">
         <Map
           google={props.google}
           zoom={10}
-          center={{ lat: coords.lat, lng: coords.lng }}
+          center={{ lat: lat, lng: lng }}
           style={{ width: "640px", height: "640px" }}
           onClick={(mapProps, map, e) => onClickHandler(e)}
         >
-          <Marker position={{ lat: coords.lat, lng: coords.lng }} />
+          <Marker position={{ lat: lat, lng: lng }} />
         </Map>
       </div>
     </>
   );
 };
 
-export default GoogleApiWrapper({
+const mapStateToProps = state => {
+  return {
+    coords: state.coords
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeCoords: coords => {
+      dispatch({ type: "CHANGE_COORDS", payload: coords })
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLE_APIKEY
-})(EmbedMap);
+})(EmbedMap));
