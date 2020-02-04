@@ -9,7 +9,7 @@ const SendDestination = () => {
     const response = await sendDestination(
       e.target.place.value
     )
-    debugger
+    
     if (response == 200) {
       setMessage("Destination Submitted")
     } else {
