@@ -13,7 +13,7 @@ const SendDestination = () => {
     if (response == 200) {
       setMessage("Destination Submitted")
     } else {
-      setMessage(response.errors)
+      setMessage(response.message)
     }
   }
 

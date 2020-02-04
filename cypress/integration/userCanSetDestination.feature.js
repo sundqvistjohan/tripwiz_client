@@ -29,7 +29,7 @@ describe("User is shown destination input field", () => {
       method: "POST",
       url: "http://localhost:3000/api/**",
       response: {
-        errors: "Submit Failed",
+        message: "Submit Failed",
         success: false
       }
     });
@@ -38,7 +38,7 @@ describe("User is shown destination input field", () => {
       method: "GET",
       url: "http://localhost:3000/api/**",
       response: {
-        errors: "Submit Failed",
+        message: "Submit Failed",
         success: false
       }
     });
