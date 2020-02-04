@@ -6,7 +6,7 @@ import EmbedMap from "./components/EmbedMap"
 const App = () => {
   return (
     <div className="App">
-      tripwiz
+      TripWiz
       <SendDestination />
       <EmbedMap />
     </div>

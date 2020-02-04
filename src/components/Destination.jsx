@@ -19,12 +19,14 @@ const SendDestination = () => {
 
   return (
     <>
+      <h2>To get started...</h2>
       <form onSubmit={submitPlace} id="place-form">
-        <label>Choose Destination</label>
-        <input name="place" type="text" id="place"></input>
+        <label>Choose your destination! </label>
+        <input name="place" type="text" id="place" placeholder="City"></input>
         <button id="submit">Submit</button>
       </form>
       {message}
+      <p>Or pick a spot on the map!</p>
     </>
   )
 }
