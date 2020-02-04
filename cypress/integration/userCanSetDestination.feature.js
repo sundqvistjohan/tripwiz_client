@@ -24,7 +24,7 @@ describe("User is shown destination input field", () => {
     cy.get("#root").should("contain", "Destination Submitted")
   });
 
-  it("can submit destination successfully", () => {
+  it("can submit destination unsuccessfully", () => {
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/**",
