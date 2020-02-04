@@ -1,17 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { sendDestination } from "../modules/destination";
 
 const SendDestination = () => {
+  let [message, setMessage] = useState("")
 
   const submitPlace = async (e) => {
     e.preventDefault();
     const response = await sendDestination(
       e.target.place.value
     )
-    if (response.ok) {
-      return "Destination submitted"
+    debugger
+    if (response == 200) {
+      setMessage("Destination Submitted")
     } else {
-      return response.message
+      setMessage(response.errors)
     }
   }
 
@@ -22,6 +24,7 @@ const SendDestination = () => {
         <input name="place" type="text" id="place"></input>
         <button id="submit">Submit</button>
       </form>
+      {message}
     </>
   )
 }

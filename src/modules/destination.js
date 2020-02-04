@@ -2,7 +2,7 @@ import axios from "axios";
 
 const sendDestination = async (destination) => {
   try {
-    let response = await axios.post("/api/v1/trips", {
+    let response = await axios.post("api/**", {
       destination: destination
     });
     await response;
