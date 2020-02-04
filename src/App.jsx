@@ -1,9 +1,11 @@
 import React from 'react';
+import EmbedMap from "./components/EmbedMap"
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       tripwiz
+      <EmbedMap />
     </div>
   );
 }
