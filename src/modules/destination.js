@@ -11,7 +11,6 @@ const getCoords = async (destination) => {
         key: process.env.REACT_APP_GOOGLE_APIKEY
       }
     });
-    debugger
     return response
   } catch (error) {
     return error;
@@ -20,13 +19,14 @@ const getCoords = async (destination) => {
 
 const initializeTrip = async (props) => {
   try {
+    debugger
     const response = await axios({
       method: "POST",
       url: "api/**",
       params: {
         name: props.name,
-        coord_lat: props.coord_lat,
-        coord_lng: props.coord_lng
+        coord_lat: props.lat,
+        coord_lng: props.lng
       }
     });
     return response

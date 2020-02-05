@@ -11,27 +11,23 @@ const SendDestination = props => {
       e.target.place.value
     )
     if (!response.error) {
-      debugger
       if (response.data.status != "ZERO_RESULTS") {
         response = response.data.results[0]
-        props.setName(response.formatted_address)
-        props.changeCoords({
-          lat: response.geometry.location.lat,
-          lng: response.geometry.location.lng
-        });
-        props.setMessage("Destination successfully selected")
+        props.setName(response.formatted_address);
+        props.setLat(response.geometry.location.lat);
+        props.setLng(response.geometry.location.lng);
+        props.setMessage("Destination successfully selected");
       } else {
-        props.setMessage("Can't go there. Zero Results")
-        props.setName(null)
+        props.setMessage("Can't go there. Zero Results");
+        props.setName(null);
       }
     } else {
-      props.setMessage(response.message)
+      props.setMessage(response.message);
     }
   }
 
   const onClickHandler = async () => {
     const response = await initializeTrip(props)
-    debugger
     if (response.ok) {
       return response.status
     } else {
@@ -56,7 +52,8 @@ const SendDestination = props => {
 
 const mapStateToProps = state => {
   return {
-    coords: state.coords,
+    lat: state.lat,
+    lng: state.lng,
     name: state.name,
     message: state.message
   }
@@ -64,8 +61,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeCoords: coords => {
-      dispatch({ type: "CHANGE_COORDS", payload: coords })
+    setLat: lat => {
+      dispatch({ type: "CHANGE_LAT", payload: lat })
+    },
+    setLng: lng => {
+      dispatch({ type: "CHANGE_LNG", payload: lng })
     },
     setName: name => {
       dispatch({ type: "SET_NAME", payload: name });
