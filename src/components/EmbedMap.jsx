@@ -23,9 +23,6 @@ const EmbedMap = props => {
 
   return (
     <>
-      <div id="location" style={{ margin: "20px" }}>
-        {lat.toFixed(3)}, {lng.toFixed(3)}
-      </div>
       <div id="map">
         <Map
           google={props.google}

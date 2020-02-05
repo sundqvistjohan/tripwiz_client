@@ -11,6 +11,7 @@ const getCoords = async (destination) => {
         key: process.env.REACT_APP_GOOGLE_APIKEY
       }
     });
+    debugger
     return response
   } catch (error) {
     return error;
@@ -28,7 +29,7 @@ const initializeTrip = async (props) => {
         coord_lng: props.coord_lng
       }
     });
-    return response.data.results[0]
+    return response
   } catch (error) {
     return error;
   }

@@ -4,50 +4,42 @@ describe("User is shown destination input field", () => {
     cy.visit("/");
   });
 
-  it("can submit destination successfully", () => {
-    cy.route({
-      method: "POST",
-      url: "http://localhost:3000/api/**",
-      response: 200
-    });
-
+  it("can select destination successfully", () => {
+    let destination = "Rome"
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/**",
-      response: 200
+      url: "https://maps.googleapis.com/maps/api/geocode/json?**",
+      response: "fixture:inputDest.json",
+      params: {
+        address: destination,
+        key: process.env.REACT_APP_GOOGLE_APIKEY
+      }
     });
-  
+
     cy.get("#place-form").within(() => {
       cy.get("#place").type("Rome");
       cy.get("#submit").click();
     })
-    cy.get("#root").should("contain", "Destination Submitted")
+    cy.get("#root").should("contain", "Destination successfully selected")
   });
 
-  it("can submit destination unsuccessfully", () => {
+  it("can select destination unsuccessfully", () => {
+    let destination = "sdfsdfsdf"
     cy.route({
-      method: "POST",
-      url: "http://localhost:3000/api/**",
-      response: {
-        message: "Submit Failed",
-        success: false
+      method: "GET",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?**",
+      response: "fixture:inputDest0Results.json",
+      params: {
+        address: destination,
+        key: process.env.REACT_APP_GOOGLE_APIKEY
       }
     });
 
-    cy.route({
-      method: "GET",
-      url: "http://localhost:3000/api/**",
-      response: {
-        message: "Submit Failed",
-        success: false
-      }
-    });
-  
     cy.get("#place-form").within(() => {
-      cy.get("#place").type("Rome");
+      cy.get("#place").type("sdfsdfsdf");
       cy.get("#submit").click();
     })
-    cy.get("#root").should("contain", "Submit Failed")
+    cy.get("#root").should("contain", "Can't go there. Zero Results")
   });
 
 });

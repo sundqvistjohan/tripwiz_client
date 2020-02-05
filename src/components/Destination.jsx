@@ -12,6 +12,7 @@ const SendDestination = props => {
       e.target.place.value
     )
     if (!response.error) {
+      debugger
       if (response.data.status != "ZERO_RESULTS") {
         response = response.data.results[0]
         props.setName(response.formatted_address)
@@ -31,6 +32,12 @@ const SendDestination = props => {
 
   const onClickHandler = async () => {
     const response = await initializeTrip(props)
+    debugger
+    if (response.ok) {
+      return response.status
+    } else {
+      return response.message
+    }
   }
 
   return (
@@ -43,8 +50,6 @@ const SendDestination = props => {
       </form>
       {message}
       {props.name == null && <p>Or pick a spot on the map!</p>}
-
-      {props.name && <p>You are going to {props.name}</p>}
       <button id="create-trip" onClick={onClickHandler}>Let's Go!</button>
     </>
   )
