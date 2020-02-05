@@ -7,6 +7,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         coords: action.payload
       };
+    case "SET_NAME":
+      return {
+        ...state,
+        name: action.payload
+      };
     default:
       return {
         ...state

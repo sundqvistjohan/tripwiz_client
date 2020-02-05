@@ -1,15 +1,53 @@
 import axios from "axios";
 
-const sendDestination = async (destination) => {
+const getCoords = async (destination) => {
+
   try {
-    let response = await axios.post("api/**", {
-      destination: destination
+    const response = await axios({
+      method: "GET",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?",
+      params: {
+        address: destination,
+        key: process.env.REACT_APP_GOOGLE_APIKEY
+      }
     });
-    await response;
-    return response.data;
+    return response
   } catch (error) {
     return error;
   }
 };
 
-export { sendDestination };
+const getName = async (destination) => {
+  try {
+    const response = await axios({
+      method: "GET",
+      url: "https://maps.googleapis.com/maps/api/geocode/json?",
+      params: {
+        address: destination,
+        key: process.env.REACT_APP_GOOGLE_APIKEY
+      }
+    });
+    return response.data.results[0]
+  } catch (error) {
+    return error;
+  }
+};
+
+const initializeTrip = async (props) => {
+  try {
+    const response = await axios({
+      method: "POST",
+      url: "api/**",
+      params: {
+        name: props.name,
+        coord_lat: props.coord_lat,
+        coord_lng: props.coord_lng
+      }
+    });
+    return response.data.results[0]
+  } catch (error) {
+    return error;
+  }
+};
+
+export { getCoords, initializeTrip };
