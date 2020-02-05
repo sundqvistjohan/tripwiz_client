@@ -13,7 +13,6 @@ const Destination = props => {
     if (!response.error) {
       if (response.data.status != "ZERO_RESULTS") {
         response = response.data.results[0]
-        props.setName(response.formatted_address);
         props.setLat(response.geometry.location.lat);
         props.setLng(response.geometry.location.lng);
         props.setMessage("Destination successfully selected");
@@ -28,7 +27,7 @@ const Destination = props => {
   const onClickHandler = async () => {
     const response = await initializeTrip(props)
     if (response.ok) {
-      return response.status
+      props.setName(response.data.destination);
     } else {
       return props.setMessage("Something went wrong.")
     }
