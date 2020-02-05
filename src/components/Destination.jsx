@@ -3,7 +3,7 @@ import { getCoords, initializeTrip } from "../modules/destination";
 import { connect } from 'react-redux'
 
 
-const SendDestination = props => {
+const Destination = props => {
 
   const submitPlace = async (e) => {
     e.preventDefault();
@@ -19,7 +19,6 @@ const SendDestination = props => {
         props.setMessage("Destination successfully selected");
       } else {
         props.setMessage("Can't go there. Zero Results");
-        props.setName(null);
       }
     } else {
       props.setMessage(response.message);
@@ -31,7 +30,7 @@ const SendDestination = props => {
     if (response.ok) {
       return response.status
     } else {
-      return response.message
+      return props.setMessage("Something went wrong.")
     }
   }
 
@@ -79,4 +78,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps)
-  (SendDestination);
+  (Destination);

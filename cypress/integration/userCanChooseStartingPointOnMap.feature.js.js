@@ -11,6 +11,6 @@ describe("Choose location by clicking on map", () => {
     });
     cy.wait(1000);
     cy.get("#map > div > div > div").click(389, 615);
-    cy.get("#root").should("contain", "Destination seccessfully chosen from map")
+    cy.get("#root").should("contain", "Destination successfully chosen from map")
   });
 });

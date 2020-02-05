@@ -19,13 +19,12 @@ const getCoords = async (destination) => {
 
 const initializeTrip = async (props) => {
   try {
-    debugger
     const response = await axios({
       method: "POST",
-      url: "api/**",
+      url: "api/v1/trips",
       params: {
-        coord_lat: props.lat,
-        coord_lng: props.lng
+        lat: props.lat,
+        lng: props.lng
       }
     });
     return response

@@ -9,7 +9,7 @@ const EmbedMap = props => {
   const onClickHandler = e => {
     props.setLat(e.latLng.lat());
     props.setLng(e.latLng.lng());
-    props.setMessage("Destination seccessfully chosen from map");
+    props.setMessage("Destination successfully chosen from map");
   };
 
   const getCurrentLocation = () => {
