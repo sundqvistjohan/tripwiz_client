@@ -24,7 +24,6 @@ const initializeTrip = async (props) => {
       method: "POST",
       url: "api/**",
       params: {
-        name: props.name,
         coord_lat: props.lat,
         coord_lng: props.lng
       }
