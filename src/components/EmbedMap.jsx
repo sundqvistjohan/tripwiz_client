@@ -7,6 +7,7 @@ const EmbedMap = props => {
 
   const onClickHandler = e => {
     props.changeCoords({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+    props.setMessage("Destination seccessfully chosen from map")
   };
 
   const getCurrentLocation = () => {
@@ -40,7 +41,8 @@ const EmbedMap = props => {
 
 const mapStateToProps = state => {
   return {
-    coords: state.coords
+    coords: state.coords,
+    message: state.message
   }
 }
 
@@ -48,7 +50,10 @@ const mapDispatchToProps = dispatch => {
   return {
     changeCoords: coords => {
       dispatch({ type: "CHANGE_COORDS", payload: coords })
-    }
+    },
+    setMessage: message => {
+      dispatch({ type: "SET_MESSAGE", payload: message });
+    },
   }
 }
 

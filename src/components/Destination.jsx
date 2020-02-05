@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { getCoords, initializeTrip } from "../modules/destination";
 import { connect } from 'react-redux'
 
 
 const SendDestination = props => {
-  let [message, setMessage] = useState("")
 
   const submitPlace = async (e) => {
     e.preventDefault();
@@ -20,13 +19,13 @@ const SendDestination = props => {
           lat: response.geometry.location.lat,
           lng: response.geometry.location.lng
         });
-        setMessage("Destination successfully selected")
+        props.setMessage("Destination successfully selected")
       } else {
-        setMessage("Can't go there. Zero Results")
+        props.setMessage("Can't go there. Zero Results")
         props.setName(null)
       }
     } else {
-      setMessage(response.message)
+      props.setMessage(response.message)
     }
   }
 
@@ -48,8 +47,8 @@ const SendDestination = props => {
         <input name="place" type="text" id="place" placeholder="City"></input>
         <button id="submit">Submit</button>
       </form>
-      {message}
-      {props.name == null && <p>Or pick a spot on the map!</p>}
+      <p>Or pick a spot on the map!</p>
+      {props.message}
       <button id="create-trip" onClick={onClickHandler}>Let's Go!</button>
     </>
   )
@@ -58,7 +57,8 @@ const SendDestination = props => {
 const mapStateToProps = state => {
   return {
     coords: state.coords,
-    name: state.name
+    name: state.name,
+    message: state.message
   }
 }
 
@@ -69,6 +69,9 @@ const mapDispatchToProps = dispatch => {
     },
     setName: name => {
       dispatch({ type: "SET_NAME", payload: name });
+    },
+    setMessage: message => {
+      dispatch({ type: "SET_MESSAGE", payload: message });
     },
   }
 }
