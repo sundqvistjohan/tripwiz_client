@@ -17,22 +17,6 @@ const getCoords = async (destination) => {
   }
 };
 
-const getName = async (destination) => {
-  try {
-    const response = await axios({
-      method: "GET",
-      url: "https://maps.googleapis.com/maps/api/geocode/json?",
-      params: {
-        address: destination,
-        key: process.env.REACT_APP_GOOGLE_APIKEY
-      }
-    });
-    return response.data.results[0]
-  } catch (error) {
-    return error;
-  }
-};
-
 const initializeTrip = async (props) => {
   try {
     const response = await axios({

@@ -22,6 +22,7 @@ const SendDestination = props => {
         setMessage("Destination Submitted")
       } else {
         setMessage("Can't go there. Zero Results")
+        props.setName(null)
       }
     } else {
       setMessage(response.message)
