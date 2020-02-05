@@ -19,7 +19,7 @@ const SendDestination = props => {
           lat: response.geometry.location.lat,
           lng: response.geometry.location.lng
         });
-        setMessage("Destination Submitted")
+        setMessage("Destination successfully selected")
       } else {
         setMessage("Can't go there. Zero Results")
         props.setName(null)
@@ -37,7 +37,7 @@ const SendDestination = props => {
     <>
       <h2>To get started...</h2>
       <form onSubmit={submitPlace} id="place-form">
-        <label>Choose your destination! </label>
+        <label>Choose your destination here! </label>
         <input name="place" type="text" id="place" placeholder="City"></input>
         <button id="submit">Submit</button>
       </form>
