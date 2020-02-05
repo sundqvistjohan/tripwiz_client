@@ -42,7 +42,7 @@ const SendDestination = props => {
         <button id="submit">Submit</button>
       </form>
       {message}
-      <p>Or pick a spot on the map!</p>
+      {props.name == null && <p>Or pick a spot on the map!</p>}
 
       {props.name && <p>You are going to {props.name}</p>}
       <button id="create-trip" onClick={onClickHandler}>Let's Go!</button>
