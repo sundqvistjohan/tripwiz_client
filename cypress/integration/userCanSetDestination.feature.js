@@ -5,7 +5,7 @@ describe("User is shown destination input field", () => {
   });
 
   it("can select destination successfully", () => {
-    let destination = "Rome"
+    let destination = "Rome";
     cy.route({
       method: "GET",
       url: "https://maps.googleapis.com/maps/api/geocode/json?**",
@@ -19,12 +19,12 @@ describe("User is shown destination input field", () => {
     cy.get("#place-form").within(() => {
       cy.get("#place").type("Rome");
       cy.get("#submit").click();
-    })
-    cy.get("#root").should("contain", "Destination successfully selected")
+    });
+    cy.get("#root").should("contain", "Destination successfully selected");
   });
 
   it("can select destination unsuccessfully", () => {
-    let destination = "sdfsdfsdf"
+    let destination = "sdfsdfsdf";
     cy.route({
       method: "GET",
       url: "https://maps.googleapis.com/maps/api/geocode/json?**",
@@ -38,8 +38,7 @@ describe("User is shown destination input field", () => {
     cy.get("#place-form").within(() => {
       cy.get("#place").type("sdfsdfsdf");
       cy.get("#submit").click();
-    })
-    cy.get("#root").should("contain", "Can't go there. Zero Results")
+    });
+    cy.get("#root").should("contain", "Can't go there. Zero Results");
   });
-
 });

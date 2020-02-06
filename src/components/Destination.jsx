@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { useState } from "react";
 import { getCoords, initializeTrip } from "../modules/destination";
-import { connect } from 'react-redux'
-
+import { connect } from "react-redux";
+import EmbedMap from "./EmbedMap.jsx";
+import { Redirect } from "react-router-dom";
 
 const Destination = props => {
+  const [redirect, setRedirect] = useState(false);
 
-  const submitPlace = async (e) => {
+  const submitPlace = async e => {
     e.preventDefault();
-    let response = await getCoords(
-      e.target.place.value
-    )
+    let response = await getCoords(e.target.place.value);
     if (!response.error) {
-      if (response.data.status != "ZERO_RESULTS") {
-        response = response.data.results[0]
+      if (response.data.status !== "ZERO_RESULTS") {
+        response = response.data.results[0];
         props.setLat(response.geometry.location.lat);
         props.setLng(response.geometry.location.lng);
         props.setMessage("Destination successfully selected");
@@ -22,16 +22,19 @@ const Destination = props => {
     } else {
       props.setMessage(response.message);
     }
-  }
+  };
 
   const onClickHandler = async () => {
-    const response = await initializeTrip(props)
-    if (response.ok) {
-      props.setName(response.data.destination);
+    const response = await initializeTrip(props);
+    if (response.status === 200) {
+      props.setDestination(response.data.destination);
+      props.setTrip(response.data.id)
+      props.setMessage("");
+      setRedirect(true);
     } else {
-      return props.setMessage("Something went wrong.")
+      return props.setMessage("Something went wrong.");
     }
-  }
+  };
 
   return (
     <>
@@ -43,38 +46,42 @@ const Destination = props => {
       </form>
       <p>Or pick a spot on the map!</p>
       {props.message}
-      <button id="create-trip" onClick={onClickHandler}>Let's Go!</button>
+      <button id="create-trip" onClick={onClickHandler}>
+        Let's Go!
+      </button>
+      <EmbedMap />
+      {redirect && <Redirect to="/activities" />}
     </>
-  )
-}
+  );
+};
 
 const mapStateToProps = state => {
   return {
     lat: state.lat,
     lng: state.lng,
-    name: state.name,
+    destination: state.destination,
     message: state.message
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     setLat: lat => {
-      dispatch({ type: "CHANGE_LAT", payload: lat })
+      dispatch({ type: "CHANGE_LAT", payload: lat });
     },
     setLng: lng => {
-      dispatch({ type: "CHANGE_LNG", payload: lng })
+      dispatch({ type: "CHANGE_LNG", payload: lng });
     },
-    setName: name => {
-      dispatch({ type: "SET_NAME", payload: name });
+    setDestination: dest => {
+      dispatch({ type: "SET_DEST", payload: dest });
     },
     setMessage: message => {
       dispatch({ type: "SET_MESSAGE", payload: message });
     },
-  }
-}
+    setTrip: id => {
+      dispatch({ type: "SET_TRIP", payload: id });
+    },
+  };
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps)
-  (Destination);
+export default connect(mapStateToProps, mapDispatchToProps)(Destination);

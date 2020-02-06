@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 
 const EmbedMap = props => {
-  const lat = props.lat
-  const lng = props.lng
+  const lat = props.lat;
+  const lng = props.lng;
 
   const onClickHandler = e => {
     props.setLat(e.latLng.lat());
@@ -47,23 +47,28 @@ const mapStateToProps = state => {
     lat: state.lat,
     lng: state.lng,
     message: state.message
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     setLat: lat => {
-      dispatch({ type: "CHANGE_LAT", payload: lat })
+      dispatch({ type: "CHANGE_LAT", payload: lat });
     },
     setLng: lng => {
-      dispatch({ type: "CHANGE_LNG", payload: lng })
+      dispatch({ type: "CHANGE_LNG", payload: lng });
     },
     setMessage: message => {
       dispatch({ type: "SET_MESSAGE", payload: message });
-    },
-  }
-}
+    }
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(GoogleApiWrapper({
-  apiKey: process.env.REACT_APP_GOOGLE_APIKEY
-})(EmbedMap));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(
+  GoogleApiWrapper({
+    apiKey: process.env.REACT_APP_GOOGLE_APIKEY
+  })(EmbedMap)
+);

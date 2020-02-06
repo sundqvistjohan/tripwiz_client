@@ -1,7 +1,6 @@
 {
   "results": [
     {
-      "formatted_address": "Rome, Metropolitan City of Rome, Italy",
       "geometry": {
         "location": {
           "lat": 41.902,
@@ -10,5 +9,8 @@
       }
     }
   ],
+  "data": {
+    "destination": "Rome"
+  },
   "status": "OK"
 }

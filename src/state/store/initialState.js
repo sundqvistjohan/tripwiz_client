@@ -1,7 +1,8 @@
 const initialState = {
   lat: 0,
   lng: 0,
-  name: null,
-  message: null
+  destination: null,
+  message: null,
+  trip: null
 };
 export default initialState;
