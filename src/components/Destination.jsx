@@ -27,11 +27,9 @@ const Destination = props => {
   const onClickHandler = async () => {
     const response = await initializeTrip(props);
     if (response.status == 200) {
-      debugger;
       props.setDestination(response.data.destination);
       setRedirect(true);
     } else {
-      debugger;
       return props.setMessage("Something went wrong.");
     }
   };

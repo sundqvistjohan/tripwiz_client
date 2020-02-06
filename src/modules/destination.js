@@ -33,4 +33,20 @@ const initializeTrip = async (props) => {
   }
 };
 
-export { getCoords, initializeTrip };
+const addActivity = async (activity, actTimes) => {
+  try {
+    const response = await axios({
+      method: "PUT",
+      url: "api/v1/trips",
+      params: {
+        activity: activity,
+        actTimes: actTimes
+      }
+    });
+    return response
+  } catch (error) {
+    return error;
+  }
+};
+
+export { getCoords, initializeTrip, addActivity };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dropdown, Grid, Button } from "semantic-ui-react";
+import { addActivity } from "../modules/destination.js"
 
 const Activities = props => {
   const [activity, setActivity] = useState(null);
@@ -25,7 +26,13 @@ const Activities = props => {
     { key: 3, value: "3", text: "Three" }
   ];
 
-  const onNextHandler = () => {};
+  const onNextHandler = async () => {
+    const response = await addActivity(activity, actTimes);
+    if (response.status == 200) {
+    } else {
+      return props.setMessage("Something went wrong.");
+    }
+  };
 
   return (
     <div className="activities">
@@ -50,6 +57,7 @@ const Activities = props => {
             onChange={(e, data) => setActTimes(data.value)}
           />
           <Button onClick={onNextHandler}>Next</Button>
+          {props.message}
         </Grid.Column>
       </Grid>
     </div>
@@ -58,7 +66,8 @@ const Activities = props => {
 
 const mapStateToProps = state => {
   return {
-    destination: state.destination
+    destination: state.destination,
+    message: set.message
   };
 };
 
