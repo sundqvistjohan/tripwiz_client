@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dropdown, Grid, Button } from "semantic-ui-react";
-import { addActivityType } from "../modules/destination.js"
+import { addActivityType } from "../modules/destination.js";
 
 const Activities = props => {
   const [activityType, setActivityType] = useState(null);
   const [actTimes, setActTimes] = useState(null);
+  const [hotelBudget, setHotelBudget] = useState("4");
 
   const activities = [
     { key: 1, value: "amusement_park", text: "Amusement Park" },
@@ -26,11 +27,20 @@ const Activities = props => {
   ];
 
   const onNextHandler = async () => {
-    const response = await addActivityType(activityType, actTimes, props.trip);
+    let response = await addActivityType(activityType, actTimes, props.trip);
     if (response.status === 200) {
     } else {
       return props.setMessage("Something went wrong.");
     }
+  };
+
+  const changeActive = event => {
+    Array.from(
+      document.getElementsByClassName("range-values")[0].children
+    ).forEach(div => (div.style.color = "black"));
+    let divId = `d${event.target.value}`;
+    document.getElementById(divId).style.color = "green";
+    setHotelBudget(event.target.value);
   };
 
   return (
@@ -58,6 +68,32 @@ const Activities = props => {
           <Button onClick={onNextHandler}>Next</Button>
           {props.message}
         </Grid.Column>
+        <Grid.Column width={7}>
+          <h2>Details of trip:</h2>
+          <h4>Hotel budget</h4>
+          <input
+            type="range"
+            name="budget"
+            min="1"
+            max="4"
+            onChange={changeActive}
+          ></input>
+          <div className="range-values">
+            <div className="dollar" id="d1">
+              <h3>$</h3>
+            </div>
+            <div className="dollar" id="d2">
+              <h3>$$</h3>
+            </div>
+            <div className="dollar" id="d3">
+              <h3>$$$</h3>
+            </div>
+            <div className="dollar" id="d4">
+              <h3>$$$$</h3>
+            </div>
+          </div>
+          {props.message}
+        </Grid.Column>
       </Grid>
     </div>
   );
@@ -78,6 +114,5 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Activities);

@@ -16,3 +16,16 @@ code {
   width: 80%;
   margin-left: 0px;
 }
+
+.range-values {
+  display: flex;
+  margin-left: 1%;
+}
+
+.dollar {
+  margin-left: 5px;
+}
+
+#d4 {
+  color: green;
+}

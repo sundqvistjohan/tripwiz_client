@@ -26,6 +26,7 @@ const Destination = props => {
 
   const onClickHandler = async () => {
     const response = await initializeTrip(props);
+    debugger
     if (response.status === 200) {
       props.setDestination(response.data.destination);
       props.setTrip(response.data.id)
