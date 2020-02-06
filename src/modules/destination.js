@@ -23,6 +23,7 @@ const initializeTrip = async (props) => {
       method: "POST",
       url: "api/v1/trips",
       params: {
+        days: props.days,
         lat: props.lat,
         lng: props.lng
       }
