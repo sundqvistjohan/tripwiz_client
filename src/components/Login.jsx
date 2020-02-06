@@ -1,7 +1,7 @@
 import React from "react";
 import auth from "../modules/auth";
 import { connect } from "react-redux";
-
+import { Link } from "react-router-dom";
 const Login = props => {
   const onLogin = event => {
     event.preventDefault();
@@ -13,22 +13,48 @@ const Login = props => {
         props.changeAuthMessage(`${('login.loggedInMess')} ${userDatas.data.email}`);
       })
       .catch(error => {
+        console.log(error.response.data.errors)
         props.changeAuthMessage(error.response.data.errors);
       });
   };
   
+  let loginFunction;
 
+  switch (true) {
+    case !props.authenticated:
+      loginFunction = (
+        <>
+          <p>Login</p>
+          <form id="login-form" onSubmit={onLogin}>
+            <label>email </label>
+            <input name="email" type="email" id="email"></input>
+
+            <label>password</label>
+            <input name="password" type="password" id="password"></input>&nbsp;
+            <button id="submit">Submit</button>
+          </form>
+          {props.authMessage}
+        </>
+      );
+      break;
+    case props.authenticated:
+      loginFunction = (
+        <>
+          <span>{props.authMessage}</span>&nbsp;
+          <br/>
+          <Link id="profile-link" to="/">
+          HOME page
+          </Link>&nbsp;
+        </>
+      );
+      break;
+    default:
+      loginFunction = null;
+  }
   return (
-    <form id="login-form" onSubmit={onLogin}>
-      <label>Email</label>
-      <input name="email" type="email" id="email"></input>
-
-      <label>Password</label>
-      <input name="password" type="password" id="password"></input>
-
-      <button id="submit" >Submit</button>
-    </form>
+    <div id="login">{loginFunction}</div>
   );
+ 
 };
   const mapStateToProps = state => ({
     authenticated: state.authenticated,

@@ -22,10 +22,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         message: action.payload
       };
+    case "CHANGE_AUTHMESSAGE":
+      return {
+        ...state,
+        authMessage: action.payload
+      };
     default:
       return {
         ...state
       };
+
   }
 };
 
