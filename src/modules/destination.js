@@ -34,4 +34,21 @@ const initializeTrip = async (props) => {
   }
 };
 
-export { getCoords, initializeTrip };
+const addActivityType = async (activityType, actTimes, trip) => {
+  try {
+    const response = await axios({
+      method: "POST",
+      url: "api/v1/activity_types",
+      params: {
+        trip: trip,
+        activity_type: activityType,
+        actTimes: actTimes
+      }
+    });
+    return response
+  } catch (error) {
+    return error;
+  }
+};
+
+export { getCoords, initializeTrip, addActivityType };

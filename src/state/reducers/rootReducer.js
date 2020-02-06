@@ -27,6 +27,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         days: action.payload
       };
+    case "SET_TRIP":
+      return {
+        ...state,
+        trip: action.payload
+      };
     default:
       return {
         ...state

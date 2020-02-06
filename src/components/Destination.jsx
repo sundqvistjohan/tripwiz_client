@@ -29,7 +29,7 @@ const Destination = props => {
     e.preventDefault();
     let response = await getCoords(e.target.place.value);
     if (!response.error) {
-      if (response.data.status != "ZERO_RESULTS") {
+      if (response.data.status !== "ZERO_RESULTS") {
         response = response.data.results[0];
         props.setLat(response.geometry.location.lat);
         props.setLng(response.geometry.location.lng);
@@ -44,9 +44,10 @@ const Destination = props => {
 
   const onClickHandler = async () => {
     const response = await initializeTrip(props);
-    debugger
-    if (response.status == 200) {
+    if (response.status === 200) {
       props.setDestination(response.data.destination);
+      props.setTrip(response.data.id)
+      props.setMessage("");
       setRedirect(true);
     } else {
       return props.setMessage("Something went wrong.");
@@ -116,7 +117,10 @@ const mapDispatchToProps = dispatch => {
     },
     setDays: days => {
       dispatch({ type: "SET_DAYS", payload: days });
-    }
+    },
+    setTrip: id => {
+      dispatch({ type: "SET_TRIP", payload: id });
+    },
   };
 };
 

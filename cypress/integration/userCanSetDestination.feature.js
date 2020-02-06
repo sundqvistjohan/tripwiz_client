@@ -1,10 +1,10 @@
-describe("User is shown destination input field", () => {
+describe("User can submit destination", () => {
   beforeEach(() => {
     cy.server();
     cy.visit("/");
   });
 
-  it("can select destination successfully", () => {
+  it("successfully", () => {
     let destination = "Rome";
     cy.route({
       method: "GET",
@@ -21,16 +21,31 @@ describe("User is shown destination input field", () => {
       cy.get("#submit").click();
     });
     cy.get("#root").should("contain", "Destination successfully selected");
-  });
 
-  it("can see days selected", () => {
     cy.get("#days").click();
     cy.get('#days > .visible > :nth-child(3)').click()
     cy.get("#days")
       .should("contain", "3")
-  })
 
-  it("can select destination unsuccessfully", () => {
+    cy.route({
+      method: "POST",
+      url: "http://localhost:3000/api/**",
+      response: "fixtures:inputDest.json"
+    });
+
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/api/**",
+      response: "fixtures:inputDest.json"
+    });
+
+    cy.get('#create-trip').click()
+    cy.wait(1000)
+    cy.get("#root").should('contain', 'Focus of trip')
+
+  });
+
+  it("unsuccessfully", () => {
     let destination = "sdfsdfsdf";
     cy.route({
       method: "GET",
