@@ -1,17 +1,14 @@
 describe("Activities", () => {
-  beforeEach(() => {
+  it("are added to trip succesfully", () => {
+    cy.createTrip();
+    cy.choseActivityType();
+    cy.get("#root").not("contain", "Something went wrong");
+  });
+
+  it("unsuccesfully adds activity type when no trip created", () => {
     cy.server();
     cy.visit("/activities");
-  });
-  it("can see the destination chosen", () => {
-    cy.get(".activities").within(() => {
-      cy.get(".seven > :nth-child(2)").click();
-      cy.get(".active > .visible > :nth-child(3)").click();
-      cy.get(".seven > :nth-child(4)").click();
-      cy.get(".active > .visible > :nth-child(3)").click();
-    });
-    cy.get(".activities")
-      .should("contain", "Art Gallery")
-      .should("contain", "Three");
+    cy.choseActivityType();
+    cy.get("#root").should("contain", "Something went wrong");
   });
 });

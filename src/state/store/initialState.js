@@ -3,6 +3,6 @@ const initialState = {
   lng: 0,
   destination: null,
   message: null,
-  tripId: null
+  trip: null
 };
 export default initialState;

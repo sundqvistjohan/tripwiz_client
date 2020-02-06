@@ -1,23 +1,22 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dropdown, Grid, Button } from "semantic-ui-react";
-import { addActivity } from "../modules/destination.js"
+import { addActivityType } from "../modules/destination.js"
 
 const Activities = props => {
-  const [activity, setActivity] = useState(null);
+  const [activityType, setActivityType] = useState(null);
   const [actTimes, setActTimes] = useState(null);
 
   const activities = [
-    { key: 1, value: "amusement park", text: "Amusement Park" },
+    { key: 1, value: "amusement_park", text: "Amusement Park" },
     { key: 2, value: "aquarium", text: "Aquarium" },
-    { key: 3, value: "art gallery", text: "Art Gallery" },
-    { key: 4, value: "beauty salon", text: "Beauty Salon" },
+    { key: 3, value: "art_gallery", text: "Art Gallery" },
+    { key: 4, value: "beauty_salon", text: "Beauty Salon" },
     { key: 5, value: "casino", text: "Casino" },
-    { key: 6, value: "shopping", text: "Shopping" },
-    { key: 7, value: "museum", text: "Museum" },
-    { key: 8, value: "night club", text: "Night Club" },
-    { key: 9, value: "park", text: "Park" },
-    { key: 10, value: "zoo", text: "Zoo" }
+    { key: 6, value: "museum", text: "Museum" },
+    { key: 7, value: "night_club", text: "Night Club" },
+    { key: 8, value: "park", text: "Park" },
+    { key: 9, value: "zoo", text: "Zoo" }
   ];
 
   const number = [
@@ -27,7 +26,7 @@ const Activities = props => {
   ];
 
   const onNextHandler = async () => {
-    const response = await addActivity(activity, actTimes, props.tripId);
+    const response = await addActivityType(activityType, actTimes, props.trip);
     if (response.status === 200) {
     } else {
       return props.setMessage("Something went wrong.");
@@ -46,7 +45,7 @@ const Activities = props => {
             fluid
             selection
             options={activities}
-            onChange={(e, data) => setActivity(data.value)}
+            onChange={(e, data) => setActivityType(data.value)}
           />
           <h3>Number of times:</h3>
           <Dropdown
@@ -67,7 +66,8 @@ const Activities = props => {
 const mapStateToProps = state => {
   return {
     destination: state.destination,
-    tripId: state.tripId
+    trip: state.trip,
+    message: state.message
   };
 };
 

@@ -22,10 +22,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         message: action.payload
       };
-    case "SET_TRIP_ID":
+    case "SET_TRIP":
       return {
         ...state,
-        tripId: action.payload
+        trip: action.payload
       };
     default:
       return {

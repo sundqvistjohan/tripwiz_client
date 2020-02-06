@@ -28,7 +28,8 @@ const Destination = props => {
     const response = await initializeTrip(props);
     if (response.status === 200) {
       props.setDestination(response.data.destination);
-      props.setTripId(response.data.id)
+      props.setTrip(response.data.id)
+      props.setMessage("");
       setRedirect(true);
     } else {
       return props.setMessage("Something went wrong.");
@@ -77,8 +78,8 @@ const mapDispatchToProps = dispatch => {
     setMessage: message => {
       dispatch({ type: "SET_MESSAGE", payload: message });
     },
-    setTripId: id => {
-      dispatch({ type: "SET_TRIP_ID", payload: id });
+    setTrip: id => {
+      dispatch({ type: "SET_TRIP", payload: id });
     },
   };
 };

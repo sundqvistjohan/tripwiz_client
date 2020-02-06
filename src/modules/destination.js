@@ -33,14 +33,14 @@ const initializeTrip = async (props) => {
   }
 };
 
-const addActivity = async (activity, actTimes, tripId) => {
+const addActivityType = async (activityType, actTimes, trip) => {
   try {
     const response = await axios({
-      method: "PUT",
-      url: "api/v1/activities",
+      method: "POST",
+      url: "api/v1/activity_types",
       params: {
-        tripId: tripId,
-        activity: activity,
+        trip: trip,
+        activity_type: activityType,
         actTimes: actTimes
       }
     });
@@ -50,4 +50,4 @@ const addActivity = async (activity, actTimes, tripId) => {
   }
 };
 
-export { getCoords, initializeTrip, addActivity };
+export { getCoords, initializeTrip, addActivityType };
