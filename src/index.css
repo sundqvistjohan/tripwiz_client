@@ -16,3 +16,24 @@ code {
   width: 80%;
   margin-left: 0px;
 }
+
+.ui.container {
+  padding-top: 2%;
+}
+
+#center-screen {
+  text-align: center;
+}
+
+#create-trip {
+  margin: 20px;
+}
+
+Form {
+  width: 50%;
+}
+
+#days {
+  margin-top: 40px;
+  width: 30%;
+}

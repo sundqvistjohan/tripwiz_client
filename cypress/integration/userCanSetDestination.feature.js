@@ -23,6 +23,13 @@ describe("User is shown destination input field", () => {
     cy.get("#root").should("contain", "Destination successfully selected");
   });
 
+  it("can see days selected", () => {
+    cy.get("#days").click();
+    cy.get('#days > .visible > :nth-child(3)').click()
+    cy.get("#days")
+      .should("contain", "3")
+  })
+
   it("can select destination unsuccessfully", () => {
     let destination = "sdfsdfsdf";
     cy.route({
