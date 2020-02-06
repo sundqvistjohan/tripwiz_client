@@ -1,0 +1,14 @@
+{
+  "results": [
+    {
+      "formatted_address": "",
+      "geometry": {
+        "location": {
+          "lat": null,
+          "lng": null
+        }
+      }
+    }
+  ],
+  "status": "ZERO_RESULTS"
+}

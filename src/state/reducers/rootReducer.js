@@ -2,10 +2,25 @@ import initialState from "../store/initialState";
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "CHANGE_COORDS":
+    case "CHANGE_LAT":
       return {
         ...state,
-        coords: action.payload
+        lat: action.payload
+      };
+    case "CHANGE_LNG":
+      return {
+        ...state,
+        lng: action.payload
+      };
+    case "SET_NAME":
+      return {
+        ...state,
+        name: action.payload
+      };
+    case "SET_MESSAGE":
+      return {
+        ...state,
+        message: action.payload
       };
     default:
       return {
