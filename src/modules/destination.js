@@ -33,12 +33,13 @@ const initializeTrip = async (props) => {
   }
 };
 
-const addActivity = async (activity, actTimes) => {
+const addActivity = async (activity, actTimes, tripId) => {
   try {
     const response = await axios({
       method: "PUT",
-      url: "api/v1/trips",
+      url: "api/v1/activities",
       params: {
+        tripId: tripId,
         activity: activity,
         actTimes: actTimes
       }

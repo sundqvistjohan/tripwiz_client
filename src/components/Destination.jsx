@@ -11,7 +11,7 @@ const Destination = props => {
     e.preventDefault();
     let response = await getCoords(e.target.place.value);
     if (!response.error) {
-      if (response.data.status != "ZERO_RESULTS") {
+      if (response.data.status !== "ZERO_RESULTS") {
         response = response.data.results[0];
         props.setLat(response.geometry.location.lat);
         props.setLng(response.geometry.location.lng);
@@ -26,8 +26,9 @@ const Destination = props => {
 
   const onClickHandler = async () => {
     const response = await initializeTrip(props);
-    if (response.status == 200) {
+    if (response.status === 200) {
       props.setDestination(response.data.destination);
+      props.setTripId(response.data.id)
       setRedirect(true);
     } else {
       return props.setMessage("Something went wrong.");
@@ -75,7 +76,10 @@ const mapDispatchToProps = dispatch => {
     },
     setMessage: message => {
       dispatch({ type: "SET_MESSAGE", payload: message });
-    }
+    },
+    setTripId: id => {
+      dispatch({ type: "SET_TRIP_ID", payload: id });
+    },
   };
 };
 

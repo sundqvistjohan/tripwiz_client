@@ -27,8 +27,8 @@ const Activities = props => {
   ];
 
   const onNextHandler = async () => {
-    const response = await addActivity(activity, actTimes);
-    if (response.status == 200) {
+    const response = await addActivity(activity, actTimes, props.tripId);
+    if (response.status === 200) {
     } else {
       return props.setMessage("Something went wrong.");
     }
@@ -67,8 +67,17 @@ const Activities = props => {
 const mapStateToProps = state => {
   return {
     destination: state.destination,
-    message: set.message
+    tripId: state.tripId
   };
 };
 
-export default connect(mapStateToProps)(Activities);
+const mapDispatchToProps = dispatch => {
+  return {
+    setMessage: message => {
+      dispatch({ type: "SET_MESSAGE", payload: message });
+    }
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Activities);
