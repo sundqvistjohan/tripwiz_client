@@ -22,6 +22,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         message: action.payload
       };
+      case "SET_DAYS":
+      return {
+        ...state,
+        days: action.payload
+      };
     case "SET_TRIP":
       return {
         ...state,

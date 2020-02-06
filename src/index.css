@@ -29,3 +29,24 @@ code {
 #d4 {
   color: green;
 }
+
+.ui.container {
+  padding-top: 2%;
+}
+
+#center-screen {
+  text-align: center;
+}
+
+#create-trip {
+  margin: 20px;
+}
+
+Form {
+  width: 50%;
+}
+
+#days {
+  margin-top: 40px;
+  width: 30%;
+}
