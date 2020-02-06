@@ -12,10 +12,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         lng: action.payload
       };
-    case "SET_NAME":
+    case "SET_DEST":
       return {
         ...state,
-        name: action.payload
+        destination: action.payload
       };
     case "SET_MESSAGE":
       return {
