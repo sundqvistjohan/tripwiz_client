@@ -1,16 +1,23 @@
 import React from 'react';
 import Destination from './components/Destination'
 import EmbedMap from "./components/EmbedMap"
-
+import Login from "./components/Login";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
 const App = () => {
   return (
     <div className="App">
       TripWiz
-      <Login />
+      <BrowserRouter>
+      <Link to="/login">Login</Link>
+      <Switch>
+      <Route exact path="/login" component={Login} />
+      </Switch>
+      </BrowserRouter> 
       <Destination />
-      <EmbedMap />
+      <EmbedMap />  
     </div>
+
   );
 }
 
