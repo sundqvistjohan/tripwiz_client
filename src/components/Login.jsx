@@ -10,10 +10,9 @@ const Login = props => {
       .then(userDatas => {
         props.changeAuth(true);
         props.setUserAttrs(userDatas.data);
-        props.changeAuthMessage(`${('login.loggedInMess')} ${userDatas.data.email}`);
+        props.changeAuthMessage(`Logged in as: ${userDatas.data.email}`);
       })
       .catch(error => {
-        console.log(error.response.data.errors)
         props.changeAuthMessage(error.response.data.errors);
       });
   };

@@ -3,7 +3,7 @@ describe("User can login", () => {
     cy.server();
     cy.visit("/");
   });
-  it("successfully login", () => {
+  it("unsuccessfully with invalid credentials", () => {
     cy.visit("/login") 
     cy.route({
       method: "POST",
@@ -16,12 +16,34 @@ describe("User can login", () => {
     });
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
-      cy.get("#password").type("password");
+      cy.get("#password").type("pass");
       cy.get('button').contains('Submit').click()
     });
     cy.get("#login").should(
       "contain",
       "Invalid login credentials. Please try again."
     );
+  });
+  it("successfully with valid credentials", () => {
+    cy.visit("/login");
+    cy.route({
+      method: "POST",
+      url: "http://localhost:3000/auth/sign_in",
+      response: "fixture:login_user.json"
+    });
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/auth/**",
+      response: "fixture:login_user.json"
+    });
+    
+    cy.get("#login-form").within(() => {
+      cy.get("#email").type("user@mail.com");
+      cy.get("#password").type("password");
+      cy.get("button")
+        .contains("Submit")
+        .click();
+    });
+    cy.get("#login").should("contain", "Logged in as: user@mail.com");
   });
 })

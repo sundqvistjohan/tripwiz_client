@@ -27,6 +27,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         authMessage: action.payload
       };
+    case "CHANGE_USER_ATTRIBUTES":
+      return {
+        ...state,
+        userAttrs: action.payload
+      };
+    case "CHANGE_AUTHENTICATED":
+      return {
+        ...state,
+        authenticated: action.payload
+      };
     default:
       return {
         ...state

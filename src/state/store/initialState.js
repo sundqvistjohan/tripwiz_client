@@ -4,6 +4,7 @@ const initialState = {
   name: null,
   authenticated: false,
   authMessage: null,
+  userAttrs: null,
   message: null
 };
 export default initialState;
