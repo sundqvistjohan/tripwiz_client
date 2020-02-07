@@ -7,7 +7,7 @@ describe("Activities", () => {
 
   it("unsuccesfully adds activity type when no trip created", () => {
     cy.server();
-    cy.visit("/activities");
+    cy.visit("/trip");
     cy.choseActivityType();
     cy.get("#root").should("contain", "Something went wrong");
   });

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dropdown, Grid, Button } from "semantic-ui-react";
-import { addActivityType, addHotel } from "../modules/destination.js";
-import { hotelTriangulator } from "../helpers/helperMethods.js";
+import { addActivityType, addHotels } from "../modules/destination.js";
 
 const Activities = props => {
   const [activityType, setActivityType] = useState(null);
   const [actTimes, setActTimes] = useState(null);
+  const [gotActivities, setGotActivities] = useState(false);
+  const [activitiesMessage, setActivitiesMessage] = useState("");
   const [hotelBudget, setHotelBudget] = useState("4");
 
   const activities = [
@@ -27,18 +28,13 @@ const Activities = props => {
     { key: 3, value: "3", text: "Three" }
   ];
 
-  const onNextHandler = async () => {
+  const onFindActivities = async () => {
     let response = await addActivityType(activityType, actTimes, props.trip);
     if (response.status === 200) {
-      let [hotelLat, hotelLng] = hotelTriangulator(response);
-      let hotelResponse = await addHotel(hotelLat, hotelLng, hotelBudget, props.trip);
-      if (hotelResponse.status === 200) {
-        props.setMessage("Hotel found");
-      } else {
-        props.setMessage("Couldn't find a hotel there");
-      }
+      setGotActivities(true);
+      setActivitiesMessage("Found activities!");
     } else {
-      props.setMessage("Couldn't add activity");
+      setActivitiesMessage("Couldn't add activity, try something more popular");
     }
   };
 
@@ -73,35 +69,40 @@ const Activities = props => {
             options={number}
             onChange={(e, data) => setActTimes(data.value)}
           />
-          <Button onClick={onNextHandler}>Next</Button>
-          {props.message}
+          <Button onClick={onFindActivities}>Find activities</Button>
+          {activitiesMessage}
         </Grid.Column>
-        <Grid.Column width={7}>
-          <h2>Details of trip:</h2>
-          <h4>Hotel budget</h4>
-          <input
-            type="range"
-            name="budget"
-            min="1"
-            max="4"
-            onChange={changeActive}
-          ></input>
-          <div className="range-values">
-            <div className="dollar" id="d1">
-              <h3>$</h3>
+        {gotActivities && (
+          <Grid.Column width={7}>
+            <h2>Details of trip:</h2>
+            <h4>Hotel budget</h4>
+            <input
+              type="range"
+              name="budget"
+              min="1"
+              max="5"
+              id="slider"
+              onChange={changeActive}
+            ></input>
+            <div className="range-values">
+              <div className="dollar" id="d1">
+                <h3>$</h3>
+              </div>
+              <div className="dollar" id="d2">
+                <h3>$$</h3>
+              </div>
+              <div className="dollar" id="d3">
+                <h3>$$$</h3>
+              </div>
+              <div className="dollar" id="d4">
+                <h3>$$$$</h3>
+              </div>
+              <div className="dollar" id="d5">
+                <h3>$$$$$</h3>
+              </div>
             </div>
-            <div className="dollar" id="d2">
-              <h3>$$</h3>
-            </div>
-            <div className="dollar" id="d3">
-              <h3>$$$</h3>
-            </div>
-            <div className="dollar" id="d4">
-              <h3>$$$$</h3>
-            </div>
-          </div>
-          {props.message}
-        </Grid.Column>
+          </Grid.Column>
+        )}
       </Grid>
     </div>
   );
@@ -117,8 +118,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setMessage: message => {
-      dispatch({ type: "SET_MESSAGE", payload: message });
+    setActivities: data => {
+      dispatch({ type: "SET_ACTIVITIES", payload: data });
     }
   };
 };

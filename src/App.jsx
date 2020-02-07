@@ -1,7 +1,7 @@
 import React from 'react';
 import Destination from './components/Destination'
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Activities from './components/Activities.jsx'
+import Trip from './components/Trip.jsx'
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
             TripWiz
             <Switch>
               <Route exact path="/" component={Destination}></Route>
-              <Route exact path="/activities" component={Activities}></Route>
+              <Route exact path="/trip" component={Trip}></Route>
             </Switch>
           </div>
         </BrowserRouter>

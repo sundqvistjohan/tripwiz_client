@@ -27,12 +27,11 @@ const EmbedMap = props => {
 
   return (
     <>
-      <div id="map">
+      <div id="embed-map">
         <Map
           google={props.google}
           zoom={10}
           center={{ lat: lat, lng: lng }}
-          style={{ width: "640px", height: "640px" }}
           onClick={(mapProps, map, e) => onClickHandler(e)}
         >
           <Marker position={{ lat: lat, lng: lng }} />

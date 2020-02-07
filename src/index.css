@@ -12,6 +12,17 @@ code {
     monospace;
 }
 
+.App {
+  height: 70vh;
+  width: 100%;
+  background-color: antiquewhite;
+}
+
+#root {
+  background-color: grey;
+  height: 100%;
+}
+
 .ui.fluid.selection.dropdown {
   width: 80%;
   margin-left: 0px;
@@ -22,11 +33,15 @@ code {
   margin-left: 1%;
 }
 
+#slider {
+  width: 200px;
+}
+
 .dollar {
   margin-left: 5px;
 }
 
-#d4 {
+#d5 {
   color: green;
 }
 
@@ -36,6 +51,7 @@ code {
 
 #center-screen {
   text-align: center;
+  padding-top: 30%;
 }
 
 #create-trip {
@@ -49,4 +65,16 @@ Form {
 #days {
   margin-top: 40px;
   width: 30%;
+}
+
+#embed-map {
+  height: 100%;
+  display: fixed;
+  margin-left: 2%;
+}
+
+.eight.wide.column {
+  height: inherit;
+  padding-left: 2%;
+
 }
