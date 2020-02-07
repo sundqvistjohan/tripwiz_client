@@ -51,4 +51,21 @@ const addActivityType = async (activityType, actTimes, trip) => {
   }
 };
 
-export { getCoords, initializeTrip, addActivityType };
+const addHotel = async (lat, lng, trip) => {
+  try {
+    const response = await axios({
+      method: "POST",
+      url: "api/v1/hotels",
+      params: {
+        trip: trip,
+        lat: lat,
+        lng: lng
+      }
+    });
+    return response
+  } catch (error) {
+    return error;
+  }
+};
+
+export { getCoords, initializeTrip, addActivityType, addHotel };

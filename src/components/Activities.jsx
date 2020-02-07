@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dropdown, Grid, Button } from "semantic-ui-react";
 import { addActivityType } from "../modules/destination.js";
+import { hotelTriangulator } from "../helpers/helperMethods.js";
 
 const Activities = props => {
   const [activityType, setActivityType] = useState(null);
@@ -29,8 +30,15 @@ const Activities = props => {
   const onNextHandler = async () => {
     let response = await addActivityType(activityType, actTimes, props.trip);
     if (response.status === 200) {
+      let [hotelLat, hotelLng] = hotelTriangulator(response);
+      let hotelResponse = await addHotel(hotelLat, hotelLng, props.trip);
+      if (hotelResponse.status === 200) {
+        props.setMessage("Hotel found");
+      } else {
+        props.setMessage("Couldn't find a hotel there");
+      }
     } else {
-      return props.setMessage("Something went wrong.");
+      props.setMessage("Couldn't add activity");
     }
   };
 
