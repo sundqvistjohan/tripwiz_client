@@ -42,6 +42,9 @@ Cypress.Commands.add("createTrip", () => {
     url: "http://localhost:3000/api/**",
     response: "fixtures:inputDest.json"
   });
+  cy.get("#days").click();
+  cy.get("#days > .visible > :nth-child(3)").click();
+  cy.get("#days").should("contain", "3");
   cy.get("#create-trip").click();
 });
 

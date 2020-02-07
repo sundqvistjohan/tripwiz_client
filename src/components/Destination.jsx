@@ -7,6 +7,7 @@ import { Dropdown, Grid, Form, Button } from "semantic-ui-react";
 
 const Destination = props => {
   const [redirect, setRedirect] = useState(false);
+  const [alert, setAlert] = useState(null) 
 
   const number = [
     { key: 1, value: "1", text: "1" },
@@ -43,14 +44,18 @@ const Destination = props => {
   };
 
   const onClickHandler = async () => {
-    const response = await initializeTrip(props);
-    if (response.status === 200) {
-      props.setDestination(response.data.destination);
-      props.setTrip(response.data.id)
-      props.setMessage("");
-      setRedirect(true);
+    if (props.days) {
+      const response = await initializeTrip(props);
+      if (response.status === 200) {
+        props.setDestination(response.data.destination);
+        props.setTrip(response.data.id);
+        props.setMessage("");
+        setRedirect(true);
+      } else {
+        props.setMessage("Something went wrong.");
+      }
     } else {
-      return props.setMessage("Something went wrong.");
+      setAlert("You must choose how many days you will travel");
     }
   };
 
@@ -61,7 +66,12 @@ const Destination = props => {
           <h2>To get started...</h2>
           <Form onSubmit={submitPlace} id="place-form">
             <label>Choose your destination here! </label>
-            <input name="place" type="text" id="place" placeholder="City"></input>
+            <input
+              name="place"
+              type="text"
+              id="place"
+              placeholder="City"
+            ></input>
             <Button id="submit">Look for Destination</Button>
           </Form>
           <h5>Or pick a spot on the map!</h5>
@@ -76,7 +86,8 @@ const Destination = props => {
             clearable
             fluid
             selection
-            scrolling options={number}
+            scrolling
+            options={number}
             onChange={(e, data) => props.setDays(data.value)}
           />
         </Grid.Column>
@@ -85,6 +96,7 @@ const Destination = props => {
         <Button id="create-trip" onClick={onClickHandler}>
           Let's Go!
         </Button>
+        {alert}
       </div>
       {redirect && <Redirect to="/trip" />}
     </>
@@ -120,7 +132,7 @@ const mapDispatchToProps = dispatch => {
     },
     setTrip: id => {
       dispatch({ type: "SET_TRIP", payload: id });
-    },
+    }
   };
 };
 
