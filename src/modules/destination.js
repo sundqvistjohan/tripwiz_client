@@ -51,13 +51,14 @@ const addActivityType = async (activityType, actTimes, trip) => {
   }
 };
 
-const addHotel = async (lat, lng, trip) => {
+const addHotel = async (lat, lng, budget, trip) => {
   try {
     const response = await axios({
       method: "POST",
       url: "api/v1/hotels",
       params: {
         trip: trip,
+        budget: budget,
         lat: lat,
         lng: lng
       }
