@@ -53,7 +53,6 @@ const Login = props => {
   return (
     <div id="login">{loginFunction}</div>
   );
- 
 };
   const mapStateToProps = state => ({
     authenticated: state.authenticated,
