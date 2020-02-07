@@ -76,6 +76,7 @@ const Destination = props => {
           </Form>
           <h5>Or pick a spot on the map!</h5>
           {props.message}
+          <EmbedMap />
         </Grid.Column>
         <Grid.Column width={7}>
           <h3>..and how many days would you like to go for?</h3>
@@ -91,14 +92,13 @@ const Destination = props => {
           />
         </Grid.Column>
       </Grid>
-      <div id="center-screen">
+      <div className="center-screen">
         <Button id="create-trip" onClick={onClickHandler}>
           Let's Go!
         </Button>
         {alert}
-        <EmbedMap />
       </div>
-      {redirect && <Redirect to="/activities" />}
+      {redirect && <Redirect to="/trip" />}
     </>
   );
 };

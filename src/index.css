@@ -12,17 +12,46 @@ code {
     monospace;
 }
 
+.App {
+  height: 70vh;
+  width: 100%;
+  background-color: antiquewhite;
+}
+
+#root {
+  background-color: grey;
+  height: 100%;
+}
+
 .ui.fluid.selection.dropdown {
   width: 80%;
   margin-left: 0px;
+}
+
+.range-values {
+  display: flex;
+  margin-left: 1%;
+}
+
+#slider {
+  width: 250px;
+}
+
+.dollar {
+  margin-left: 5px;
+}
+
+#d5 {
+  color: gold;
 }
 
 .ui.container {
   padding-top: 2%;
 }
 
-#center-screen {
+.center-screen {
   text-align: center;
+  padding-top: 30%;
 }
 
 #create-trip {
@@ -36,4 +65,16 @@ Form {
 #days {
   margin-top: 40px;
   width: 30%;
+}
+
+#embed-map {
+  height: 100%;
+  display: fixed;
+  margin-left: 2%;
+}
+
+.eight.wide.column {
+  height: inherit;
+  padding-left: 2%;
+
 }
