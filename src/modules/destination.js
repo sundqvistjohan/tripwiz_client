@@ -67,4 +67,4 @@ const addHotels = async (budget, trip) => {
   }
 };
 
-export { getCoords, initializeTrip, addActivityType, addHotel };
+export { getCoords, initializeTrip, addActivityType, addHotels };

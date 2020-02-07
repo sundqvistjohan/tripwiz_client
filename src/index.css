@@ -34,7 +34,7 @@ code {
 }
 
 #slider {
-  width: 200px;
+  width: 250px;
 }
 
 .dollar {
@@ -42,14 +42,14 @@ code {
 }
 
 #d5 {
-  color: green;
+  color: gold;
 }
 
 .ui.container {
   padding-top: 2%;
 }
 
-#center-screen {
+.center-screen {
   text-align: center;
   padding-top: 30%;
 }

@@ -8,7 +8,9 @@ const Activities = props => {
   const [actTimes, setActTimes] = useState(null);
   const [gotActivities, setGotActivities] = useState(false);
   const [activitiesMessage, setActivitiesMessage] = useState("");
-  const [hotelBudget, setHotelBudget] = useState("4");
+  const [hotelBudget, setHotelBudget] = useState("5");
+  const [gotHotels, setGotHotels] = useState(false);
+  const [hotelsMessage, setHotelsMessage] = useState("");
 
   const activities = [
     { key: 1, value: "amusement_park", text: "Amusement Park" },
@@ -38,21 +40,32 @@ const Activities = props => {
     }
   };
 
-  const changeActive = event => {
+  const sliderChoice = event => {
     Array.from(
       document.getElementsByClassName("range-values")[0].children
     ).forEach(div => (div.style.color = "black"));
     let divId = `d${event.target.value}`;
-    document.getElementById(divId).style.color = "green";
+    document.getElementById(divId).style.color = "gold";
     setHotelBudget(event.target.value);
+  };
+
+  const findHotels = async () => {
+    let response = await addHotels(hotelBudget, props.trip);
+    if (response.status === 200) {
+      setGotHotels(true);
+      setHotelsMessage("Found Hotels!");
+    } else {
+      setHotelsMessage("Couldn't find any hotels");
+    }
   };
 
   return (
     <div className="activities">
       <h1>{props.destination}</h1>
       <Grid>
-        <Grid.Column width={7}>
+        <Grid.Column width={8}>
           <h2>Focus of trip:</h2>
+          <h4>Select activity</h4>
           <Dropdown
             placeholder="Select Activity"
             clearable
@@ -72,37 +85,37 @@ const Activities = props => {
           <Button onClick={onFindActivities}>Find activities</Button>
           {activitiesMessage}
         </Grid.Column>
-        {gotActivities && (
-          <Grid.Column width={7}>
-            <h2>Details of trip:</h2>
-            <h4>Hotel budget</h4>
-            <input
-              type="range"
-              name="budget"
-              min="1"
-              max="5"
-              id="slider"
-              onChange={changeActive}
-            ></input>
-            <div className="range-values">
-              <div className="dollar" id="d1">
-                <h3>$</h3>
-              </div>
-              <div className="dollar" id="d2">
-                <h3>$$</h3>
-              </div>
-              <div className="dollar" id="d3">
-                <h3>$$$</h3>
-              </div>
-              <div className="dollar" id="d4">
-                <h3>$$$$</h3>
-              </div>
-              <div className="dollar" id="d5">
-                <h3>$$$$$</h3>
-              </div>
+        <Grid.Column width={8}>
+          <h2>Details of trip:</h2>
+          <h4>Hotel budget</h4>
+          <input
+            type="range"
+            name="budget"
+            min="1"
+            max="5"
+            id="slider"
+            onChange={sliderChoice}
+          ></input>
+          <div className="range-values">
+            <div className="dollar" id="d1">
+              <h3>✩</h3>
             </div>
-          </Grid.Column>
-        )}
+            <div className="dollar" id="d2">
+              <h3>✩✩</h3>
+            </div>
+            <div className="dollar" id="d3">
+              <h3>✩✩✩</h3>
+            </div>
+            <div className="dollar" id="d4">
+              <h3>✩✩✩✩</h3>
+            </div>
+            <div className="dollar" id="d5">
+              <h3>✩✩✩✩✩</h3>
+            </div>
+          </div>
+          <Button onClick={findHotels}>Find Hotels</Button>
+          {hotelsMessage}
+        </Grid.Column>
       </Grid>
     </div>
   );

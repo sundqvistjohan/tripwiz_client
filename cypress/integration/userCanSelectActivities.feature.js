@@ -1,14 +1,14 @@
 describe("Activities", () => {
   it("are added to trip succesfully", () => {
     cy.createTrip();
-    cy.choseActivityType();
-    cy.get("#root").not("contain", "Something went wrong");
+    cy.chooseActivityType();
+    cy.get("#root").should("contain", "Found activities");
   });
 
   it("unsuccesfully adds activity type when no trip created", () => {
     cy.server();
     cy.visit("/trip");
-    cy.choseActivityType();
-    cy.get("#root").should("contain", "Something went wrong");
+    cy.chooseActivityType();
+    cy.get("#root").should("contain", "Couldn't add activity, try something more popular");
   });
 });

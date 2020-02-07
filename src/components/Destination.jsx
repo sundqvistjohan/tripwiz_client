@@ -81,7 +81,7 @@ const Destination = props => {
           />
         </Grid.Column>
       </Grid>
-      <div id="center-screen">
+      <div className="center-screen">
         <Button id="create-trip" onClick={onClickHandler}>
           Let's Go!
         </Button>
