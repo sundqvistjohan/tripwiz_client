@@ -8,7 +8,9 @@ const Activities = props => {
   const [actTimes, setActTimes] = useState(null);
   const [gotActivities, setGotActivities] = useState(false);
   const [activitiesMessage, setActivitiesMessage] = useState("");
-  const [hotelBudget, setHotelBudget] = useState("4");
+  const [hotelBudget, setHotelBudget] = useState("5");
+  const [foodBudget, setFoodBudget] = useState("4");
+  const [food, setFood] = useState(null);
 
   const activities = [
     { key: 1, value: "amusement_park", text: "Amusement Park" },
@@ -28,6 +30,18 @@ const Activities = props => {
     { key: 3, value: "3", text: "Three" }
   ];
 
+  const cuisines = [
+    { key: 1, value: "mediterranean", text: "Mediterranean" },
+    { key: 2, value: "french", text: "French" },
+    { key: 3, value: "chinese", text: "Chinese" },
+    { key: 4, value: "sushi", text: "Sushi" },
+    { key: 5, value: "pizza", text: "Pizza" },
+    { key: 6, value: "fine dining", text: "Fine dining" },
+    { key: 7, value: "indian", text: "Indian" },
+    { key: 8, value: "carribean", text: "Carribean" },
+    { key: 9, value: "", text: "Everything!" }
+  ];
+
   const onFindActivities = async () => {
     let response = await addActivityType(activityType, actTimes, props.trip);
     if (response.status === 200) {
@@ -40,19 +54,32 @@ const Activities = props => {
 
   const changeActive = event => {
     Array.from(
-      document.getElementsByClassName("range-values")[0].children
+      document.getElementsByClassName(`range-values-${event.target.name}`)[0]
+        .children
     ).forEach(div => (div.style.color = "black"));
-    let divId = `d${event.target.value}`;
-    document.getElementById(divId).style.color = "green";
-    setHotelBudget(event.target.value);
+    let divId = `${event.target.name}${event.target.value}`;
+    if (event.target.name === "hotel") {
+      document.getElementById(divId).style.color = "green";
+      setHotelBudget(event.target.value);
+    } else {
+      document.getElementById(divId).style.color = "gold";
+      setFoodBudget(event.target.value);
+    }
   };
+
+  const finalizeTrip = async () => {
+    
+  }
+
+
 
   return (
     <div className="activities">
       <h1>{props.destination}</h1>
       <Grid>
-        <Grid.Column width={7}>
+        <Grid.Column width={8}>
           <h2>Focus of trip:</h2>
+          <h4>Select activity</h4>
           <Dropdown
             placeholder="Select Activity"
             clearable
@@ -61,7 +88,7 @@ const Activities = props => {
             options={activities}
             onChange={(e, data) => setActivityType(data.value)}
           />
-          <h3>Number of times:</h3>
+          <h4>Number of times:</h4>
           <Dropdown
             placeholder="How many times?"
             fluid
@@ -72,38 +99,73 @@ const Activities = props => {
           <Button onClick={onFindActivities}>Find activities</Button>
           {activitiesMessage}
         </Grid.Column>
-        {gotActivities && (
-          <Grid.Column width={7}>
-            <h2>Details of trip:</h2>
-            <h4>Hotel budget</h4>
+        <Grid.Column width={8}>
+          <h2>Details of trip:</h2>
+          <h4>Hotel budget</h4>
+          <input
+            type="range"
+            name="hotel"
+            min="1"
+            max="5"
+            id="slider"
+            onChange={changeActive}
+          ></input>
+          <div className="range-values-hotel">
+            <div className="scale" id="hotel1">
+              <h3>✩</h3>
+            </div>
+            <div className="scale" id="hotel2">
+              <h3>✩✩</h3>
+            </div>
+            <div className="scale" id="hotel3">
+              <h3>✩✩✩</h3>
+            </div>
+            <div className="scale" id="hotel4">
+              <h3>✩✩✩✩</h3>
+            </div>
+            <div className="scale" id="hotel5">
+              <h3>✩✩✩✩✩</h3>
+            </div>
+          </div>
+          <div className="food-choice">
+            <h4>What food do you prefer? </h4>
+            <Dropdown
+              placeholder="Mediterreanean"
+              fluid
+              selection
+              options={cuisines}
+              onChange={(e, data) => setFood(data.value)}
+            />
+            <h4>Food budget</h4>
             <input
               type="range"
-              name="budget"
+              name="food"
               min="1"
-              max="5"
-              id="slider"
+              max="4"
+              id="food-slider"
               onChange={changeActive}
             ></input>
-            <div className="range-values">
-              <div className="dollar" id="d1">
+            <div className="range-values-food">
+              <div className="scale" id="food1">
                 <h3>$</h3>
               </div>
-              <div className="dollar" id="d2">
+              <div className="scale" id="food2">
                 <h3>$$</h3>
               </div>
-              <div className="dollar" id="d3">
+              <div className="scale" id="food3">
                 <h3>$$$</h3>
               </div>
-              <div className="dollar" id="d4">
+              <div className="scale" id="food4">
                 <h3>$$$$</h3>
               </div>
-              <div className="dollar" id="d5">
-                <h3>$$$$$</h3>
-              </div>
             </div>
-          </Grid.Column>
-        )}
+          </div>
+        </Grid.Column>
+        )
       </Grid>
+      <div id="center-screen">
+        <Button id="create-trip" onClick={finalizeTrip}>Finalize Trip</Button>
+      </div>
     </div>
   );
 };

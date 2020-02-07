@@ -28,21 +28,34 @@ code {
   margin-left: 0px;
 }
 
-.range-values {
+.range-values-hotel {
+  display: flex;
+  margin-left: 1%;
+}
+
+.range-values-food {
   display: flex;
   margin-left: 1%;
 }
 
 #slider {
-  width: 200px;
+  width: 250px;
 }
 
-.dollar {
+#food-slider {
+  width: 150px;
+}
+
+.scale {
   margin-left: 5px;
 }
 
-#d5 {
+#hotel5 {
   color: green;
+}
+
+#food4 {
+  color: gold;
 }
 
 .ui.container {
@@ -76,5 +89,5 @@ Form {
 .eight.wide.column {
   height: inherit;
   padding-left: 2%;
-
 }
+
