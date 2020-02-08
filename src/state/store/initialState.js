@@ -4,6 +4,10 @@ const initialState = {
   destination: null,
   message: null,
   days: null,
-  trip: null
+  trip: null,
+  gotActivities: null,
+  gotHotels: null,
+  gotRestaurants: null,
+  finalizeMessage: null
 };
 export default initialState;

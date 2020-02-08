@@ -74,8 +74,9 @@ const addRestaurants = async (preference, budget, trip) => {
       url: "api/v1/hotels",
       params: {
         trip: trip,
-        preference: preference,
-        budget: budget
+        keyword: preference,
+        max_price: budget,
+        activity_type: "restaurant"
       }
     });
     return response

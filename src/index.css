@@ -50,14 +50,6 @@ code {
   margin-left: 5px;
 }
 
-/* #hotel5 {
-  color: green;
-}
-
-#food4 {
-  color: gold;
-} */
-
 .ui.container {
   padding-top: 2%;
 }
@@ -67,7 +59,7 @@ code {
   padding-top: 30%;
 }
 
-#center-screen-2 {
+#finalize-trip {
   text-align: center;
   padding-top: 3%;
 }

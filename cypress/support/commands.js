@@ -49,12 +49,12 @@ Cypress.Commands.add("createTrip", () => {
 });
 
 Cypress.Commands.add("chooseActivityType", () => {
-  cy.get(".grid > :nth-child(1) > :nth-child(3) > .dropdown")
+  cy.get(".activities > :nth-child(3)")
     .first()
     .click();
   cy.get(".active > .visible > :nth-child(3)").click();
 
-  cy.get(".grid > :nth-child(1) > :nth-child(5) > .dropdown").click();
+  cy.get(".activities > :nth-child(5)").click();
   cy.get(".active > .visible > :nth-child(3)").click();
 
   cy.get(".activities")
