@@ -79,7 +79,7 @@ const Activities = props => {
         setHotelsMessage("Couldn't find any hotels");
       }
     } else {
-      setHotelsMessage("Your forgot to choose your hotelbudget");
+      setHotelsMessage("Your forgot to add a budget");
     }
   };
 
@@ -92,6 +92,9 @@ const Activities = props => {
       );
       if (response.status === 200) {
         setGotRestaurants(true);
+        setRestaurantsMessage(
+          "Restaurants added!"
+        );
       } else {
         setRestaurantsMessage(
           "Couldn't find restaurants. Try some other food."

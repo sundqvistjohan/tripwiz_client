@@ -65,3 +65,17 @@ Cypress.Commands.add("chooseActivityType", () => {
     .should("contain", "Find activities")
     .click();
 });
+
+Cypress.Commands.add("chooseHotel", () => {
+  const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+    window.HTMLInputElement.prototype,
+    "value"
+  ).set;
+  const changeRangeInputValue = $range => value => {
+    nativeInputValueSetter.call($range[0], value);
+    $range[0].dispatchEvent(new Event("change", { value, bubbles: true }));
+  };
+  cy.get("#slider[type=range]").then(input => changeRangeInputValue(input)(4));
+  cy.get(".grid > :nth-child(2) > .ui").click();
+  cy.get("#root").should("contain", "Found Hotels!");
+});
