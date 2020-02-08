@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dropdown, Grid, Button } from "semantic-ui-react";
-import { addActivityType, addHotels } from "../modules/destination.js";
+import {
+  addActivityType,
+  addHotels,
+  addRestaurants
+} from "../modules/destination.js";
 
 const Activities = props => {
   const [activityType, setActivityType] = useState(null);
   const [actTimes, setActTimes] = useState(null);
   const [gotActivities, setGotActivities] = useState(false);
   const [activitiesMessage, setActivitiesMessage] = useState("");
-  const [hotelBudget, setHotelBudget] = useState("5");
-  const [foodBudget, setFoodBudget] = useState("4");
-  const [food, setFood] = useState(null);
+  const [hotelBudget, setHotelBudget] = useState(null);
+  const [gotHotels, setGotHotels] = useState(false);
+  const [foodBudget, setFoodBudget] = useState(null);
+  const [foodPreference, setFoodPreference] = useState(null);
+  const [gotRestaurants, setGotRestaurants] = useState(false);
+  const [hotelsMessage, setHotelsMessage] = useState("");
+  const [restaurantsMessage, setRestaurantsMessage] = useState("");
+  const [finalizeMessage, setFinalizeMessage] = useState(null);
 
   const activities = [
     { key: 1, value: "amusement_park", text: "Amusement Park" },
@@ -42,36 +51,96 @@ const Activities = props => {
     { key: 9, value: "", text: "Everything!" }
   ];
 
-  const onFindActivities = async () => {
-    let response = await addActivityType(activityType, actTimes, props.trip);
-    if (response.status === 200) {
-      setGotActivities(true);
-      setActivitiesMessage("Found activities!");
+  const findActivities = async () => {
+    if (activityType && actTimes) {
+      let response = await addActivityType(activityType, actTimes, props.trip);
+      if (response.status === 200) {
+        setGotActivities(true);
+        setActivitiesMessage("Found activities!");
+      } else {
+        setActivitiesMessage(
+          "Couldn't add activity, try something more popular"
+        );
+      }
+    } else if (!activityType) {
+      setActivitiesMessage("You forgot to choose your activity");
     } else {
-      setActivitiesMessage("Couldn't add activity, try something more popular");
+      setActivitiesMessage("You forgot to set how many times");
     }
   };
 
-  const changeActive = event => {
+  const findHotels = async () => {
+    if (hotelBudget) {
+      let response = await addHotels(hotelBudget, props.trip);
+      if (response.status === 200) {
+        setGotHotels(true);
+        setHotelsMessage("Found Hotels!");
+      } else {
+        setHotelsMessage("Couldn't find any hotels");
+      }
+    } else {
+      setHotelsMessage("Your forgot to choose your hotelbudget");
+    }
+  };
+
+  const findRestaurants = async () => {
+    if (foodBudget && foodPreference) {
+      let response = await addRestaurants(
+        foodPreference,
+        foodBudget,
+        props.trip
+      );
+      if (response.status === 200) {
+        setGotRestaurants(true);
+      } else {
+        setRestaurantsMessage(
+          "Couldn't find restaurants. Try some other food."
+        );
+        setFinalizeMessage(null);
+      }
+    } else if (foodBudget) {
+      setRestaurantsMessage("Please add your preference");
+    } else {
+      setRestaurantsMessage("Please add your budget");
+    }
+  };
+
+  const finalizeTrip = () => {
+    switch (false) {
+      case gotActivities && gotHotels && gotRestaurants:
+        setFinalizeMessage("You must add activities, hotels and restaurants");
+        break;
+      case gotActivities:
+        setFinalizeMessage("You must add activities");
+        break;
+
+      case gotHotels:
+        setFinalizeMessage("You must add hotels");
+        break;
+
+      case gotRestaurants:
+        setFinalizeMessage("You must add Restaurants");
+        break;
+
+      default:
+        setFinalizeMessage("Creating your trip...");
+    }
+  };
+
+  const sliderChoice = event => {
     Array.from(
       document.getElementsByClassName(`range-values-${event.target.name}`)[0]
         .children
     ).forEach(div => (div.style.color = "black"));
     let divId = `${event.target.name}${event.target.value}`;
     if (event.target.name === "hotel") {
-      document.getElementById(divId).style.color = "green";
+      document.getElementById(divId).style.color = "gold";
       setHotelBudget(event.target.value);
     } else {
-      document.getElementById(divId).style.color = "gold";
+      document.getElementById(divId).style.color = "green";
       setFoodBudget(event.target.value);
     }
   };
-
-  const finalizeTrip = async () => {
-    
-  }
-
-
 
   return (
     <div className="activities">
@@ -96,7 +165,7 @@ const Activities = props => {
             options={number}
             onChange={(e, data) => setActTimes(data.value)}
           />
-          <Button onClick={onFindActivities}>Find activities</Button>
+          <Button onClick={findActivities}>Find activities</Button>
           {activitiesMessage}
         </Grid.Column>
         <Grid.Column width={8}>
@@ -108,7 +177,7 @@ const Activities = props => {
             min="1"
             max="5"
             id="slider"
-            onChange={changeActive}
+            onChange={sliderChoice}
           ></input>
           <div className="range-values-hotel">
             <div className="scale" id="hotel1">
@@ -127,6 +196,8 @@ const Activities = props => {
               <h3>✩✩✩✩✩</h3>
             </div>
           </div>
+          <Button onClick={findHotels}>Check for hotels</Button>
+          <p>{hotelsMessage}</p>
           <div className="food-choice">
             <h4>What food do you prefer? </h4>
             <Dropdown
@@ -134,37 +205,45 @@ const Activities = props => {
               fluid
               selection
               options={cuisines}
-              onChange={(e, data) => setFood(data.value)}
+              onChange={(e, data) => setFoodPreference(data.value)}
             />
-            <h4>Food budget</h4>
-            <input
-              type="range"
-              name="food"
-              min="1"
-              max="4"
-              id="food-slider"
-              onChange={changeActive}
-            ></input>
-            <div className="range-values-food">
-              <div className="scale" id="food1">
-                <h3>$</h3>
+            <div className="food-choice">
+              <h4>Food budget</h4>
+              <input
+                type="range"
+                name="food"
+                min="1"
+                max="4"
+                id="food-slider"
+                onChange={sliderChoice}
+              ></input>
+              <div className="range-values-food">
+                <div className="scale" id="food1">
+                  <h3>$</h3>
+                </div>
+                <div className="scale" id="food2">
+                  <h3>$$</h3>
+                </div>
+                <div className="scale" id="food3">
+                  <h3>$$$</h3>
+                </div>
+                <div className="scale" id="food4">
+                  <h3>$$$$</h3>
+                </div>
               </div>
-              <div className="scale" id="food2">
-                <h3>$$</h3>
-              </div>
-              <div className="scale" id="food3">
-                <h3>$$$</h3>
-              </div>
-              <div className="scale" id="food4">
-                <h3>$$$$</h3>
-              </div>
+              <Button onClick={findRestaurants}>Find Restaurants</Button>
+              <br />
+              {restaurantsMessage}
             </div>
           </div>
         </Grid.Column>
-        )
       </Grid>
-      <div id="center-screen">
-        <Button id="create-trip" onClick={finalizeTrip}>Finalize Trip</Button>
+      <div id="center-screen-2">
+        <Button id="create-trip" onClick={finalizeTrip}>
+          Finalize Trip!
+        </Button>
+        <br />
+        {finalizeMessage}
       </div>
     </div>
   );

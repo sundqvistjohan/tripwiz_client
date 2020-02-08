@@ -50,21 +50,26 @@ code {
   margin-left: 5px;
 }
 
-#hotel5 {
+/* #hotel5 {
   color: green;
 }
 
 #food4 {
   color: gold;
-}
+} */
 
 .ui.container {
   padding-top: 2%;
 }
 
-#center-screen {
+.center-screen {
   text-align: center;
   padding-top: 30%;
+}
+
+#center-screen-2 {
+  text-align: center;
+  padding-top: 3%;
 }
 
 #create-trip {

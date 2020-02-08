@@ -42,23 +42,26 @@ Cypress.Commands.add("createTrip", () => {
     url: "http://localhost:3000/api/**",
     response: "fixtures:inputDest.json"
   });
+  cy.get("#days").click();
+  cy.get("#days > .visible > :nth-child(3)").click();
+  cy.get("#days").should("contain", "3");
   cy.get("#create-trip").click();
 });
 
-Cypress.Commands.add("choseActivityType", () => {
-  cy.get(".activities :nth-child(2) > .dropdown")
+Cypress.Commands.add("chooseActivityType", () => {
+  cy.get(".grid > :nth-child(1) > :nth-child(3) > .dropdown")
     .first()
     .click();
   cy.get(".active > .visible > :nth-child(3)").click();
 
-  cy.get(".activities :nth-child(4) > .dropdown").click();
+  cy.get(".grid > :nth-child(1) > :nth-child(5) > .dropdown").click();
   cy.get(".active > .visible > :nth-child(3)").click();
 
   cy.get(".activities")
     .should("contain", "Art Gallery")
     .should("contain", "Three");
 
-  cy.get(".button")
-    .should("contain", "Next")
+  cy.get(":nth-child(1) > .button")
+    .should("contain", "Find activities")
     .click();
 });
