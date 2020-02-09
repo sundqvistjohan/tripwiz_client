@@ -28,7 +28,12 @@ code {
   margin-left: 0px;
 }
 
-.range-values {
+.range-values-hotel {
+  display: flex;
+  margin-left: 1%;
+}
+
+.range-values-food {
   display: flex;
   margin-left: 1%;
 }
@@ -37,12 +42,12 @@ code {
   width: 250px;
 }
 
-.dollar {
-  margin-left: 5px;
+#food-slider {
+  width: 150px;
 }
 
-#d5 {
-  color: gold;
+.scale {
+  margin-left: 5px;
 }
 
 .ui.container {
@@ -52,6 +57,11 @@ code {
 .center-screen {
   text-align: center;
   padding-top: 30%;
+}
+
+#finalize-trip {
+  text-align: center;
+  padding-top: 3%;
 }
 
 #create-trip {
@@ -76,5 +86,5 @@ Form {
 .eight.wide.column {
   height: inherit;
   padding-left: 2%;
-
 }
+

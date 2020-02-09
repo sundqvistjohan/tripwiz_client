@@ -8,7 +8,6 @@ const App = () => {
       <div className="ui container">
         <BrowserRouter>
           <div className="App">
-            TripWiz
             <Switch>
               <Route exact path="/" component={Destination}></Route>
               <Route exact path="/trip" component={Trip}></Route>

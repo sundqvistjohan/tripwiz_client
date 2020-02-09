@@ -32,6 +32,26 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         trip: action.payload
       };
+    case "GOT_ACTIVITIES":
+      return {
+        ...state,
+        gotActivities: action.payload
+      };
+    case "GOT_HOTELS":
+      return {
+        ...state,
+        gotHotels: action.payload
+      };
+    case "GOT_RESTAURANTS":
+      return {
+        ...state,
+        gotRestaurants: action.payload
+      };
+    case "SET_FINALIZEMESSAGE":
+      return {
+        ...state,
+        gotRestaurants: action.payload
+      };
     default:
       return {
         ...state

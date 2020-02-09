@@ -49,12 +49,12 @@ Cypress.Commands.add("createTrip", () => {
 });
 
 Cypress.Commands.add("chooseActivityType", () => {
-  cy.get(".grid > :nth-child(1) > :nth-child(3) > .dropdown")
+  cy.get(".activities > :nth-child(3)")
     .first()
     .click();
   cy.get(".active > .visible > :nth-child(3)").click();
 
-  cy.get(".grid > :nth-child(1) > :nth-child(5) > .dropdown").click();
+  cy.get(".activities > :nth-child(5)").click();
   cy.get(".active > .visible > :nth-child(3)").click();
 
   cy.get(".activities")
@@ -64,4 +64,18 @@ Cypress.Commands.add("chooseActivityType", () => {
   cy.get(":nth-child(1) > .button")
     .should("contain", "Find activities")
     .click();
+});
+
+Cypress.Commands.add("chooseHotel", () => {
+  const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+    window.HTMLInputElement.prototype,
+    "value"
+  ).set;
+  const changeRangeInputValue = $range => value => {
+    nativeInputValueSetter.call($range[0], value);
+    $range[0].dispatchEvent(new Event("change", { value, bubbles: true }));
+  };
+  cy.get("#slider[type=range]").then(input => changeRangeInputValue(input)(4));
+  cy.get(".grid > :nth-child(2) > .ui").click();
+  cy.get("#root").should("contain", "Found Hotels!");
 });

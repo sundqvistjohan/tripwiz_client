@@ -67,4 +67,22 @@ const addHotels = async (budget, trip) => {
   }
 };
 
-export { getCoords, initializeTrip, addActivityType, addHotels };
+const addRestaurants = async (preference, budget, trip) => {
+  try {
+    const response = await axios({
+      method: "POST",
+      url: "api/v1/activity_types",
+      params: {
+        trip: trip,
+        keyword: preference,
+        max_price: budget,
+        activity_type: "restaurant"
+      }
+    });
+    return response
+  } catch (error) {
+    return error;
+  }
+};
+
+export { getCoords, initializeTrip, addActivityType, addHotels, addRestaurants };
