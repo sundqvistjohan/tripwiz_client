@@ -71,7 +71,7 @@ const addRestaurants = async (preference, budget, trip) => {
   try {
     const response = await axios({
       method: "POST",
-      url: "api/v1/hotels",
+      url: "api/v1/activity_types",
       params: {
         trip: trip,
         keyword: preference,
