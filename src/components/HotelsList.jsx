@@ -6,6 +6,7 @@ import { getHotels } from "../modules/destination.js";
 const HotelsList = props => {
   const [gotHotelsData, setGotHotelsData] = useState(false);
 
+  
   const getHotelsShowData = async () => {
     const hotelsData = await getHotels(
       props.trip)
@@ -13,10 +14,17 @@ const HotelsList = props => {
     setGotHotelsData(true)
   };
 
+
+  useEffect(() => {
+    if (props.gotHotels == true) {
+      getHotelsShowData()
+    }
+  }, [props.gotHotels])
+
   let hotelCard;
 
   if (gotHotelsData == true) {
-    hotelCard = props.hotels.results.map(hotel => {
+    hotelCard = props.hotels.map(hotel => {
       return (
         <div className="centerText">
           <div id="hotel-cards" className="ui card">
@@ -39,20 +47,20 @@ const HotelsList = props => {
   }
 
 
-return (
-  <>
-    <Button id="get-hotels" onClick={getHotelsShowData}>Show Hotels</Button>
-    <div className="ui stackable four column grid">
-      {hotelCard}
-    </div>
-  </>
-)
+  return (
+    <>
+      <div className="ui stackable four column grid">
+        {hotelCard}
+      </div>
+    </>
+  )
 }
 
 const mapStateToProps = state => {
   return {
     hotels: state.hotels,
-    trip: state.trip
+    trip: state.trip,
+    gotHotels: state.gotHotels
   };
 };
 

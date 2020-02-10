@@ -10,5 +10,6 @@ const initialState = {
   gotRestaurants: null,
   finalizeMessage: null,
   hotels: null
+  
 };
 export default initialState;
