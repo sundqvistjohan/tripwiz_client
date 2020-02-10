@@ -16,11 +16,37 @@ const Login = props => {
         props.changeAuthMessage(error.response.data.errors);
       });
   };
+  const onLogout = () => {
+    auth
+      .signOut()
+      .then(() => {
+        props.changeAuth(false);
+        props.changeLoginButton(true);
+        props.changeSignupButton(true);
+      })
+      .catch(error => {
+        props.changeAuthMessage(error);
+      });
+  };
   
   let loginFunction;
 
   switch (true) {
-    case !props.authenticated:
+    case props.displayLoginButton &&
+      !props.authenticated &&
+      props.displaySignupButton:
+      console.log("entered 0")
+      loginFunction = ( 
+        <Link
+          id="login-button" to="/login"
+          onClick={() => props.changeLoginButton(false)}
+        >
+          Login
+        </Link>
+      );
+      break;
+    case !props.displayLoginButton && !props.authenticated:
+      console.log("entered 1")
       loginFunction = (
         <>
           <p>Login</p>
@@ -37,6 +63,7 @@ const Login = props => {
       );
       break;
     case props.authenticated:
+      console.log("entered 2")
       loginFunction = (
         <>
           <span>{props.authMessage}</span>&nbsp;
@@ -44,6 +71,9 @@ const Login = props => {
           <Link id="profile-link" to="/">
           HOME page
           </Link>&nbsp;
+          <Link id="logout-link" to="/login" onClick={onLogout}>
+            Logout
+          </Link>
         </>
       );
       break;

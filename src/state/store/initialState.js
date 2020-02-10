@@ -3,6 +3,8 @@ const initialState = {
   lng: 0,
   name: null,
   authenticated: false,
+  displayLoginButton: true,
+  displaySignupButton: true,
   authMessage: null,
   userAttrs: null,
   message: null

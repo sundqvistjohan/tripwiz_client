@@ -4,7 +4,7 @@ describe("User can login", () => {
     cy.visit("/");
   });
   it("unsuccessfully with invalid credentials", () => {
-    cy.visit("/login") 
+    cy.visit("/") 
     cy.route({
       method: "POST",
       url: "http://localhost:3000/auth/sign_in",
@@ -14,6 +14,7 @@ describe("User can login", () => {
         success: false
       }
     });
+    cy.get("#login-button").click();
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("pass");
@@ -25,7 +26,7 @@ describe("User can login", () => {
     );
   });
   it("successfully with valid credentials", () => {
-    cy.visit("/login");
+    cy.visit("/");
     cy.route({
       method: "POST",
       url: "http://localhost:3000/auth/sign_in",
@@ -36,7 +37,7 @@ describe("User can login", () => {
       url: "http://localhost:3000/auth/**",
       response: "fixture:login_user.json"
     });
-    
+    cy.get("#login-button").click();
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");
@@ -47,3 +48,41 @@ describe("User can login", () => {
     cy.get("#login").should("contain", "Logged in as: user@mail.com");
   });
 })
+describe("User can log out", () =>{
+  it("successfully", () => {
+    cy.server();
+    cy.visit("/");
+    cy.route({
+      method: "POST",
+      url: "http://localhost:3000/auth/sign_in",
+      response: "fixture:login_user.json"
+    });
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/auth/**",
+      response: "fixture:login_user.json"
+    });
+    cy.get("#login-button").click();
+    cy.get("#login-form").within(() => {
+      cy.get("#email").type("user@mail.com");
+      cy.get("#password").type("password");
+      cy.get("button")
+        .contains("Submit")
+        .click();
+    }); 
+    cy.route({
+      method: "DELETE",
+      url: "http://localhost:3000/auth/sign_in",
+      response: "fixture:login_user.json"
+    });
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/auth/**",
+      response: "fixture:login_user.json"
+    });
+    cy.get("#logout-link").click();
+    cy.get("#login-button").click()
+  });
+});
+
+

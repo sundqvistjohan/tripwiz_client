@@ -37,6 +37,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         authenticated: action.payload
       };
+    case "CHANGE_LOGINBUTTON":
+      return {
+        ...state,
+        displayLoginButton: action.payload
+      };
     default:
       return {
         ...state
