@@ -88,3 +88,16 @@ Form {
   padding-left: 2%;
 }
 
+.ui.card {
+  min-height: 400px;
+  max-height: 400px;
+}
+
+.ui.stackable.four.column.grid {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.centerText {
+  align-content: center;
+}
