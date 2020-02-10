@@ -85,4 +85,17 @@ const addRestaurants = async (preference, budget, trip) => {
   }
 };
 
-export { getCoords, initializeTrip, addActivityType, addHotels, addRestaurants };
+const getHotels = async (trip) => {
+  try {
+    const response = await axios({
+      url: "api/v1/hotels",
+      method: "GET",
+      params: { trip: trip }
+    });
+    return response.data
+  } catch (error) {
+    return error;
+  }
+};
+
+export { getCoords, initializeTrip, addActivityType, addHotels, addRestaurants, getHotels };

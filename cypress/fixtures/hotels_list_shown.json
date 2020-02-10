@@ -1,0 +1,40 @@
+{
+  "results": [
+    {
+      "id": 144,
+      "name": "Grand Hotel Stockholm",
+      "lat": 59.32956,
+      "lng": 18.07564,
+      "price": "2900.00",
+      "address": "SODRA BLASIEHOLMSHAMNEN 8",
+      "url": "Comfortable Ocean facing room, King bed.",
+      "created_at": "2020-02-10T14:38:37.493Z",
+      "updated_at": "2020-02-10T14:38:37.493Z",
+      "trip_id": 200
+    },
+    {
+      "id": 145,
+      "name": "Berns Hotel",
+      "lat": 59.32956,
+      "lng": 18.07564,
+      "price": "1950.00",
+      "address": "Näckstroemsgatan 8",
+      "url": "QLuxury hotel with 2 restaurants, connected to a shopping center, near Berzelii Park",
+      "created_at": "2020-02-10T14:38:37.496Z",
+      "updated_at": "2020-02-10T14:38:37.496Z",
+      "trip_id": 200
+    },
+    {
+      "id": 146,
+      "name": "Grand Hotel Stockholm",
+      "lat": 59.32956,
+      "lng": 18.07564,
+      "price": "1850.00",
+      "address": "SODRA BLASIEHOLMSHAMNEN 8",
+      "url": "CAMPAIGN: Free alcohol, all day, everyday.",
+      "created_at": "2020-02-10T14:38:37.500Z",
+      "updated_at": "2020-02-10T14:38:37.500Z",
+      "trip_id": 200
+    }
+  ]
+}
