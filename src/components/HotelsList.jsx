@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getHotels } from "../modules/destination.js";
 import { Map, InfoWindow, GoogleApiWrapper, Marker } from "google-maps-react";
 import { Button } from "semantic-ui-react";
-import { chooseHotel } from "../modules/destination";
+import { chooseHotel } from "../modules/destination.js";
 
 const HotelsList = props => {
   const [gotHotelsData, setGotHotelsData] = useState(false);
@@ -24,6 +24,7 @@ const HotelsList = props => {
   const selectHotel = async (hotelId, hotelName) => {
     let response = await chooseHotel(props.trip, hotelId);
     if (response.status == 200) {
+      getHotelsShowData()
       setHotelMessage(`Thanks for selecting ${hotelName}`)
     } else {
       setHotelMessage("Oops, Something went wrong")
@@ -39,10 +40,10 @@ const HotelsList = props => {
   let hotelCard;
 
   if (gotHotelsData == true) {
-    hotelCard = props.hotels.map(hotel => {
+    hotelCard = props.hotels.data.map(hotel => {
       return (
         <div className="centerText">
-          <div id="hotel-cards" className="ui card">
+          <div id="hotel-cards" key={hotel.id} className="ui card">
             <div className="image"><img src="https://thumbnails.trvl-media.com/PUrr-BSAcHRWzkWDuOP2XTmK80I=/773x530/smart/filters:quality(60)/images.trvl-media.com/hotels/1000000/600000/598500/598487/30a71d36_z.jpg" /></div>
             <div className="content">
               <div className="header">
@@ -74,7 +75,7 @@ const HotelsList = props => {
       setActiveMarker(marker)
       setShowingInfoWindow(true)
     };
-    markers = props.hotels.map(marker => {
+    markers = props.hotels.data.map(marker => {
       return (
         <Marker onClick={onMarkerClick}
           name={marker.name}
@@ -88,7 +89,7 @@ const HotelsList = props => {
       <div className="ui stackable four column grid">
         {hotelCard ? (
           <div id="divider">
-            We have found {props.hotels.length} hotels near your activities
+            We have {props.hotels.data.length} hotels near your activities
             <p>{hotelMessage}</p>
           </div>
         ) : null}
@@ -100,10 +101,10 @@ const HotelsList = props => {
             <Map google={props.google}
               style={{ width: '90%', height: '60%', position: 'relative' }}
               className={'map'}
-              zoom={15}
+              zoom={13}
               initialCenter={{
-                lat: props.hotels[0].lat,
-                lng: props.hotels[0].lng
+                lat: props.hotels.data[0].lat,
+                lng: props.hotels.data[0].lng
               }}>
               {markers}
               <InfoWindow

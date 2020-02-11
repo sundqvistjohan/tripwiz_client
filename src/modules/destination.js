@@ -92,7 +92,7 @@ const getHotels = async (trip) => {
       method: "GET",
       params: { trip: trip }
     });
-    return response.data
+    return response
   } catch (error) {
     return error;
   }
