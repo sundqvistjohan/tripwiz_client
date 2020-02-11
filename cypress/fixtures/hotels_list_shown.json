@@ -2,7 +2,7 @@
   {
     "id": 144,
     "name": "Grand Hotel Stockholm",
-    "lat": 59.32956,
+    "lat": 59.323,
     "lng": 18.07564,
     "price": "2900.00",
     "address": "SODRA BLASIEHOLMSHAMNEN 8",
@@ -26,8 +26,8 @@
   {
     "id": 146,
     "name": "Hotel Rival",
-    "lat": 59.32956,
-    "lng": 18.07564,
+    "lat": 59.3291,
+    "lng": 18.0758,
     "price": "1850.00",
     "address": "Mariatorget 3",
     "url": "CAMPAIGN: Free alcohol, all day, everyday.",

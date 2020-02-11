@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getHotels } from "../modules/destination.js";
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+
 
 const HotelsList = props => {
   const [gotHotelsData, setGotHotelsData] = useState(false);
 
-  
+
   const getHotelsShowData = async () => {
     const hotelsData = await getHotels(
       props.trip)
@@ -38,11 +40,11 @@ const HotelsList = props => {
               </div>
             </div>
             <div className="extra content">
-              We found deals from {hotel.price} SEK / Night
+              Current deals from {hotel.price} SEK / Night
             </div>
           </div>
         </div>
-        );
+      );
     });
   }
 
@@ -54,8 +56,34 @@ const HotelsList = props => {
           <div id="divider">
             <p>We found {props.hotels.length} hotels located near your activities.</p>
           </div>
-        ) : null }
+        ) : null}
         {hotelCard}
+      </div>
+      <div id="embed-map">
+      {hotelCard ? (
+        <div className="hotels-map">
+          <Map google={props.google}
+            style={{ width: '90%', height: '60%', position: 'relative' }}
+            className={'map'}
+            zoom={14}
+            initialCenter={{
+              lat: props.hotels[0].lat,
+              lng: props.hotels[0].lng
+            }}>
+            <Marker
+              name={props.hotels[0].name}
+              position={{ lat: props.hotels[0].lat, lng: props.hotels[0].lng }} />
+            <Marker
+              name={props.hotels[1].name}
+              position={{ lat: props.hotels[1].lat, lng: props.hotels[1].lng }} />
+            <Marker />
+            <Marker
+              name={props.hotels[2].name}
+              position={{ lat: props.hotels[2].lat, lng: props.hotels[2].lng}} />
+            <Marker />
+          </Map>
+        </div>
+      ) : null}
       </div>
     </>
   )
@@ -80,4 +108,8 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HotelsList);
+)(
+  GoogleApiWrapper({
+    apiKey: process.env.REACT_APP_GOOGLE_APIKEY
+  })(HotelsList)
+);

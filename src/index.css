@@ -112,3 +112,7 @@ Form {
   border-bottom: 1px solid white;
   border-top: 1px solid white;
 }
+
+.hotels-map {
+  margin-top: 3%;
+}
