@@ -36,10 +36,10 @@ const Trip = props => {
           <Activities />
         </Grid.Column>
         <Grid.Column width={8}>
-          <Hotels />
           <Restaurants />
         </Grid.Column>
       </Grid>
+      <Hotels />
       <div id="finalize-trip">
         <Button id="create-trip" onClick={finalizeTrip}>
           Finalize Trip!

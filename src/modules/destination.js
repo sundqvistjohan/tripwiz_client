@@ -34,7 +34,7 @@ const initializeTrip = async (props) => {
   }
 };
 
-const addActivityType = async (activityType, actTimes, trip) => {
+const addActivityType = async (activityType, activity_visits, trip) => {
   try {
     const response = await axios({
       method: "POST",
@@ -42,7 +42,7 @@ const addActivityType = async (activityType, actTimes, trip) => {
       params: {
         trip: trip,
         activity_type: activityType,
-        actTimes: actTimes
+        activity_visits: activity_visits
       }
     });
     return response
@@ -85,4 +85,32 @@ const addRestaurants = async (preference, budget, trip) => {
   }
 };
 
-export { getCoords, initializeTrip, addActivityType, addHotels, addRestaurants };
+const getHotels = async (trip) => {
+  try {
+    const response = await axios({
+      url: "api/v1/hotels",
+      method: "GET",
+      params: { trip: trip }
+    });
+    return response
+  } catch (error) {
+    return error;
+  }
+};
+
+const chooseHotel = async (trip, hotelId) => {
+  try {
+    const response = await axios({
+      url: "api/v1/hotels",
+      method: "DELETE",
+      params: { 
+        hotel_id: hotelId,
+        trip: trip}
+    });
+    return response
+  } catch (error) {
+    return error;
+  }
+};
+
+export { getCoords, initializeTrip, addActivityType, addHotels, addRestaurants, getHotels, chooseHotel };

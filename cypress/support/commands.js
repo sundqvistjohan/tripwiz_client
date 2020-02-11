@@ -61,7 +61,7 @@ Cypress.Commands.add("chooseActivityType", () => {
     .should("contain", "Art Gallery")
     .should("contain", "Three");
 
-  cy.get(":nth-child(1) > .button")
+  cy.get("#find-activities")
     .should("contain", "Find activities")
     .click();
 });
@@ -76,6 +76,6 @@ Cypress.Commands.add("chooseHotel", () => {
     $range[0].dispatchEvent(new Event("change", { value, bubbles: true }));
   };
   cy.get("#slider[type=range]").then(input => changeRangeInputValue(input)(4));
-  cy.get(".grid > :nth-child(2) > .ui").click();
+  cy.get("#find-hotels").click();
   cy.get("#root").should("contain", "Found Hotels!");
 });

@@ -5,7 +5,7 @@ import { addActivityType } from "../modules/destination.js";
 
 const Activities = props => {
   const [activityType, setActivityType] = useState(null);
-  const [actTimes, setActTimes] = useState(null);
+  const [activity_visits, setActivity_visits] = useState(null);
   const [activitiesMessage, setActivitiesMessage] = useState("");
 
   const activities = [
@@ -27,8 +27,8 @@ const Activities = props => {
   ];
 
   const findActivities = async () => {
-    if (activityType && actTimes) {
-      let response = await addActivityType(activityType, actTimes, props.trip);
+    if (activityType && activity_visits) {
+      let response = await addActivityType(activityType, activity_visits, props.trip);
       if (response.status === 200) {
         props.gotActivities(true);
         setActivitiesMessage("Found activities!");
@@ -64,9 +64,9 @@ const Activities = props => {
             fluid
             selection
             options={number}
-            onChange={(e, data) => setActTimes(data.value)}
+            onChange={(e, data) => setActivity_visits(data.value)}
           />
-          <Button onClick={findActivities}>Find activities</Button>
+          <Button id="find-activities" onClick={findActivities}>Find activities</Button>
           {activitiesMessage}
         </div>
       </Grid.Column>

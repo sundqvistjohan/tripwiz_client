@@ -10,19 +10,37 @@ describe("Hotels", () => {
     };
     cy.createTrip();
     cy.chooseActivityType();
+    cy.route({
+      method: "POST",
+      url: "http://localhost:3000/api/v1/hotels**",
+      response: {
+        status: 200
+      }
+    });
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/api/v1/hotels**",
+      response: "fixture:hotels_list_shown.json",
+      status: 200
+    });
     cy.get("#slider[type=range]").then(input =>
       changeRangeInputValue(input)(4)
     );
-
-    cy.get(".grid > :nth-child(2) > .ui").click();
+    cy.get("#find-hotels").click();
     cy.get("#root").should("contain", "Found Hotels!");
   });
 
   it("needs a budget input", () => {
     cy.createTrip();
     cy.chooseActivityType();
-
-    cy.get(".grid > :nth-child(2) > .ui").click();
+    cy.route({
+      method: "POST",
+      url: "http://localhost:3000/api/v1/hotels**",
+      response: {
+        status: 200
+      }
+    });
+    cy.get("#find-hotels").click();
     cy.get("#root").should("contain", "Your forgot to add a budget");
   });
 });
