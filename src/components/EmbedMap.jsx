@@ -9,6 +9,7 @@ const EmbedMap = props => {
   const onClickHandler = e => {
     props.setLat(e.latLng.lat());
     props.setLng(e.latLng.lng());
+    props.updateProgression(props.progression + 1);
     props.setMessage("Destination successfully chosen from map");
   };
 
@@ -31,7 +32,8 @@ const EmbedMap = props => {
         <Map
           google={props.google}
           zoom={10}
-          center={{ lat: lat, lng: lng }}
+          style={{ width: '50%', height: '40%', position: 'relative' }}
+          center={{ lat: lat, lng: lng }} 
           onClick={(mapProps, map, e) => onClickHandler(e)}
         >
           <Marker position={{ lat: lat, lng: lng }} />
@@ -45,7 +47,8 @@ const mapStateToProps = state => {
   return {
     lat: state.lat,
     lng: state.lng,
-    message: state.message
+    message: state.message,
+    progression: state.progression
   };
 };
 
@@ -59,6 +62,9 @@ const mapDispatchToProps = dispatch => {
     },
     setMessage: message => {
       dispatch({ type: "SET_MESSAGE", payload: message });
+    },
+    updateProgression: value => {
+      dispatch({ type: "UPDATE_PROGRESSION", payload: value });
     }
   };
 };

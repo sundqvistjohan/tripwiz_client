@@ -29,8 +29,8 @@ const Trip = props => {
         props.trip
       );
       if (response.status === 200) {
-        props.gotRestaurants(true);
-        setRestaurantsMessage("Restaurants added!");
+        props.setMessage("Trip succesfully created!");
+        props.updateProgression(props.progression + 1);
       } else {
         setRestaurantsMessage(
           "Couldn't find restaurants. Try some other food."
@@ -46,8 +46,9 @@ const Trip = props => {
 
   return (
     <>
+      {props.message} We move on to...
       <div className="food-choice">
-        <h2>Details of trip:</h2>
+        <h2>Food preference:</h2>
         <h4>What food do you prefer? </h4>
         <Dropdown
           placeholder="Everything"
@@ -96,7 +97,8 @@ const mapStateToProps = state => {
   return {
     destination: state.destination,
     trip: state.trip,
-    message: state.message
+    message: state.message,
+    progression: state.progression
   };
 };
 
@@ -108,8 +110,11 @@ const mapDispatchToProps = dispatch => {
     gotRestaurants: bool => {
       dispatch({ type: "GOT_RESTAURANTS", payload: bool });
     },
-    setFinalizeMessage: message => {
-      dispatch({ type: "SET_FINALIZEMESSAGE", payload: message });
+    updateProgression: value => {
+      dispatch({ type: "UPDATE_PROGRESSION", payload: value });
+    },
+    setMessage: message => {
+      dispatch({ type: "SET_MESSAGE", payload: message });
     }
   };
 };

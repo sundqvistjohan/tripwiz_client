@@ -14,7 +14,7 @@ describe("Hotels", () => {
       changeRangeInputValue(input)(4)
     );
 
-    cy.get(".grid > :nth-child(2) > .ui").click();
+    cy.get("#find-hotels").click();
     cy.get("#root").should("contain", "Found Hotels!");
   });
 
@@ -22,7 +22,7 @@ describe("Hotels", () => {
     cy.createTrip();
     cy.chooseActivityType();
 
-    cy.get(".grid > :nth-child(2) > .ui").click();
+    cy.get("#find-hotels").click();
     cy.get("#root").should("contain", "Your forgot to add a budget");
   });
 });

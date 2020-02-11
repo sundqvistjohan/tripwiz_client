@@ -9,7 +9,7 @@ const initialState = {
   gotHotels: null,
   gotRestaurants: null,
   finalizeMessage: null,
-  hotels: null
-  
+  hotels: null,
+  progression: 0
 };
 export default initialState;

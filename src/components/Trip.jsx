@@ -1,52 +1,34 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Grid, Button } from "semantic-ui-react";
-import Restaurants from "./Restaurants"
-import Hotels from "./Hotels"
-import Activities from "./Activities"
-
+import Restaurants from "./Restaurants";
+import Hotels from "./Hotels";
+import Activities from "./Activities";
+import Destination from "./Destination";
 
 const Trip = props => {
-  const finalizeTrip = () => {
-    switch (false) {
-      case props.gotActivities && props.gotHotels && props.gotRestaurants:
-        props.setFinalizeMessage("You must add activities, hotels and restaurants");
-        break;
-      case props.gotActivities:
-        props.setFinalizeMessage("You must add activities");
-        break;
+  let currentView;
 
-      case props.gotHotels:
-        props.setFinalizeMessage("You must add hotels");
-        break;
-
-      case props.gotRestaurants:
-        props.setFinalizeMessage("You must add Restaurants");
-        break;
-
-      default:
-        props.setFinalizeMessage("Creating your trip...");
-    }
-  };
+  switch (true) {
+    case props.progression === 0 || props.progression === 1:
+      currentView = <Destination />;
+      break;
+    case props.progression === 2 || props.progression === 3:
+      currentView = <Activities />;
+      break;
+    case props.progression === 4:
+      currentView = <Hotels />;
+      break;
+    case props.progression === 5:
+      currentView = <Restaurants />;
+      break;
+    default:
+      currentView = <Destination />;
+  }
 
   return (
     <>
-      <Grid>
-        <Grid.Column width={8}>
-          <Activities />
-        </Grid.Column>
-        <Grid.Column width={8}>
-          <Restaurants />
-        </Grid.Column>
-      </Grid>
-      <Hotels />
-      <div id="finalize-trip">
-        <Button id="create-trip" onClick={finalizeTrip}>
-          Finalize Trip!
-        </Button>
-        <br />
-        {props.finalizeMessage}
-      </div>
+      {props.progression + 1} / 6
+      {currentView}
     </>
   );
 };
@@ -59,7 +41,8 @@ const mapStateToProps = state => {
     gotActivities: state.gotActivities,
     gotHotels: state.gotHotels,
     gotRestaurants: state.gotRestaurants,
-    finalizeMessage: state.finalizeMessage
+    finalizeMessage: state.finalizeMessage,
+    progression: state.progression
   };
 };
 
@@ -70,6 +53,9 @@ const mapDispatchToProps = dispatch => {
     },
     setFinalizeMessage: message => {
       dispatch({ type: "SET_FINALIZEMESSAGE", payload: message });
+    },
+    updateProgression: value => {
+      dispatch({ type: "UPDATE_PROGRESSION", payload: value });
     }
   };
 };

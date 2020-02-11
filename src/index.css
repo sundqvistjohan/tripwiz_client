@@ -77,12 +77,6 @@ Form {
   width: 30%;
 }
 
-#embed-map {
-  height: 100%;
-  display: fixed;
-  margin-left: 2%;
-}
-
 .eight.wide.column {
   height: inherit;
   padding-left: 2%;
