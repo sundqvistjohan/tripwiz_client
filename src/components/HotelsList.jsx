@@ -18,7 +18,7 @@ const HotelsList = props => {
     if (hotelsData.status == 200) {
       props.setHotels(hotelsData);
       setGotHotelsData(true)
-      setHotelMessage(`We have ${hotelsData.data.length} hotels near your activities`)
+      setHotelMessage(`We have ${hotelsData.data.length} hotels near your activities. Please select one of the options!`)
     }
   };
 
