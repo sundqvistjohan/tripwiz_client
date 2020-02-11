@@ -15,20 +15,20 @@ const HotelsList = props => {
   const getHotelsShowData = async () => {
     const hotelsData = await getHotels(
       props.trip)
-    props.setHotels(hotelsData);
-    setGotHotelsData(true)
+    if (hotelsData.status == 200) {
+      props.setHotels(hotelsData);
+      setGotHotelsData(true)
+    }
   };
 
-  const selectHotel = (hotelId, hotelName) => {
-    debugger
-    let response = chooseHotel(props.trip, hotelId);
+  const selectHotel = async (hotelId, hotelName) => {
+    let response = await chooseHotel(props.trip, hotelId);
     if (response.status == 200) {
       setHotelMessage(`Thanks for selecting ${hotelName}`)
     } else {
       setHotelMessage("Oops, Something went wrong")
     }
   }
-
 
   useEffect(() => {
     if (props.gotHotels == true) {
