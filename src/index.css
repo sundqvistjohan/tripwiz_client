@@ -11,3 +11,80 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  height: 70vh;
+  width: 100%;
+  background-color: antiquewhite;
+}
+
+#root {
+  background-color: grey;
+  height: 100%;
+}
+
+.ui.fluid.selection.dropdown {
+  width: 80%;
+  margin-left: 0px;
+}
+
+.range-values-hotel {
+  display: flex;
+  margin-left: 1%;
+}
+
+.range-values-food {
+  display: flex;
+  margin-left: 1%;
+}
+
+#slider {
+  width: 250px;
+}
+
+#food-slider {
+  width: 150px;
+}
+
+.scale {
+  margin-left: 5px;
+}
+
+.ui.container {
+  padding-top: 2%;
+}
+
+.center-screen {
+  text-align: center;
+  padding-top: 30%;
+}
+
+#finalize-trip {
+  text-align: center;
+  padding-top: 3%;
+}
+
+#create-trip {
+  margin: 20px;
+}
+
+Form {
+  width: 50%;
+}
+
+#days {
+  margin-top: 40px;
+  width: 30%;
+}
+
+#embed-map {
+  height: 100%;
+  display: fixed;
+  margin-left: 2%;
+}
+
+.eight.wide.column {
+  height: inherit;
+  padding-left: 2%;
+}
+

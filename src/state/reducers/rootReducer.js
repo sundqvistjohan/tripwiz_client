@@ -12,10 +12,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         lng: action.payload
       };
-    case "SET_NAME":
+    case "SET_DEST":
       return {
         ...state,
-        name: action.payload
+        destination: action.payload
       };
     case "SET_MESSAGE":
       return {
@@ -41,6 +41,36 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         displayLoginButton: action.payload
+      };
+    case "SET_DAYS":
+      return {
+        ...state,
+        days: action.payload
+      };
+    case "SET_TRIP":
+      return {
+        ...state,
+        trip: action.payload
+      };
+    case "GOT_ACTIVITIES":
+      return {
+        ...state,
+        gotActivities: action.payload
+      };
+    case "GOT_HOTELS":
+      return {
+        ...state,
+        gotHotels: action.payload
+      };
+    case "GOT_RESTAURANTS":
+      return {
+        ...state,
+        gotRestaurants: action.payload
+      };
+    case "SET_FINALIZEMESSAGE":
+      return {
+        ...state,
+        gotRestaurants: action.payload
       };
     default:
       return {
