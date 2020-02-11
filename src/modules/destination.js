@@ -113,7 +113,7 @@ const chooseHotel = async (trip, hotelId) => {
   }
 };
 
-const getActivities = async (trip, activityType) => {
+const getActivities = async (trip) => {
   try {
     const response = await axios({
       url: "api/v1/activity_types",
@@ -122,7 +122,7 @@ const getActivities = async (trip, activityType) => {
         trip: trip
       }
     })
-    return response.data[activityType]
+    return response
   } catch (error) {
     return error
   }

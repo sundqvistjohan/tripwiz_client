@@ -69,8 +69,8 @@ const Activities = props => {
           <Button id="find-activities" onClick={findActivities}>Find activities</Button>
           {activitiesMessage}
         </div>
-        <ActivitiesList />
       </Grid.Column>
+      <ActivitiesList />
     </>
   );
 };
