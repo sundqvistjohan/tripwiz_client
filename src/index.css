@@ -116,3 +116,12 @@ Form {
 .hotels-map {
   margin-top: 3%;
 }
+
+Button {
+  margin-top: 10px;
+}
+
+#price-box {
+  color: orange;
+  padding-bottom: 10px;
+}
