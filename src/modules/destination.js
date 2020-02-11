@@ -34,7 +34,7 @@ const initializeTrip = async (props) => {
   }
 };
 
-const addActivityType = async (activityType, actTimes, trip) => {
+const addActivityType = async (activityType, activity_visits, trip) => {
   try {
     const response = await axios({
       method: "POST",
@@ -42,7 +42,7 @@ const addActivityType = async (activityType, actTimes, trip) => {
       params: {
         trip: trip,
         activity_type: activityType,
-        actTimes: actTimes
+        activity_visits: activity_visits
       }
     });
     return response

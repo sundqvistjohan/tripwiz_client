@@ -39,7 +39,7 @@ const HotelsList = props => {
 
   let hotelCard;
 
-  if (gotHotelsData == true) {
+  if (gotHotelsData) {
     hotelCard = props.hotels.data.map(hotel => {
       return (
         <div className="centerText">
@@ -69,7 +69,7 @@ const HotelsList = props => {
 
   let markers;
   
-  if (gotHotelsData == true) {
+  if (gotHotelsData) {
     const onMarkerClick = (props, marker, e) => {
       setSelectedPlaces(props)
       setActiveMarker(marker)
@@ -99,7 +99,7 @@ const HotelsList = props => {
         {hotelCard ? (
           <div className="hotels-map">
             <Map google={props.google}
-              style={{ width: '90%', height: '60%', position: 'relative' }}
+              style={{ width: '75%', height: '60%', position: 'relative' }}
               className={'map'}
               zoom={13}
               initialCenter={{
