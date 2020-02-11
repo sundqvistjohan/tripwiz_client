@@ -122,7 +122,7 @@ const getActivities = async (trip) => {
         trip: trip
       }
     })
-    return response
+    return response.data
   } catch (error) {
     return error
   }
