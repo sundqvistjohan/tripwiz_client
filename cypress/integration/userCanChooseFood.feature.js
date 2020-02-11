@@ -10,24 +10,22 @@ describe("Restaurants", () => {
     };
     cy.createTrip();
     cy.chooseActivityType();
-    cy.chooseHotel()
-    cy.get(":nth-child(7) > .fluid > .dropdown").click();
+    cy.get(':nth-child(2) > :nth-child(1) > .fluid').click();
     cy.get(".active > .visible > :nth-child(3)").click();
 
     cy.get("#food-slider[type=range]").then(input =>
       changeRangeInputValue(input)(3)
     );
-    cy.get(":nth-child(7) > .food-choice > .ui").click()
+    cy.get(":nth-child(1) > .food-choice > .ui").click()
     cy.get("#root").should("contain", "Restaurants added!");
   });
 
   it("needs a budget input", () => {
     cy.createTrip();
     cy.chooseActivityType();
-    cy.chooseHotel()
-    cy.get(":nth-child(7) > .fluid > .dropdown").click();
+    cy.get(':nth-child(2) > :nth-child(1) > .fluid').click();
     cy.get(".active > .visible > :nth-child(3)").click();
-    cy.get(":nth-child(7) > .food-choice > .ui").click()
+    cy.get(":nth-child(1) > .food-choice > .ui").click()
     cy.get("#root").should("contain", "Please add your budget");
   });
 

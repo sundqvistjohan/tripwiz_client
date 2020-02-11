@@ -66,7 +66,7 @@ const Activities = props => {
             options={number}
             onChange={(e, data) => setActivity_visits(data.value)}
           />
-          <Button onClick={findActivities}>Find activities</Button>
+          <Button id="find-activities" onClick={findActivities}>Find activities</Button>
           {activitiesMessage}
         </div>
       </Grid.Column>
