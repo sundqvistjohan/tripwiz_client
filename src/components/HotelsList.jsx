@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import { getHotels } from "../modules/destination.js";
 import { Map, InfoWindow, GoogleApiWrapper, Marker } from "google-maps-react";
 import { Button } from "semantic-ui-react";
-
+import { chooseHotel } from "../modules/destination";
 
 const HotelsList = props => {
   const [gotHotelsData, setGotHotelsData] = useState(false);
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
   const [selectedPlace, setSelectedPlaces] = useState({});
+  const [hotelMessage, setHotelMessage] = useState("");
 
   const getHotelsShowData = async () => {
     const hotelsData = await getHotels(
@@ -17,6 +18,16 @@ const HotelsList = props => {
     props.setHotels(hotelsData);
     setGotHotelsData(true)
   };
+
+  const selectHotel = (hotelId, hotelName) => {
+    debugger
+    let response = chooseHotel(props.trip, hotelId);
+    if (response.status == 200) {
+      setHotelMessage(`Thanks for selecting ${hotelName}`)
+    } else {
+      setHotelMessage("Oops, Something went wrong")
+    }
+  }
 
 
   useEffect(() => {
@@ -28,7 +39,6 @@ const HotelsList = props => {
   let hotelCard;
 
   if (gotHotelsData == true) {
-    debugger
     hotelCard = props.hotels.map(hotel => {
       return (
         <div className="centerText">
@@ -48,7 +58,7 @@ const HotelsList = props => {
               <div id="price-box">
                 Current deals from {hotel.price} SEK / Night
               </div>
-              <Button>Add to Itinerary</Button>
+              <Button onClick={() => selectHotel(hotel.id, hotel.name) }>Add to Itinerary</Button>
             </div>
           </div>
         </div>
@@ -56,18 +66,30 @@ const HotelsList = props => {
     });
   }
 
-  const onMarkerClick = (props, marker, e) => {
-    setSelectedPlaces(props)
-    setActiveMarker(marker)
-    setShowingInfoWindow(true)
-  };
-
+  let markers;
+  
+  if (gotHotelsData == true) {
+    const onMarkerClick = (props, marker, e) => {
+      setSelectedPlaces(props)
+      setActiveMarker(marker)
+      setShowingInfoWindow(true)
+    };
+    markers = props.hotels.map(marker => {
+      return (
+        <Marker onClick={onMarkerClick}
+          name={marker.name}
+          position={{ lat: marker.lat, lng: marker.lng }} />
+      )
+    })
+  }
+  
   return (
     <>
       <div className="ui stackable four column grid">
         {hotelCard ? (
           <div id="divider">
-            <p>We found {props.hotels.length} hotels located near your activities.</p>
+            We have found {props.hotels.length} hotels near your activities
+            <p>{hotelMessage}</p>
           </div>
         ) : null}
         {hotelCard}
@@ -78,20 +100,12 @@ const HotelsList = props => {
             <Map google={props.google}
               style={{ width: '90%', height: '60%', position: 'relative' }}
               className={'map'}
-              zoom={14}
+              zoom={15}
               initialCenter={{
                 lat: props.hotels[0].lat,
                 lng: props.hotels[0].lng
               }}>
-              <Marker onClick={onMarkerClick}
-                name={props.hotels[0].name}
-                position={{ lat: props.hotels[0].lat, lng: props.hotels[0].lng }} />
-              <Marker onClick={onMarkerClick}
-                name={props.hotels[1].name}
-                position={{ lat: props.hotels[1].lat, lng: props.hotels[1].lng }} />
-              <Marker onClick={onMarkerClick}
-                name={props.hotels[2].name}
-                position={{ lat: props.hotels[2].lat, lng: props.hotels[2].lng }} />
+              {markers}
               <InfoWindow
                 marker={activeMarker}
                 visible={showingInfoWindow}>

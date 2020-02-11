@@ -1,4 +1,4 @@
-describe("User can see suggested hotels", () => {
+describe("User can see suggested hotels as cards", () => {
   beforeEach(() => {
     cy.server();
     cy.visit("/trip");
@@ -18,9 +18,12 @@ describe("User can see suggested hotels", () => {
       response: "fixture:hotels_list_shown.json"
     });
     cy.get('#hotel5 > h3').click()
-    cy.wait(5000)
+    cy.get('#slider').as('range')
+      .invoke('val', 25)
+      .trigger('change')
     cy.get("#find-hotels").click()
+
+    cy.get('.stackable').should('contain', 'Berns Hotel')
   });
 
-  
 });
