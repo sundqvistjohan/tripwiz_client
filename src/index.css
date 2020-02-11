@@ -120,3 +120,14 @@ Button {
   color: orange;
   padding-bottom: 10px;
 }
+
+.description {
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: 130px;
+  min-height: 130px;
+}
+
+.description::-webkit-scrollbar { 
+  display: none;
+}

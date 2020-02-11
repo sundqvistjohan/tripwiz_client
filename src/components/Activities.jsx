@@ -88,7 +88,7 @@ const Activities = props => {
               setActivityVisits(data.value);
             }}
           />
-          <Button onClick={findActivities}>Find activities</Button>
+          <Button id="find-activities" onClick={findActivities}>Find activities</Button>
           {activitiesMessage}
         </>
       )}

@@ -9,22 +9,23 @@ const HotelsList = props => {
   const [gotHotelsData, setGotHotelsData] = useState(false);
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
-  const [selectedPlace, setSelectedPlaces] = useState({});
+  const [selectedPlaces, setSelectedPlaces] = useState({});
   const [hotelMessage, setHotelMessage] = useState("");
 
   const getHotelsShowData = async () => {
-    const hotelsData = await getHotels(
+    const response = await getHotels(
       props.trip)
-    if (hotelsData.status === 200) {
-      props.setHotels(hotelsData);
+    if (response.status == 200) {
+      props.setHotels(response);
       setGotHotelsData(true)
+      setHotelMessage(`We have ${response.data.length} hotels near your activities. Please select one of the options!`)
     }
   };
 
   const selectHotel = async (hotelId, hotelName) => {
     let response = await chooseHotel(props.trip, hotelId);
-    if (response.status === 200) {
-      getHotelsShowData()
+    if (response.status == 200) {
+      await getHotelsShowData()
       setHotelMessage(`Thanks for selecting ${hotelName}`)
     } else {
       setHotelMessage("Oops, Something went wrong")
@@ -70,7 +71,7 @@ const HotelsList = props => {
   let markers;
   
   if (gotHotelsData) {
-    const onMarkerClick = (props, marker, e) => {
+    const onMarkerClick = (props, marker) => {
       setSelectedPlaces(props)
       setActiveMarker(marker)
       setShowingInfoWindow(true)
@@ -87,16 +88,15 @@ const HotelsList = props => {
   return (
     <>
       <div className="ui stackable four column grid">
-        {hotelCard ? (
+        {hotelCard && (
           <div id="divider">
-            We have {props.hotels.data.length} hotels near your activities
             <p>{hotelMessage}</p>
           </div>
-        ) : null}
+        )}
         {hotelCard}
       </div>
       <div id="embed-map">
-        {hotelCard ? (
+        {hotelCard && (
           <div className="hotels-map">
             <Map google={props.google}
               style={{ width: '75%', height: '60%', position: 'relative' }}
@@ -111,12 +111,12 @@ const HotelsList = props => {
                 marker={activeMarker}
                 visible={showingInfoWindow}>
                 <div>
-                  <h4>{selectedPlace.name}</h4>
+                  <h4>{selectedPlaces.name}</h4>
                 </div>
               </InfoWindow>
             </Map>
           </div>
-        ) : null}
+        )}
       </div>
     </>
   )
