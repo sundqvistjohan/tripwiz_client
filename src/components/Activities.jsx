@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dropdown, Grid, Button } from "semantic-ui-react";
 import { addActivityType } from "../modules/destination.js";
+import ActivitiesList from "./ActivitiesList"
 
 const Activities = props => {
   const [activityType, setActivityType] = useState(null);
@@ -69,6 +70,7 @@ const Activities = props => {
           <Button id="find-activities" onClick={findActivities}>Find activities</Button>
           {activitiesMessage}
         </div>
+        <ActivitiesList />
       </Grid.Column>
     </>
   );
