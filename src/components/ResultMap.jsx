@@ -3,6 +3,19 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 import { connect } from "react-redux";
 
 const ResultMap = props => {
+  useEffect(() => {}, [props.activities]);
+  let markers = []
+
+  if (props.activities && props.activities.length > 0) {
+    markers = props.activities.map((activity, index) => {
+      return (
+        <Marker
+          label={index}
+          position={{ lat: activity.lat, lng: activity.lng }}
+        />
+      );
+    });
+  }
 
   return (
     <>
@@ -12,6 +25,7 @@ const ResultMap = props => {
           zoom={12}
           center={{ lat: props.lat, lng: props.lng }}
         >
+          {markers}
         </Map>
       </div>
     </>
@@ -20,6 +34,9 @@ const ResultMap = props => {
 
 const mapStateToProps = state => {
   return {
+    trip: state.trip,
+    lat: state.lat,
+    lng: state.lng,
     activities: state.activities
   };
 };

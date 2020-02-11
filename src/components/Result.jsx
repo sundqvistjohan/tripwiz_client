@@ -23,9 +23,7 @@ const Result = props => {
   return (
     <>
       <Grid>
-        <Grid.Column>
           <ResultMap />
-        </Grid.Column>
       </Grid>
     </>
   );
