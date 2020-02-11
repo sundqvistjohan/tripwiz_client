@@ -79,3 +79,21 @@ Cypress.Commands.add("chooseHotel", () => {
   cy.get(".grid > :nth-child(2) > .ui").click();
   cy.get("#root").should("contain", "Found Hotels!");
 });
+
+Cypress.Commands.add("chooseRestaurants", () => {
+  const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+    window.HTMLInputElement.prototype,
+    "value"
+  ).set;
+  const changeRangeInputValue = $range => value => {
+    nativeInputValueSetter.call($range[0], value);
+    $range[0].dispatchEvent(new Event("change", { value, bubbles: true }));
+  };
+  cy.get(":nth-child(7) > .fluid > .dropdown").click();
+  cy.get(".active > .visible > :nth-child(3)").click();
+  cy.get("#food-slider[type=range]").then(input =>
+    changeRangeInputValue(input)(3)
+  );
+  cy.get(":nth-child(7) > .food-choice > .ui").click();
+  cy.get("#root").should("contain", "Restaurants added!");
+});

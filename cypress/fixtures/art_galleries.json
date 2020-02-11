@@ -1,0 +1,961 @@
+{
+  "html_attributions": [],
+  "next_page_token": "CrQCJAEAAAO_Z7WgnMT8-JHEaxANlSeKlXo-wn6uefcWtQJA0RDH2RKm6szXVcKMNmK0cb_3g6sE_zKzW27vY4V69tp2Kbc25BRzKYlulK91TLgreoP9IUTa0rImR4tlLIqIt0C-94Jn-ORXjl4KYWWuxGdVtITkzzPoXz8N_X0noRPcVujN0X_HB36Ovnejbwi0Qznj5dtW7sstxUxVjsUvzcEReNYr7Tf-rvy-YzP2VstjXzj_4uEy2HJB6VV34ROhdDr7fFVioglwS9Mu5Y1tp_D7N1-FDGK6e9ObqBJ9Hd5k_5dtHk8W4swMaxvJbaD7UDmhGsKjs935VV3SMNmb3ct96J7UQLHhXZDVFGAX3n9iFKNEUi5YttlxL28799oDiVudIQ3SLYZolXWQPnc9Qdg5SpkSECSGPI2SrCE7xg-2rgg7_LgaFNKO1v6FY89lTb-bmVyQRMMy6kma",
+  "results": [
+     {
+        "formatted_address": "Viale delle Belle Arti, 131, 00197 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.917042,
+              "lng": 12.482169
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.91818667989272,
+                 "lng": 12.48332362989272
+              },
+              "southwest": {
+                 "lat": 41.91548702010728,
+                 "lng": 12.48062397010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "2a0a551f2cefd95a3c56e261ba6f6f327ee22497",
+        "name": "National Gallery of Modern and Contemporary Art",
+        "opening_hours": {
+           "open_now": true
+        },
+        "photos": [
+           {
+              "height": 2448,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/113939515573272085274\">Massimiliano Di Maio</a>"
+              ],
+              "photo_reference": "CmRaAAAAiMpQGDAxO-GrjzIsiC7GOxiJApX23HXwlbrZg1UB9tcxizIYOsiNAF2Pxbe3_UKRgj4WcT1leGzOKTY_uS0_XKcDsA3JTKCPLZ2uOR_H-MU7ddIXP6_YSozKrNRR99EwEhB2STGXayWrgRgUbOPoY7xSGhQj9oHdFZxf5qXh1pqidKCKV6-1ZQ",
+              "width": 3264
+           }
+        ],
+        "place_id": "ChIJxcyMIv1gLxMRKAH_Dv2q8iw",
+        "plus_code": {
+           "compound_code": "WF8J+RV Rome, Metropolitan City of Rome",
+           "global_code": "8FHJWF8J+RV"
+        },
+        "rating": 4.5,
+        "reference": "ChIJxcyMIv1gLxMRKAH_Dv2q8iw",
+        "types": [
+           "art_gallery",
+           "tourist_attraction",
+           "museum",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 4866
+     },
+     {
+        "formatted_address": "Via Margutta, 8, 00187 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.9096258,
+              "lng": 12.4786503
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.91094097989272,
+                 "lng": 12.47994117989272
+              },
+              "southwest": {
+                 "lat": 41.90824132010728,
+                 "lng": 12.47724152010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "dddd9243495821190acc6a8d1b5bbdf6955dca43",
+        "name": "Art Gallery of Marchetti",
+        "photos": [
+           {
+              "height": 450,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/104435397011604638993\">Domenico Chines</a>"
+              ],
+              "photo_reference": "CmRaAAAAzpmSv67PBoOUP8hV4ffmvZ9fTdDwewynQnXRsHXoynqEmToNYDcZsmnY3GjDY-dY6bnd8Z6X45Ba2g4SByhL--BHoNaBoC0U67f8GoeTfI4XZxcuXFi41bOL8L5v2CeXEhAQEXWrxQKOLmi44q2ZoWv9GhSoB6sEoiHs28eiKKgjLLkKX8q4Rg",
+              "width": 1000
+           }
+        ],
+        "place_id": "ChIJiZ1pW_9gLxMRPH4KdCgOH-E",
+        "plus_code": {
+           "compound_code": "WF5H+VF Rome, Metropolitan City of Rome",
+           "global_code": "8FHJWF5H+VF"
+        },
+        "rating": 4.5,
+        "reference": "ChIJiZ1pW_9gLxMRPH4KdCgOH-E",
+        "types": [
+           "art_gallery",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 4
+     },
+     {
+        "formatted_address": "Via Fabio Massimo, 62, 00192 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.9091336,
+              "lng": 12.4622175
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.91047132989272,
+                 "lng": 12.46351307989272
+              },
+              "southwest": {
+                 "lat": 41.90777167010727,
+                 "lng": 12.46081342010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "91d5da3d0180944e626dbd312fd882a37e092e8c",
+        "name": "Galleria d'Arte Moderna e Contemporanea Proietti L.",
+        "opening_hours": {
+           "open_now": true
+        },
+        "place_id": "ChIJy4_lwV9gLxMRUa8UzR8rtRo",
+        "plus_code": {
+           "compound_code": "WF56+MV Rome, Metropolitan City of Rome",
+           "global_code": "8FHJWF56+MV"
+        },
+        "rating": 4.3,
+        "reference": "ChIJy4_lwV9gLxMRUa8UzR8rtRo",
+        "types": [
+           "art_gallery",
+           "museum",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 13
+     },
+     {
+        "formatted_address": "Via delle Quattro Fontane, 13, 00184 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.9031491,
+              "lng": 12.4900479
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.90427247989273,
+                 "lng": 12.49110282989272
+              },
+              "southwest": {
+                 "lat": 41.90157282010728,
+                 "lng": 12.48840317010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+        "id": "c6e37f36cebbb457f24fc86a63f24be5dba26c21",
+        "name": "National Gallery of Ancient Art in Barberini Palace",
+        "opening_hours": {
+           "open_now": true
+        },
+        "photos": [
+           {
+              "height": 2336,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/106828807543728297294\">Giuseppe Stillitano</a>"
+              ],
+              "photo_reference": "CmRaAAAAKFzDmT0rll-xAAd8jPPoDN5rdI3QKsF90mtyBzmE8hKN_jbtX7CdVVQgrccjFCYThsGYxPQ9clypgLilIOmIGM_DFiaTMpq3d5eKSqnZUA20I30CI1AH2o-UTbhyJ1YDEhC77PbyRYJHUie08V3aYhKuGhQKtFxBpkV8VQ8NT0ERIhuZsfgdzg",
+              "width": 4160
+           }
+        ],
+        "place_id": "ChIJk7HQeqlhLxMRwIY3JsnfdjU",
+        "plus_code": {
+           "compound_code": "WF3R+72 Rome, Metropolitan City of Rome",
+           "global_code": "8FHJWF3R+72"
+        },
+        "rating": 4.5,
+        "reference": "ChIJk7HQeqlhLxMRwIY3JsnfdjU",
+        "types": [
+           "art_gallery",
+           "tourist_attraction",
+           "premise",
+           "museum",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 2290
+     },
+     {
+        "formatted_address": "Via della Luce, 28, 00153 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.8883575,
+              "lng": 12.474951
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.88968782989272,
+                 "lng": 12.47633452989272
+              },
+              "southwest": {
+                 "lat": 41.88698817010728,
+                 "lng": 12.47363487010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+        "id": "898ff27c4042bc38f6697edfe50e232bdcef4138",
+        "name": "Galleria D'arte Luce",
+        "opening_hours": {
+           "open_now": true
+        },
+        "photos": [
+           {
+              "height": 3368,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/112066182776363707309\">A Google User</a>"
+              ],
+              "photo_reference": "CmRaAAAArUCQ8vgEWFi6tGmq_uXN6PL1voOOHqN8agPjGaBW0TK9LOriyfluQjJP5s5_cdp0TzNxOiT5fOGVHacvD2N8toVLmdMOiSqsua5Uunmz5CIoSNoO4wcYYm2Zq5BBGguREhBro4IgEp5m7FnrYQt9g6qRGhRowGpEbYj3shsF5MovTnm-M5Pcwg",
+              "width": 4538
+           }
+        ],
+        "place_id": "ChIJHy_BtzdgLxMRWed-B9sec3Y",
+        "plus_code": {
+           "compound_code": "VFQF+8X Rome, Metropolitan City of Rome",
+           "global_code": "8FHJVFQF+8X"
+        },
+        "rating": 5,
+        "reference": "ChIJHy_BtzdgLxMRWed-B9sec3Y",
+        "types": [
+           "museum",
+           "art_gallery",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 1
+     },
+     {
+        "formatted_address": "Via dei Banchi Vecchi, 31, 00186 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.8982401,
+              "lng": 12.4668881
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.89960772989273,
+                 "lng": 12.46827542989272
+              },
+              "southwest": {
+                 "lat": 41.89690807010728,
+                 "lng": 12.46557577010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "243c8f1bc162ec6b1e1a66e86ca1ebe585171972",
+        "name": "Galleria d'arte FABER",
+        "opening_hours": {
+           "open_now": true
+        },
+        "photos": [
+           {
+              "height": 3968,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/111550372434403335794\">Nunzio Caruso</a>"
+              ],
+              "photo_reference": "CmRaAAAAw64O36oBk4VDp-pLqNB9oOGQuLOMWvW-K7mJKQ3eZiJz-qvh3FaU5d2uQc5AOWQQTRiLW3L1EcYn2TTQIzdJUgnpNZCeXNCRHPbSkSbsj4B3Z8SRmL1Fc7Au8zHcEL8nEhC_k8n1agh1eMJ3VXsHknwqGhRGFmvc3nyOwAdeWd6ngY1Ita6D3w",
+              "width": 2976
+           }
+        ],
+        "place_id": "ChIJO-vvnERgLxMRVlNW9U0KMAc",
+        "plus_code": {
+           "compound_code": "VFX8+7Q Rome, Metropolitan City of Rome",
+           "global_code": "8FHJVFX8+7Q"
+        },
+        "rating": 4.3,
+        "reference": "ChIJO-vvnERgLxMRVlNW9U0KMAc",
+        "types": [
+           "art_gallery",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 16
+     },
+     {
+        "formatted_address": "ROMA / MUSEO ITINERANTE, 00152 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.880945,
+              "lng": 12.460181
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.88228907989271,
+                 "lng": 12.46155577989272
+              },
+              "southwest": {
+                 "lat": 41.87958942010727,
+                 "lng": 12.45885612010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "a97e7b1071e1c962371714293369268c8b7e6409",
+        "name": "Galleria D'arte Astrolabio di Roma",
+        "photos": [
+           {
+              "height": 4000,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/114545583360894577076\">Galleria Astrolabio</a>"
+              ],
+              "photo_reference": "CmRaAAAAwiYPJblIw3oFmq6Xv8pSF5UOOksJyze16gNSJi0Z0MaF6tBTBGC0ztBDmQ1xtl5N0Bb-8zTnRumTzUuiGG5fS8aRQB27DPn5TZzZ2kTFYxK_xVVy6DWt7wcYRPchzzeJEhCn5pPiaX1m5OlmVnpnK50GGhS4isXxshj0Z78osWQELahOOu0-2A",
+              "width": 6016
+           }
+        ],
+        "place_id": "ChIJdS5dJRdgLxMRiWRbcGeK5Xc",
+        "plus_code": {
+           "compound_code": "VFJ6+93 Rome, Metropolitan City of Rome",
+           "global_code": "8FHJVFJ6+93"
+        },
+        "rating": 0,
+        "reference": "ChIJdS5dJRdgLxMRiWRbcGeK5Xc",
+        "types": [
+           "art_gallery",
+           "museum",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 0
+     },
+     {
+        "formatted_address": "Via Ferdinando di Savoia, 2, 00196 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.9105067,
+              "lng": 12.4746609
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.91177022989272,
+                 "lng": 12.47604537989272
+              },
+              "southwest": {
+                 "lat": 41.90907057010728,
+                 "lng": 12.47334572010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "faaee0e51ba708112541e81f5c3793ba54d8c889",
+        "name": "De Crescenzo Viesti",
+        "opening_hours": {
+           "open_now": true
+        },
+        "place_id": "ChIJa_c6G1ZgLxMRVfLagNp1GuA",
+        "plus_code": {
+           "compound_code": "WF6F+6V Rome, Metropolitan City of Rome",
+           "global_code": "8FHJWF6F+6V"
+        },
+        "rating": 4.3,
+        "reference": "ChIJa_c6G1ZgLxMRVfLagNp1GuA",
+        "types": [
+           "art_gallery",
+           "museum",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 12
+     },
+     {
+        "formatted_address": "Via del Corso, 305, 00186 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.8979778,
+              "lng": 12.4815719
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.89933787989273,
+                 "lng": 12.48296477989272
+              },
+              "southwest": {
+                 "lat": 41.89663822010728,
+                 "lng": 12.48026512010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "a7d5053331a9a322a71b84213738c72822f67bd1",
+        "name": "Doria Pamphili Gallery",
+        "opening_hours": {
+           "open_now": true
+        },
+        "photos": [
+           {
+              "height": 4608,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/101847155159990825219\">A Google User</a>"
+              ],
+              "photo_reference": "CmRaAAAA54gUYfXQKscIT5VYOhxJeBQMnukGZa7CMtBQ5bo6kvEjN0GjD1ZSZcxToPPzK9icocF1aLg3eUPgRLVBEHAeMnoUgMn-OhP9l--sCsAUboJTnQmYaZRN_uJhwIubP03iEhD0LzaC3sxTNxqy-Iw-D7_PGhSL1W0Fzci1zZbv1DsP3GdbzP3fSA",
+              "width": 2592
+           }
+        ],
+        "place_id": "ChIJF0obe01gLxMR0JJHtlD0kMY",
+        "plus_code": {
+           "compound_code": "VFXJ+5J Rome, Metropolitan City of Rome",
+           "global_code": "8FHJVFXJ+5J"
+        },
+        "rating": 4.6,
+        "reference": "ChIJF0obe01gLxMR0JJHtlD0kMY",
+        "types": [
+           "art_gallery",
+           "tourist_attraction",
+           "museum",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 3077
+     },
+     {
+        "formatted_address": "Via Panisperna, 238, 00184 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.8963904,
+              "lng": 12.4910109
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.89777182989273,
+                 "lng": 12.49235017989272
+              },
+              "southwest": {
+                 "lat": 41.89507217010728,
+                 "lng": 12.48965052010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/museum-71.png",
+        "id": "5650fb3f24fa60a2e1099c36ba5c0899e2ea42c7",
+        "name": "Galleria d'arte \"Spigoli di luce\"",
+        "opening_hours": {
+           "open_now": true
+        },
+        "photos": [
+           {
+              "height": 432,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/102780628410011488007\">Galleria d&#39;arte &quot;Spigoli di luce&quot;</a>"
+              ],
+              "photo_reference": "CmRaAAAAMZqa8w_WUg6O7eXy4cgNZojkkOMJXExKFNYm9hpV5-JJX2v6_xpLP66zeeakII4-_h0qp4TNia2svUb2L0SW1cU0i7Pj0TdQZWi0nZe0tgnFWCSWqAWOEhQ_mX7S6zA2EhCfOzEWs_evyIYDNK3tMixPGhT0zGDFC_POEEE8JIlnto1YTNtT5A",
+              "width": 300
+           }
+        ],
+        "place_id": "ChIJ-20h6rFhLxMRVm8InFXTUrU",
+        "plus_code": {
+           "compound_code": "VFWR+HC Rome, Metropolitan City of Rome",
+           "global_code": "8FHJVFWR+HC"
+        },
+        "rating": 5,
+        "reference": "ChIJ-20h6rFhLxMRVm8InFXTUrU",
+        "types": [
+           "art_gallery",
+           "museum",
+           "point_of_interest",
+           "store",
+           "establishment"
+        ],
+        "user_ratings_total": 2
+     },
+     {
+        "formatted_address": "Via Macedonia, 12, 00179 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.8734008,
+              "lng": 12.5116765
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.87478687989272,
+                 "lng": 12.51315082989272
+              },
+              "southwest": {
+                 "lat": 41.87208722010728,
+                 "lng": 12.51045117010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "eee1bab51b8dbca3b2d5fb3b293a34f7fa332ee0",
+        "name": "Edarcom Europe Contemporary Art Gallery",
+        "opening_hours": {
+           "open_now": true
+        },
+        "photos": [
+           {
+              "height": 1202,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/100018203561909826250\">Francesco Ciaffi</a>"
+              ],
+              "photo_reference": "CmRaAAAArUOwiir7R_lCEQau7DzfzpRVWbXUoYmo8bTg_YRunK29XIg0piRXq0Il3zMi_sr-qwEXvG8YXJH_UU-APkpyzQ9d1z8Hq6wRtYmKg7ayHOab7QSS2C1FOwbqi1ezhsCeEhDkIG1EIwQ3s-xHuBaBzYprGhQrTiF4GG55xFBqZiCn1thuC8FhSg",
+              "width": 1800
+           }
+        ],
+        "place_id": "ChIJ2W2nZOZhLxMRmwnarvu_Doo",
+        "plus_code": {
+           "compound_code": "VGF6+9M Rome, Metropolitan City of Rome",
+           "global_code": "8FHJVGF6+9M"
+        },
+        "rating": 4.8,
+        "reference": "ChIJ2W2nZOZhLxMRmwnarvu_Doo",
+        "types": [
+           "art_gallery",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 24
+     },
+     {
+        "formatted_address": "Via dell'Arco di S. Calisto, 40, 00100 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.88912080000001,
+              "lng": 12.4712898
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.89046322989272,
+                 "lng": 12.47263972989272
+              },
+              "southwest": {
+                 "lat": 41.88776357010728,
+                 "lng": 12.46994007010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "5ddc26552a939da63ae6e67786647c701dfa1350",
+        "name": "Galleria d'Arte Spazio 40",
+        "opening_hours": {
+           "open_now": false
+        },
+        "photos": [
+           {
+              "height": 4032,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/112042993534810886133\">Jill Hubbard</a>"
+              ],
+              "photo_reference": "CmRaAAAAEhJp1fIW6LaMxU9B1VMhTXP1KLWD6Qy2JLjeFqoCLG7h9GMknGPdpYckmuzic80WxMifSTmjf9wNdq3DZ8SJqa9WFHw2Qu1Trav0ZVNEq4jv9qI2vwtYr6llaGcvp8MPEhCF37iMPNqspBBGeAr4bB6oGhRl-2XXxxkBh9CRGtqOpMyE5-0bdA",
+              "width": 3024
+           }
+        ],
+        "place_id": "ChIJj6hWDThgLxMRV2-dQuNlqSk",
+        "plus_code": {
+           "compound_code": "VFQC+JG Rome, Metropolitan City of Rome",
+           "global_code": "8FHJVFQC+JG"
+        },
+        "rating": 4.4,
+        "reference": "ChIJj6hWDThgLxMRV2-dQuNlqSk",
+        "types": [
+           "art_gallery",
+           "general_contractor",
+           "point_of_interest",
+           "store",
+           "establishment"
+        ],
+        "user_ratings_total": 154
+     },
+     {
+        "formatted_address": "Via di Monserrato, 8/9, 00186 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.89715650000001,
+              "lng": 12.4683479
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.89851042989272,
+                 "lng": 12.46970302989272
+              },
+              "southwest": {
+                 "lat": 41.89581077010727,
+                 "lng": 12.46700337010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "cd1ee106886ad4b9c5f6b191a22bf242034446b1",
+        "name": "Alessio Ponti Galleria D'Arte - Ottocento.it",
+        "opening_hours": {
+           "open_now": true
+        },
+        "photos": [
+           {
+              "height": 2848,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/111973313937959146326\">Alessio Ponti Galleria D&#39;Arte - Ottocento.it</a>"
+              ],
+              "photo_reference": "CmRaAAAAX1MhXjKLa6IUGty21vy4C77_tttGTW9nZafLzUg3sKsh6eyKXvgfZvCtv0wrW9BRP0oSlUkrzy0rACPj83OaiGrR_sNrfjc6gwbgsEi7IJzWIEtULHa86d6vl8UUxSMYEhDF-cYi8Ha492sxp-IFruHOGhStFQhSGEfQtWhkTg66Yh_fuSWFPA",
+              "width": 4272
+           }
+        ],
+        "place_id": "ChIJ1dsRX0RgLxMRsaNK5X4hX7s",
+        "plus_code": {
+           "compound_code": "VFW9+V8 Rome, Metropolitan City of Rome",
+           "global_code": "8FHJVFW9+V8"
+        },
+        "rating": 4.9,
+        "reference": "ChIJ1dsRX0RgLxMRsaNK5X4hX7s",
+        "types": [
+           "art_gallery",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 29
+     },
+     {
+        "formatted_address": "Largo della Fontanella di Borghese, 89, 00186 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.9035118,
+              "lng": 12.4764374
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.90487787989272,
+                 "lng": 12.47782582989272
+              },
+              "southwest": {
+                 "lat": 41.90217822010728,
+                 "lng": 12.47512617010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "f893d01f097fb86b1ecc0067ae11feadb41c66b6",
+        "name": "Galleria Mucciaccia",
+        "opening_hours": {
+           "open_now": true
+        },
+        "photos": [
+           {
+              "height": 2736,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/106330661849827668327\">Miky Di Turo</a>"
+              ],
+              "photo_reference": "CmRZAAAA30rdEh-3ptMl9vvFyaKRzU_gw-1olJSX8BsfOQQHh-bn6kVt90CJ3bMq8APP2uHKEytzfBN38_Pil3EjvurLfaGFqRBNOS2DwiaTgRo_gRBHvE0NNHztSpy9sI8WRY8iEhC-hb9OORCvJCD0AWsWHs9cGhQexpUIYrYKTRvAmF9jaulJ6mS5Hg",
+              "width": 3648
+           }
+        ],
+        "place_id": "ChIJrSFDNFFgLxMRBlnS_K7wQpg",
+        "plus_code": {
+           "compound_code": "WF3G+CH Rome, Metropolitan City of Rome",
+           "global_code": "8FHJWF3G+CH"
+        },
+        "rating": 4.1,
+        "reference": "ChIJrSFDNFFgLxMRBlnS_K7wQpg",
+        "types": [
+           "art_gallery",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 59
+     },
+     {
+        "formatted_address": "Via dei Prefetti, 17, 00186 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.902408,
+              "lng": 12.4767983
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.90379247989272,
+                 "lng": 12.47813987989272
+              },
+              "southwest": {
+                 "lat": 41.90109282010728,
+                 "lng": 12.47544022010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "4c1723de51176940f4c3c2e88ddd8576528d7ccc",
+        "name": "Magazzino",
+        "opening_hours": {
+           "open_now": true
+        },
+        "photos": [
+           {
+              "height": 702,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/105973924635011773468\">Magazzino D Arte Moderna Srl</a>"
+              ],
+              "photo_reference": "CmRaAAAABk9_leTLIXiL1rIIBOYbXgv0G-ePwuYHy4hZANTw3X-gRbSyccryICOlYsycsR1sxhCgkF8uYOE5My1esYn8_7PmezVCcyXlaBPP-uSq0SVYhQepxxadVElg9qR772YQEhDI5aRYcr_ZwfdLiRLBoiJFGhT1nmn8uAk41yS4U-BunAkjbfY3MA",
+              "width": 992
+           }
+        ],
+        "place_id": "ChIJB0clFVFgLxMRFihR2238B-4",
+        "plus_code": {
+           "compound_code": "WF2G+XP Rome, Metropolitan City of Rome",
+           "global_code": "8FHJWF2G+XP"
+        },
+        "rating": 4.7,
+        "reference": "ChIJB0clFVFgLxMRFihR2238B-4",
+        "types": [
+           "art_gallery",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 7
+     },
+     {
+        "formatted_address": "Via Palermo, 41, 00184 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.898572,
+              "lng": 12.4916958
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.89995487989273,
+                 "lng": 12.49300632989272
+              },
+              "southwest": {
+                 "lat": 41.89725522010728,
+                 "lng": 12.49030667010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "b13bc1ff5931af28e146441c4fea9bd9134ac1ed",
+        "name": "dolceVita GALLERY",
+        "opening_hours": {
+           "open_now": false
+        },
+        "photos": [
+           {
+              "height": 1024,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/111687644345022787608\">dolceVita GALLERY</a>"
+              ],
+              "photo_reference": "CmRaAAAAL3ePbZKFFuYHTeur_TmeURZmf1pK3QNUJ54LuEIUXbuaw4S8t_Wcr4EMrwMd4lNImcuNlqaJAaszSRa675oSv7U2VdMkbfT1HC-WK__YARoWIuejFYYCApDQDis5F_0MEhAKgLQVjWWRsL65aNwKFGIiGhTXY8qANv1IQjn3qMXoeVa-lob5Hg",
+              "width": 1820
+           }
+        ],
+        "place_id": "ChIJUYS5R65hLxMRcJl3eYxh4PA",
+        "plus_code": {
+           "compound_code": "VFXR+CM Rome, Metropolitan City of Rome",
+           "global_code": "8FHJVFXR+CM"
+        },
+        "rating": 4.7,
+        "reference": "ChIJUYS5R65hLxMRcJl3eYxh4PA",
+        "types": [
+           "art_gallery",
+           "tourist_attraction",
+           "museum",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 49
+     },
+     {
+        "formatted_address": "Vicolo de' Catinari, 3, 00186 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.8939806,
+              "lng": 12.4744928
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.89530777989272,
+                 "lng": 12.47589697989272
+              },
+              "southwest": {
+                 "lat": 41.89260812010728,
+                 "lng": 12.47319732010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "85ae7e1605c211b77c856f9844cf0d9baf978907",
+        "name": "Galleria Lorcan O'Neill Roma",
+        "opening_hours": {
+           "open_now": true
+        },
+        "photos": [
+           {
+              "height": 2048,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/108333632120924668234\">Galleria Lorcan O&#39;Neill Roma</a>"
+              ],
+              "photo_reference": "CmRaAAAABZkAVq9KWPea19nle71nqKyBgsw7O9dWEbkJe1ydgMO3uuF3JG5h8RHUqnnmLEDY2Wpl5qGXBrj4DAdRP6dA6N6la8CF97EkVyyAIuQmnkN1I1iRgYBOznYrOzvSmy5EEhBxiD2gdX7EIYgv4H29LCJ5GhSltJ93_4d4S3-C72o5N_fCt92vkQ",
+              "width": 1338
+           }
+        ],
+        "place_id": "ChIJ2xQrykNgLxMRaLB6G-8synI",
+        "plus_code": {
+           "compound_code": "VFVF+HQ Rome, Metropolitan City of Rome",
+           "global_code": "8FHJVFVF+HQ"
+        },
+        "rating": 4.4,
+        "reference": "ChIJ2xQrykNgLxMRaLB6G-8synI",
+        "types": [
+           "art_gallery",
+           "tourist_attraction",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 43
+     },
+     {
+        "formatted_address": "Corso del Rinascimento, 9, 00186 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.8973697,
+              "lng": 12.474044
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.89872622989272,
+                 "lng": 12.47544497989272
+              },
+              "southwest": {
+                 "lat": 41.89602657010727,
+                 "lng": 12.47274532010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/shopping-71.png",
+        "id": "a76d376c2b6ab5dfe88aa85e6c531a8c3b82d2d7",
+        "name": "Berardi Galleria d'Arte S.r.l.",
+        "opening_hours": {
+           "open_now": true
+        },
+        "photos": [
+           {
+              "height": 1707,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/106757209054964081116\">Galleria Berardi - Antichità Rinascimento s.n.c.</a>"
+              ],
+              "photo_reference": "CmRaAAAAN3-ZlWHJrAboe8fkXVp545dya9Sr4TpP7IyWCAPRAg3s45GmK5lN91EvX8_FK-6Ros4Gc9HANWjBX5v1FJdPoib5mS1LearrIHF1uOj-xmiNiZ0yTzS_SzFyh4dYVkqAEhDlIrj-PacahzpFKx1ZcCIZGhSOjU9MRKFC85yhUzTXf6fwPvCW0A",
+              "width": 2592
+           }
+        ],
+        "place_id": "ChIJOzDGok9gLxMRV2c5aXkPTJQ",
+        "plus_code": {
+           "compound_code": "VFWF+WJ Rome, Metropolitan City of Rome",
+           "global_code": "8FHJVFWF+WJ"
+        },
+        "rating": 4.9,
+        "reference": "ChIJOzDGok9gLxMRV2c5aXkPTJQ",
+        "types": [
+           "art_gallery",
+           "home_goods_store",
+           "point_of_interest",
+           "store",
+           "establishment"
+        ],
+        "user_ratings_total": 11
+     },
+     {
+        "formatted_address": "Piazza Borghese, 1/a, 00186 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.9035792,
+              "lng": 12.4759194
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.90493607989273,
+                 "lng": 12.47728567989272
+              },
+              "southwest": {
+                 "lat": 41.90223642010729,
+                 "lng": 12.47458602010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "31052dd60c230430c4bde900b623db60dc210381",
+        "name": "Mucciaccia Contemporary | Galleria d'arte contemporanea",
+        "opening_hours": {
+           "open_now": true
+        },
+        "photos": [
+           {
+              "height": 491,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/109005572237787681225\">A Google User</a>"
+              ],
+              "photo_reference": "CmRaAAAA8ya-FjKX8iO7J7CWhyNozCdFXFSM8sQYTTQVG9BT2xmlyWqJA-kG84XzJSE1LK9fCtyH0MOGYPg7gSuGkELWJ-0cTD_SagALe0cjE-WI1e4Yrv-rHvqSI9c-iUmVLNegEhBZks50OfJpMSNnSudiQWKLGhTdh6zsOF0lnKOoqnj2ix0dY_ArdA",
+              "width": 736
+           }
+        ],
+        "place_id": "ChIJSQoS0lZgLxMRuh8nF5wWPe4",
+        "plus_code": {
+           "compound_code": "WF3G+C9 Rome, Metropolitan City of Rome",
+           "global_code": "8FHJWF3G+C9"
+        },
+        "rating": 4.5,
+        "reference": "ChIJSQoS0lZgLxMRuh8nF5wWPe4",
+        "types": [
+           "art_gallery",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 6
+     },
+     {
+        "formatted_address": "Via Angelo Brunetti, 49, 00186 Roma RM",
+        "geometry": {
+           "location": {
+              "lat": 41.9092913,
+              "lng": 12.4746182
+           },
+           "viewport": {
+              "northeast": {
+                 "lat": 41.91063262989272,
+                 "lng": 12.47596672989272
+              },
+              "southwest": {
+                 "lat": 41.90793297010728,
+                 "lng": 12.47326707010728
+              }
+           }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "b73cc7c002d63240a5f8eefbe90b3f5b7ebff9d0",
+        "name": "Galleria Fidia",
+        "opening_hours": {
+           "open_now": true
+        },
+        "photos": [
+           {
+              "height": 2592,
+              "html_attributions": [
+                 "<a href=\"https://maps.google.com/maps/contrib/114963290308096962590\">A Google User</a>"
+              ],
+              "photo_reference": "CmRaAAAArG_3PhEDIJUmgfIyn8RASCzak6ILHOwq2SSjPLNGGMl2UXwI2jk5a7VsoE1qZxQZATsPnE4L76IZTyfio_I4gojVNFzvFsVZtdhro09eLg5K5he7yJkeeNq3orggGVw6EhCnCAHb46IWQeh3xfJien14GhSxL6qhdnGg8bfEAxW1vxHd2XhuVw",
+              "width": 4608
+           }
+        ],
+        "place_id": "ChIJz78KevhgLxMRxTlXhTi1Nz8",
+        "plus_code": {
+           "compound_code": "WF5F+PR Rome, Metropolitan City of Rome",
+           "global_code": "8FHJWF5F+PR"
+        },
+        "rating": 4.8,
+        "reference": "ChIJz78KevhgLxMRxTlXhTi1Nz8",
+        "types": [
+           "art_gallery",
+           "point_of_interest",
+           "establishment"
+        ],
+        "user_ratings_total": 12
+     }
+  ],
+  "status": "OK"
+}
