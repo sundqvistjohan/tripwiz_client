@@ -18,13 +18,14 @@ const HotelsList = props => {
     if (hotelsData.status == 200) {
       props.setHotels(hotelsData);
       setGotHotelsData(true)
+      setHotelMessage(`We have ${hotelsData.data.length} hotels near your activities`)
     }
   };
 
   const selectHotel = async (hotelId, hotelName) => {
     let response = await chooseHotel(props.trip, hotelId);
     if (response.status == 200) {
-      getHotelsShowData()
+      await getHotelsShowData()
       setHotelMessage(`Thanks for selecting ${hotelName}`)
     } else {
       setHotelMessage("Oops, Something went wrong")
@@ -89,7 +90,6 @@ const HotelsList = props => {
       <div className="ui stackable four column grid">
         {hotelCard ? (
           <div id="divider">
-            We have {props.hotels.data.length} hotels near your activities
             <p>{hotelMessage}</p>
           </div>
         ) : null}
