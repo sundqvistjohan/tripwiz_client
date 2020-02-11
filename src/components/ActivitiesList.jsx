@@ -9,9 +9,10 @@ import { Button } from "semantic-ui-react";
 const ActivitiesList = props => {
   const getActivitiesData = async () => {
     let response = await getActivities(
-      props.trip)
+      props.trip,
+      props.activityType)
     if (response == 200) {
-      debugger
+      
     } else {
 
     }
@@ -28,6 +29,7 @@ const ActivitiesList = props => {
 const mapStateToProps = state => {
   return {
     trip: state.trip,
+    activityType: state.activityType
   };
 };
 

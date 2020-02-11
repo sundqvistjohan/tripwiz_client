@@ -5,7 +5,6 @@ import { addActivityType } from "../modules/destination.js";
 import ActivitiesList from "./ActivitiesList"
 
 const Activities = props => {
-  const [activityType, setActivityType] = useState(null);
   const [activity_visits, setActivity_visits] = useState(null);
   const [activitiesMessage, setActivitiesMessage] = useState("");
 
@@ -28,8 +27,8 @@ const Activities = props => {
   ];
 
   const findActivities = async () => {
-    if (activityType && activity_visits) {
-      let response = await addActivityType(activityType, activity_visits, props.trip);
+    if (props.activityType && activity_visits) {
+      let response = await addActivityType(props.activityType, activity_visits, props.trip);
       if (response.status === 200) {
         props.gotActivities(true);
         setActivitiesMessage("Found activities!");
@@ -38,7 +37,7 @@ const Activities = props => {
           "Couldn't add activity, try something more popular"
         );
       }
-    } else if (!activityType) {
+    } else if (!props.activityType) {
       setActivitiesMessage("You forgot to choose your activity");
     } else {
       setActivitiesMessage("You forgot to set how many times");
@@ -57,7 +56,7 @@ const Activities = props => {
             fluid
             selection
             options={activities}
-            onChange={(e, data) => setActivityType(data.value)}
+            onChange={(e, data) => props.setActivityType(data.value)}
           />
           <h4>Number of times:</h4>
           <Dropdown
@@ -80,7 +79,8 @@ const mapStateToProps = state => {
   return {
     destination: state.destination,
     trip: state.trip,
-    message: state.message
+    message: state.message,
+    activityType: state.activityType
   };
 };
 
@@ -91,6 +91,9 @@ const mapDispatchToProps = dispatch => {
     },
     gotActivities: data => {
       dispatch({ type: "GOT_ACTIVITIES", payload: data });
+    },
+    setActivityType: data => {
+      dispatch({ type: "GOT_ACTIVITYTYPE", payload: data });
     }
   };
 };

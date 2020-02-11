@@ -10,7 +10,6 @@ const initialState = {
   gotRestaurants: null,
   finalizeMessage: null,
   hotels: null,
-  activityType
-  
+  activityType: null
 };
 export default initialState;
