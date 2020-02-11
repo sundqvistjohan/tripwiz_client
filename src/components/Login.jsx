@@ -1,7 +1,7 @@
 import React from "react";
 import auth from "../modules/auth";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link , Redirect} from "react-router-dom";
 const Login = props => {
   const onLogin = event => {
     event.preventDefault();
@@ -30,7 +30,6 @@ const Login = props => {
   };
   
   let loginFunction;
-
   switch (true) {
     case props.displayLoginButton &&
       !props.authenticated &&
@@ -53,7 +52,6 @@ const Login = props => {
           <form id="login-form" onSubmit={onLogin}>
             <label>email </label>
             <input name="email" type="email" id="email"></input>
-
             <label>password</label>
             <input name="password" type="password" id="password"></input>&nbsp;
             <button id="submit">Submit</button>
@@ -68,12 +66,10 @@ const Login = props => {
         <>
           <span>{props.authMessage}</span>&nbsp;
           <br/>
-          <Link id="profile-link" to="/">
-          HOME page
-          </Link>&nbsp;
-          <Link id="logout-link" to="/login" onClick={onLogout}>
+          <Link id="logout-link" to="/" onClick={onLogout}>
             Logout
           </Link>
+          <Redirect to="/"/>
         </>
       );
       break;

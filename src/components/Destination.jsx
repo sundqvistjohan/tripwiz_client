@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import EmbedMap from "./EmbedMap.jsx";
 import { Redirect } from "react-router-dom";
 import { Dropdown, Grid, Form, Button } from "semantic-ui-react";
+import Login from "./Login.jsx"
 
 const Destination = props => {
   const [redirect, setRedirect] = useState(false);
@@ -30,7 +31,7 @@ const Destination = props => {
     e.preventDefault();
     let response = await getCoords(e.target.place.value);
     if (!response.error) {
-      if (response.data.status !== "ZERO_RESULTS") {
+    if (response.data.status !== "ZERO_RESULTS") {
         response = response.data.results[0];
         props.setLat(response.geometry.location.lat);
         props.setLng(response.geometry.location.lng);
@@ -62,6 +63,7 @@ const Destination = props => {
   return (
     <>
       <Grid>
+        <Login/>
         <Grid.Column width={8}>
           <h2>To get started...</h2>
           <Form onSubmit={submitPlace} id="place-form">
