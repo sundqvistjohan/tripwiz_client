@@ -1,31 +1,32 @@
-import React from "react";
+import React, { useState} from "react";
 import { connect } from "react-redux";
 import { Grid, Button } from "semantic-ui-react";
-import Restaurants from "./Restaurants"
-import Hotels from "./Hotels"
-import Activities from "./Activities"
-
+import Restaurants from "./Restaurants";
+import Hotels from "./Hotels";
+import Activities from "./Activities";
+import { Redirect } from "react-router-dom";
 
 const Trip = props => {
+  const [redirect, setRedirect] = useState(false);
+
   const finalizeTrip = () => {
     switch (false) {
       case props.gotActivities && props.gotHotels && props.gotRestaurants:
-        props.setFinalizeMessage("You must add activities, hotels and restaurants");
+        props.setFinalizeMessage(
+          "You must add activities, hotels and restaurants"
+        );
         break;
       case props.gotActivities:
         props.setFinalizeMessage("You must add activities");
         break;
-
       case props.gotHotels:
         props.setFinalizeMessage("You must add hotels");
         break;
-
       case props.gotRestaurants:
         props.setFinalizeMessage("You must add Restaurants");
         break;
-
       default:
-        props.setFinalizeMessage("Creating your trip...");
+        setRedirect(true)
     }
   };
 
@@ -41,9 +42,10 @@ const Trip = props => {
         </Grid.Column>
       </Grid>
       <div id="finalize-trip">
-        <Button id="create-trip" onClick={finalizeTrip}>
+        <Button id="finalize-trip" onClick={finalizeTrip}>
           Finalize Trip!
         </Button>
+        {redirect && <Redirect to="/result" />}
         <br />
         {props.finalizeMessage}
       </div>
