@@ -23,6 +23,7 @@ const Login = props => {
         props.changeAuth(false);
         props.changeLoginButton(true);
         props.changeSignupButton(true);
+        props.changeAuthMessage("");
       })
       .catch(error => {
         props.changeAuthMessage(error);
