@@ -25,7 +25,7 @@ const Hotels = props => {
 
   return (
     <>
-      <h2>Details of trip:</h2>
+      <h2>Accomodation:</h2>
       <h4>Hotel budget</h4>
       <input
         type="range"
@@ -55,7 +55,7 @@ const Hotels = props => {
           <h3>✩✩✩✩✩</h3>
         </div>
       </div>
-      <Button onClick={findHotels}>Check for hotels</Button>
+      <Button id="find-hotels" onClick={findHotels}>Check for hotels</Button>
       <p>{hotelsMessage}</p>
       <HotelsList />
     </>

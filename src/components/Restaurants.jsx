@@ -47,6 +47,7 @@ const Trip = props => {
   return (
     <>
       <div className="food-choice">
+        <h2>Details of trip:</h2>
         <h4>What food do you prefer? </h4>
         <Dropdown
           placeholder="Everything"

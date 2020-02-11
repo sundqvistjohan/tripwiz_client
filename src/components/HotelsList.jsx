@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { getHotels } from "../modules/destination.js";
 
@@ -24,6 +23,7 @@ const HotelsList = props => {
   let hotelCard;
 
   if (gotHotelsData == true) {
+    debugger
     hotelCard = props.hotels.map(hotel => {
       return (
         <div className="centerText">
@@ -39,7 +39,7 @@ const HotelsList = props => {
             </div>
             <div className="extra content">
               We found deals from {hotel.price} SEK / Night
-              </div>
+            </div>
           </div>
         </div>
         );
@@ -50,6 +50,11 @@ const HotelsList = props => {
   return (
     <>
       <div className="ui stackable four column grid">
+        {hotelCard ? (
+          <div id="divider">
+            <p>We found {props.hotels.length} hotels located near your activities.</p>
+          </div>
+        ) : null }
         {hotelCard}
       </div>
     </>
