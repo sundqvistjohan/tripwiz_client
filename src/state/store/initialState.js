@@ -8,6 +8,7 @@ const initialState = {
   gotActivities: null,
   gotHotels: null,
   gotRestaurants: null,
-  finalizeMessage: null
+  finalizeMessage: null,
+  activities: null
 };
 export default initialState;

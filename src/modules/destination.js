@@ -42,7 +42,7 @@ const addActivityType = async (activityType, actTimes, trip) => {
       params: {
         trip: trip,
         activity_type: activityType,
-        actTimes: actTimes
+        activity_visits: actTimes
       }
     });
     return response
@@ -85,4 +85,19 @@ const addRestaurants = async (preference, budget, trip) => {
   }
 };
 
-export { getCoords, initializeTrip, addActivityType, addHotels, addRestaurants };
+const getActivities = async (trip) => {
+  try {
+    const response = await axios({
+      method: "GET",
+      url: "api/v1/activity_types",
+      params: {
+        trip: trip
+      }
+    });
+    return response
+  } catch (error) {
+    return error;
+  }
+};
+
+export { getCoords, initializeTrip, addActivityType, addHotels, addRestaurants, getActivities };

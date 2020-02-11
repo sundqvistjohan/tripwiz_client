@@ -52,6 +52,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         gotRestaurants: action.payload
       };
+    case "SET_ACTIVITIES":
+      return {
+        ...state,
+        activities: action.payload
+      };
     default:
       return {
         ...state

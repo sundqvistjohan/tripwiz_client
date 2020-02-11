@@ -3,7 +3,7 @@ describe("See activities on a map", () => {
     cy.createTrip();
     cy.route({
       method: "GET",
-      url: "http://localhost:3000/api/activities**",
+      url: "http://localhost:3000/api/v1/activity_type**",
       response: "fixtures:art_galleries.json"
     });
     cy.chooseActivityType();
