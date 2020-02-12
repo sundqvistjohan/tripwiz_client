@@ -30,15 +30,6 @@ const Login = props => {
       });
   };
   
-  //old code 
-  /*
-       <Button
-          id="login-button" to="/login"
-          onClick={() => props.changeLoginButton(false)}
-        >
-          Login
-        </Button>
-   */
   let loginFunction;
   switch (true) {
     case props.displayLoginButton &&
@@ -52,7 +43,6 @@ const Login = props => {
         >
           Login
         </Button>
-      
       );
       break;
     case !props.displayLoginButton && !props.authenticated:
