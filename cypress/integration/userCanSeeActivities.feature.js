@@ -14,7 +14,7 @@ describe("User can see activities", () => {
       status: 200
     });
     cy.get('#activities-button').click()
-
+    cy.get('.stackable > :nth-child(1)').should('contain', 'Vasa Gallery')
   })
 
 });
