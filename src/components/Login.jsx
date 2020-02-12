@@ -83,7 +83,6 @@ const Login = props => {
   );
 };
   const mapStateToProps = state => ({
-    authenticated: state.authenticated,
     userAttrs: state.userAttrs,
     authMessage: state.authMessage,
     displaySignupButton: state.displaySignupButton,

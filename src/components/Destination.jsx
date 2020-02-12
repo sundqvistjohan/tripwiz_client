@@ -29,7 +29,7 @@ const Destination = props => {
     e.preventDefault();
     let response = await getCoords(e.target.place.value);
     if (!response.error) {
-    if (response.data.status !== "ZERO_RESULTS") {
+      if (response.data.status !== "ZERO_RESULTS") {
         response = response.data.results[0];
         props.setLat(response.geometry.location.lat);
         props.setLng(response.geometry.location.lng);
