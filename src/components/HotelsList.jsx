@@ -33,7 +33,7 @@ const HotelsList = props => {
   }
 
   useEffect(() => {
-    if (props.gotHotels == true) {
+    if (props.gotHotels === true) {
       getHotelsShowData()
     }
   }, [props.gotHotels])

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Dropdown, Grid, Button } from "semantic-ui-react";
+import { Dropdown, Button } from "semantic-ui-react";
 import { addActivityType } from "../modules/destination.js";
 
 const Activities = props => {
   const [activityType, setActivityType] = useState(null);
-  const [activity_visits, setActivity_visits] = useState(null);
+  const [activityVisits, setActivityVisits] = useState(null);
   const [activitiesMessage, setActivitiesMessage] = useState("");
+  const [activityChosen, setActivityChosen] = useState(null);
 
   const activities = [
     { key: 1, value: "amusement_park", text: "Amusement Park" },
@@ -27,11 +28,16 @@ const Activities = props => {
   ];
 
   const findActivities = async () => {
-    if (activityType && activity_visits) {
-      let response = await addActivityType(activityType, activity_visits, props.trip);
+    if (activityType && activityVisits) {
+      let response = await addActivityType(
+        activityType,
+        activityVisits,
+        props.trip
+      );
       if (response.status === 200) {
         props.gotActivities(true);
-        setActivitiesMessage("Found activities!");
+        props.setMessage("Found activities!");
+        props.updateProgression(props.progression + 1);
       } else {
         setActivitiesMessage(
           "Couldn't add activity, try something more popular"
@@ -44,33 +50,49 @@ const Activities = props => {
     }
   };
 
+  const onChangeHandler = (e, data) => {
+    setActivityType(data.value);
+    if (data.value !== "art_gallery") {
+      setActivityChosen(data.value.split("_").join(" ") + "s");
+    } else {
+      setActivityChosen("art galleries");
+    }
+    props.updateProgression(props.progression + 1);
+  };
+
   return (
-    <>
-      <Grid.Column width={8}>
-        <div className="activities">
-          <h2>Focus of trip:</h2>
-          <h4>Select activity</h4>
+    <div className="activities">
+      {props.progression === 2 && (
+        <>
+          <h2>Focus of trip to {props.destination}:</h2>
+          <h4>Select activity below!</h4>
           <Dropdown
             placeholder="Select Activity"
             clearable
             fluid
             selection
             options={activities}
-            onChange={(e, data) => setActivityType(data.value)}
+            onChange={onChangeHandler}
           />
-          <h4>Number of times:</h4>
+        </>
+      )}
+      {props.progression === 3 && (
+        <>
+          <h4>How many {activityChosen} would you like to visit?</h4>
           <Dropdown
-            placeholder="How many times?"
+            placeholder="Number of visits?"
             fluid
             selection
             options={number}
-            onChange={(e, data) => setActivity_visits(data.value)}
+            onChange={(e, data) => {
+              setActivityVisits(data.value);
+            }}
           />
           <Button id="find-activities" onClick={findActivities}>Find activities</Button>
           {activitiesMessage}
-        </div>
-      </Grid.Column>
-    </>
+        </>
+      )}
+    </div>
   );
 };
 
@@ -78,7 +100,8 @@ const mapStateToProps = state => {
   return {
     destination: state.destination,
     trip: state.trip,
-    message: state.message
+    message: state.message,
+    progression: state.progression
   };
 };
 
@@ -89,6 +112,12 @@ const mapDispatchToProps = dispatch => {
     },
     gotActivities: data => {
       dispatch({ type: "GOT_ACTIVITIES", payload: data });
+    },
+    updateProgression: value => {
+      dispatch({ type: "UPDATE_PROGRESSION", payload: value });
+    },
+    setMessage: message => {
+      dispatch({ type: "SET_MESSAGE", payload: message });
     }
   };
 };
