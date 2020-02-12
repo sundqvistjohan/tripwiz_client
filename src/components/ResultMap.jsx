@@ -8,10 +8,8 @@ const ResultMap = props => {
   const [selectedPlaces, setSelectedPlaces] = useState({});
 
   let activityTypes;
-  let marker
+  let marker;
   let activityMarkers = [];
-
-  useEffect(() => {}, [props.activities]);
 
   const onMarkerClick = (props, marker) => {
     setSelectedPlaces(props)
@@ -23,8 +21,6 @@ const ResultMap = props => {
     activityTypes = Object.keys(props.activities);
 
     activityTypes.map(activityType => {
-      debugger
-
       marker = props.activities[activityType].map(activity => {
         return (
           <Marker
