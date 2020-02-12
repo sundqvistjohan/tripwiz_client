@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dropdown, Button } from "semantic-ui-react";
 import { addActivityType } from "../modules/destination.js";
-import ActivitiesList from "./ActivitiesList"
 
 const Activities = props => {
-  const [activity_visits, setActivity_visits] = useState(null);
-  const [activityType, setActivityType] = useState(null);
   const [activityVisits, setActivityVisits] = useState(null);
   const [activitiesMessage, setActivitiesMessage] = useState("");
   const [activityChosen, setActivityChosen] = useState(null);
@@ -30,9 +27,9 @@ const Activities = props => {
   ];
 
   const findActivities = async () => {
-    if (activityType && activityVisits) {
+    if (props.activityType && activityVisits) {
       let response = await addActivityType(
-        activityType,
+        props.activityType,
         activityVisits,
         props.trip
       );
@@ -53,7 +50,7 @@ const Activities = props => {
   };
 
   const onChangeHandler = (e, data) => {
-    setActivityType(data.value);
+    props.setActivityType(data.value);
     if (data.value !== "art_gallery") {
       setActivityChosen(data.value.split("_").join(" ") + "s");
     } else {

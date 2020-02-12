@@ -25,7 +25,7 @@ const ActivitiesList = props => {
       return (
         <div className="activity-card">
           <div id="activity-cards" key={activity.id} className="ui card">
-            <div className="image"><img src="https://viewstockholm.com/wp-content/uploads/2013/12/art-museums-stockholm-featured.jpg" /></div>
+            <div className="image"><img src="https://img.guidebook-sweden.com/stockholms-kommun/gustav-iiis-antikmuseum.jpg" /></div>
             <div className="content">
               <div className="header">
                 {activity.name}
