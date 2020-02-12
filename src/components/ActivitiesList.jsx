@@ -13,8 +13,6 @@ const ActivitiesList = props => {
     if (response.status == 200) {
       setActivities(response.data[props.activityType])
       setGotActivities(true)
-    } else {
-
     }
   }
 
