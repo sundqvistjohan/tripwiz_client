@@ -12,10 +12,10 @@ const Hotels = props => {
     if (hotelBudget) {
       let response = await addHotels(hotelBudget, props.trip);
       if (response.status === 200) {
-        props.gotHotels(true);
-        setHotelsMessage("Found Hotels!");
+        props.updateProgression(props.progression + 1);
+        props.setMessage("Found Hotels!");
       } else {
-        setHotelsMessage("Couldn't find any hotels");
+        setHotelsMessage("Couldn't find any hotels for that budget");
       }
     } else {
       setHotelsMessage("Your forgot to add a budget");
@@ -24,8 +24,9 @@ const Hotels = props => {
 
   return (
     <>
-      <h2>Details of trip:</h2>
-      <h4>Hotel budget</h4>
+    {props.message} Let's move on to...
+      <h2>Accomodation:</h2>
+      <h4>Hotel budget:</h4>
       <input
         type="range"
         name="hotel"
@@ -54,7 +55,7 @@ const Hotels = props => {
           <h3>✩✩✩✩✩</h3>
         </div>
       </div>
-      <Button onClick={findHotels}>Check for hotels</Button>
+      <Button id="find-hotels" onClick={findHotels}>Check for hotels</Button>
       <p>{hotelsMessage}</p>
     </>
   );
@@ -64,7 +65,8 @@ const mapStateToProps = state => {
   return {
     destination: state.destination,
     trip: state.trip,
-    message: state.message
+    message: state.message,
+    progression: state.progression
   };
 };
 
@@ -73,8 +75,11 @@ const mapDispatchToProps = dispatch => {
     setActivities: data => {
       dispatch({ type: "SET_ACTIVITIES", payload: data });
     },
-    gotHotels: bool => {
-      dispatch({ type: "GOT_HOTELS", payload: bool });
+    updateProgression: value => {
+      dispatch({ type: "UPDATE_PROGRESSION", payload: value });
+    },
+    setMessage: message => {
+      dispatch({ type: "SET_MESSAGE", payload: message });
     }
   };
 };

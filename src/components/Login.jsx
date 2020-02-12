@@ -2,6 +2,8 @@ import React from "react";
 import auth from "../modules/auth";
 import { connect } from "react-redux";
 import { Link , Redirect} from "react-router-dom";
+import { Button } from 'semantic-ui-react'
+
 const Login = props => {
   const onLogin = event => {
     event.preventDefault();
@@ -37,12 +39,12 @@ const Login = props => {
       props.displaySignupButton:
       console.log("entered 0")
       loginFunction = ( 
-        <Link
+        <Button
           id="login-button" to="/login"
           onClick={() => props.changeLoginButton(false)}
         >
           Login
-        </Link>
+        </Button>
       );
       break;
     case !props.displayLoginButton && !props.authenticated:
@@ -67,10 +69,9 @@ const Login = props => {
         <>
           <span>{props.authMessage}</span>&nbsp;
           <br/>
-          <Link id="logout-link" to="/" onClick={onLogout}>
+          <Button id="logout-link" to="/" onClick={onLogout}>
             Logout
-          </Link>
-          <Redirect to="/"/>
+          </Button>
         </>
       );
       break;

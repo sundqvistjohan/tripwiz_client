@@ -77,14 +77,57 @@ Form {
   width: 30%;
 }
 
-#embed-map {
-  height: 100%;
-  display: fixed;
-  margin-left: 2%;
-}
-
 .eight.wide.column {
   height: inherit;
   padding-left: 2%;
 }
 
+.ui.card {
+  min-height: 470px;
+  max-height: 470px;
+}
+
+.ui.stackable.four.column.grid {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.centerText {
+  align-content: center;
+}
+
+#divider {
+  color: white;
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 35px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+}
+
+.hotels-map {
+  margin-top: 3%;
+  width: 600px;
+}
+
+Button {
+  margin-top: 10px;
+}
+
+#price-box {
+  color: orange;
+  padding-bottom: 10px;
+}
+
+.description {
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: 130px;
+  min-height: 130px;
+}
+
+.description::-webkit-scrollbar { 
+  display: none;
+}

@@ -15,6 +15,8 @@ const initialState = {
   gotActivities: null,
   gotHotels: null,
   gotRestaurants: null,
-  finalizeMessage: null
+  finalizeMessage: null,
+  hotels: null,
+  progression: 0
 };
 export default initialState;
