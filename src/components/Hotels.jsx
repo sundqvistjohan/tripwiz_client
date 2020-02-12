@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
 import { addHotels } from "../modules/destination.js";
 import { sliderChoice } from "../helpers/methods.js";
-import ActivitiesList from "./ActivitiesList"
 
 const Hotels = props => {
   const [hotelBudget, setHotelBudget] = useState(null);
@@ -56,9 +55,10 @@ const Hotels = props => {
           <h3>✩✩✩✩✩</h3>
         </div>
       </div>
-      <Button id="find-hotels" onClick={findHotels}>Check for hotels</Button>
+      <Button id="find-hotels" onClick={findHotels}>
+        Check for hotels
+      </Button>
       <p>{hotelsMessage}</p>
-      <ActivitiesList />
     </>
   );
 };
@@ -74,9 +74,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setActivities: data => {
-      dispatch({ type: "SET_ACTIVITIES", payload: data });
-    },
     updateProgression: value => {
       dispatch({ type: "UPDATE_PROGRESSION", payload: value });
     },

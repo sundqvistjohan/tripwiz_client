@@ -77,9 +77,25 @@ Form {
   width: 30%;
 }
 
+#embed-map {
+  height: 100%;
+  display: fixed;
+  margin-left: 2%;
+}
+
+#result-map {
+  height: 600px;
+  width: 760px;
+}
+
 .eight.wide.column {
   height: inherit;
   padding-left: 2%;
+}
+
+.one.column.row {
+  width: inherit;
+  padding: 2%;
 }
 
 div#hotel-cards.ui.card {

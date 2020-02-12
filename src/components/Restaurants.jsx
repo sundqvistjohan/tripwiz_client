@@ -84,7 +84,7 @@ const Trip = props => {
               <h3>$$$$</h3>
             </div>
           </div>
-          <Button onClick={findRestaurants}>Find Restaurants</Button>
+          <Button id="find-restaurants" onClick={findRestaurants}>Find Restaurants</Button>
           <br />
           {restaurantsMessage}
         </div>

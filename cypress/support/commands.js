@@ -34,12 +34,12 @@ Cypress.Commands.add("createTrip", () => {
   });
   cy.route({
     method: "POST",
-    url: "http://localhost:3000/api/**",
+    url: "http://localhost:3000/api/v1/trip**",
     response: "fixtures:inputDest.json"
   });
   cy.route({
     method: "GET",
-    url: "http://localhost:3000/api/**",
+    url: "http://localhost:3000/api/v1/trip**",
     response: "fixtures:inputDest.json"
   });
   cy.get("#days").click();
@@ -47,6 +47,11 @@ Cypress.Commands.add("createTrip", () => {
 });
 
 Cypress.Commands.add("chooseActivityType", () => {
+  cy.route({
+    method: "POST",
+    url: "http://localhost:3000/api/v1/activity_type**",
+    response: "fixtures:inputDest.json"
+  });
   cy.get(".activities > :nth-child(3)")
     .first()
     .click();
@@ -61,6 +66,11 @@ Cypress.Commands.add("chooseActivityType", () => {
 });
 
 Cypress.Commands.add("chooseHotel", () => {
+  cy.route({
+    method: "POST",
+    url: "http://localhost:3000/api/v1/hotels**",
+    response: "fixtures:inputDest.json"
+  });
   const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
     window.HTMLInputElement.prototype,
     "value"
@@ -71,5 +81,26 @@ Cypress.Commands.add("chooseHotel", () => {
   };
   cy.get("#slider[type=range]").then(input => changeRangeInputValue(input)(4));
   cy.get("#find-hotels").click();
-  cy.get("#root").should("contain", "Found Hotels!");
+});
+
+Cypress.Commands.add("chooseRestaurants", () => {
+  cy.route({
+    method: "POST",
+    url: "http://localhost:3000/api/v1/activity_type**",
+    response: "fixtures:inputDest.json"
+  });
+  const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+    window.HTMLInputElement.prototype,
+    "value"
+  ).set;
+  const changeRangeInputValue = $range => value => {
+    nativeInputValueSetter.call($range[0], value);
+    $range[0].dispatchEvent(new Event("change", { value, bubbles: true }));
+  };
+  cy.get(".fluid > .dropdown").click();
+  cy.get(".active > .visible > :nth-child(3)").click();
+  cy.get("#food-slider[type=range]").then(input =>
+    changeRangeInputValue(input)(3)
+  );
+  cy.get(":nth-child(2) > .food-choice > .ui").click()
 });
