@@ -28,11 +28,11 @@ const EmbedMap = props => {
 
   return (
     <>
-      <div id="embed-map">
+      <div className="map-section" id="embed-map">
         <Map
           google={props.google}
-          zoom={10}
-          style={{ width: '50%', height: '40%', position: 'relative' }}
+          zoom={5}
+          style={{ width: '100%', height: '100%', position: 'relative' }}
           center={{ lat: lat, lng: lng }} 
           onClick={(mapProps, map, e) => onClickHandler(e)}
         >

@@ -3,6 +3,7 @@ import { getCoords, initializeTrip } from "../modules/destination";
 import { connect } from "react-redux";
 import EmbedMap from "./EmbedMap.jsx";
 import { Dropdown, Form, Button } from "semantic-ui-react";
+import { Link } from "react-scroll";
 
 const Destination = props => {
   const [alert, setAlert] = useState(null);
@@ -62,25 +63,38 @@ const Destination = props => {
     <>
       {props.progression === 0 && (
         <>
-          <h2>To get started...</h2>
-          <Form onSubmit={submitPlace} id="place-form">
-            <label>Choose your destination here! </label>
-            <input
-              name="place"
-              type="text"
-              id="place"
-              placeholder="City"
-            ></input>
-            <Button id="submit">Look for Destination</Button>
-          </Form>
-          <h5>Or pick a spot on the map!</h5>
-          {props.message}
-          <EmbedMap />
+          <h2>Let's get started...</h2>
+          <h5 id="space-below">Pick a spot on the map below!</h5>
+          <div id="space-below" class="zoom">
+            <Link className="hidden content"
+              id="scroll"
+              activeClass="active"
+              to="embed-map"
+              spy={true}
+              smooth={true}
+              offset={20}
+              duration={500}>
+              <i aria-hidden="true" class="angle double down big icon"></i>
+            </Link>
+          </div>
+          <div id="dest-form">
+            <Form onSubmit={submitPlace} id="place-form">
+              <label>Or choose your destination here </label>
+              <input
+                name="place"
+                type="text"
+                id="place"
+                placeholder="City"
+              ></input>
+              <Button id="submit">Look for Destination</Button>
+            </Form>
+            {props.message}
+          </div>
         </>
       )}
       {props.progression === 1 && (
         <>
-        {props.message}
+          {props.message}
           <h3>How many days are you staying?</h3>
           <Dropdown
             placeholder="Days"
@@ -95,7 +109,7 @@ const Destination = props => {
               onChangeHandler(data.value);
             }}
           />
-            {alert}
+          {alert}
         </>
       )}
     </>

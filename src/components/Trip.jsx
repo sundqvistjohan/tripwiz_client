@@ -4,6 +4,7 @@ import Restaurants from "./Restaurants";
 import Hotels from "./Hotels";
 import Activities from "./Activities";
 import Destination from "./Destination";
+import { Grid, GridColumn } from "semantic-ui-react";
 
 const Trip = props => {
   let currentView;
@@ -27,8 +28,14 @@ const Trip = props => {
 
   return (
     <>
-      {props.progression + 1} / 6
-      {currentView}
+      <div className="trip-section">
+        <div id="main" className="centered">
+          <div id="progression-num">
+            <h4>{props.progression + 1} / 6</h4>
+          </div>
+          {currentView}
+        </div>
+      </div>
     </>
   );
 };

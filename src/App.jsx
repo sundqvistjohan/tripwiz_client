@@ -1,14 +1,26 @@
 import React from 'react';
-import Trip from './components/Trip.jsx'
+import Trip from './components/Trip.jsx';
+import EmbedMap from "./components/EmbedMap";
+import { connect } from "react-redux";
 
-const App = () => {
-  return (
-      <div className="ui container">
-          <div className="App">
-              <Trip />
-          </div>
-      </div>
-  );
+const App = (props) => {
+	return (
+		<>
+			<Trip />
+			{props.progression === 0 && (
+				<EmbedMap />
+			)}
+		</>
+	);
 }
 
-export default App;
+const mapStateToProps = state => {
+	return {
+		progression: state.progression
+	};
+};
+
+
+export default connect(
+	mapStateToProps)(App);
+
