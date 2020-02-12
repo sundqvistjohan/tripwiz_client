@@ -13,6 +13,7 @@ const initialState = {
   gotRestaurants: null,
   finalizeMessage: null,
   hotels: null,
+  activityType: null,
   progression: 0
 };
 export default initialState;

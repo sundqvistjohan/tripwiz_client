@@ -113,4 +113,19 @@ const chooseHotel = async (trip, hotelId) => {
   }
 };
 
-export { getCoords, initializeTrip, addActivityType, addHotels, addRestaurants, getHotels, chooseHotel };
+const getActivities = async (trip) => {
+  try {
+    const response = await axios({
+      url: "api/v1/activity_types",
+      method: "GET",
+      params: {
+        trip: trip
+      }
+    })
+    return response
+  } catch (error) {
+    return error
+  }
+}
+
+export { getCoords, initializeTrip, addActivityType, addHotels, addRestaurants, getHotels, chooseHotel, getActivities };

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
 import { addHotels } from "../modules/destination.js";
 import { sliderChoice } from "../helpers/methods.js";
+import ActivitiesList from "./ActivitiesList"
 
 const Hotels = props => {
   const [hotelBudget, setHotelBudget] = useState(null);
@@ -24,7 +25,7 @@ const Hotels = props => {
 
   return (
     <>
-    {props.message} Let's move on to...
+      {props.message} Let's move on to...
       <h2>Accomodation:</h2>
       <h4>Hotel budget:</h4>
       <input
@@ -57,6 +58,7 @@ const Hotels = props => {
       </div>
       <Button id="find-hotels" onClick={findHotels}>Check for hotels</Button>
       <p>{hotelsMessage}</p>
+      <ActivitiesList />
     </>
   );
 };

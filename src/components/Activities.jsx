@@ -4,7 +4,6 @@ import { Dropdown, Button } from "semantic-ui-react";
 import { addActivityType } from "../modules/destination.js";
 
 const Activities = props => {
-  const [activityType, setActivityType] = useState(null);
   const [activityVisits, setActivityVisits] = useState(null);
   const [activitiesMessage, setActivitiesMessage] = useState("");
   const [activityChosen, setActivityChosen] = useState(null);
@@ -28,9 +27,9 @@ const Activities = props => {
   ];
 
   const findActivities = async () => {
-    if (activityType && activityVisits) {
+    if (props.activityType && activityVisits) {
       let response = await addActivityType(
-        activityType,
+        props.activityType,
         activityVisits,
         props.trip
       );
@@ -43,7 +42,7 @@ const Activities = props => {
           "Couldn't add activity, try something more popular"
         );
       }
-    } else if (!activityType) {
+    } else if (!props.activityType) {
       setActivitiesMessage("You forgot to choose your activity");
     } else {
       setActivitiesMessage("You forgot to set how many times");
@@ -51,7 +50,7 @@ const Activities = props => {
   };
 
   const onChangeHandler = (e, data) => {
-    setActivityType(data.value);
+    props.setActivityType(data.value);
     if (data.value !== "art_gallery") {
       setActivityChosen(data.value.split("_").join(" ") + "s");
     } else {
@@ -101,6 +100,7 @@ const mapStateToProps = state => {
     destination: state.destination,
     trip: state.trip,
     message: state.message,
+    activityType: state.activityType,
     progression: state.progression
   };
 };
@@ -112,6 +112,9 @@ const mapDispatchToProps = dispatch => {
     },
     gotActivities: data => {
       dispatch({ type: "GOT_ACTIVITIES", payload: data });
+    },
+    setActivityType: data => {
+      dispatch({ type: "GOT_ACTIVITYTYPE", payload: data });
     },
     updateProgression: value => {
       dispatch({ type: "UPDATE_PROGRESSION", payload: value });

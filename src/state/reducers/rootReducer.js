@@ -77,6 +77,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         hotels: action.payload
       };
+    case "GOT_ACTIVITYTYPE":
+      return {
+        ...state,
+        activityType: action.payload
+      };
     case "UPDATE_PROGRESSION":
       return {
         ...state,

@@ -82,10 +82,10 @@ Form {
   padding-left: 2%;
 }
 
-.ui.card {
+div#hotel-cards.ui.card {
   min-height: 470px;
   max-height: 470px;
-}
+} 
 
 .ui.stackable.four.column.grid {
   margin-top: 25px;
@@ -130,4 +130,8 @@ Button {
 
 .description::-webkit-scrollbar { 
   display: none;
+}
+
+div#activity-cards.ui.card {
+  height: auto;
 }
