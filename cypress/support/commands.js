@@ -103,5 +103,5 @@ Cypress.Commands.add("chooseRestaurants", () => {
   cy.get("#food-slider[type=range]").then(input =>
     changeRangeInputValue(input)(3)
   );
-  cy.get(":nth-child(2) > .food-choice > .ui").click()
+  cy.get("#find-restaurants").click()
 });
