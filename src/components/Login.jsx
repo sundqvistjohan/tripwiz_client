@@ -35,8 +35,7 @@ const Login = props => {
   let loginFunction;
   switch (true) {
     case props.displayLoginButton &&
-      !props.authenticated &&
-      props.displaySignupButton:
+      !props.authenticated :
       console.log("entered 0")
       loginFunction = ( 
         <Button
@@ -83,9 +82,9 @@ const Login = props => {
   );
 };
   const mapStateToProps = state => ({
+    authenticated: state.authenticated,
     userAttrs: state.userAttrs,
     authMessage: state.authMessage,
-    displaySignupButton: state.displaySignupButton,
     displayLoginButton: state.displayLoginButton
   });
   const mapDispatchToProps = dispatch => {
@@ -98,9 +97,6 @@ const Login = props => {
       },
       changeLoginButton: value => {
         dispatch({ type: "CHANGE_LOGINBUTTON", payload: value });
-      },
-      changeSignupButton: value => {
-        dispatch({ type: "CHANGE_SIGNUPBUTTON", payload: value });
       },
       setUserAttrs: userAttrs => {
         dispatch({ type: "CHANGE_USER_ATTRIBUTES", payload: userAttrs });
