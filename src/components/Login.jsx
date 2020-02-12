@@ -34,7 +34,6 @@ const Login = props => {
   switch (true) {
     case props.displayLoginButton &&
       !props.authenticated:
-      console.log("entered 0")
       loginFunction = ( 
       
         <Button
@@ -46,7 +45,6 @@ const Login = props => {
       );
       break;
     case !props.displayLoginButton && !props.authenticated:
-      console.log("entered 1")
       loginFunction = (
         <>
           <p>Login</p>
@@ -62,7 +60,6 @@ const Login = props => {
       );
       break;
     case props.authenticated:
-      console.log("entered 2")
       loginFunction = (
         <>
           <span>{props.authMessage}</span>&nbsp;
