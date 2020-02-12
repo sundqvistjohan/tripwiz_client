@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Dropdown, Button } from "semantic-ui-react";
 import { addRestaurants } from "../modules/destination.js";
 import { sliderChoice } from "../helpers/methods.js";
+import { objectEraser } from "../helpers/methods.js";
 
 const Trip = props => {
   const [foodBudget, setFoodBudget] = useState(null);
@@ -47,6 +48,14 @@ const Trip = props => {
   return (
     <>
       {props.message} We move on to...
+      <Button
+        onClick={async () => {
+          await objectEraser("hotels", props.trip);
+          props.updateProgression(props.progression - 1);
+        }}
+      >
+        Back a step
+      </Button>
       <div className="food-choice">
         <h2>Food preference:</h2>
         <h4>What food do you prefer? </h4>

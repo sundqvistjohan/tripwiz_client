@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const sliderChoice = event => {
   Array.from(
     document.getElementsByClassName(`range-values-${event.target.name}`)[0]
@@ -11,4 +13,17 @@ const sliderChoice = event => {
   }
 };
 
-export { sliderChoice }
+const objectEraser = async (component, trip, restaurant) => {
+  try {
+    const response = await axios({
+      method: "DELETE",
+      url: `api/v1/${component}`,
+      params: { trip: trip, activity_type: restaurant }
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export { sliderChoice, objectEraser };

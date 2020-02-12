@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import EmbedMap from "./EmbedMap.jsx";
 import { Dropdown, Form, Button } from "semantic-ui-react";
 
-
 const Destination = props => {
   const [alert, setAlert] = useState(null);
 
@@ -81,7 +80,12 @@ const Destination = props => {
       )}
       {props.progression === 1 && (
         <>
-        {props.message}
+          {props.message}
+          <Button
+            onClick={() => props.updateProgression(props.progression - 1)}
+          >
+            Back one step
+          </Button>
           <h3>How many days are you staying?</h3>
           <Dropdown
             placeholder="Days"
@@ -96,7 +100,7 @@ const Destination = props => {
               onChangeHandler(data.value);
             }}
           />
-            {alert}
+          {alert}
         </>
       )}
     </>

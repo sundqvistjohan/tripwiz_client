@@ -1,5 +1,5 @@
-describe("Hotels", () => {
-  it("are added to trip succesfully", () => {
+describe("User", () => {
+  it("can click his way backwards", () => {
     const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
       window.HTMLInputElement.prototype,
       "value"
@@ -23,22 +23,9 @@ describe("Hotels", () => {
       response: "fixture:hotels_list_shown.json",
       status: 200
     });
-    cy.get("#slider[type=range]").then(input =>
-      changeRangeInputValue(input)(4)
-    );
-  });
 
-  it("needs a budget input", () => {
-    cy.createTrip();
-    cy.chooseActivityType();
-    cy.route({
-      method: "POST",
-      url: "http://localhost:3000/api/v1/hotels**",
-      response: {
-        status: 200
-      }
-    });
-    cy.get("#find-hotels").click();
-    cy.get("#root").should("contain", "Your forgot to add a budget");
+    cy.get(".App > :nth-child(2)").click()
+    cy.get(".activities > .button").click()
+    cy.get("#root").should("contain", "pick a spot");
   });
 });

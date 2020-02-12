@@ -10,7 +10,7 @@ const ActivitiesList = props => {
   const getActivitiesData = async () => {
     let response = await getActivities(
       props.trip)
-    if (response.status == 200) {
+    if (response.status === 200) {
       setActivities(response.data[props.activityType])
       setGotActivities(true)
     }
@@ -23,7 +23,7 @@ const ActivitiesList = props => {
       return (
         <div className="activity-card">
           <div id="activity-cards" key={activity.id} className="ui card">
-            <div className="image"><img src="https://img.guidebook-sweden.com/stockholms-kommun/gustav-iiis-antikmuseum.jpg" /></div>
+            <div className="image"><img alt="" src="https://img.guidebook-sweden.com/stockholms-kommun/gustav-iiis-antikmuseum.jpg" /></div>
             <div className="content">
               <div className="header">
                 {activity.name}

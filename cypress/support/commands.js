@@ -50,8 +50,9 @@ Cypress.Commands.add("chooseActivityType", () => {
   cy.get(".activities > :nth-child(3)")
     .first()
     .click();
-  cy.get(".active > .visible > :nth-child(3)").click();
 
+  cy.get(".fluid > .dropdown").click();
+  cy.get(".active > .visible > :nth-child(3)").click();
   cy.get(".fluid > .dropdown").click();
   cy.get(".active > .visible > :nth-child(3)").click();
 

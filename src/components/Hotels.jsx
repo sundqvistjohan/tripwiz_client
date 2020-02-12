@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
 import { addHotels } from "../modules/destination.js";
 import { sliderChoice } from "../helpers/methods.js";
-import ActivitiesList from "./ActivitiesList"
+import ActivitiesList from "./ActivitiesList";
+import { objectEraser } from "../helpers/methods.js";
 
 const Hotels = props => {
   const [hotelBudget, setHotelBudget] = useState(null);
@@ -26,6 +27,14 @@ const Hotels = props => {
   return (
     <>
       {props.message} Let's move on to...
+      <Button
+        onClick={async () => {
+          await objectEraser("activity_types", props.trip, "resturant");
+          props.updateProgression(props.progression - 2);
+        }}
+      >
+        Back one step
+      </Button>
       <h2>Accomodation:</h2>
       <h4>Hotel budget:</h4>
       <input
@@ -56,7 +65,9 @@ const Hotels = props => {
           <h3>✩✩✩✩✩</h3>
         </div>
       </div>
-      <Button id="find-hotels" onClick={findHotels}>Check for hotels</Button>
+      <Button id="find-hotels" onClick={findHotels}>
+        Check for hotels
+      </Button>
       <p>{hotelsMessage}</p>
       <ActivitiesList />
     </>
