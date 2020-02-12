@@ -1,29 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Grid } from "semantic-ui-react";
-import ResultMap from "./ResultMap"
-import { getActivities } from "../modules/destination.js"
+import ResultMap from "./ResultMap";
+import { getActivities } from "../modules/destination.js";
 
 const Result = props => {
 
   const setActivities = async () => {
-    let response = await getActivities(props.trip)
-    let activity_type = Object.keys(response.data)[0]
-    let activities = response.data[activity_type]
-    props.setActivities(activities)
-  }
+    let response = await getActivities(props.trip);
+    let activities = response.data;
+    props.setActivities(activities);
+  };
 
   useEffect(() => {
     setActivities();
   }, []);
 
-  useEffect(() => {
-  }, [props.activities]);
-
   return (
     <>
       <Grid>
+        <Grid.Row columns={1}>
           <ResultMap />
+        </Grid.Row>
       </Grid>
     </>
   );
