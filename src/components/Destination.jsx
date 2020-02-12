@@ -3,7 +3,7 @@ import { getCoords, initializeTrip } from "../modules/destination";
 import { connect } from "react-redux";
 import EmbedMap from "./EmbedMap.jsx";
 import { Dropdown, Form, Button } from "semantic-ui-react";
-import Login from "./Login"
+
 
 const Destination = props => {
   const [alert, setAlert] = useState(null);
@@ -61,7 +61,6 @@ const Destination = props => {
 
   return (
     <>
-    <Login />
       {props.progression === 0 && (
         <>
           <h2>To get started...</h2>

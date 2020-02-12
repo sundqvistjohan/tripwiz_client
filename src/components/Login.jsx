@@ -1,7 +1,6 @@
 import React from "react";
 import auth from "../modules/auth";
 import { connect } from "react-redux";
-import { Link , Redirect} from "react-router-dom";
 import { Button } from 'semantic-ui-react'
 
 const Login = props => {
@@ -24,7 +23,6 @@ const Login = props => {
       .then(() => {
         props.changeAuth(false);
         props.changeLoginButton(true);
-        props.changeSignupButton(true);
         props.changeAuthMessage("");
       })
       .catch(error => {
@@ -32,18 +30,29 @@ const Login = props => {
       });
   };
   
-  let loginFunction;
-  switch (true) {
-    case props.displayLoginButton &&
-      !props.authenticated :
-      console.log("entered 0")
-      loginFunction = ( 
-        <Button
+  //old code 
+  /*
+       <Button
           id="login-button" to="/login"
           onClick={() => props.changeLoginButton(false)}
         >
           Login
         </Button>
+   */
+  let loginFunction;
+  switch (true) {
+    case props.displayLoginButton &&
+      !props.authenticated:
+      console.log("entered 0")
+      loginFunction = ( 
+      
+        <Button
+          id="login-button"
+          onClick={() => props.changeLoginButton(false)}
+        >
+          Login
+        </Button>
+      
       );
       break;
     case !props.displayLoginButton && !props.authenticated:
@@ -78,7 +87,9 @@ const Login = props => {
       loginFunction = null;
   }
   return (
+
     <div id="login">{loginFunction}</div>
+
   );
 };
   const mapStateToProps = state => ({
