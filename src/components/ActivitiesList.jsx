@@ -3,9 +3,6 @@ import { connect } from "react-redux";
 import { getActivities } from "../modules/destination.js";
 import { Button } from "semantic-ui-react";
 
-// response.status
-// response.data.museum[0]
-
 const ActivitiesList = props => {
   const [activities, setActivities] = useState(null);
   const [gotActivities, setGotActivities] = useState(false);

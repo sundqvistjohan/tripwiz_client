@@ -44,8 +44,6 @@ Cypress.Commands.add("createTrip", () => {
   });
   cy.get("#days").click();
   cy.get("#days > .visible > :nth-child(3)").click();
-  cy.get("#days").should("contain", "3");
-  cy.get("#create-trip").click();
 });
 
 Cypress.Commands.add("chooseActivityType", () => {
@@ -54,12 +52,8 @@ Cypress.Commands.add("chooseActivityType", () => {
     .click();
   cy.get(".active > .visible > :nth-child(3)").click();
 
-  cy.get(".activities > :nth-child(5)").click();
+  cy.get(".fluid > .dropdown").click();
   cy.get(".active > .visible > :nth-child(3)").click();
-
-  cy.get(".activities")
-    .should("contain", "Art Gallery")
-    .should("contain", "Three");
 
   cy.get("#find-activities")
     .should("contain", "Find activities")

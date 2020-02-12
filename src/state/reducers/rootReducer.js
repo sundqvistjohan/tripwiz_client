@@ -62,6 +62,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         activityType: action.payload
       };
+    case "UPDATE_PROGRESSION":
+      return {
+        ...state,
+        progression: action.payload
+      };
+
     default:
       return {
         ...state

@@ -17,13 +17,13 @@ const getCoords = async (destination) => {
   }
 };
 
-const initializeTrip = async (props) => {
+const initializeTrip = async (props, days) => {
   try {
     const response = await axios({
       method: "POST",
       url: "api/v1/trips",
       params: {
-        days: props.days,
+        days: days,
         lat: props.lat,
         lng: props.lng
       }
@@ -34,7 +34,7 @@ const initializeTrip = async (props) => {
   }
 };
 
-const addActivityType = async (activityType, activity_visits, trip) => {
+const addActivityType = async (activityType, activityVisits, trip) => {
   try {
     const response = await axios({
       method: "POST",
@@ -42,7 +42,7 @@ const addActivityType = async (activityType, activity_visits, trip) => {
       params: {
         trip: trip,
         activity_type: activityType,
-        activity_visits: activity_visits
+        activity_visits: activityVisits
       }
     });
     return response

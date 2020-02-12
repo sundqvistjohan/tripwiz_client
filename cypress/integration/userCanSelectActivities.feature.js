@@ -7,7 +7,12 @@ describe("Activities", () => {
 
   it("unsuccesfully adds activity type when no trip created", () => {
     cy.server();
-    cy.visit("/trip");
+    cy.createTrip();
+    cy.route({
+      method: "POST",
+      url: "http://localhost:3000/api/v1/activity_types?activity_type=art_gallery&activity_visits=3",
+      status: 422
+    });
     cy.chooseActivityType();
     cy.get("#root").should("contain", "Couldn't add activity, try something more popular");
   });

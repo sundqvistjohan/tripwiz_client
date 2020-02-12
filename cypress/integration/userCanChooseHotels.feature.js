@@ -26,6 +26,7 @@ describe("Hotels", () => {
     cy.get("#slider[type=range]").then(input =>
       changeRangeInputValue(input)(4)
     );
+
     cy.get("#find-hotels").click();
     cy.get("#root").should("contain", "Found Hotels!");
   });
