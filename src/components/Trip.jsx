@@ -31,7 +31,7 @@ const Trip = props => {
       <div className="trip-section">
         <div id="main" className="centered">
           <div id="progression-num">
-            <h4>{props.progression + 1} / 6</h4>
+            <h5>{props.progression + 1} / 6</h5>
           </div>
           {currentView}
         </div>

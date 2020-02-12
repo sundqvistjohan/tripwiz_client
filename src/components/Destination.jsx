@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { getCoords, initializeTrip } from "../modules/destination";
 import { connect } from "react-redux";
-import EmbedMap from "./EmbedMap.jsx";
 import { Dropdown, Form, Button } from "semantic-ui-react";
 import { Link } from "react-scroll";
 
@@ -65,7 +64,7 @@ const Destination = props => {
         <>
           <h2>Let's get started...</h2>
           <h5 id="space-below">Pick a spot on the map below!</h5>
-          <div id="space-below" class="zoom">
+          <div id="space-below" className="zoom">
             <Link className="hidden content"
               id="scroll"
               activeClass="active"
@@ -74,12 +73,12 @@ const Destination = props => {
               smooth={true}
               offset={20}
               duration={500}>
-              <i aria-hidden="true" class="angle double down big icon"></i>
+              <i aria-hidden="true" className="angle double down big icon"></i>
             </Link>
           </div>
           <div id="dest-form">
             <Form onSubmit={submitPlace} id="place-form">
-              <label>Or choose your destination here </label>
+              <label>Or type your destination here </label>
               <input
                 name="place"
                 type="text"
@@ -93,9 +92,9 @@ const Destination = props => {
         </>
       )}
       {props.progression === 1 && (
-        <>
+        <div id="spaced-lines">
           {props.message}
-          <h3>How many days are you staying?</h3>
+          <h4>How many days are you staying?</h4>
           <Dropdown
             placeholder="Days"
             id="days"
@@ -110,7 +109,7 @@ const Destination = props => {
             }}
           />
           {alert}
-        </>
+        </div>
       )}
     </>
   );
