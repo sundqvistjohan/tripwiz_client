@@ -128,4 +128,19 @@ const getActivities = async (trip) => {
   }
 }
 
-export { getCoords, initializeTrip, addActivityType, addHotels, addRestaurants, getHotels, chooseHotel, getActivities };
+const objectEraser = async (component, trip, restaurant) => {
+  try {
+    const response = await axios({
+      method: "DELETE",
+      url: `api/v1/${component}`,
+      params: { trip: trip, activity_type: restaurant }
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export { getCoords, initializeTrip, addActivityType, 
+  addHotels, addRestaurants, getHotels, 
+  chooseHotel, getActivities, objectEraser };

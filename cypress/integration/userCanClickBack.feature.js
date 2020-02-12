@@ -24,8 +24,10 @@ describe("User", () => {
       status: 200
     });
 
-    cy.get(".App > :nth-child(2)").click()
-    cy.get(".activities > .button").click()
+    cy.get("#back-button-4").click()
+    cy.wait(100)
+    cy.get("#back-button-2").click()
+    cy.wait(100)
     cy.get("#root").should("contain", "pick a spot");
   });
 });

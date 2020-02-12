@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { getActivities } from "../modules/destination.js";
-import { Button } from "semantic-ui-react";
 
 const ActivitiesList = props => {
   const [activities, setActivities] = useState(null);
@@ -9,7 +8,7 @@ const ActivitiesList = props => {
 
   const getActivitiesData = async () => {
     let response = await getActivities(props.trip);
-    if (response.status == 200) {
+    if (response.status === 200) {
       setActivities(response.data[props.activityType]);
       setGotActivities(true);
     }

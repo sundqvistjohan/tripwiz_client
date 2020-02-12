@@ -81,7 +81,7 @@ const Destination = props => {
       {props.progression === 1 && (
         <>
           {props.message}
-          <Button
+          <Button id="back-button-1"
             onClick={() => props.updateProgression(props.progression - 1)}
           >
             Back one step

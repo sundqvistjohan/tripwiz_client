@@ -18,7 +18,7 @@ describe("Restaurants", () => {
     cy.get("#food-slider[type=range]").then(input =>
       changeRangeInputValue(input)(3)
     );
-    cy.get(":nth-child(3) > .food-choice > .ui").click()
+    cy.get("#find-restaurants").click()
   });
 
   it("needs a budget input", () => {
@@ -27,7 +27,7 @@ describe("Restaurants", () => {
     cy.chooseHotel()
     cy.get(".fluid > .dropdown").click();
     cy.get(".active > .visible > :nth-child(3)").click();
-    cy.get(":nth-child(3) > .food-choice > .ui").click()
+    cy.get("#find-restaurants").click()
     cy.get("#root").should("contain", "Please add your budget");
   });
 

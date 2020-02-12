@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dropdown, Button } from "semantic-ui-react";
-import { addActivityType } from "../modules/destination.js";
-import { objectEraser } from "../helpers/methods.js";
+import { addActivityType, objectEraser } from "../modules/destination.js";
+
 
 const Activities = props => {
   const [activityVisits, setActivityVisits] = useState(null);
@@ -64,7 +64,7 @@ const Activities = props => {
     <div className="activities">
       {props.progression === 2 && (
         <>
-          <Button
+          <Button id="back-button-2"
             onClick={async () => {
               await objectEraser("trips", props.trip);
               props.updateProgression(props.progression - 2);
@@ -86,7 +86,7 @@ const Activities = props => {
       )}
       {props.progression === 3 && (
         <>
-          <Button
+          <Button id="back-button-3"
             onClick={() => props.updateProgression(props.progression - 1)}
           >
             Back one step
