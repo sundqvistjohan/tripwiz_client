@@ -23,7 +23,9 @@ const ResultMap = props => {
     activityTypes = Object.keys(props.activities);
 
     activityTypes.map(activityType => {
-      marker = props.activities[activityType].map((activity, index) => {
+      debugger
+
+      marker = props.activities[activityType].map(activity => {
         return (
           <Marker
             key={activity.id}

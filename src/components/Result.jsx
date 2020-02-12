@@ -1,10 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Grid } from "semantic-ui-react";
+import { Grid, Tab } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
 import { getActivities } from "../modules/destination.js";
+import ActivitiesList from "./ActivitiesList";
 
 const Result = props => {
+  const panes = [
+    {
+      menuItem: "Map",
+      render: () => (
+        <Tab.Pane>
+          <ResultMap />
+        </Tab.Pane>
+      )
+    },
+    {
+      menuItem: "Activities",
+      render: () => (
+        <Tab.Pane>
+          <div className="ui stackable four column grid">
+            <ActivitiesList />
+          </div>
+        </Tab.Pane>
+      )
+    },
+    {
+      menuItem: "Restaurants",
+      render: () => <Tab.Pane>Add restaurant info</Tab.Pane>
+    },
+    { menuItem: "Hotel", render: () => <Tab.Pane>Add hotel info</Tab.Pane> }
+  ];
 
   const setActivities = async () => {
     let response = await getActivities(props.trip);
@@ -18,11 +44,7 @@ const Result = props => {
 
   return (
     <>
-      <Grid>
-        <Grid.Row columns={1}>
-          <ResultMap />
-        </Grid.Row>
-      </Grid>
+      <Tab panes={panes} />
     </>
   );
 };
