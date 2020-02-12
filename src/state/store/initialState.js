@@ -12,6 +12,7 @@ const initialState = {
   gotHotels: null,
   gotRestaurants: null,
   finalizeMessage: null,
+  activities: null,
   hotels: null,
   activityType: null,
   progression: 0

@@ -1,0 +1,132 @@
+{
+    "art_gallery": [
+        {
+            "id": 156,
+            "name": "makemake",
+            "address": "Via del Boschetto, 121, Roma",
+            "rating": "5",
+            "lat": "41.8954049",
+            "lng": "12.4610405",
+            "activity_type_id": 99,
+            "created_at": "2020-02-11T18:55:29.441Z",
+            "updated_at": "2020-02-11T18:55:29.441Z"
+        }
+    ],
+    "amusement_park": [
+        {
+            "id": 159,
+            "name": "I Fratelli, Restaurant Pizzería",
+            "address": "Via degli Umbri, 14, Roma",
+            "rating": "4.4",
+            "lat": "41.8975559",
+            "lng": "12.5108248",
+            "activity_type_id": 100,
+            "created_at": "2020-02-11T18:56:00.063Z",
+            "updated_at": "2020-02-11T18:56:00.063Z"
+        }
+    ],
+    "aquarium": [
+        {
+            "id": 159,
+            "name": "I Fratelli, Restaurant Pizzería",
+            "address": "Via degli Umbri, 14, Roma",
+            "rating": "4.4",
+            "lat": "41.9195559",
+            "lng": "12.4838248",
+            "activity_type_id": 100,
+            "created_at": "2020-02-11T18:56:00.063Z",
+            "updated_at": "2020-02-11T18:56:00.063Z"
+        }
+    ],
+    "beauty_salon": [
+        {
+            "id": 159,
+            "name": "I Fratelli, Restaurant Pizzería",
+            "address": "Via degli Umbri, 14, Roma",
+            "rating": "4.4",
+            "lat": "41.8905559",
+            "lng": "12.5108248",
+            "activity_type_id": 100,
+            "created_at": "2020-02-11T18:56:00.063Z",
+            "updated_at": "2020-02-11T18:56:00.063Z"
+        }
+    ],
+    "casino": [
+        {
+            "id": 159,
+            "name": "I Fratelli, Restaurant Pizzería",
+            "address": "Via degli Umbri, 14, Roma",
+            "rating": "4.4",
+            "lat": "41.8715559",
+            "lng": "12.4438248",
+            "activity_type_id": 100,
+            "created_at": "2020-02-11T18:56:00.063Z",
+            "updated_at": "2020-02-11T18:56:00.063Z"
+        }
+    ],
+    "museum": [
+        {
+            "id": 159,
+            "name": "I Fratelli, Restaurant Pizzería",
+            "address": "Via degli Umbri, 14, Roma",
+            "rating": "4.4",
+            "lat": "41.8905559",
+            "lng": "12.5328248",
+            "activity_type_id": 100,
+            "created_at": "2020-02-11T18:56:00.063Z",
+            "updated_at": "2020-02-11T18:56:00.063Z"
+        }
+    ],
+    "night_club": [
+        {
+            "id": 159,
+            "name": "I Fratelli, Restaurant Pizzería",
+            "address": "Via degli Umbri, 14, Roma",
+            "rating": "4.4",
+            "lat": "41.8725559",
+            "lng": "12.5038248",
+            "activity_type_id": 100,
+            "created_at": "2020-02-11T18:56:00.063Z",
+            "updated_at": "2020-02-11T18:56:00.063Z"
+        }
+    ],
+    "park": [
+        {
+            "id": 159,
+            "name": "I Fratelli, Restaurant Pizzería",
+            "address": "Via degli Umbri, 14, Roma",
+            "rating": "4.4",
+            "lat": "41.8971559",
+            "lng": "12.4938248",
+            "activity_type_id": 100,
+            "created_at": "2020-02-11T18:56:00.063Z",
+            "updated_at": "2020-02-11T18:56:00.063Z"
+        }
+    ],
+    "zoo": [
+        {
+            "id": 159,
+            "name": "I Fratelli, Restaurant Pizzería",
+            "address": "Via degli Umbri, 14, Roma",
+            "rating": "4.4",
+            "lat": "41.9275559",
+            "lng": "12.5198248",
+            "activity_type_id": 100,
+            "created_at": "2020-02-11T18:56:00.063Z",
+            "updated_at": "2020-02-11T18:56:00.063Z"
+        }
+    ],
+    "restaurant": [
+        {
+            "id": 159,
+            "name": "I Fratelli, Restaurant Pizzería",
+            "address": "Via degli Umbri, 14, Roma",
+            "rating": "4.4",
+            "lat": "41.8775559",
+            "lng": "12.5158248",
+            "activity_type_id": 100,
+            "created_at": "2020-02-11T18:56:00.063Z",
+            "updated_at": "2020-02-11T18:56:00.063Z"
+        }
+    ]
+}

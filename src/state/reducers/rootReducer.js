@@ -72,6 +72,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         gotRestaurants: action.payload
       };
+    case "SET_ACTIVITIES":
+      return {
+        ...state,
+        activities: action.payload
+      };
     case "SET_HOTELS":
       return {
         ...state,
@@ -87,7 +92,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         progression: action.payload
       };
-
     default:
       return {
         ...state

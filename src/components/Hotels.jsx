@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
 import { addHotels } from "../modules/destination.js";
 import { sliderChoice } from "../helpers/methods.js";
-import ActivitiesList from "./ActivitiesList";
 import { objectEraser } from "../helpers/methods.js";
 
 const Hotels = props => {
@@ -69,7 +68,6 @@ const Hotels = props => {
         Check for hotels
       </Button>
       <p>{hotelsMessage}</p>
-      <ActivitiesList />
     </>
   );
 };
@@ -85,9 +83,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setActivities: data => {
-      dispatch({ type: "SET_ACTIVITIES", payload: data });
-    },
     updateProgression: value => {
       dispatch({ type: "UPDATE_PROGRESSION", payload: value });
     },
