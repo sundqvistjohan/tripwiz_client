@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import EmbedMap from "./EmbedMap.jsx";
 import { Dropdown, Form, Button } from "semantic-ui-react";
 
+
 const Destination = props => {
   const [alert, setAlert] = useState(null);
 

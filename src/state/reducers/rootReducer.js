@@ -22,6 +22,26 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         message: action.payload
       };
+    case "CHANGE_AUTHMESSAGE":
+      return {
+        ...state,
+        authMessage: action.payload
+      };
+    case "CHANGE_USER_ATTRIBUTES":
+      return {
+        ...state,
+        userAttrs: action.payload
+      };
+    case "CHANGE_AUTHENTICATED":
+      return {
+        ...state,
+        authenticated: action.payload
+      };
+    case "CHANGE_LOGINBUTTON":
+      return {
+        ...state,
+        displayLoginButton: action.payload
+      };
     case "SET_DAYS":
       return {
         ...state,
@@ -67,6 +87,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state
       };
+
   }
 };
 
