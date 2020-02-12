@@ -44,8 +44,6 @@ Cypress.Commands.add("createTrip", () => {
   });
   cy.get("#days").click();
   cy.get("#days > .visible > :nth-child(3)").click();
-  cy.get("#days").should("contain", "3");
-  cy.get("#create-trip").click();
 });
 
 Cypress.Commands.add("chooseActivityType", () => {
@@ -59,14 +57,10 @@ Cypress.Commands.add("chooseActivityType", () => {
     .click();
   cy.get(".active > .visible > :nth-child(3)").click();
 
-  cy.get(".activities > :nth-child(5)").click();
+  cy.get(".fluid > .dropdown").click();
   cy.get(".active > .visible > :nth-child(3)").click();
 
-  cy.get(".activities")
-    .should("contain", "Art Gallery")
-    .should("contain", "Three");
-
-  cy.get(":nth-child(1) > .button")
+  cy.get("#find-activities")
     .should("contain", "Find activities")
     .click();
 });
@@ -86,8 +80,7 @@ Cypress.Commands.add("chooseHotel", () => {
     $range[0].dispatchEvent(new Event("change", { value, bubbles: true }));
   };
   cy.get("#slider[type=range]").then(input => changeRangeInputValue(input)(4));
-  cy.get(".grid > :nth-child(2) > .ui").click();
-  cy.get("#root").should("contain", "Found Hotels!");
+  cy.get("#find-hotels").click();
 });
 
 Cypress.Commands.add("chooseRestaurants", () => {
@@ -104,11 +97,10 @@ Cypress.Commands.add("chooseRestaurants", () => {
     nativeInputValueSetter.call($range[0], value);
     $range[0].dispatchEvent(new Event("change", { value, bubbles: true }));
   };
-  cy.get(":nth-child(7) > .fluid > .dropdown").click();
+  cy.get(".fluid > .dropdown").click();
   cy.get(".active > .visible > :nth-child(3)").click();
   cy.get("#food-slider[type=range]").then(input =>
     changeRangeInputValue(input)(3)
   );
-  cy.get(":nth-child(7) > .food-choice > .ui").click();
-  cy.get("#root").should("contain", "Restaurants added!");
+  cy.get(":nth-child(2) > .food-choice > .ui").click()
 });

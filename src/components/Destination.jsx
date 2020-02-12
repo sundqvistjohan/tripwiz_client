@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { getCoords, initializeTrip } from "../modules/destination";
 import { connect } from "react-redux";
 import EmbedMap from "./EmbedMap.jsx";
-import { Redirect } from "react-router-dom";
-import { Dropdown, Grid, Form, Button } from "semantic-ui-react";
+import { Dropdown, Form, Button } from "semantic-ui-react";
+
 
 const Destination = props => {
-  const [redirect, setRedirect] = useState(false);
-  const [alert, setAlert] = useState(null) 
+  const [alert, setAlert] = useState(null);
 
   const number = [
     { key: 1, value: "1", text: "1" },
@@ -34,6 +33,7 @@ const Destination = props => {
         response = response.data.results[0];
         props.setLat(response.geometry.location.lat);
         props.setLng(response.geometry.location.lng);
+        props.updateProgression(props.progression + 1);
         props.setMessage("Destination successfully selected");
       } else {
         props.setMessage("Can't go there. Zero Results");
@@ -43,14 +43,14 @@ const Destination = props => {
     }
   };
 
-  const onClickHandler = async () => {
-    if (props.days) {
-      const response = await initializeTrip(props);
+  const onChangeHandler = async days => {
+    if (days) {
+      const response = await initializeTrip(props, days);
       if (response.status === 200) {
         props.setDestination(response.data.destination);
         props.setTrip(response.data.id);
         props.setMessage("");
-        setRedirect(true);
+        props.updateProgression(props.progression + 1);
       } else {
         props.setMessage("Something went wrong.");
       }
@@ -61,8 +61,8 @@ const Destination = props => {
 
   return (
     <>
-      <Grid>
-        <Grid.Column width={8}>
+      {props.progression === 0 && (
+        <>
           <h2>To get started...</h2>
           <Form onSubmit={submitPlace} id="place-form">
             <label>Choose your destination here! </label>
@@ -77,9 +77,12 @@ const Destination = props => {
           <h5>Or pick a spot on the map!</h5>
           {props.message}
           <EmbedMap />
-        </Grid.Column>
-        <Grid.Column width={7}>
-          <h3>..and how many days would you like to go for?</h3>
+        </>
+      )}
+      {props.progression === 1 && (
+        <>
+        {props.message}
+          <h3>How many days are you staying?</h3>
           <Dropdown
             placeholder="Days"
             id="days"
@@ -88,17 +91,14 @@ const Destination = props => {
             selection
             scrolling
             options={number}
-            onChange={(e, data) => props.setDays(data.value)}
+            onChange={async (e, data) => {
+              props.setDays(data.value);
+              onChangeHandler(data.value);
+            }}
           />
-        </Grid.Column>
-      </Grid>
-      <div className="center-screen">
-        <Button id="create-trip" onClick={onClickHandler}>
-          Let's Go!
-        </Button>
-        {alert}
-      </div>
-      {redirect && <Redirect to="/trip" />}
+            {alert}
+        </>
+      )}
     </>
   );
 };
@@ -109,7 +109,8 @@ const mapStateToProps = state => {
     lng: state.lng,
     destination: state.destination,
     message: state.message,
-    days: state.days
+    days: state.days,
+    progression: state.progression
   };
 };
 
@@ -132,6 +133,9 @@ const mapDispatchToProps = dispatch => {
     },
     setTrip: id => {
       dispatch({ type: "SET_TRIP", payload: id });
+    },
+    updateProgression: value => {
+      dispatch({ type: "UPDATE_PROGRESSION", payload: value });
     }
   };
 };

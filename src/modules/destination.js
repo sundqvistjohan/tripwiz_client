@@ -17,13 +17,13 @@ const getCoords = async (destination) => {
   }
 };
 
-const initializeTrip = async (props) => {
+const initializeTrip = async (props, days) => {
   try {
     const response = await axios({
       method: "POST",
       url: "api/v1/trips",
       params: {
-        days: props.days,
+        days: days,
         lat: props.lat,
         lng: props.lng
       }
@@ -34,7 +34,7 @@ const initializeTrip = async (props) => {
   }
 };
 
-const addActivityType = async (activityType, actTimes, trip) => {
+const addActivityType = async (activityType, activityVisits, trip) => {
   try {
     const response = await axios({
       method: "POST",
@@ -42,7 +42,7 @@ const addActivityType = async (activityType, actTimes, trip) => {
       params: {
         trip: trip,
         activity_type: activityType,
-        activity_visits: actTimes
+        activity_visits: activityVisits
       }
     });
     return response
@@ -85,14 +85,12 @@ const addRestaurants = async (preference, budget, trip) => {
   }
 };
 
-const getActivities = async (trip) => {
+const getHotels = async (trip) => {
   try {
     const response = await axios({
+      url: "api/v1/hotels",
       method: "GET",
-      url: "api/v1/activity_types",
-      params: {
-        trip: trip
-      }
+      params: { trip: trip }
     });
     return response
   } catch (error) {
@@ -100,4 +98,34 @@ const getActivities = async (trip) => {
   }
 };
 
-export { getCoords, initializeTrip, addActivityType, addHotels, addRestaurants, getActivities };
+const chooseHotel = async (trip, hotelId) => {
+  try {
+    const response = await axios({
+      url: "api/v1/hotels",
+      method: "DELETE",
+      params: { 
+        hotel_id: hotelId,
+        trip: trip}
+    });
+    return response
+  } catch (error) {
+    return error;
+  }
+};
+
+const getActivities = async (trip) => {
+  try {
+    const response = await axios({
+      url: "api/v1/activity_types",
+      method: "GET",
+      params: {
+        trip: trip
+      }
+    })
+    return response
+  } catch (error) {
+    return error
+  }
+}
+
+export { getCoords, initializeTrip, addActivityType, addHotels, addRestaurants, getHotels, chooseHotel, getActivities };

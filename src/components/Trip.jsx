@@ -1,79 +1,46 @@
 import React, { useState} from "react";
 import { connect } from "react-redux";
-import { Grid, Button } from "semantic-ui-react";
 import Restaurants from "./Restaurants";
 import Hotels from "./Hotels";
 import Activities from "./Activities";
-import { Redirect } from "react-router-dom";
+import Destination from "./Destination";
+import Result from "./Result"
 
 const Trip = props => {
-  const [redirect, setRedirect] = useState(false);
+  let currentView;
 
-  const finalizeTrip = () => {
-    switch (false) {
-      case props.gotActivities && props.gotHotels && props.gotRestaurants:
-        props.setFinalizeMessage(
-          "You must add activities, hotels and restaurants"
-        );
-        break;
-      case props.gotActivities:
-        props.setFinalizeMessage("You must add activities");
-        break;
-      case props.gotHotels:
-        props.setFinalizeMessage("You must add hotels");
-        break;
-      case props.gotRestaurants:
-        props.setFinalizeMessage("You must add Restaurants");
-        break;
-      default:
-        setRedirect(true)
-    }
-  };
+  switch (true) {
+    case props.progression === 0 || props.progression === 1:
+      currentView = <Destination />;
+      break;
+    case props.progression === 2 || props.progression === 3:
+      currentView = <Activities />;
+      break;
+    case props.progression === 4:
+      currentView = <Hotels />;
+      break;
+    case props.progression === 5:
+      currentView = <Restaurants />;
+      break;
+    case props.progression === 6:
+      currentView = <Result />;
+      break;
+    default:
+      currentView = <Destination />;
+  }
 
   return (
     <>
-      <Grid>
-        <Grid.Column width={8}>
-          <Activities />
-        </Grid.Column>
-        <Grid.Column width={8}>
-          <Hotels />
-          <Restaurants />
-        </Grid.Column>
-      </Grid>
-      <div id="finalize-trip">
-        <Button id="finalize-trip" onClick={finalizeTrip}>
-          Finalize Trip!
-        </Button>
-        {redirect && <Redirect to="/result" />}
-        <br />
-        {props.finalizeMessage}
-      </div>
+      {props.progression + 1} / 6
+      {currentView}
     </>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    destination: state.destination,
-    trip: state.trip,
-    message: state.message,
-    gotActivities: state.gotActivities,
-    gotHotels: state.gotHotels,
-    gotRestaurants: state.gotRestaurants,
-    finalizeMessage: state.finalizeMessage
+    progression: state.progression
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setActivities: data => {
-      dispatch({ type: "SET_ACTIVITIES", payload: data });
-    },
-    setFinalizeMessage: message => {
-      dispatch({ type: "SET_FINALIZEMESSAGE", payload: message });
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Trip);
+export default connect(mapStateToProps)(Trip);
