@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Tab } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
 import { getActivities } from "../modules/destination.js";
-import ActivitiesList from "./ActivitiesList";
+import ActivitiesList from "./ActivitiesList"
+import RestaurantsList from "./RestaurantsList"
 
 const Result = props => {
   const panes = [
@@ -27,7 +28,13 @@ const Result = props => {
     },
     {
       menuItem: "Restaurants",
-      render: () => <Tab.Pane>Add restaurant info</Tab.Pane>
+      render: () => (
+        <Tab.Pane>
+          <div className="ui stackable four column grid">
+            <RestaurantsList />
+          </div>
+        </Tab.Pane>
+      )
     },
     { menuItem: "Hotel", render: () => <Tab.Pane>Add hotel info</Tab.Pane> }
   ];
