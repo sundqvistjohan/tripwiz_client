@@ -63,7 +63,7 @@ const Destination = props => {
       {props.progression === 0 && (
         <>
           <h2>Let's get started...</h2>
-          <h5 id="space-below">Pick a spot on the map below!</h5>
+          <h5 id="space-below">To start planning your trip, pick a spot on the map below!</h5>
           <div id="space-below" className="zoom">
             <Link className="hidden content"
               id="scroll"

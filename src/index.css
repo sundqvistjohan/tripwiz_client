@@ -9,6 +9,20 @@ body {
   font-family: 'open sans',arial,sans-serif;
 }
 
+footer {
+  text-align: center;
+  color: whitesmoke;
+  height: 30px;
+  width: 100%;
+  bottom: 50px;
+  margin-bottom: 2%;
+  position: relative;
+}
+
+i.icon.arrow.up:before {
+  margin-left: 20px;
+}
+
 h1, h2 h3 {
   font-family: monospace;
   font-weight: 400;
@@ -151,7 +165,7 @@ header {
 }
 
 #progression-num {
-  background-color: lightseagreen;
+  background-color: rgba(32, 178, 171, 0.603);
   width: fit-content;
   padding: 5%;
   border-radius: 47%;
@@ -160,6 +174,10 @@ header {
 
 #dest-form {
   margin-left: 25%;
+}
+
+#up-button {
+  padding-left: 12px;
 }
 
 .centered {
@@ -182,6 +200,7 @@ header {
 }
 
 .zoom {
+  font-size: 15px;
   transition: transform .2s;
   width: 40px;
   height: 40px;
@@ -193,7 +212,7 @@ header {
 }
 
 .map-section {
-  height: 100vh;
+  height: 95vh;
 }
 
 .trip-section {
@@ -207,4 +226,8 @@ header {
 
 #spaced-lines {
   line-height: 500%;
+}
+
+button#up {
+  background: transparent;
 }

@@ -4,6 +4,7 @@ import EmbedMap from "./components/EmbedMap";
 import { connect } from "react-redux";
 
 const App = (props) => {
+	
 	return (
 		<>
 			<Trip />

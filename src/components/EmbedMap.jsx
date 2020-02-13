@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import { connect } from "react-redux";
+import { animateScroll as scroll } from "react-scroll";
+import { Button } from "semantic-ui-react";
+
 
 const EmbedMap = props => {
   const lat = props.lat;
@@ -26,6 +29,10 @@ const EmbedMap = props => {
     getCurrentLocation();
   }, []);
 
+  let scrollToTop = () => {
+    scroll.scrollToTop();
+	};
+
   return (
     <>
       <div className="map-section" id="embed-map">
@@ -33,12 +40,17 @@ const EmbedMap = props => {
           google={props.google}
           zoom={5}
           style={{ width: '100%', height: '100%', position: 'relative' }}
-          center={{ lat: lat, lng: lng }} 
+          center={{ lat: lat, lng: lng }}
           onClick={(mapProps, map, e) => onClickHandler(e)}
         >
           <Marker position={{ lat: lat, lng: lng }} />
         </Map>
       </div>
+      <footer>
+          <Button id="up" circular icon='settings' onClick={() => scrollToTop()}>
+            <div className="zoom"><i aria-hidden="true" className="angle double up big icon"></i></div>
+          </Button>
+      </footer>
     </>
   );
 };
