@@ -57,7 +57,8 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         gotActivities: action.payload
       };
-    case "GOT_HOTELS":
+    case "SET_GOTHOTELS":
+      debugger
       return {
         ...state,
         gotHotels: action.payload

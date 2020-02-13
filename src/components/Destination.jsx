@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { getCoords, initializeTrip } from "../modules/destination";
 import { connect } from "react-redux";
-import { Dropdown, Form, Button } from "semantic-ui-react";
+import { Dropdown, Form, Button, Icon } from "semantic-ui-react";
 import { Link } from "react-scroll";
 
 const Destination = props => {
@@ -68,7 +68,7 @@ const Destination = props => {
             <Link className="hidden content"
               id="scroll"
               activeClass="active"
-              to="embed-map"
+              to="embed-map-dest"
               spy={true}
               smooth={true}
               offset={20}
@@ -87,19 +87,13 @@ const Destination = props => {
               ></input>
               <Button id="submit">Look for Destination</Button>
             </Form>
-            {props.message}
           </div>
         </>
       )}
       {props.progression === 1 && (
         <div id="spaced-lines">
           {props.message}
-          <Button id="back-button-1"
-            onClick={() => props.updateProgression(props.progression - 1)}
-          >
-            Back one step
-          </Button>
-          <h3>How many days are you staying?</h3>
+          <h4>How many days are you staying?</h4>
           <Dropdown
             placeholder="Days"
             id="days"
@@ -114,6 +108,14 @@ const Destination = props => {
             }}
           />
           {alert}
+          <Button animated id="back-button-1"
+            onClick={() => props.updateProgression(props.progression - 1)}
+          >
+            <Button.Content visible>Back one step</Button.Content>
+            <Button.Content hidden>
+              <Icon name='arrow left' />
+            </Button.Content>
+          </Button>
         </div>
       )}
     </>

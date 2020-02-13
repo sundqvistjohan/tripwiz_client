@@ -31,11 +31,11 @@ const EmbedMap = props => {
 
   let scrollToTop = () => {
     scroll.scrollToTop();
-	};
+  };
 
   return (
     <>
-      <div className="map-section" id="embed-map">
+      <div className="map-section" id="embed-map-dest">
         <Map
           google={props.google}
           zoom={5}
@@ -47,9 +47,11 @@ const EmbedMap = props => {
         </Map>
       </div>
       <footer>
-          <Button id="up" circular icon='settings' onClick={() => scrollToTop()}>
-            <div className="zoom"><i aria-hidden="true" className="angle double up big icon"></i></div>
-          </Button>
+        <Button id="up" circular icon='settings' onClick={() => scrollToTop()}>
+          <div className="zoom">
+            <i aria-hidden="true" className="angle double up big icon"></i>
+          </div>
+        </Button>
       </footer>
     </>
   );

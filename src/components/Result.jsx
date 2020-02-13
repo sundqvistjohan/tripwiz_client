@@ -4,6 +4,7 @@ import { Tab } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
 import { getActivities } from "../modules/destination.js";
 import ActivitiesList from "./ActivitiesList";
+import HotelsList from "./HotelsList";
 
 const Result = props => {
   const panes = [
@@ -27,9 +28,17 @@ const Result = props => {
     },
     {
       menuItem: "Restaurants",
-      render: () => <Tab.Pane>Add restaurant info</Tab.Pane>
+      render: () => (
+        <Tab.Pane>
+          Add restaurant info
+        </Tab.Pane>
+      )
     },
-    { menuItem: "Hotel", render: () => <Tab.Pane>Add hotel info</Tab.Pane> }
+    { menuItem: "Hotel", 
+    render: () => (
+      <Tab.Pane>
+        <HotelsList />
+      </Tab.Pane>)}
   ];
 
   const setActivities = async () => {

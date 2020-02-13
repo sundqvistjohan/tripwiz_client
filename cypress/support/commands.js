@@ -57,7 +57,7 @@ Cypress.Commands.add("chooseActivityType", () => {
     .click();
 
   cy.get(".fluid > .dropdown").click();
-  cy.get(".active > .visible > :nth-child(3)").click();
+  cy.get('.active > .visible > :nth-child(3)').click();
   cy.get(".fluid > .dropdown").click();
   cy.get(".active > .visible > :nth-child(3)").click();
 

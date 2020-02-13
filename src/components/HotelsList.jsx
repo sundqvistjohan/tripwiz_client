@@ -13,6 +13,7 @@ const HotelsList = props => {
   const [hotelMessage, setHotelMessage] = useState("");
 
   const getHotelsShowData = async () => {
+    debugger
     const response = await getHotels(
       props.trip)
     if (response.status == 200) {
@@ -41,6 +42,7 @@ const HotelsList = props => {
   let hotelCard;
 
   if (gotHotelsData) {
+    debugger
     hotelCard = props.hotels.data.map(hotel => {
       return (
         <div className="centerText">
