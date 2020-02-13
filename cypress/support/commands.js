@@ -55,8 +55,9 @@ Cypress.Commands.add("chooseActivityType", () => {
   cy.get(".activities > :nth-child(3)")
     .first()
     .click();
-  cy.get(".active > .visible > :nth-child(3)").click();
 
+  cy.get(".fluid > .dropdown").click();
+  cy.get(".active > .visible > :nth-child(3)").click();
   cy.get(".fluid > .dropdown").click();
   cy.get(".active > .visible > :nth-child(3)").click();
 
@@ -102,5 +103,5 @@ Cypress.Commands.add("chooseRestaurants", () => {
   cy.get("#food-slider[type=range]").then(input =>
     changeRangeInputValue(input)(3)
   );
-  cy.get(":nth-child(2) > .food-choice > .ui").click()
+  cy.get("#find-restaurants").click()
 });

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Grid, Tab } from "semantic-ui-react";
+import { Tab } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
 import { getActivities } from "../modules/destination.js";
 import ActivitiesList from "./ActivitiesList";

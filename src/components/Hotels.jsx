@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
-import { addHotels } from "../modules/destination.js";
+import { addHotels, objectEraser } from "../modules/destination.js";
 import { sliderChoice } from "../helpers/methods.js";
 
 const Hotels = props => {
@@ -25,6 +25,14 @@ const Hotels = props => {
   return (
     <>
       {props.message} Let's move on to...
+      <Button id="back-button-4"
+        onClick={async () => {
+          await objectEraser("activity_types", props.trip, "resturant");
+          props.updateProgression(props.progression - 2);
+        }}
+      >
+        Back one step
+      </Button>
       <h2>Accomodation:</h2>
       <h4>Hotel budget:</h4>
       <input
