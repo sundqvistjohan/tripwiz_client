@@ -53,7 +53,11 @@ const Result = props => {
 
   return (
     <>
-      <Tab panes={panes} />
+      <div className="trip-section">
+        <div id="main2" className="centered">
+          <Tab panes={panes} />
+        </div>
+      </div>
     </>
   );
 };

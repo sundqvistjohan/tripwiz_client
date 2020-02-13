@@ -4,7 +4,6 @@ import Restaurants from "./Restaurants";
 import Hotels from "./Hotels";
 import Activities from "./Activities";
 import Destination from "./Destination";
-import { Grid, GridColumn } from "semantic-ui-react";
 import Result from "./Result"
 
 const Trip = props => {
@@ -23,9 +22,9 @@ const Trip = props => {
     case props.progression === 5:
       currentView = <Restaurants />;
       break;
-    case props.progression === 6:
-      currentView = <Result />;
-      break;
+    // case props.progression === 6:
+    //   currentView = <Result />;
+    //   break;
     default:
       currentView = <Destination />;
   }
