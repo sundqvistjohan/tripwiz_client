@@ -1,9 +1,9 @@
 import React from 'react';
 import Trip from './components/Trip.jsx';
-import EmbedMap from "./components/EmbedMap";
 import { connect } from "react-redux";
 import Result from "./components/Result.jsx"
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import EmbedMap from "./components/EmbedMap";
 
 const App = (props) => {
 	

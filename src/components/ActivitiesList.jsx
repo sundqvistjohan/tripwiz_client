@@ -22,25 +22,32 @@ const ActivitiesList = props => {
   if (gotActivities) {
     activityCard = activities.map(activity => {
       return (
-        <div className="activity-card">
-          <div id="activity-cards" key={activity.id} className="ui card">
-            <div className="image">
-              <img img alt="" src="https://img.guidebook-sweden.com/stockholms-kommun/gustav-iiis-antikmuseum.jpg" />
-            </div>
-            <div className="content">
-              <div className="header">{activity.name}</div>
-              <div>{activity.address}</div>
-            </div>
-            <div id="activity-desc" className="extra content">
-              <div id="price-box">Rating: {activity.rating} / 5</div>
+        <>
+          <div className="activity-card">
+            <div id="activity-cards" key={activity.id} className="ui card">
+              <div className="image">
+                <img img alt="" src="https://img.guidebook-sweden.com/stockholms-kommun/gustav-iiis-antikmuseum.jpg" />
+              </div>
+              <div className="content">
+                <div className="header">{activity.name}</div>
+                <div>{activity.address}</div>
+              </div>
+              <div id="activity-desc" className="extra content">
+                <div id="price-box">Rating: {activity.rating} / 5</div>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       );
     });
   }
 
-  return <>{activityCard}</>;
+  return (
+    <>
+      <div id="divider"><h3>{props.activityType}s</h3></div>
+      {activityCard}
+    </>
+  );
 };
 
 const mapStateToProps = state => {

@@ -48,8 +48,10 @@ const EmbedMap = props => {
       </div>
       <footer>
         <Button id="up" circular icon='settings' onClick={() => scrollToTop()}>
-          <div className="zoom">
-            <i aria-hidden="true" className="angle double up big icon"></i>
+          <div id="up-arrow">
+            <div className="zoom">
+              <i aria-hidden="true" className="angle double up big icon"></i>
+            </div>
           </div>
         </Button>
       </footer>

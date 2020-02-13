@@ -42,12 +42,13 @@ const ResultMap = props => {
 
   return (
     <>
+      <h3 id="divider">Your Map</h3>
       <div id="result-map">
         <Map
           google={props.google}
           zoom={12}
           initialCenter={{ lat: props.lat, lng: props.lng }}
-          style={{ width: "75%", height: "60%", position: "relative" }}
+          style={{ width: "97%", height: "80%", position: "relative" }}
         >
           {activityMarkers}
           <InfoWindow

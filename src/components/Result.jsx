@@ -34,11 +34,13 @@ const Result = props => {
         </Tab.Pane>
       )
     },
-    { menuItem: "Hotel", 
-    render: () => (
-      <Tab.Pane>
-        <HotelsList />
-      </Tab.Pane>)}
+    {
+      menuItem: "Hotel",
+      render: () => (
+        <Tab.Pane>
+          <HotelsList />
+        </Tab.Pane>)
+    }
   ];
 
   const setActivities = async () => {
@@ -54,6 +56,8 @@ const Result = props => {
   return (
     <>
       <div className="trip-section">
+          <h1 className="result-title">{props.days} days in {props.destination}</h1>
+          <h5>Enjoy the {props.activityType}s!</h5>
         <div id="main2" className="centered">
           <Tab panes={panes} />
         </div>
@@ -66,7 +70,9 @@ const mapStateToProps = state => {
   return {
     destination: state.destination,
     trip: state.trip,
-    activities: state.activities
+    activities: state.activities,
+    days: state.days,
+    activityType: state.activityType
   };
 };
 

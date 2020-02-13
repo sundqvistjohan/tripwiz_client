@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import { Dropdown, Button, Icon } from "semantic-ui-react";
 import { addRestaurants, objectEraser } from "../modules/destination.js";
 import { sliderChoice } from "../helpers/methods.js";
+import { Redirect } from "react-router";
 
 const Trip = props => {
   const [foodBudget, setFoodBudget] = useState(null);
   const [foodPreference, setFoodPreference] = useState("");
   const [restaurantsMessage, setRestaurantsMessage] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const cuisines = [
     { key: 1, value: "mediterranean", text: "Mediterranean" },
@@ -30,7 +32,7 @@ const Trip = props => {
       );
       if (response.status === 200) {
         props.setMessage("Trip succesfully created!");
-        props.updateProgression(props.progression + 1);
+        setRedirect(true)
       } else {
         setRestaurantsMessage(
           "Couldn't find restaurants. Try some other food."
@@ -98,6 +100,7 @@ const Trip = props => {
             </Button.Content>
           </Button>
           <Button id="find-restaurants" onClick={findRestaurants}>Find Restaurants</Button>
+          {redirect == true && (<Redirect to="/result"/>)}
         </div>
       </div>
     </>
