@@ -5,6 +5,7 @@ import Hotels from "./Hotels";
 import Activities from "./Activities";
 import Destination from "./Destination";
 import { Grid, GridColumn } from "semantic-ui-react";
+import Result from "./Result"
 
 const Trip = props => {
   let currentView;
@@ -21,6 +22,9 @@ const Trip = props => {
       break;
     case props.progression === 5:
       currentView = <Restaurants />;
+      break;
+    case props.progression === 6:
+      currentView = <Result />;
       break;
     default:
       currentView = <Destination />;
@@ -42,29 +46,8 @@ const Trip = props => {
 
 const mapStateToProps = state => {
   return {
-    destination: state.destination,
-    trip: state.trip,
-    message: state.message,
-    gotActivities: state.gotActivities,
-    gotHotels: state.gotHotels,
-    gotRestaurants: state.gotRestaurants,
-    finalizeMessage: state.finalizeMessage,
     progression: state.progression
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setActivities: data => {
-      dispatch({ type: "SET_ACTIVITIES", payload: data });
-    },
-    setFinalizeMessage: message => {
-      dispatch({ type: "SET_FINALIZEMESSAGE", payload: message });
-    },
-    updateProgression: value => {
-      dispatch({ type: "UPDATE_PROGRESSION", payload: value });
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Trip);
+export default connect(mapStateToProps)(Trip);

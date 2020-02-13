@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dropdown, Button } from "semantic-ui-react";
-import { addActivityType } from "../modules/destination.js";
+import { addActivityType, objectEraser } from "../modules/destination.js";
+
 
 const Activities = props => {
   const [activityVisits, setActivityVisits] = useState(null);
@@ -63,6 +64,14 @@ const Activities = props => {
     <div className="activities">
       {props.progression === 2 && (
         <>
+          <Button id="back-button-2"
+            onClick={async () => {
+              await objectEraser("trips", props.trip);
+              props.updateProgression(props.progression - 2);
+            }}
+          >
+            Back one step
+          </Button>
           <h2>Focus of trip to {props.destination}:</h2>
           <h4>Select activity below!</h4>
           <Dropdown
@@ -77,6 +86,11 @@ const Activities = props => {
       )}
       {props.progression === 3 && (
         <>
+          <Button id="back-button-3"
+            onClick={() => props.updateProgression(props.progression - 1)}
+          >
+            Back one step
+          </Button>
           <h4>How many {activityChosen} would you like to visit?</h4>
           <Dropdown
             placeholder="Number of visits?"
@@ -87,7 +101,9 @@ const Activities = props => {
               setActivityVisits(data.value);
             }}
           />
-          <Button id="find-activities" onClick={findActivities}>Find activities</Button>
+          <Button id="find-activities" onClick={findActivities}>
+            Find activities
+          </Button>
           {activitiesMessage}
         </>
       )}

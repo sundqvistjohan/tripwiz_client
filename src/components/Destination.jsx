@@ -94,7 +94,12 @@ const Destination = props => {
       {props.progression === 1 && (
         <div id="spaced-lines">
           {props.message}
-          <h4>How many days are you staying?</h4>
+          <Button id="back-button-1"
+            onClick={() => props.updateProgression(props.progression - 1)}
+          >
+            Back one step
+          </Button>
+          <h3>How many days are you staying?</h3>
           <Dropdown
             placeholder="Days"
             id="days"

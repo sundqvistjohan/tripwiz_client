@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Dropdown, Button } from "semantic-ui-react";
-import { addRestaurants } from "../modules/destination.js";
+import { addRestaurants, objectEraser } from "../modules/destination.js";
 import { sliderChoice } from "../helpers/methods.js";
 
 const Trip = props => {
@@ -47,6 +47,14 @@ const Trip = props => {
   return (
     <>
       {props.message} We move on to...
+      <Button id="back-button-5"
+        onClick={async () => {
+          await objectEraser("hotels", props.trip);
+          props.updateProgression(props.progression - 1);
+        }}
+      >
+        Back one step
+      </Button>
       <div className="food-choice">
         <h2>Food preference:</h2>
         <h4>What food do you prefer? </h4>
@@ -84,7 +92,7 @@ const Trip = props => {
               <h3>$$$$</h3>
             </div>
           </div>
-          <Button onClick={findRestaurants}>Find Restaurants</Button>
+          <Button id="find-restaurants" onClick={findRestaurants}>Find Restaurants</Button>
           <br />
           {restaurantsMessage}
         </div>

@@ -11,4 +11,4 @@ const sliderChoice = event => {
   }
 };
 
-export { sliderChoice }
+export { sliderChoice };
