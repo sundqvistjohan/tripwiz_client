@@ -17,7 +17,5 @@ describe("User can see activities", () => {
     cy.chooseRestaurants();
     cy.get("a").contains("Restaurants").click();
     cy.get('.stackable > :nth-child(1)').should('contain', 'Vasa Restaurant')
-
   });
 });
-git 
