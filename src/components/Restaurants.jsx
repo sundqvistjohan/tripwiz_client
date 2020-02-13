@@ -7,6 +7,8 @@ import { sliderChoice } from "../helpers/methods.js";
 const Trip = props => {
   const [foodBudget, setFoodBudget] = useState(null);
   const [foodPreference, setFoodPreference] = useState("");
+  const [foodPreference2, setFoodPreference2] = useState("");
+  const [cuisines2, setCuisines2] = useState([]);
   const [restaurantsMessage, setRestaurantsMessage] = useState("");
 
   const cuisines = [
@@ -18,15 +20,35 @@ const Trip = props => {
     { key: 6, value: "fine dining", text: "Fine dining" },
     { key: 7, value: "indian", text: "Indian" },
     { key: 8, value: "carribean", text: "Carribean" },
-    { key: 9, value: "", text: "Everything!" }
+    { key: 9, value: "everything", text: "Everything!" }
   ];
+  const secondCuisines = (userChoice, cuisines) => {
+    let newArray = [];
+    for (var i = 0; i < cuisines.length; i++) {
+      if (cuisines[i].value !== userChoice) {
+        newArray.push(cuisines[i]);
+      }
+    }
+    newArray.push({
+      key: 10,
+      value: "",
+      text: "No, I'm alright"
+    });
+    return newArray;
+  };
+
+  const onChoiceHandler = (e, data) => {
+    setCuisines2(secondCuisines(data.value, cuisines));
+    setFoodPreference(data.value);
+  };
 
   const findRestaurants = async () => {
     if (foodBudget && foodPreference) {
       let response = await addRestaurants(
         foodPreference,
         foodBudget,
-        props.trip
+        props.trip,
+        foodPreference2
       );
       if (response.status === 200) {
         props.setMessage("Trip succesfully created!");
@@ -47,7 +69,8 @@ const Trip = props => {
   return (
     <>
       {props.message} We move on to...
-      <Button id="back-button-5"
+      <Button
+        id="back-button-5"
         onClick={async () => {
           await objectEraser("hotels", props.trip);
           props.updateProgression(props.progression - 1);
@@ -60,11 +83,25 @@ const Trip = props => {
         <h4>What food do you prefer? </h4>
         <Dropdown
           placeholder="Everything"
+          id="dropdown1"
           fluid
           selection
           options={cuisines}
-          onChange={(e, data) => setFoodPreference(data.value)}
+          onChange={(e, data) => onChoiceHandler(e, data)}
         />
+        {foodPreference && (
+          <>
+            <p>Have you got a second favourite?</p>
+            <Dropdown
+              placeholder="No, I'm alright"
+              id="dropdown2"
+              fluid
+              selection
+              options={cuisines2}
+              onChange={(e, data) => setFoodPreference2(data.value)}
+            />
+          </>
+        )}
         <div className="food-choice">
           <h4>Food budget</h4>
           <input
@@ -92,7 +129,9 @@ const Trip = props => {
               <h3>$$$$</h3>
             </div>
           </div>
-          <Button id="find-restaurants" onClick={findRestaurants}>Find Restaurants</Button>
+          <Button id="find-restaurants" onClick={findRestaurants}>
+            Find Restaurants
+          </Button>
           <br />
           {restaurantsMessage}
         </div>
