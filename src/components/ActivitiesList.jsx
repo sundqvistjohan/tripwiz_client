@@ -44,7 +44,6 @@ const ActivitiesList = props => {
 
   return (
     <>
-      <div id="divider"><h3>{props.activityType}s</h3></div>
       {activityCard}
     </>
   );

@@ -37,7 +37,7 @@ const Trip = props => {
         setRestaurantsMessage(
           "Couldn't find restaurants. Try some other food."
         );
-        props.setFinalizeMessage(null);
+        // props.setFinalizeMessage(null);
       }
     } else if (foodBudget) {
       setRestaurantsMessage("Please add your preference");

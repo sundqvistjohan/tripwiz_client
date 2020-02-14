@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Tab } from "semantic-ui-react";
+import { Tab, Grid, GridColumn } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
 import { getActivities } from "../modules/destination.js";
 import ActivitiesList from "./ActivitiesList";
@@ -58,9 +58,16 @@ const Result = props => {
       <div className="trip-section">
           <h1 className="result-title">{props.days} days in {props.destination}</h1>
           <h5>Enjoy the {props.activityType}s!</h5>
-        <div id="main2" className="centered">
-          <Tab panes={panes} />
-        </div>
+        <Grid>
+          <GridColumn width={4}>
+
+          </GridColumn>
+          <GridColumn width={12}>
+            <div id="main2" className="centered">
+              <Tab panes={panes} />
+            </div>
+          </GridColumn>
+        </Grid>
       </div>
     </>
   );

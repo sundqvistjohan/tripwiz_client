@@ -13,14 +13,16 @@ const HotelsList = props => {
   const [hotelMessage, setHotelMessage] = useState("");
 
   const getHotelsShowData = async () => {
-    debugger
     const response = await getHotels(
       props.trip)
     if (response.status == 200) {
-      debugger
       props.setHotels(response);
       setGotHotelsData(true)
+      if (response.data.length > 1) {
       setHotelMessage(`We have ${response.data.length} hotels near your activities. Please add one to your itinerary!`)
+      } else {
+      setHotelMessage(`Ok, we've added ${response.data[0].name} to your itinerary`)
+      }
     }
   };
 
@@ -28,7 +30,6 @@ const HotelsList = props => {
     let response = await chooseHotel(props.trip, hotelId);
     if (response.status == 200) {
       await getHotelsShowData()
-      setHotelMessage(`Ok, we've added ${hotelName} to your itinerary`)
     } else {
       setHotelMessage("Oops, Something went wrong")
     }
@@ -36,7 +37,6 @@ const HotelsList = props => {
 
   useEffect(() => {
     if (props.gotHotels === true) {
-      debugger
       getHotelsShowData()
     }
   }, [props.gotHotels])
@@ -44,7 +44,6 @@ const HotelsList = props => {
   let hotelCard;
 
   if (gotHotelsData) {
-    debugger
     hotelCard = props.hotels.data.map(hotel => {
       return (
         <div className="centerText">
@@ -64,7 +63,9 @@ const HotelsList = props => {
               <div id="price-box">
                 Current deals from {hotel.price} SEK / Night
               </div>
+              {props.hotels.data.length != 1 && (
               <Button onClick={() => selectHotel(hotel.id, hotel.name)}>Add to Itinerary</Button>
+              )}
             </div>
           </div>
         </div>
