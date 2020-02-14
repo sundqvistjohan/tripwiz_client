@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Tab } from "semantic-ui-react";
+import { Tab, Grid, GridColumn } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
 import { getActivities } from "../modules/destination.js";
 import ActivitiesList from "./ActivitiesList";
+import HotelsList from "./HotelsList";
 
 const Result = props => {
   const panes = [
@@ -27,9 +28,19 @@ const Result = props => {
     },
     {
       menuItem: "Restaurants",
-      render: () => <Tab.Pane>Add restaurant info</Tab.Pane>
+      render: () => (
+        <Tab.Pane>
+          Add restaurant info
+        </Tab.Pane>
+      )
     },
-    { menuItem: "Hotel", render: () => <Tab.Pane>Add hotel info</Tab.Pane> }
+    {
+      menuItem: "Hotel",
+      render: () => (
+        <Tab.Pane>
+          <HotelsList />
+        </Tab.Pane>)
+    }
   ];
 
   const setActivities = async () => {
@@ -44,7 +55,20 @@ const Result = props => {
 
   return (
     <>
-      <Tab panes={panes} />
+      <div className="trip-section">
+          <h1 className="result-title">{props.days} days in {props.destination}</h1>
+          <h5>Enjoy the {props.activityType}s!</h5>
+        <Grid>
+          <GridColumn width={4}>
+
+          </GridColumn>
+          <GridColumn width={12}>
+            <div id="main2" className="centered">
+              <Tab panes={panes} />
+            </div>
+          </GridColumn>
+        </Grid>
+      </div>
     </>
   );
 };
@@ -53,7 +77,9 @@ const mapStateToProps = state => {
   return {
     destination: state.destination,
     trip: state.trip,
-    activities: state.activities
+    activities: state.activities,
+    days: state.days,
+    activityType: state.activityType
   };
 };
 
