@@ -2,7 +2,6 @@ import React from "react";
 import auth from "../modules/auth";
 import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
-import FacebookLogin from "./FacebookLogin";
 
 const Login = props => {
   const onLogin = event => {
@@ -10,7 +9,6 @@ const Login = props => {
     auth
       .signIn(event.target.email.value, event.target.password.value)
       .then(userDatas => {
-        debugger
         props.changeAuth(true);
         props.setUserAttrs(userDatas.data);
         props.changeAuthMessage(`Logged in as: ${userDatas.data.email}`);
@@ -43,8 +41,6 @@ const Login = props => {
           >
             Login
           </Button>
-          <FacebookLogin />
-          <Button to="http://localhost:3000/omniauth/facebook/">Shitty button</Button>
 
         </>
       );
