@@ -15,9 +15,7 @@ const HotelsList = props => {
   const getHotelsShowData = async () => {
     const response = await getHotels(props.trip);
     if (response.status === 200) {
-      debugger;
-      props.setHotels(response);
-      setGotHotelsData(true);
+      props.setHotels(response.data);
       if (response.data.length > 1) {
         setHotelMessage(
           `We have ${response.data.length} hotels near your activities. Please add one to your itinerary!`
@@ -30,7 +28,7 @@ const HotelsList = props => {
     }
   };
 
-  const selectHotel = async (hotelId, hotelName) => {
+  const selectHotel = async (hotelId) => {
     let response = await chooseHotel(props.trip, hotelId);
     if (response.status === 200) {
       await getHotelsShowData();
@@ -40,15 +38,13 @@ const HotelsList = props => {
   };
 
   useEffect(() => {
-    if (props.gotHotels === true) {
-      getHotelsShowData();
-    }
-  }, [props.gotHotels]);
+
+  }, [props.hotels]);
 
   let hotelCard;
 
-  if (gotHotelsData) {
-    hotelCard = props.hotels.data.map(hotel => {
+  if (props.hotels) {
+    hotelCard = props.hotels.map(hotel => {
       return (
         <div className="centerText">
           <div id="hotel-cards" key={hotel.id} className="ui card">
@@ -67,7 +63,7 @@ const HotelsList = props => {
               <div id="price-box">
                 Current deals from {hotel.price} SEK / Night
               </div>
-              {props.hotels.data.length != 1 && (
+              {props.hotels.length != 1 && (
                 <Button onClick={() => selectHotel(hotel.id, hotel.name)}>
                   Add to Itinerary
                 </Button>
@@ -81,13 +77,13 @@ const HotelsList = props => {
 
   let markers;
 
-  if (gotHotelsData) {
+  if (props.hotels) {
     const onMarkerClick = (props, marker) => {
       setSelectedPlaces(props);
       setActiveMarker(marker);
       setShowingInfoWindow(true);
     };
-    markers = props.hotels.data.map(marker => {
+    markers = props.hotels.map(marker => {
       return (
         <Marker
           onClick={onMarkerClick}
@@ -109,8 +105,8 @@ const HotelsList = props => {
             style={{ width: "93.5%", height: "65%", position: "relative" }}
             zoom={13}
             initialCenter={{
-              lat: props.hotels.data[0].lat,
-              lng: props.hotels.data[0].lng
+              lat: props.hotels[0].lat,
+              lng: props.hotels[0].lng
             }}
           >
             {markers}

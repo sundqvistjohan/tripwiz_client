@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Tab, Grid, GridColumn } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
-import { getActivities, getTrips, getRestaurants } from "../modules/destination.js";
+import { getActivities, getTrips, getRestaurants, getHotels } from "../modules/destination.js";
 import ActivitiesList from "./ActivitiesList";
 import RestaurantsList from "./RestaurantsList";
 import HotelsList from "./HotelsList";
@@ -66,11 +66,24 @@ const Result = props => {
     }
   };
 
+  const setHotels = async () => {
+    let response = await getHotels(props.trip);
+    props.setHotels(response.data);
+  };
+
   useEffect(() => {
     setActivities();
     setRestaurants()
+    setHotels()
     getTripsData()
   }, [props.trip]);
+
+  useEffect(() => {
+    setActivities();
+    setRestaurants()
+    setHotels()
+    getTripsData()
+  }, []);
 
   return (
     <>
@@ -117,6 +130,9 @@ const mapDispatchToProps = dispatch => {
     },
     setTrips: data => {
       dispatch({ type: "SET_TRIPS", payload: data });
+    },
+    setHotels: data => {
+      dispatch({ type: "SET_HOTELS", payload: data });
     }
   };
 };

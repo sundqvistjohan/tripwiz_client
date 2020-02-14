@@ -30,6 +30,7 @@ const TripsList = props => {
   };
 
   const onButtonHandler = async () => {
+    props.setTrip(props.selectedCard.id)
     props.setLng(props.selectedCard.lng);
     props.setLat(props.selectedCard.lat);
     let response = await getActivities(props.selectedCard.id);
