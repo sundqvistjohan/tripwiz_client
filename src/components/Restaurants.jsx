@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Dropdown, Button } from "semantic-ui-react";
+import { Dropdown, Button, Icon } from "semantic-ui-react";
 import { addRestaurants, objectEraser } from "../modules/destination.js";
 import { sliderChoice } from "../helpers/methods.js";
+import { Redirect } from "react-router";
 
 const Trip = props => {
   const [foodBudget, setFoodBudget] = useState(null);
   const [foodPreference, setFoodPreference] = useState("");
   const [restaurantsMessage, setRestaurantsMessage] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
   const cuisines = [
     { key: 1, value: "mediterranean", text: "Mediterranean" },
@@ -30,12 +32,12 @@ const Trip = props => {
       );
       if (response.status === 200) {
         props.setMessage("Trip succesfully created!");
-        props.updateProgression(props.progression + 1);
+        setRedirect(true)
       } else {
         setRestaurantsMessage(
           "Couldn't find restaurants. Try some other food."
         );
-        props.setFinalizeMessage(null);
+        // props.setFinalizeMessage(null);
       }
     } else if (foodBudget) {
       setRestaurantsMessage("Please add your preference");
@@ -47,14 +49,6 @@ const Trip = props => {
   return (
     <>
       {props.message} We move on to...
-      <Button id="back-button-5"
-        onClick={async () => {
-          await objectEraser("hotels", props.trip);
-          props.updateProgression(props.progression - 1);
-        }}
-      >
-        Back one step
-      </Button>
       <div className="food-choice">
         <h2>Food preference:</h2>
         <h4>What food do you prefer? </h4>
@@ -92,9 +86,21 @@ const Trip = props => {
               <h3>$$$$</h3>
             </div>
           </div>
-          <Button id="find-restaurants" onClick={findRestaurants}>Find Restaurants</Button>
-          <br />
           {restaurantsMessage}
+          <br />
+          <Button animated id="back-button-5"
+            onClick={async () => {
+              await objectEraser("hotels", props.trip);
+              props.updateProgression(props.progression - 1);
+            }}
+          >
+            <Button.Content visible>Back one step</Button.Content>
+            <Button.Content hidden>
+              <Icon name='arrow left' />
+            </Button.Content>
+          </Button>
+          <Button id="find-restaurants" onClick={findRestaurants}>Find Restaurants</Button>
+          {redirect == true && (<Redirect to="/result"/>)}
         </div>
       </div>
     </>

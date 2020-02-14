@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Button } from "semantic-ui-react";
+import { Button, Icon } from "semantic-ui-react";
 import { addHotels, objectEraser } from "../modules/destination.js";
 import { sliderChoice } from "../helpers/methods.js";
 
@@ -13,6 +13,7 @@ const Hotels = props => {
       let response = await addHotels(hotelBudget, props.trip);
       if (response.status === 200) {
         props.updateProgression(props.progression + 1);
+        props.setGotHotels(true);
         props.setMessage("Found Hotels!");
       } else {
         setHotelsMessage("Couldn't find any hotels for that budget");
@@ -25,14 +26,6 @@ const Hotels = props => {
   return (
     <>
       {props.message} Let's move on to...
-      <Button id="back-button-4"
-        onClick={async () => {
-          await objectEraser("activity_types", props.trip, "resturant");
-          props.updateProgression(props.progression - 2);
-        }}
-      >
-        Back one step
-      </Button>
       <h2>Accomodation:</h2>
       <h4>Hotel budget:</h4>
       <input
@@ -63,10 +56,22 @@ const Hotels = props => {
           <h3>✩✩✩✩✩</h3>
         </div>
       </div>
+      {hotelsMessage}
+      <br />
+      <Button animated id="back-button-4"
+        onClick={async () => {
+          await objectEraser("activity_types", props.trip, "resturant");
+          props.updateProgression(props.progression - 2);
+        }}
+      >
+        <Button.Content visible>Back one step</Button.Content>
+        <Button.Content hidden>
+          <Icon name='arrow left' />
+        </Button.Content>
+      </Button>
       <Button id="find-hotels" onClick={findHotels}>
         Check for hotels
       </Button>
-      <p>{hotelsMessage}</p>
     </>
   );
 };
@@ -76,7 +81,8 @@ const mapStateToProps = state => {
     destination: state.destination,
     trip: state.trip,
     message: state.message,
-    progression: state.progression
+    progression: state.progression,
+    gotHotels: state.gotHotels
   };
 };
 
@@ -87,6 +93,9 @@ const mapDispatchToProps = dispatch => {
     },
     setMessage: message => {
       dispatch({ type: "SET_MESSAGE", payload: message });
+    },
+    setGotHotels: data => {
+      dispatch({ type: "SET_GOTHOTELS", payload: data });
     }
   };
 };

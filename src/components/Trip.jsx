@@ -4,7 +4,7 @@ import Restaurants from "./Restaurants";
 import Hotels from "./Hotels";
 import Activities from "./Activities";
 import Destination from "./Destination";
-import Result from "./Result"
+import Login from "./Login"
 
 const Trip = props => {
   let currentView;
@@ -22,17 +22,21 @@ const Trip = props => {
     case props.progression === 5:
       currentView = <Restaurants />;
       break;
-    case props.progression === 6:
-      currentView = <Result />;
-      break;
     default:
       currentView = <Destination />;
   }
 
   return (
     <>
-      {props.progression + 1} / 6
-      {currentView}
+      <Login/>
+      <div className="trip-section">
+        <div id="main" className="centered">
+          <div id="progression-num">
+            <h5>{props.progression + 1} / 6</h5>
+          </div>
+          {currentView}
+        </div>
+      </div>
     </>
   );
 };
