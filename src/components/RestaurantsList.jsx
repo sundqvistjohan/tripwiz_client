@@ -9,7 +9,6 @@ const RestaurantsList = props => {
   const getRestaurantsData = async () => {
     let response = await getRestaurants(props.trip);
     if (response.status === 200) {
-      debugger
       setRestaurants(response.data["restaurant"]);
       setGotRestaurants(true);
     }
