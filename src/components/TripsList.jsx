@@ -5,9 +5,7 @@ import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 const TripsList = props => {
-  const [trips, setTrips] = useState(null);
   const [gotTrips, setGotTrips] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(null);
   const [viewCard, setViewCard] = useState(null);
   const [viewList, setViewList] = useState(null);
 

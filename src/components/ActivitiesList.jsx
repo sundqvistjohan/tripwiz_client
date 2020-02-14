@@ -1,17 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getActivities } from "../modules/destination.js";
 
 const ActivitiesList = props => {
-  const getActivitiesData = async () => {
-    let response = await getActivities(props.trip);
-    if (response.status === 200) {
-      props.setActivities(response.data[props.activityType]);
-    }
-  };
 
   useEffect(() => {
-
   }, [props.activities]);
 
   let activityCard;
