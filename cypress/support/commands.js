@@ -52,6 +52,12 @@ Cypress.Commands.add("chooseActivityType", () => {
     url: "http://localhost:3000/api/v1/activity_type**",
     response: "fixtures:inputDest.json"
   });
+  cy.route({
+    method: "GET",
+    url: "http://localhost:3000/api/v1/trips**",
+    response: "fixture:trips_response.json",
+    status: 200
+  });
   cy.get(".activities > :nth-child(3)")
     .first()
     .click();

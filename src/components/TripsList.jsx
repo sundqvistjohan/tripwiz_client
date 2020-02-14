@@ -46,7 +46,7 @@ const TripsList = (props) => {
     let tripCard;
     if (gotTrips && props.selectedCard) {
       tripCard = (
-        <div key={props.selectedCard.id} className={`trip-header-first-${props.selectedCard.destination}`}>
+        <div key={props.selectedCard.id} className={`trip-header`}>
           <div id="trip-cards" className="ui card">
             <div className="image">
               <img src="https://thumbnails.trvl-media.com/PUrr-BSAcHRWzkWDuOP2XTmK80I=/773x530/smart/filters:quality(60)/images.trvl-media.com/hotels/1000000/600000/598500/598487/30a71d36_z.jpg" />
