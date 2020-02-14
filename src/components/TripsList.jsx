@@ -34,12 +34,12 @@ const TripsList = (props) => {
 
   useEffect(() => {
     generateCard(props.selectedCard);
-    generateTripList(trips);
+    generateTripList(props.trips);
   }, [gotTrips]);
 
   useEffect(() => {
     generateCard(props.selectedCard);
-    generateTripList(trips);
+    generateTripList(props.trips);
   }, [props.selectedCard]);
 
   const generateCard = () => {
