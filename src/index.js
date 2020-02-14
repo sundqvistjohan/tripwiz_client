@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import { createStore } from 'redux';
 import rootReducer from './state/reducers/rootReducer'
 
-axios.defaults.baseURL = REACT_APP_API_BASEURL;
+axios.defaults.baseURL = process.env.REACT_APP_API_BASEURL;
 
 const store = createStore(rootReducer);
 
