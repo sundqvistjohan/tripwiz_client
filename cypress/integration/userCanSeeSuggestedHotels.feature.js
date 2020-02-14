@@ -24,6 +24,7 @@ describe("User can see suggested hotels as cards", () => {
       response: "fixture:hotels_list_shown_deleted.json",
       status: 200
     });
+    cy.login();
     cy.createTrip();
     cy.chooseActivityType();
 

@@ -15,9 +15,6 @@ Cypress.Commands.add(
 );
 
 Cypress.Commands.add("createTrip", () => {
-  cy.server();
-  cy.visit("/");
-
   let destination = "Rome";
   cy.route({
     method: "GET",
@@ -105,3 +102,22 @@ Cypress.Commands.add("chooseRestaurants", () => {
   );
   cy.get("#find-restaurants").click()
 });
+Cypress.Commands.add("login", () => {
+  cy.server();
+  cy.visit("/") ,
+    cy.route({
+      method: "GET",
+      url: "v3.1/me?access_token*",
+      status: "200",
+      response: {
+        errors: ["Invalid login credentials. Please try again."],
+        success: false
+      }
+    });
+    cy.route({
+      method: "POST",
+      url: "/auth",
+      status: "200",
+    });
+    cy.get("#login-button").click();
+})

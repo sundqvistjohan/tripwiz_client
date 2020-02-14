@@ -5,6 +5,7 @@ describe("User can see activities", () => {
   });
 
   it("successfully", () => {
+    cy.login();
     cy.createTrip();
     cy.route({
       method: "GET",

@@ -1,5 +1,6 @@
 describe("See activities on a map", () => {
   it("successfully", () => {
+    cy.login();
     cy.createTrip();
     cy.route({
       method: "GET",

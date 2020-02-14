@@ -38,7 +38,7 @@ const FacebookLogin = props => {
       <FacebookProvider appId="175176387099386">
         <Login scope="email" onCompleted={handleResponse}>
           {({ loading, handleClick, data }) => (
-            <Button size="massive" color="facebook" onClick={handleClick}>
+            <Button id="login-button" size="massive" color="facebook" onClick={handleClick}>
               <Icon name="facebook" />
               {!loading && `Login with Facebook`}
               {loading && `Loading...`}
