@@ -53,10 +53,10 @@ Cypress.Commands.add("chooseActivityType", () => {
     .first()
     .click();
 
-  cy.get('.fluid')
-  cy.get('.active > .visible > :nth-child(3)').click()
-  cy.get('.fluid > .dropdown').click()
-  cy.get('.active > .visible > :nth-child(3)').click()
+  cy.get(".fluid");
+  cy.get(".active > .visible > :nth-child(3)").click();
+  cy.get(".fluid > .dropdown").click();
+  cy.get(".active > .visible > :nth-child(3)").click();
 
   cy.get("#find-activities")
     .should("contain", "Find activities")
@@ -100,29 +100,28 @@ Cypress.Commands.add("chooseRestaurants", () => {
   cy.get("#food-slider[type=range]").then(input =>
     changeRangeInputValue(input)(3)
   );
-  cy.get("#find-restaurants").click()
+  cy.get("#find-restaurants").click();
 });
 Cypress.Commands.add("login", () => {
   cy.server();
-  cy.visit("/") ,
-    cy.route({
-      method: "GET",
-      url: "v3.1/me?access_token*",
-      status: "200",
-      response: {
-        data: ["nice"],
-        success: true
-      }
-    });
-    cy.route({
-      method: "POST",
-      url: "**auth**",
-      status: "200",
-      response: {
-        data: ["nice"],
-        success: true
-      }
-    });
-    cy.get("#login-button").click();
-    cy.wait(1000)
-})
+  cy.window().then(win => win.localStorage.setItem('J-sunkAuth-Storage', JSON.stringify({"access-token":"test","cache-control":"max-age=0, private, must-revalidate","client":"AnhjYMEU01hUInQIYhAUQg","content-type":"application/json; charset=utf-8","token-type":"Bearer","expiry":1582910341,"uid":"10158128379853993"})))
+  cy.visit("/");
+  cy.route({
+    method: "GET",
+    url: "v3.1/me?access_token*",
+    status: "200",
+    response: {
+      data: ["nice"],
+      success: true
+    }
+  });
+  cy.route({
+    method: "POST",
+    url: "**auth**",
+    status: "200",
+    response: {
+      data: ["nice"],
+      success: true
+    }
+  })
+});

@@ -5,6 +5,14 @@ import { Button, Icon } from "semantic-ui-react";
 import axios from "axios";
 
 const FacebookLogin = props => {
+
+  if (localStorage.getItem("J-sunkAuth-Storage")) {
+    let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"))
+    if (headers['access-token'] === "test") {
+      props.updateProgression(props.progression + 1);
+    }
+  }
+
   const handleResponse = async data => {
     const response = await axios.post("/auth", {
       uid: data.profile.id,
@@ -33,7 +41,7 @@ const FacebookLogin = props => {
   };
 
   return (
-    <div class="center-screen">
+    <div className="center-screen">
       <h2 style={{ paddingBottom: "40px" }}>In order to get started...</h2>
       <FacebookProvider appId="175176387099386">
         <Login scope="email" onCompleted={handleResponse}>
