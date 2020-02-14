@@ -157,7 +157,7 @@ const getActivities = async trip => {
   }
 };
 
-const getTrips = async trip => {
+const getTrips = async () => {
   try {
     const response = await axios({
       url: "api/v1/trips",
@@ -193,5 +193,5 @@ export {
   getActivities,
   objectEraser,
   getTrips,
-  getRestaurants
+  getRestaurants,
 };

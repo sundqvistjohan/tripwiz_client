@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { getTrips } from "../modules/destination.js";
 import { Button } from "semantic-ui-react";
+import { connect } from "react-redux";
 
-const TripsList = () => {
+const TripsList = (props) => {
   const [trips, setTrips] = useState(null);
   const [gotTrips, setGotTrips] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
@@ -12,19 +13,19 @@ const TripsList = () => {
   const getTripsData = async () => {
     let response = await getTrips();
     if (response.status === 200) {
-      setTrips(response.data);
-      setSelectedCard(response.data[4]);
+      props.setSelectedCard(response.data[0]);
+      props.setTrips(response.data)
       setGotTrips(true);
     }
   };
 
   const onClickHandler = event => {
-    let pos = trips
+    let pos = props.trips
       .map(e => {
         return e.id;
       })
       .indexOf(event);
-    setSelectedCard(trips[pos]);
+    props.setSelectedCard(props.trips[pos]);
   };
 
   useEffect(() => {
@@ -32,26 +33,26 @@ const TripsList = () => {
   }, []);
 
   useEffect(() => {
-    generateCard(selectedCard);
+    generateCard(props.selectedCard);
     generateTripList(trips);
   }, [gotTrips]);
 
   useEffect(() => {
-    generateCard(selectedCard);
+    generateCard(props.selectedCard);
     generateTripList(trips);
-  }, [selectedCard]);
+  }, [props.selectedCard]);
 
-  const generateCard = trip => {
+  const generateCard = () => {
     let tripCard;
-    if (gotTrips) {
+    if (gotTrips && props.selectedCard) {
       tripCard = (
-        <div key={trip.id} className={`trip-header-first-${trip.destination}`}>
+        <div key={props.selectedCard.id} className={`trip-header-first-${props.selectedCard.destination}`}>
           <div id="trip-cards" className="ui card">
             <div className="image">
               <img src="https://thumbnails.trvl-media.com/PUrr-BSAcHRWzkWDuOP2XTmK80I=/773x530/smart/filters:quality(60)/images.trvl-media.com/hotels/1000000/600000/598500/598487/30a71d36_z.jpg" />
             </div>
             <div className="content">
-              <div className="header">{trip.destination}</div>
+              <div className="header">{props.selectedCard.destination}</div>
               <div className="description">
                 <p>hejhej</p>
               </div>
@@ -68,8 +69,8 @@ const TripsList = () => {
 
   const generateTripList = trips => {
     let tripHeaders;
-    if (gotTrips) {
-      let filteredList = trips.filter(trip => trip.id !== selectedCard.id);
+    if (gotTrips && props.trips) {
+      let filteredList = props.trips.filter(trip => trip.id !== props.selectedCard.id);
       tripHeaders = filteredList.map(trip => {
         return (
           <div key={trip.id} className={`trip-header`}>
@@ -101,4 +102,23 @@ const TripsList = () => {
   );
 };
 
-export default TripsList;
+const mapStateToProps = state => {
+  return {
+    selectedCard: state.selectedCard,
+    trips: state.trips
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setSelectedCard: data => {
+      dispatch({ type: "SET_SELECTEDCARD", payload: data });
+    },
+    setTrips: data => {
+      dispatch({ type: "SET_TRIPS", payload: data });
+    }
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(TripsList);
