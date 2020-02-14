@@ -115,10 +115,10 @@ Form {
 }
 
 div#hotel-cards.ui.card {
-  min-height: 470px;
-  max-height: 470px;
-  max-width: 240px;
-  margin-bottom: 5%;
+  min-height: 490px;
+  max-height: 490px;
+  max-width: 266px;
+  margin-bottom: 2%;
 } 
 
 .ui.stackable.four.column.grid {
@@ -165,8 +165,9 @@ Button {
 .description {
   overflow: scroll;
   overflow-x: hidden;
-  max-height: 100px;
-  min-height: 100px;
+  max-height: 80px;
+  min-height: 80px;
+  font-size: 13px;
 }
 
 .description::-webkit-scrollbar { 
@@ -324,4 +325,9 @@ button#up {
 .ui.grid {
   top: 200px;
   position: relative;
+}
+
+.ui.card>.image:not(.ui)>img, .ui.cards>.card>.image:not(.ui)>img {
+  border: none;
+  height: 240px;
 }

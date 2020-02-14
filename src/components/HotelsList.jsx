@@ -48,7 +48,7 @@ const HotelsList = props => {
       return (
         <div className="centerText">
           <div id="hotel-cards" key={hotel.id} className="ui card">
-            <div className="image"><img src="https://thumbnails.trvl-media.com/PUrr-BSAcHRWzkWDuOP2XTmK80I=/773x530/smart/filters:quality(60)/images.trvl-media.com/hotels/1000000/600000/598500/598487/30a71d36_z.jpg" /></div>
+            <div className="image"><img src={hotel.url} /></div>
             <div className="content">
               <div className="header">
                 {hotel.name}
@@ -56,12 +56,12 @@ const HotelsList = props => {
               <div className="description">
                 {hotel.address}
                 <br />
-                {hotel.url}
+                {hotel.description}
               </div>
             </div>
             <div className="extra content">
               <div id="price-box">
-                Current deals from {hotel.price} SEK / Night
+                Deals from {hotel.price} {hotel.currency} / Night
               </div>
               {props.hotels.data.length != 1 && (
               <Button onClick={() => selectHotel(hotel.id, hotel.name)}>Add to Itinerary</Button>
