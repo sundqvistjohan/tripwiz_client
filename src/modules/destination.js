@@ -66,7 +66,7 @@ const addHotels = async (budget, trip) => {
   }
 };
 
-const addRestaurants = async (preference, budget, trip) => {
+const addRestaurants = async (preference, budget, trip, preference2) => {
   try {
     const response = await axios({
       method: "POST",
@@ -78,6 +78,24 @@ const addRestaurants = async (preference, budget, trip) => {
         activity_type: "restaurant"
       }
     });
+    if (preference2) {
+      try {
+        const response = await axios({
+          method: "POST",
+          url: "api/v1/activity_types",
+          params: {
+            trip: trip,
+            keyword: preference2,
+            max_price: budget,
+            activity_type: "restaurant",
+            additional_activity: "yes"
+          }
+        });
+        return response;
+      } catch (error) {
+        return error;
+      }
+    }
     return response;
   } catch (error) {
     return error;
@@ -90,6 +108,19 @@ const getHotels = async trip => {
       url: "api/v1/hotels",
       method: "GET",
       params: { trip: trip }
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+const getRestaurants = async trip => {
+  try {
+    const response = await axios({
+      url: "api/v1/activity_types",
+      method: "GET",
+      params: { trip: trip, activity_type: "restaurant" }
     });
     return response;
   } catch (error) {
@@ -118,9 +149,7 @@ const getActivities = async trip => {
     const response = await axios({
       url: "api/v1/activity_types",
       method: "GET",
-      params: {
-        trip: trip
-      }
+      params: { trip: trip }
     });
     return response;
   } catch (error) {
@@ -163,5 +192,6 @@ export {
   chooseHotel,
   getActivities,
   objectEraser,
-  getTrips
+  getTrips,
+  getRestaurants
 };

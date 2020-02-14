@@ -15,18 +15,21 @@ const HotelsList = props => {
   const getHotelsShowData = async () => {
     const response = await getHotels(
       props.trip)
-    if (response.status == 200) {
+    if (response.status === 200) {
       props.setHotels(response);
       setGotHotelsData(true)
-      setHotelMessage(`We have ${response.data.length} hotels near your activities. Please select one of the options!`)
+      if (response.data.length > 1) {
+      setHotelMessage(`We have ${response.data.length} hotels near your activities. Please add one to your itinerary!`)
+      } else {
+      setHotelMessage(`Ok, we've added ${response.data[0].name} to your itinerary`)
+      }
     }
   };
 
   const selectHotel = async (hotelId, hotelName) => {
     let response = await chooseHotel(props.trip, hotelId);
-    if (response.status == 200) {
+    if (response.status === 200) {
       await getHotelsShowData()
-      setHotelMessage(`Thanks for selecting ${hotelName}`)
     } else {
       setHotelMessage("Oops, Something went wrong")
     }
@@ -60,7 +63,9 @@ const HotelsList = props => {
               <div id="price-box">
                 Current deals from {hotel.price} SEK / Night
               </div>
-              <Button onClick={() => selectHotel(hotel.id, hotel.name) }>Add to Itinerary</Button>
+              {props.hotels.data.length != 1 && (
+              <Button onClick={() => selectHotel(hotel.id, hotel.name)}>Add to Itinerary</Button>
+              )}
             </div>
           </div>
         </div>
@@ -69,7 +74,7 @@ const HotelsList = props => {
   }
 
   let markers;
-  
+
   if (gotHotelsData) {
     const onMarkerClick = (props, marker) => {
       setSelectedPlaces(props)
@@ -84,23 +89,19 @@ const HotelsList = props => {
       )
     })
   }
-  
+
   return (
     <>
-      <div className="ui stackable four column grid">
-        {hotelCard && (
-          <div id="divider">
-            <p>{hotelMessage}</p>
-          </div>
-        )}
+      {hotelCard && (
+        <h5 id="hotel-msg">{hotelMessage}</h5>
+      )}
+      <div className="ui stackable four column grid">        
         {hotelCard}
       </div>
-      <div id="embed-map">
         {hotelCard && (
           <div className="hotels-map">
             <Map google={props.google}
-              style={{ width: '75%', height: '60%', position: 'relative' }}
-              className={'map'}
+              style={{ width: '93.5%', height: '65%', position: 'relative' }}
               zoom={13}
               initialCenter={{
                 lat: props.hotels.data[0].lat,
@@ -117,7 +118,6 @@ const HotelsList = props => {
             </Map>
           </div>
         )}
-      </div>
     </>
   )
 }

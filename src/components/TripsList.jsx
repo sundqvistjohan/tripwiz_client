@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import { getTrips } from "../modules/destination.js";
 import { Button } from "semantic-ui-react";
 
-
 const TripsList = () => {
   const [trips, setTrips] = useState(null);
   const [gotTrips, setGotTrips] = useState(false);
 
   const getTripsData = async () => {
     let response = await getTrips();
+    debugger
     if (response.status === 200) {
+      debugger
       setTrips(response.data);
       setGotTrips(true);
     }
@@ -28,6 +29,7 @@ const TripsList = () => {
   let tripHeaders = [];
 
   useEffect(() => {
+    debugger
     getTripsData();
   }, []);
 
@@ -35,6 +37,7 @@ const TripsList = () => {
     let tripsLen = trips.length;
     trips.forEach((trip, i) => {
       if (tripsLen - 1 === i) {
+        debugger
         tripHeaders.push(
           <div
             key={trip.id}
@@ -76,6 +79,7 @@ const TripsList = () => {
         );
       }
     });
+    debugger
   }
 
   return <>{tripHeaders}</>;
