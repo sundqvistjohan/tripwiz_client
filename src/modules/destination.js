@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const getCoords = async (destination) => {
-
+const getCoords = async destination => {
   try {
     const response = await axios({
       method: "GET",
@@ -11,7 +10,7 @@ const getCoords = async (destination) => {
         key: process.env.REACT_APP_GOOGLE_APIKEY
       }
     });
-    return response
+    return response;
   } catch (error) {
     return error;
   }
@@ -28,7 +27,7 @@ const initializeTrip = async (props, days) => {
         lng: props.lng
       }
     });
-    return response
+    return response;
   } catch (error) {
     return error;
   }
@@ -45,7 +44,7 @@ const addActivityType = async (activityType, activityVisits, trip) => {
         activity_visits: activityVisits
       }
     });
-    return response
+    return response;
   } catch (error) {
     return error;
   }
@@ -61,7 +60,7 @@ const addHotels = async (budget, trip) => {
         budget: budget
       }
     });
-    return response
+    return response;
   } catch (error) {
     return error;
   }
@@ -79,20 +78,20 @@ const addRestaurants = async (preference, budget, trip) => {
         activity_type: "restaurant"
       }
     });
-    return response
+    return response;
   } catch (error) {
     return error;
   }
 };
 
-const getHotels = async (trip) => {
+const getHotels = async trip => {
   try {
     const response = await axios({
       url: "api/v1/hotels",
       method: "GET",
       params: { trip: trip }
     });
-    return response
+    return response;
   } catch (error) {
     return error;
   }
@@ -103,17 +102,18 @@ const chooseHotel = async (trip, hotelId) => {
     const response = await axios({
       url: "api/v1/hotels",
       method: "DELETE",
-      params: { 
+      params: {
         hotel_id: hotelId,
-        trip: trip}
+        trip: trip
+      }
     });
-    return response
+    return response;
   } catch (error) {
     return error;
   }
 };
 
-const getActivities = async (trip) => {
+const getActivities = async trip => {
   try {
     const response = await axios({
       url: "api/v1/activity_types",
@@ -121,12 +121,24 @@ const getActivities = async (trip) => {
       params: {
         trip: trip
       }
-    })
-    return response
+    });
+    return response;
   } catch (error) {
-    return error
+    return error;
   }
-}
+};
+
+const getTrips = async trip => {
+  try {
+    const response = await axios({
+      url: "api/v1/trips",
+      method: "GET"
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
 
 const objectEraser = async (component, trip, restaurant) => {
   try {
@@ -141,6 +153,15 @@ const objectEraser = async (component, trip, restaurant) => {
   }
 };
 
-export { getCoords, initializeTrip, addActivityType, 
-  addHotels, addRestaurants, getHotels, 
-  chooseHotel, getActivities, objectEraser };
+export {
+  getCoords,
+  initializeTrip,
+  addActivityType,
+  addHotels,
+  addRestaurants,
+  getHotels,
+  chooseHotel,
+  getActivities,
+  objectEraser,
+  getTrips
+};
