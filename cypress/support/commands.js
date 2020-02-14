@@ -124,5 +124,5 @@ Cypress.Commands.add("login", () => {
       }
     });
     cy.get("#login-button").click();
-    cy.get("h2").should("contain", "Let's get started")
+    cy.wait(1000)
 })
