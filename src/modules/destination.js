@@ -115,6 +115,19 @@ const getHotels = async trip => {
   }
 };
 
+const getRestaurants = async trip => {
+  try {
+    const response = await axios({
+      url: "api/v1/activity_types",
+      method: "GET",
+      params: { trip: trip }
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
 const chooseHotel = async (trip, hotelId) => {
   try {
     const response = await axios({
@@ -136,9 +149,7 @@ const getActivities = async trip => {
     const response = await axios({
       url: "api/v1/activity_types",
       method: "GET",
-      params: {
-        trip: trip
-      }
+      params: { trip: trip }
     });
     return response;
   } catch (error) {
@@ -168,5 +179,6 @@ export {
   getHotels,
   chooseHotel,
   getActivities,
-  objectEraser
+  objectEraser,
+  getRestaurants
 };
