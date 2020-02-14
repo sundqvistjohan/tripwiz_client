@@ -92,11 +92,20 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         progression: action.payload
       };
+    case "SET_SELECTEDCARD":
+      return {
+        ...state,
+        selectedCard: action.payload
+      };
+    case "SET_TRIPS":
+      return {
+        ...state,
+        trips: action.payload
+      };
     default:
       return {
         ...state
       };
-
   }
 };
 

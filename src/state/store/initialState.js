@@ -15,6 +15,8 @@ const initialState = {
   activities: null,
   hotels: null,
   activityType: null,
-  progression: -1
+  progression: -1,
+  selectedCard: null,
+  trips: null
 };
 export default initialState;
