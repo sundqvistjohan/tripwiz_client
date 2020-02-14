@@ -12,6 +12,7 @@ const TripsList = props => {
   const getTripsData = async () => {
     let response = await getTrips();
     if (response.status === 200) {
+      debugger
       props.setSelectedCard(response.data[0]);
       props.setTrips(response.data);
       setGotTrips(true);

@@ -17,30 +17,31 @@ const ResultMap = props => {
     setShowInfoWindow(true);
   };
 
-  useEffect(() => {
-    if (props.activities) {
-      activityTypes = Object.keys(props.activities);
+  useEffect(() => {}, [props.activities])
 
-      activityTypes.map(activityType => {
-        marker = props.activities[activityType].map(activity => {
-          return (
-            <Marker
-              key={activity.id}
-              name={activity.name}
-              activityType={activityType.replace("_", " ")}
-              onClick={onMarkerClick}
-              position={{ lat: activity.lat, lng: activity.lng }}
-              icon={{
-                url: `/mapIcons/${activityType}.png`,
-                scaledSize: new props.google.maps.Size(40, 40)
-              }}
-            />
-          );
-        });
-        activityMarkers.push(marker);
+  if (props.activities) {
+
+    activityTypes = Object.keys(props.activities);
+
+    activityTypes.map(activityType => {
+      marker = props.activities[activityType].map(activity => {
+        return (
+          <Marker
+            key={activity.id}
+            name={activity.name}
+            activityType={activityType.replace("_", " ")}
+            onClick={onMarkerClick}
+            position={{ lat: activity.lat, lng: activity.lng }}
+            icon={{
+              url: `/mapIcons/${activityType}.png`,
+              scaledSize: new props.google.maps.Size(40, 40)
+            }}
+          />
+        );
       });
-    }
-  }, [props.activities]);
+      activityMarkers.push(marker);
+    });
+  }
 
   return (
     <>
