@@ -121,7 +121,7 @@ const getRestaurants = async trip => {
       url: "api/v1/activity_types",
       method: "GET",
       params: { trip: trip, activity_type: "restaurant" }
-    });
+    });   
     return response;
   } catch (error) {
     return error;

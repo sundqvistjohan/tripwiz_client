@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Tab, Grid, GridColumn } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
-import { getActivities, getTrips } from "../modules/destination.js";
+import { getActivities, getTrips, getRestaurants } from "../modules/destination.js";
 import ActivitiesList from "./ActivitiesList";
 import RestaurantsList from "./RestaurantsList";
 import HotelsList from "./HotelsList";
@@ -50,8 +50,12 @@ const Result = props => {
 
   const setActivities = async () => {
     let response = await getActivities(props.trip);
-    let activities = response.data;
-    props.setActivities(activities);
+    props.setActivities(response.data);
+  };
+
+  const setRestaurants = async () => {
+    let response = await getRestaurants(props.trip);
+    props.setRestaurants(response.data);
   };
 
   const getTripsData = async () => {
@@ -64,8 +68,9 @@ const Result = props => {
 
   useEffect(() => {
     setActivities();
+    setRestaurants()
     getTripsData()
-  }, []);
+  }, [props.trip]);
 
   return (
     <>
@@ -103,6 +108,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setActivities: data => {
       dispatch({ type: "SET_ACTIVITIES", payload: data });
+    },
+    setRestaurants: data => {
+      dispatch({ type: "SET_RESTAURANTS", payload: data });
     },
     setSelectedCard: data => {
       dispatch({ type: "SET_SELECTEDCARD", payload: data });

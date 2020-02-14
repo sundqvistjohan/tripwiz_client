@@ -1,26 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { getRestaurants } from "../modules/destination.js";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 const RestaurantsList = props => {
-  const [restaurants, setRestaurants] = useState(null);
-  const [gotRestaurants, setGotRestaurants] = useState(false);
 
-  const getRestaurantsData = async () => {
-    let response = await getRestaurants(props.trip);
-    if (response.status === 200) {
-      setRestaurants(response.data["restaurant"]);
-      setGotRestaurants(true);
-    }
-  };
   useEffect(() => {
-    getRestaurantsData();
-  }, []);
+
+  }, [props.restaurants]);
 
   let restaurantCard;
 
-  if (gotRestaurants) {
-    restaurantCard = restaurants.map(restaurant => {
+  if (props.restaurants) {
+    debugger
+    restaurantCard = props.restaurants.restaurant.map(restaurant => {
       return (
         <div className="restaurant-card">
           <div id="restaurant-cards" key={restaurant.id} className="ui card">
@@ -48,6 +39,7 @@ const RestaurantsList = props => {
 const mapStateToProps = state => {
   return {
     trip: state.trip,
+    restaurants: state.restaurants
   };
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 import { connect } from "react-redux";
 
@@ -12,33 +12,35 @@ const ResultMap = props => {
   let activityMarkers = [];
 
   const onMarkerClick = (props, marker) => {
-    setSelectedPlaces(props)
-    setActiveMarker(marker)
-    setShowInfoWindow(true)
+    setSelectedPlaces(props);
+    setActiveMarker(marker);
+    setShowInfoWindow(true);
   };
 
-  if (props.activities) {
-    activityTypes = Object.keys(props.activities);
+  useEffect(() => {
+    if (props.activities) {
+      activityTypes = Object.keys(props.activities);
 
-    activityTypes.map(activityType => {
-      marker = props.activities[activityType].map(activity => {
-        return (
-          <Marker
-            key={activity.id}
-            name={activity.name}
-            activityType={activityType.replace('_', ' ')}
-            onClick={onMarkerClick}
-            position={{ lat: activity.lat, lng: activity.lng }}
-            icon={{
-              url: `/mapIcons/${activityType}.png`,
-              scaledSize: new props.google.maps.Size(40, 40)
-            }}
-          />
-        );
+      activityTypes.map(activityType => {
+        marker = props.activities[activityType].map(activity => {
+          return (
+            <Marker
+              key={activity.id}
+              name={activity.name}
+              activityType={activityType.replace("_", " ")}
+              onClick={onMarkerClick}
+              position={{ lat: activity.lat, lng: activity.lng }}
+              icon={{
+                url: `/mapIcons/${activityType}.png`,
+                scaledSize: new props.google.maps.Size(40, 40)
+              }}
+            />
+          );
+        });
+        activityMarkers.push(marker);
       });
-      activityMarkers.push(marker)
-    });
-  }
+    }
+  }, [props.activities]);
 
   return (
     <>
@@ -47,18 +49,16 @@ const ResultMap = props => {
         <Map
           google={props.google}
           zoom={12}
-          initialCenter={{ lat: props.lat, lng: props.lng }}
+          center={{ lat: props.lat, lng: props.lng }}
           style={{ width: "97%", height: "80%", position: "relative" }}
         >
           {activityMarkers}
-          <InfoWindow
-                marker={activeMarker}
-                visible={showInfoWindow}>
-                <div>
-                  <h4 style={{padding: "0"}}>{selectedPlaces.name}</h4>
-                  <i>{selectedPlaces.activityType}</i>
-                </div>
-              </InfoWindow>
+          <InfoWindow marker={activeMarker} visible={showInfoWindow}>
+            <div>
+              <h4 style={{ padding: "0" }}>{selectedPlaces.name}</h4>
+              <i>{selectedPlaces.activityType}</i>
+            </div>
+          </InfoWindow>
         </Map>
       </div>
     </>

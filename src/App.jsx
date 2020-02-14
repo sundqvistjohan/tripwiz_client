@@ -14,9 +14,9 @@ const App = (props) => {
           <Route exact path="/" component={Trip} />
           <Route exact path="/result" component={Result} />
         </Switch>
-				{props.progression === 0 && (
-					<EmbedMap />
-				)}
+				{/* {props.progression === 0 && (
+					// <EmbedMap />
+				)} */}
 			</BrowserRouter>
 		</>
 	);
