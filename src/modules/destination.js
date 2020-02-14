@@ -169,6 +169,18 @@ const getTrips = async () => {
   }
 };
 
+const getTrip = async (id) => {
+  try {
+    const response = await axios({
+      url: `api/v1/trips/${id}`,
+      method: "GET"
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
 const objectEraser = async (component, trip, restaurant) => {
   try {
     const response = await axios({
@@ -194,4 +206,5 @@ export {
   objectEraser,
   getTrips,
   getRestaurants,
+  getTrip
 };

@@ -10,7 +10,6 @@ const RestaurantsList = props => {
   let restaurantCard;
 
   if (props.restaurants) {
-    debugger
     restaurantCard = props.restaurants.restaurant.map(restaurant => {
 
       return (

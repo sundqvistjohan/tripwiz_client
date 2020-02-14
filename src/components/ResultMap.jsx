@@ -17,10 +17,9 @@ const ResultMap = props => {
     setShowInfoWindow(true);
   };
 
-  useEffect(() => {}, [props.activities])
+  useEffect(() => {}, [props.activities]);
 
   if (props.activities) {
-
     activityTypes = Object.keys(props.activities);
 
     activityTypes.map(activityType => {
@@ -50,6 +49,7 @@ const ResultMap = props => {
         <Map
           google={props.google}
           zoom={12}
+          initialCenter={{ lat: props.lat, lng: props.lng }}
           center={{ lat: props.lat, lng: props.lng }}
           style={{ width: "97%", height: "80%", position: "relative" }}
         >

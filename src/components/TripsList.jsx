@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { getTrips, getActivities, getRestaurants, getHotels
- } from "../modules/destination.js";
+import {
+  getTrips,
+  getActivities,
+  getRestaurants,
+  getHotels,
+  getTrip
+} from "../modules/destination.js";
 import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 
@@ -12,14 +17,13 @@ const TripsList = props => {
   const getTripsData = async () => {
     let response = await getTrips();
     if (response.status === 200) {
-      debugger
       props.setSelectedCard(response.data[0]);
       props.setTrips(response.data);
       setGotTrips(true);
     }
   };
 
-  const onClickHandler = event => {
+  const onClickHandler = async event => {
     let pos = props.trips
       .map(e => {
         return e.id;
@@ -29,7 +33,7 @@ const TripsList = props => {
   };
 
   const onButtonHandler = async () => {
-    props.setTrip(props.selectedCard.id)
+    props.setTrip(props.selectedCard.id);
     props.setLng(props.selectedCard.lng);
     props.setLat(props.selectedCard.lat);
     let response = await getActivities(props.selectedCard.id);
@@ -43,8 +47,8 @@ const TripsList = props => {
     let response3 = await getHotels(props.selectedCard.id);
     if (response3.status === 200) {
       props.setHotels(response3.data);
+    }
   };
-}
 
   useEffect(() => {
     getTripsData();

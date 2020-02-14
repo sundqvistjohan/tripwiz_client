@@ -10,7 +10,6 @@ const ActivitiesList = props => {
 
   if (props.activities) {
     let activityTypes = Object.keys(props.activities);
-    debugger
     activityCard = props.activities[activityTypes[0]].map(activity => {
       return (
         <>
