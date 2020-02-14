@@ -88,6 +88,7 @@ const Destination = props => {
               <Button id="submit">Look for Destination</Button>
             </Form>
           </div>
+          {props.message}
         </>
       )}
       {props.progression === 1 && (

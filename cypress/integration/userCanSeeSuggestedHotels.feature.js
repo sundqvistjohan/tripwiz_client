@@ -27,20 +27,22 @@ describe("User can see suggested hotels as cards", () => {
     cy.createTrip();
     cy.chooseActivityType();
 
-    cy.get('.tabular > :nth-child(4)').click()
     cy.get('#slider').as('range')
       .invoke('val', 25)
       .trigger('change')
     cy.get("#find-hotels").click()
 
-    cy.visit("/result");
+    cy.chooseRestaurants()
+
+    cy.get('.tabular > :nth-child(4)').click()
     cy.route({
       method: "GET",
       url: "http://localhost:3000/api/v1/hotels**",
       response: "fixture:hotels_list_shown_deleted.json",
       status: 200
     });
-    cy.get(':nth-child(2) > #hotel-cards > .extra > .ui').click()
+    cy.get(':nth-child(1) > #hotel-cards > .extra > .ui').click()
+    cy.get('.stackable').children().should('have.length', 1)
   });
 
 });

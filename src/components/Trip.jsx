@@ -4,6 +4,7 @@ import Restaurants from "./Restaurants";
 import Hotels from "./Hotels";
 import Activities from "./Activities";
 import Destination from "./Destination";
+import Login from "./Login"
 
 const Trip = props => {
   let currentView;
@@ -27,6 +28,7 @@ const Trip = props => {
 
   return (
     <>
+      <Login/>
       <div className="trip-section">
         <div id="main" className="centered">
           <div id="progression-num">

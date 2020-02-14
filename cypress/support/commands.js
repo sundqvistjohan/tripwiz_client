@@ -56,10 +56,10 @@ Cypress.Commands.add("chooseActivityType", () => {
     .first()
     .click();
 
-  cy.get(".fluid > .dropdown").click();
-  cy.get('.active > .visible > :nth-child(3)').click();
-  cy.get(".fluid > .dropdown").click();
-  cy.get(".active > .visible > :nth-child(3)").click();
+  cy.get('.fluid')
+  cy.get('.active > .visible > :nth-child(3)').click()
+  cy.get('.fluid > .dropdown').click()
+  cy.get('.active > .visible > :nth-child(3)').click()
 
   cy.get("#find-activities")
     .should("contain", "Find activities")
