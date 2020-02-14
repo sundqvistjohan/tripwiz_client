@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getRestaurants } from "../modules/destination.js";
+import { connect } from "react-redux";
 
 const RestaurantsList = props => {
   const [restaurants, setRestaurants] = useState(null);
@@ -8,7 +9,6 @@ const RestaurantsList = props => {
   const getRestaurantsData = async () => {
     let response = await getRestaurants(props.trip);
     if (response.status === 200) {
-      debugger
       setRestaurants(response.data["restaurant"]);
       setGotRestaurants(true);
     }
@@ -40,7 +40,15 @@ const RestaurantsList = props => {
     });
   }
 
+  
+
   return <>{restaurantCard}</>;
 };
 
-export default RestaurantsList
+const mapStateToProps = state => {
+  return {
+    trip: state.trip,
+  };
+};
+
+export default connect(mapStateToProps)(RestaurantsList);

@@ -15,7 +15,7 @@ const HotelsList = props => {
   const getHotelsShowData = async () => {
     const response = await getHotels(
       props.trip)
-    if (response.status == 200) {
+    if (response.status === 200) {
       props.setHotels(response);
       setGotHotelsData(true)
       if (response.data.length > 1) {
@@ -28,7 +28,7 @@ const HotelsList = props => {
 
   const selectHotel = async (hotelId, hotelName) => {
     let response = await chooseHotel(props.trip, hotelId);
-    if (response.status == 200) {
+    if (response.status === 200) {
       await getHotelsShowData()
     } else {
       setHotelMessage("Oops, Something went wrong")

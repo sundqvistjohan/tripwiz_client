@@ -122,7 +122,7 @@ const getRestaurants = async trip => {
     const response = await axios({
       url: "api/v1/activity_types",
       method: "GET",
-      params: { trip: trip }
+      params: { trip: trip, activity_type: "restaurant" }
     });
     return response;
   } catch (error) {
@@ -159,6 +159,18 @@ const getActivities = async trip => {
   }
 };
 
+const getTrips = async () => {
+  try {
+    const response = await axios({
+      url: "api/v1/trips",
+      method: "GET"
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
 const objectEraser = async (component, trip, restaurant) => {
   try {
     const response = await axios({
@@ -182,5 +194,6 @@ export {
   chooseHotel,
   getActivities,
   objectEraser,
-  getRestaurants
+  getTrips,
+  getRestaurants,
 };
