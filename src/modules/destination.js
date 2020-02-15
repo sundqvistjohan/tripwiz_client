@@ -132,8 +132,8 @@ const getRestaurants = async trip => {
     const response = await axios({
       url: "api/v1/activity_types",
       method: "GET",
-      params: { trip: trip, activity_type: "restaurant",
-      headers: headers }
+      params: { trip: trip, activity_type: "restaurant" },
+      headers: headers 
     });   
     return response;
   } catch (error) {
