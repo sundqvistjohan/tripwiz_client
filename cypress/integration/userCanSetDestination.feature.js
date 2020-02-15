@@ -15,7 +15,7 @@ describe("User can submit destination", () => {
         key: process.env.REACT_APP_GOOGLE_APIKEY
       }
     });
-
+    cy.login();
     cy.get("#place-form").within(() => {
       cy.get("#place").type("Rome");
       cy.get("#submit").click();
@@ -49,7 +49,7 @@ describe("User can submit destination", () => {
         key: process.env.REACT_APP_GOOGLE_APIKEY
       }
     });
-
+    cy.login();
     cy.get("#place-form").within(() => {
       cy.get("#place").type("sdfsdfsdf");
       cy.get("#submit").click();

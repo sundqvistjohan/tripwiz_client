@@ -8,6 +8,7 @@ describe("Hotels", () => {
       nativeInputValueSetter.call($range[0], value);
       $range[0].dispatchEvent(new Event("change", { value, bubbles: true }));
     };
+    cy.login();
     cy.createTrip();
     cy.chooseActivityType();
     cy.route({
@@ -29,6 +30,7 @@ describe("Hotels", () => {
   });
 
   it("needs a budget input", () => {
+    cy.login();
     cy.createTrip();
     cy.chooseActivityType();
     cy.route({

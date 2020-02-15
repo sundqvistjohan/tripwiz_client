@@ -8,6 +8,7 @@ describe("Restaurants", () => {
       nativeInputValueSetter.call($range[0], value);
       $range[0].dispatchEvent(new Event("change", { value, bubbles: true }));
     };
+    cy.login();
     cy.createTrip();
     cy.chooseActivityType();
     cy.chooseHotel()
@@ -30,6 +31,7 @@ describe("Restaurants", () => {
       nativeInputValueSetter.call($range[0], value);
       $range[0].dispatchEvent(new Event("change", { value, bubbles: true }));
     };
+    cy.login();
     cy.createTrip();
     cy.chooseActivityType();
     cy.chooseHotel()
@@ -46,6 +48,7 @@ describe("Restaurants", () => {
   });
 
   it("needs a budget input", () => {
+    cy.login();
     cy.createTrip();
     cy.chooseActivityType();
     cy.chooseHotel()
