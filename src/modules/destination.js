@@ -176,10 +176,12 @@ const getActivities = async trip => {
 };
 
 const getTrips = async () => {
+  let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
     const response = await axios({
       url: "api/v1/trips",
-      method: "GET"
+      method: "GET",
+      headers: headers
     });
     return response;
   } catch (error) {
