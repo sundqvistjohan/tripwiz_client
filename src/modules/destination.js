@@ -126,14 +126,15 @@ const getHotels = async trip => {
   }
 };
 
+
 const getRestaurants = async trip => {
   let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
     const response = await axios({
       url: "api/v1/activity_types",
       method: "GET",
-      params: { trip: trip, activity_type: "restaurant",
-      headers: headers }
+      params: { trip: trip, activity_type: "restaurant" },
+      headers: headers 
     });   
     return response;
   } catch (error) {
