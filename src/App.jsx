@@ -3,7 +3,7 @@ import Trip from './components/Trip.jsx';
 import { connect } from "react-redux";
 import Result from "./components/Result.jsx"
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import EmbedMap from "./components/EmbedMap";
+// import EmbedMap from "./components/EmbedMap";
 
 const App = (props) => {
 	
@@ -14,9 +14,9 @@ const App = (props) => {
           <Route exact path="/" component={Trip} />
           <Route exact path="/result" component={Result} />
         </Switch>
-				{props.progression === 0 && (
+				{/* {props.progression === 0 && (
 					<EmbedMap />
-				)}
+				)} */}
 			</BrowserRouter>
 		</>
 	);

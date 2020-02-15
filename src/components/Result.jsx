@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Tab, Grid, GridColumn } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
-import { getActivities, getTrips } from "../modules/destination.js";
+import { getActivities, getTrips, getRestaurants, getHotels } from "../modules/destination.js";
 import ActivitiesList from "./ActivitiesList";
 import RestaurantsList from "./RestaurantsList";
 import HotelsList from "./HotelsList";
@@ -50,8 +50,12 @@ const Result = props => {
 
   const setActivities = async () => {
     let response = await getActivities(props.trip);
-    let activities = response.data;
-    props.setActivities(activities);
+    props.setActivities(response.data);
+  };
+
+  const setRestaurants = async () => {
+    let response = await getRestaurants(props.trip);
+    props.setRestaurants(response.data);
   };
 
   const getTripsData = async () => {
@@ -62,8 +66,22 @@ const Result = props => {
     }
   };
 
+  const setHotels = async () => {
+    let response = await getHotels(props.trip);
+    props.setHotels(response.data);
+  };
+
   useEffect(() => {
     setActivities();
+    setRestaurants()
+    setHotels()
+    getTripsData()
+  }, [props.trip]);
+
+  useEffect(() => {
+    setActivities();
+    setRestaurants()
+    setHotels()
     getTripsData()
   }, []);
 
@@ -104,11 +122,17 @@ const mapDispatchToProps = dispatch => {
     setActivities: data => {
       dispatch({ type: "SET_ACTIVITIES", payload: data });
     },
+    setRestaurants: data => {
+      dispatch({ type: "SET_RESTAURANTS", payload: data });
+    },
     setSelectedCard: data => {
       dispatch({ type: "SET_SELECTEDCARD", payload: data });
     },
     setTrips: data => {
       dispatch({ type: "SET_TRIPS", payload: data });
+    },
+    setHotels: data => {
+      dispatch({ type: "SET_HOTELS", payload: data });
     }
   };
 };
