@@ -126,6 +126,7 @@ const getHotels = async trip => {
   }
 };
 
+
 const getRestaurants = async trip => {
   let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
