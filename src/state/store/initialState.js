@@ -15,7 +15,7 @@ const initialState = {
   activities: null,
   hotels: null,
   activityType: null,
-  progression: 0,
+  progression: -1,
   selectedCard: null,
   trips: null,
   restaurants: null

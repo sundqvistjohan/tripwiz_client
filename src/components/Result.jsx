@@ -113,7 +113,8 @@ const mapStateToProps = state => {
     trip: state.trip,
     activities: state.activities,
     days: state.days,
-    activityType: state.activityType
+    activityType: state.activityType,
+    restaurants: state.restaurants
   };
 };
 

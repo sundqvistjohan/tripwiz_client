@@ -1,5 +1,6 @@
 describe("See activities on a map", () => {
   it("successfully", () => {
+    cy.login();
     cy.createTrip();
     cy.route({
       method: "GET",
@@ -13,7 +14,7 @@ describe("See activities on a map", () => {
     cy.get('img[src="/mapIcons/art_gallery.png"]')
       .last()
       .click({ force: true });
-    cy.get(".gm-style-iw.gm-style-iw-c").contains("makemake");
+    cy.get(".gm-style-iw.gm-style-iw-c").contains("Galleria Vittoria");
   });
 });
 

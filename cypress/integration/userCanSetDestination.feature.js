@@ -15,7 +15,7 @@ describe("User can submit destination", () => {
         key: process.env.REACT_APP_GOOGLE_APIKEY
       }
     });
-
+    cy.login();
     cy.get("#place-form").within(() => {
       cy.get("#place").type("Rome");
       cy.get("#submit").click();
@@ -24,12 +24,12 @@ describe("User can submit destination", () => {
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/**",
-      response: "fixtures:inputDest.json"
+      response: "fixture:inputDest.json"
     });
     cy.route({
       method: "GET",
       url: "http://localhost:3000/api/**",
-      response: "fixtures:inputDest.json"
+      response: "fixture:inputDest.json"
     });
 
     cy.get("#days").click();
@@ -49,7 +49,7 @@ describe("User can submit destination", () => {
         key: process.env.REACT_APP_GOOGLE_APIKEY
       }
     });
-
+    cy.login();
     cy.get("#place-form").within(() => {
       cy.get("#place").type("sdfsdfsdf");
       cy.get("#submit").click();

@@ -128,7 +128,8 @@ const mapStateToProps = state => {
   return {
     selectedCard: state.selectedCard,
     trips: state.trips,
-    activityType: state.activityType
+    activityType: state.activityType,
+    restaurants: state.restaurants
   };
 };
 

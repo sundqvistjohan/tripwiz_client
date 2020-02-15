@@ -17,6 +17,7 @@ const getCoords = async destination => {
 };
 
 const initializeTrip = async (props, days) => {
+  let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
     const response = await axios({
       method: "POST",
@@ -25,7 +26,8 @@ const initializeTrip = async (props, days) => {
         days: days,
         lat: props.lat,
         lng: props.lng
-      }
+      },
+      headers: headers
     });
     return response;
   } catch (error) {
@@ -34,6 +36,7 @@ const initializeTrip = async (props, days) => {
 };
 
 const addActivityType = async (activityType, activityVisits, trip) => {
+  let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
     const response = await axios({
       method: "POST",
@@ -42,7 +45,8 @@ const addActivityType = async (activityType, activityVisits, trip) => {
         trip: trip,
         activity_type: activityType,
         activity_visits: activityVisits
-      }
+      },
+      headers: headers
     });
     return response;
   } catch (error) {
@@ -51,6 +55,7 @@ const addActivityType = async (activityType, activityVisits, trip) => {
 };
 
 const addHotels = async (budget, trip) => {
+  let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
     const response = await axios({
       method: "POST",
@@ -58,7 +63,8 @@ const addHotels = async (budget, trip) => {
       params: {
         trip: trip,
         budget: budget
-      }
+      },
+      headers: headers
     });
     return response;
   } catch (error) {
@@ -67,6 +73,7 @@ const addHotels = async (budget, trip) => {
 };
 
 const addRestaurants = async (preference, budget, trip, preference2) => {
+  let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
     const response = await axios({
       method: "POST",
@@ -76,7 +83,8 @@ const addRestaurants = async (preference, budget, trip, preference2) => {
         keyword: preference,
         max_price: budget,
         activity_type: "restaurant"
-      }
+      },
+      headers: headers
     });
     if (preference2) {
       try {
@@ -89,7 +97,8 @@ const addRestaurants = async (preference, budget, trip, preference2) => {
             max_price: budget,
             activity_type: "restaurant",
             additional_activity: "yes"
-          }
+          },
+          headers: headers
         });
         return response;
       } catch (error) {
@@ -103,11 +112,13 @@ const addRestaurants = async (preference, budget, trip, preference2) => {
 };
 
 const getHotels = async trip => {
+  let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
     const response = await axios({
       url: "api/v1/hotels",
       method: "GET",
-      params: { trip: trip }
+      params: { trip: trip },
+      headers: headers
     });
     return response;
   } catch (error) {
@@ -116,11 +127,13 @@ const getHotels = async trip => {
 };
 
 const getRestaurants = async trip => {
+  let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
     const response = await axios({
       url: "api/v1/activity_types",
       method: "GET",
-      params: { trip: trip, activity_type: "restaurant" }
+      params: { trip: trip, activity_type: "restaurant",
+      headers: headers }
     });   
     return response;
   } catch (error) {
@@ -129,6 +142,7 @@ const getRestaurants = async trip => {
 };
 
 const chooseHotel = async (trip, hotelId) => {
+  let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
     const response = await axios({
       url: "api/v1/hotels",
@@ -136,7 +150,8 @@ const chooseHotel = async (trip, hotelId) => {
       params: {
         hotel_id: hotelId,
         trip: trip
-      }
+      },
+      headers: headers
     });
     return response;
   } catch (error) {
@@ -145,11 +160,13 @@ const chooseHotel = async (trip, hotelId) => {
 };
 
 const getActivities = async trip => {
+  let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
     const response = await axios({
       url: "api/v1/activity_types",
       method: "GET",
-      params: { trip: trip }
+      params: { trip: trip },
+      headers: headers
     });
     return response;
   } catch (error) {
@@ -182,11 +199,13 @@ const getTrip = async (id) => {
 };
 
 const objectEraser = async (component, trip, restaurant) => {
+  let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
     const response = await axios({
       method: "DELETE",
       url: `api/v1/${component}`,
-      params: { trip: trip, activity_type: restaurant }
+      params: { trip: trip, activity_type: restaurant },
+      headers: headers
     });
     return response;
   } catch (error) {

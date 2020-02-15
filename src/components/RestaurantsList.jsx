@@ -5,13 +5,12 @@ const RestaurantsList = props => {
 
   useEffect(() => {
 
-  }, [props.restaurants]);
+  }, []);
 
   let restaurantCard;
 
   if (props.restaurants) {
     restaurantCard = props.restaurants.restaurant.map(restaurant => {
-
       return (
         <div className="restaurant-card">
           <div id="restaurant-cards" key={restaurant.id} className="ui card">
