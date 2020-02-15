@@ -1,20 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import Restaurants from "./Restaurants";
 import Hotels from "./Hotels";
 import Activities from "./Activities";
 import Destination from "./Destination";
 import FacebookLogin from "./FacebookLogin";
+import { getTrips } from "../modules/destination"
+import { Redirect } from "react-router-dom"
 
 const Trip = props => {
+  const [redirect, setRedirect] = useState(false);
   let currentView;
+
+  const getTripsData = async () => {
+    let response = await getTrips();
+    if (response.status === 200) {
+      if (response.data.length > 0) {
+        setRedirect(true)
+      } else {
+        currentView = <Destination />;
+      }
+    }
+  };
 
   switch (true) {
     case props.progression === -1:
       currentView = <FacebookLogin />;
       break;
     case props.progression === 0 || props.progression === 1:
-      currentView = <Destination />;
+       getTripsData();
       break;
     case props.progression === 2 || props.progression === 3:
       currentView = <Activities />;
@@ -39,6 +53,7 @@ const Trip = props => {
             </div>
           )}
           {currentView}
+          {redirect && <Redirect to="/result" />}
         </div>
       </div>
     </>

@@ -1,8 +1,13 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Tab, Grid, GridColumn } from "semantic-ui-react";
+import { Tab, Grid, GridColumn, Button } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
-import { getActivities, getTrips, getRestaurants, getHotels } from "../modules/destination.js";
+import {
+  getActivities,
+  getTrips,
+  getRestaurants,
+  getHotels
+} from "../modules/destination.js";
 import ActivitiesList from "./ActivitiesList";
 import RestaurantsList from "./RestaurantsList";
 import HotelsList from "./HotelsList";
@@ -62,7 +67,7 @@ const Result = props => {
     let response = await getTrips();
     if (response.status === 200) {
       props.setSelectedCard(response.data[0]);
-      props.setTrips(response.data)
+      props.setTrips(response.data);
     }
   };
 
@@ -73,18 +78,40 @@ const Result = props => {
 
   useEffect(() => {
     setActivities();
-    setRestaurants()
-    setHotels()
-    getTripsData()
+    setRestaurants();
+    setHotels();
+    getTripsData();
   }, [props.trip]);
 
   useEffect(() => {
     setActivities();
-    setRestaurants()
-    setHotels()
-    getTripsData()
+    setRestaurants();
+    setHotels();
+    getTripsData();
   }, []);
 
+  let renderResult;
+  if (props.trip === null) {
+    renderResult = () => {
+      return (
+        <div id="main2" className="centered">
+          Welcome back! You can find your previous trips to the left. Click the
+          New Trip button to create a new trip.
+        </div>
+      );
+    };
+  } else {
+    renderResult = () => {
+      return (
+        <div id="main2" className="centered">
+          <Tab panes={panes} />
+        </div>
+      );
+    };
+  }
+
+  debugger;
+  
   return (
     <>
       <div className="trip-section">
@@ -92,15 +119,12 @@ const Result = props => {
           {props.days} days in {props.destination}
         </h1>
         <h5>Enjoy the {props.activityType}s!</h5>
+        <Button>New Trip</Button>
         <Grid>
           <GridColumn width={4}>
             <TripsList />
           </GridColumn>
-          <GridColumn width={12}>
-            <div id="main2" className="centered">
-              <Tab panes={panes} />
-            </div>
-          </GridColumn>
+          <GridColumn width={12}>{renderResult}</GridColumn>
         </Grid>
       </div>
     </>
