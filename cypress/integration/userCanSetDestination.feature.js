@@ -24,12 +24,12 @@ describe("User can submit destination", () => {
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/**",
-      response: "fixtures:inputDest.json"
+      response: "fixture:inputDest.json"
     });
     cy.route({
       method: "GET",
       url: "http://localhost:3000/api/**",
-      response: "fixtures:inputDest.json"
+      response: "fixture:inputDest.json"
     });
 
     cy.get("#days").click();

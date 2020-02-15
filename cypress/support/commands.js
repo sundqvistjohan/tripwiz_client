@@ -32,12 +32,12 @@ Cypress.Commands.add("createTrip", () => {
   cy.route({
     method: "POST",
     url: "http://localhost:3000/api/v1/trip**",
-    response: "fixtures:inputDest.json"
+    response: "fixture:inputDest.json"
   });
   cy.route({
     method: "GET",
     url: "http://localhost:3000/api/v1/trip**",
-    response: "fixtures:inputDest.json"
+    response: "fixture:inputDest.json"
   });
   cy.get("#days").click();
   cy.get("#days > .visible > :nth-child(3)").click();
@@ -47,7 +47,13 @@ Cypress.Commands.add("chooseActivityType", () => {
   cy.route({
     method: "POST",
     url: "http://localhost:3000/api/v1/activity_type**",
-    response: "fixtures:inputDest.json"
+    response: "fixture:inputDest.json"
+  });
+  cy.route({
+    method: "GET",
+    url: "http://localhost:3000/api/v1/trips**",
+    response: "fixture:trips_response.json",
+    status: 200
   });
   cy.get(".activities > :nth-child(3)")
     .first()
@@ -67,7 +73,7 @@ Cypress.Commands.add("chooseHotel", () => {
   cy.route({
     method: "POST",
     url: "http://localhost:3000/api/v1/hotels**",
-    response: "fixtures:inputDest.json"
+    response: "fixture:inputDest.json"
   });
   const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
     window.HTMLInputElement.prototype,
@@ -84,8 +90,9 @@ Cypress.Commands.add("chooseHotel", () => {
 Cypress.Commands.add("chooseRestaurants", () => {
   cy.route({
     method: "POST",
-    url: "http://localhost:3000/api/v1/activity_type**",
-    response: "fixtures:inputDest.json"
+    url: "http://localhost:3000/api/v1/activity_types**",
+    response: "fixture:3_restaurants_displayed.json",
+    status: 200
   });
   const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
     window.HTMLInputElement.prototype,

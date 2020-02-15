@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 import { connect } from "react-redux";
 
@@ -12,10 +12,12 @@ const ResultMap = props => {
   let activityMarkers = [];
 
   const onMarkerClick = (props, marker) => {
-    setSelectedPlaces(props)
-    setActiveMarker(marker)
-    setShowInfoWindow(true)
+    setSelectedPlaces(props);
+    setActiveMarker(marker);
+    setShowInfoWindow(true);
   };
+
+  useEffect(() => {}, [props.activities]);
 
   if (props.activities) {
     activityTypes = Object.keys(props.activities);
@@ -26,7 +28,7 @@ const ResultMap = props => {
           <Marker
             key={activity.id}
             name={activity.name}
-            activityType={activityType.replace('_', ' ')}
+            activityType={activityType.replace("_", " ")}
             onClick={onMarkerClick}
             position={{ lat: activity.lat, lng: activity.lng }}
             icon={{
@@ -36,7 +38,7 @@ const ResultMap = props => {
           />
         );
       });
-      activityMarkers.push(marker)
+      activityMarkers.push(marker);
     });
   }
 
@@ -48,17 +50,16 @@ const ResultMap = props => {
           google={props.google}
           zoom={12}
           initialCenter={{ lat: props.lat, lng: props.lng }}
+          center={{ lat: props.lat, lng: props.lng }}
           style={{ width: "97%", height: "80%", position: "relative" }}
         >
           {activityMarkers}
-          <InfoWindow
-                marker={activeMarker}
-                visible={showInfoWindow}>
-                <div>
-                  <h4 style={{padding: "0"}}>{selectedPlaces.name}</h4>
-                  <i>{selectedPlaces.activityType}</i>
-                </div>
-              </InfoWindow>
+          <InfoWindow marker={activeMarker} visible={showInfoWindow}>
+            <div>
+              <h4 style={{ padding: "0" }}>{selectedPlaces.name}</h4>
+              <i>{selectedPlaces.activityType}</i>
+            </div>
+          </InfoWindow>
         </Map>
       </div>
     </>
