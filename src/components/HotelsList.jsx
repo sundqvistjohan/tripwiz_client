@@ -17,9 +17,7 @@ const HotelsList = props => {
     if (response.status === 200) {
       props.setHotels(response.data);
       if (response.data.length > 1) {
-        setHotelMessage(
-          `We have ${response.data.length} hotels near your activities. Please add one to your itinerary!`
-        );
+      setHotelMessage(`Here are the closest hotels to your activities. Please add one to your itinerary!`)
       } else {
         setHotelMessage(
           `Ok, we've added ${response.data[0].name} to your itinerary`
@@ -48,20 +46,18 @@ const HotelsList = props => {
       return (
         <div className="centerText">
           <div id="hotel-cards" key={hotel.id} className="ui card">
-            <div className="image">
-              <img src="https://thumbnails.trvl-media.com/PUrr-BSAcHRWzkWDuOP2XTmK80I=/773x530/smart/filters:quality(60)/images.trvl-media.com/hotels/1000000/600000/598500/598487/30a71d36_z.jpg" />
-            </div>
+            <div className="image"><img src={hotel.url} /></div>
             <div className="content">
               <div className="header">{hotel.name}</div>
               <div className="description">
                 {hotel.address}
                 <br />
-                {hotel.url}
+                {hotel.description}
               </div>
             </div>
             <div className="extra content">
               <div id="price-box">
-                Current deals from {hotel.price} SEK / Night
+                Deals from {hotel.price} {hotel.currency} / Night
               </div>
               {props.hotels.length != 1 && (
                 <Button onClick={() => selectHotel(hotel.id, hotel.name)}>

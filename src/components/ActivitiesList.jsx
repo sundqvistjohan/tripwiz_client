@@ -35,7 +35,12 @@ const ActivitiesList = props => {
     });
   }
 
-  return <>{activityCard}</>;
+  return (
+    <>
+      <h5 id="tab-msg">Your activities</h5>
+      {activityCard}
+    </>
+  );
 };
 
 const mapStateToProps = state => {

@@ -118,6 +118,9 @@ const TripsList = props => {
 
   return (
     <>
+      <div>
+        <h5 id="trips-column">Your Trips</h5>
+      </div>
       {viewList}
       {viewCard}
     </>

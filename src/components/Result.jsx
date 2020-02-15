@@ -89,7 +89,13 @@ const Result = props => {
     <>
       <div className="trip-section">
         <h1 className="result-title">
-          {props.days} days in {props.destination}
+          <div className="resultTitle">
+          <span id="result-title-number">{props.days}</span>
+            <div id="result-underline">
+              <span id="result-title-mid"> days in</span>
+              <span id="result-dest"> {props.destination}</span>
+            </div>
+          </div>
         </h1>
         <h5>Enjoy the {props.activityType}s!</h5>
         <Grid>
@@ -97,7 +103,7 @@ const Result = props => {
             <TripsList />
           </GridColumn>
           <GridColumn width={12}>
-            <div id="main2" className="centered">
+            <div id="main2" >
               <Tab panes={panes} />
             </div>
           </GridColumn>
