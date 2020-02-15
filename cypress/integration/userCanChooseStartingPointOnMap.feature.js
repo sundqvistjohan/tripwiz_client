@@ -1,6 +1,7 @@
 describe("Choose location by clicking on map", () => {
   it("successfully", () => {
     cy.visitWithMockGeolocation();
+    cy.login();
     cy.get('#scroll > .angle').click()
     cy.get("#embed-map-dest").within(() => {
       cy.get('button[title="Zoom out"]')

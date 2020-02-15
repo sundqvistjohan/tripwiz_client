@@ -8,6 +8,7 @@ describe("User", () => {
       nativeInputValueSetter.call($range[0], value);
       $range[0].dispatchEvent(new Event("change", { value, bubbles: true }));
     };
+    cy.login();
     cy.createTrip();
     cy.chooseActivityType();
     cy.route({

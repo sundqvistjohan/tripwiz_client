@@ -1,7 +1,7 @@
 import React from "react";
 import auth from "../modules/auth";
 import { connect } from "react-redux";
-import { Button } from 'semantic-ui-react'
+import { Button } from "semantic-ui-react";
 
 const Login = props => {
   const onLogin = event => {
@@ -29,19 +29,20 @@ const Login = props => {
         props.changeAuthMessage(error);
       });
   };
-  
+
   let loginFunction;
   switch (true) {
-    case props.displayLoginButton &&
-      !props.authenticated:
-      loginFunction = ( 
-      
-        <Button
-          id="login-button"
-          onClick={() => props.changeLoginButton(false)}
-        >
-          Login
-        </Button>
+    case props.displayLoginButton && !props.authenticated:
+      loginFunction = (
+        <>
+          <Button
+            id="login-button"
+            onClick={() => props.changeLoginButton(false)}
+          >
+            Login
+          </Button>
+
+        </>
       );
       break;
     case !props.displayLoginButton && !props.authenticated:
@@ -63,7 +64,7 @@ const Login = props => {
       loginFunction = (
         <>
           <span>{props.authMessage}</span>&nbsp;
-          <br/>
+          <br />
           <Button id="logout-link" to="/" onClick={onLogout}>
             Logout
           </Button>
@@ -73,33 +74,29 @@ const Login = props => {
     default:
       loginFunction = null;
   }
-  return (
-
-    <div id="login">{loginFunction}</div>
-
-  );
+  return <div id="login">{loginFunction}</div>;
 };
-  const mapStateToProps = state => ({
-    authenticated: state.authenticated,
-    userAttrs: state.userAttrs,
-    authMessage: state.authMessage,
-    displayLoginButton: state.displayLoginButton
-  });
-  const mapDispatchToProps = dispatch => {
-    return {
-      changeAuth: auth => {
-        dispatch({ type: "CHANGE_AUTHENTICATED", payload: auth });
-      },
-      changeAuthMessage: message => {
-        dispatch({ type: "CHANGE_AUTHMESSAGE", payload: message });
-      },
-      changeLoginButton: value => {
-        dispatch({ type: "CHANGE_LOGINBUTTON", payload: value });
-      },
-      setUserAttrs: userAttrs => {
-        dispatch({ type: "CHANGE_USER_ATTRIBUTES", payload: userAttrs });
-      }
+const mapStateToProps = state => ({
+  authenticated: state.authenticated,
+  userAttrs: state.userAttrs,
+  authMessage: state.authMessage,
+  displayLoginButton: state.displayLoginButton
+});
+const mapDispatchToProps = dispatch => {
+  return {
+    changeAuth: auth => {
+      dispatch({ type: "CHANGE_AUTHENTICATED", payload: auth });
+    },
+    changeAuthMessage: message => {
+      dispatch({ type: "CHANGE_AUTHMESSAGE", payload: message });
+    },
+    changeLoginButton: value => {
+      dispatch({ type: "CHANGE_LOGINBUTTON", payload: value });
+    },
+    setUserAttrs: userAttrs => {
+      dispatch({ type: "CHANGE_USER_ATTRIBUTES", payload: userAttrs });
     }
   };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
