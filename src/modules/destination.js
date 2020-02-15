@@ -67,7 +67,6 @@ const addHotels = async (budget, trip) => {
 };
 
 const addRestaurants = async (preference, budget, trip, preference2) => {
-  debugger
   try {
 
     const response = await axios({

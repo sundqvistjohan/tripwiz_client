@@ -19,7 +19,7 @@ const HotelsList = props => {
       props.setHotels(response);
       setGotHotelsData(true)
       if (response.data.length > 1) {
-      setHotelMessage(`We have ${response.data.length} hotels near your activities. Please add one to your itinerary!`)
+      setHotelMessage(`Here are the closest hotels to your activities. Please add one to your itinerary!`)
       } else {
       setHotelMessage(`Ok, we've added ${response.data[0].name} to your itinerary`)
       }
