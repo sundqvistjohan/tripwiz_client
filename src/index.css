@@ -392,7 +392,7 @@ button#up {
   display: inline-block;
 }
 
-#trip-headers {
+.trip-headers {
   opacity: 0.85;
 }
 
@@ -400,3 +400,4 @@ button#up {
   margin-top: -30px;
   margin-bottom: 20px; 
 }
+

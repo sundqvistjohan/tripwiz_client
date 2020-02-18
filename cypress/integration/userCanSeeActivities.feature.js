@@ -7,17 +7,11 @@ describe("User can see activities", () => {
   it("successfully", () => {
     cy.login();
     cy.createTrip();
-    cy.route({
-      method: "GET",
-      url: "http://localhost:3000/api/v1/activity_types**",
-      response: "fixture:3_activities_displayed.json",
-      status: 200
-    });
     cy.chooseActivityType();
     cy.chooseHotel();
     cy.chooseRestaurants();
     cy.get("a").contains("Activities").click();
-    cy.get('.stackable > :nth-child(1)').should('contain', 'Vasa Gallery')
+    cy.get('#root').should('contain', 'Vasa Gallery')
 
   });
 });

@@ -17,34 +17,34 @@ const TripsList = props => {
   const getTripsData = async () => {
     let response = await getTrips();
     if (response.status === 200) {
-      props.setSelectedCard(response.data[0]);
+      let response2 = await getTrip(response.data[0].id);
+      props.setSelectedCard(response2.data);
       props.setTrips(response.data);
       setGotTrips(true);
     }
   };
 
   const onClickHandler = async event => {
-    let pos = props.trips
-      .map(e => {
-        return e.id;
-      })
-      .indexOf(event);
-    props.setSelectedCard(props.trips[pos]);
+    let response = await getTrip(event);
+    props.setSelectedCard(response.data);
   };
 
   const onButtonHandler = async () => {
-    props.setTrip(props.selectedCard.id);
-    props.setLng(props.selectedCard.lng);
-    props.setLat(props.selectedCard.lat);
-    let response = await getActivities(props.selectedCard.id);
+    debugger
+    props.setTrip(props.selectedCard.trip.id);
+    props.setLng(props.selectedCard.trip.lng);
+    props.setLat(props.selectedCard.trip.lat);
+    props.setDays(props.selectedCard.trip.days);
+    props.setDestination(props.selectedCard.trip.destination);
+    let response = await getActivities(props.selectedCard.trip.id);
     if (response.status === 200) {
       props.setActivities(response.data);
     }
-    let response2 = await getRestaurants(props.selectedCard.id);
+    let response2 = await getRestaurants(props.selectedCard.trip.id);
     if (response2.status === 200) {
       props.setRestaurants(response2.data);
     }
-    let response3 = await getHotels(props.selectedCard.id);
+    let response3 = await getHotels(props.selectedCard.trip.id);
     if (response3.status === 200) {
       props.setHotels(response3.data);
     }
@@ -67,18 +67,41 @@ const TripsList = props => {
   const generateCard = () => {
     let tripCard;
     if (gotTrips && props.selectedCard) {
+      let tripParts = Object.keys(props.selectedCard);
+      let tripInfo = props.selectedCard[tripParts[0]];
+      let activityParts = Object.keys(props.selectedCard[tripParts[1]]);
+      let activityInfo = props.selectedCard[tripParts[1]][activityParts[0]];
+      let restaurantInfo = props.selectedCard[tripParts[1]][activityParts[1]];
+      let hotelInfo = props.selectedCard[tripParts[2]];
       tripCard = (
         <div key={props.selectedCard.id} className={`trip-header`}>
-          <div id="trip-cards" className="ui card">
+          <div id="trip-card" className="ui card">
             <div className="image">
               <img src="https://thumbnails.trvl-media.com/PUrr-BSAcHRWzkWDuOP2XTmK80I=/773x530/smart/filters:quality(60)/images.trvl-media.com/hotels/1000000/600000/598500/598487/30a71d36_z.jpg" />
             </div>
             <div className="content">
-              <div className="header">{props.selectedCard.destination}</div>
-              <div className="description"></div>
+              <div className="header">
+                {tripInfo.days} days in {tripInfo.destination}
+              </div>
+              <div className="description">
+                <p>
+                  Visiting {activityInfo.length} {activityParts[0]}
+                </p>
+                <p>
+                  Restaurants:{" "}
+                  {restaurantInfo[restaurantInfo.length - 1].rating}+
+                </p>
+                <p>
+                  {hotelInfo.length > 1
+                    ? "No hotel selected"
+                    : `${hotelInfo[0].name} ${hotelInfo[0].price}`}
+                </p>
+              </div>
             </div>
             <div className="extra content">
-              <Button onClick={onButtonHandler}>View trip</Button>
+              <Button color="blue" onClick={onButtonHandler}>
+                View trip
+              </Button>
             </div>
           </div>
         </div>
@@ -87,20 +110,16 @@ const TripsList = props => {
     setViewCard(tripCard);
   };
 
-  const generateTripList = trips => {
+  const generateTripList = () => {
     let tripHeaders;
-    if (gotTrips && props.trips) {
-      let filteredList = props.trips.filter(
-        trip => trip.id !== props.selectedCard.id
-      );
+    if (gotTrips && props.trips && props.selectedCard) {
+      debugger
+      let filteredList = props.trips.filter(trip => trip.id !== props.selectedCard.trip.id)
+      debugger
       tripHeaders = filteredList.map(trip => {
         return (
-          <div key={trip.id} className={`trip-header`}>
-            <div
-              id="trip-headers"
-              onClick={() => onClickHandler(trip.id)}
-              className="ui card"
-            >
+          <div key={trip.id} className="trip-headers">
+            <div onClick={() => onClickHandler(trip.id)} className="ui card">
               <div className="content">
                 <div className="header">
                   <h5>
@@ -161,6 +180,12 @@ const mapDispatchToProps = dispatch => {
     },
     setHotels: data => {
       dispatch({ type: "SET_HOTELS", payload: data });
+    },
+    setDestination: dest => {
+      dispatch({ type: "SET_DEST", payload: dest });
+    },
+    setDays: days => {
+      dispatch({ type: "SET_DAYS", payload: days });
     }
   };
 };
