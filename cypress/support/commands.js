@@ -57,8 +57,8 @@ Cypress.Commands.add("chooseActivityType", () => {
   });
   cy.route({
     method: "GET",
-    url: "http://localhost:3000/api/v1/trips/1",
-    response: "fixture:showcard_response.json",
+    url: "http://localhost:3000/api/v1/activity_types**",
+    response: "fixture:3_activities_displayed.json",
     status: 200
   });
   cy.get(".activities > :nth-child(3)")
@@ -80,6 +80,11 @@ Cypress.Commands.add("chooseHotel", () => {
     method: "POST",
     url: "http://localhost:3000/api/v1/hotels**",
     response: "fixture:inputDest.json"
+  });
+  cy.route({
+    method: "GET",
+    url: "http://localhost:3000/api/v1/hotels**",
+    response: "fixture:hotels_list_shown.json"
   });
   const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
     window.HTMLInputElement.prototype,

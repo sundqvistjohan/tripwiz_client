@@ -25,18 +25,16 @@ const TripsList = props => {
   };
 
   const onClickHandler = async event => {
-    let pos = props.trips
-      .map(e => {
-        return e.id;
-      })
-      .indexOf(event);
-    props.setSelectedCard(props.trips[pos]);
+    let response = await getTrip(event);
+    props.setSelectedCard(response.data);
   };
 
   const onButtonHandler = async () => {
     props.setTrip(props.selectedCard.id);
     props.setLng(props.selectedCard.lng);
     props.setLat(props.selectedCard.lat);
+    props.setDays(props.selectedCard.days);
+    props.setDestination(props.selectedCard.destination);
     let response = await getActivities(props.selectedCard.id);
     if (response.status === 200) {
       props.setActivities(response.data);
@@ -74,10 +72,9 @@ const TripsList = props => {
       let activityInfo = props.selectedCard[tripParts[1]][activityParts[0]];
       let restaurantInfo = props.selectedCard[tripParts[1]][activityParts[1]];
       let hotelInfo = props.selectedCard[tripParts[2]];
-      debugger;
       tripCard = (
         <div key={props.selectedCard.id} className={`trip-header`}>
-          <div id="trip-cards" className="ui card">
+          <div id="trip-card" className="ui card">
             <div className="image">
               <img src="https://thumbnails.trvl-media.com/PUrr-BSAcHRWzkWDuOP2XTmK80I=/773x530/smart/filters:quality(60)/images.trvl-media.com/hotels/1000000/600000/598500/598487/30a71d36_z.jpg" />
             </div>
@@ -101,7 +98,9 @@ const TripsList = props => {
               </div>
             </div>
             <div className="extra content">
-              <Button onClick={onButtonHandler}>View trip</Button>
+              <Button color="blue" onClick={onButtonHandler}>
+                View trip
+              </Button>
             </div>
           </div>
         </div>
@@ -112,18 +111,14 @@ const TripsList = props => {
 
   const generateTripList = () => {
     let tripHeaders;
-    if (gotTrips && props.trips) {
+    if (gotTrips && props.trips && props.selectedCard) {
       let filteredList = props.trips.filter(
         trip => trip.id !== props.selectedCard.id
       );
       tripHeaders = filteredList.map(trip => {
         return (
-          <div key={trip.id} className={`trip-header`}>
-            <div
-              id="trip-headers"
-              onClick={() => onClickHandler(trip.id)}
-              className="ui card"
-            >
+          <div key={trip.id} className="trip-headers">
+            <div onClick={() => onClickHandler(trip.id)} className="ui card">
               <div className="content">
                 <div className="header">
                   <h5>
@@ -184,6 +179,12 @@ const mapDispatchToProps = dispatch => {
     },
     setHotels: data => {
       dispatch({ type: "SET_HOTELS", payload: data });
+    },
+    setDestination: dest => {
+      dispatch({ type: "SET_DEST", payload: dest });
+    },
+    setDays: days => {
+      dispatch({ type: "SET_DAYS", payload: days });
     }
   };
 };
