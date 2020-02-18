@@ -30,20 +30,21 @@ const TripsList = props => {
   };
 
   const onButtonHandler = async () => {
-    props.setTrip(props.selectedCard.id);
-    props.setLng(props.selectedCard.lng);
-    props.setLat(props.selectedCard.lat);
-    props.setDays(props.selectedCard.days);
-    props.setDestination(props.selectedCard.destination);
-    let response = await getActivities(props.selectedCard.id);
+    debugger
+    props.setTrip(props.selectedCard.trip.id);
+    props.setLng(props.selectedCard.trip.lng);
+    props.setLat(props.selectedCard.trip.lat);
+    props.setDays(props.selectedCard.trip.days);
+    props.setDestination(props.selectedCard.trip.destination);
+    let response = await getActivities(props.selectedCard.trip.id);
     if (response.status === 200) {
       props.setActivities(response.data);
     }
-    let response2 = await getRestaurants(props.selectedCard.id);
+    let response2 = await getRestaurants(props.selectedCard.trip.id);
     if (response2.status === 200) {
       props.setRestaurants(response2.data);
     }
-    let response3 = await getHotels(props.selectedCard.id);
+    let response3 = await getHotels(props.selectedCard.trip.id);
     if (response3.status === 200) {
       props.setHotels(response3.data);
     }
@@ -112,9 +113,9 @@ const TripsList = props => {
   const generateTripList = () => {
     let tripHeaders;
     if (gotTrips && props.trips && props.selectedCard) {
-      let filteredList = props.trips.filter(
-        trip => trip.id !== props.selectedCard.id
-      );
+      debugger
+      let filteredList = props.trips.filter(trip => trip.id !== props.selectedCard.trip.id)
+      debugger
       tripHeaders = filteredList.map(trip => {
         return (
           <div key={trip.id} className="trip-headers">
