@@ -17,7 +17,8 @@ const TripsList = props => {
   const getTripsData = async () => {
     let response = await getTrips();
     if (response.status === 200) {
-      props.setSelectedCard(response.data[0]);
+      let response2 = await getTrip(response.data[0].id);
+      props.setSelectedCard(response2.data);
       props.setTrips(response.data);
       setGotTrips(true);
     }
@@ -67,6 +68,13 @@ const TripsList = props => {
   const generateCard = () => {
     let tripCard;
     if (gotTrips && props.selectedCard) {
+      let tripParts = Object.keys(props.selectedCard);
+      let tripInfo = props.selectedCard[tripParts[0]];
+      let activityParts = Object.keys(props.selectedCard[tripParts[1]]);
+      let activityInfo = props.selectedCard[tripParts[1]][activityParts[0]];
+      let restaurantInfo = props.selectedCard[tripParts[1]][activityParts[1]];
+      let hotelInfo = props.selectedCard[tripParts[2]];
+      debugger;
       tripCard = (
         <div key={props.selectedCard.id} className={`trip-header`}>
           <div id="trip-cards" className="ui card">
@@ -74,8 +82,23 @@ const TripsList = props => {
               <img src="https://thumbnails.trvl-media.com/PUrr-BSAcHRWzkWDuOP2XTmK80I=/773x530/smart/filters:quality(60)/images.trvl-media.com/hotels/1000000/600000/598500/598487/30a71d36_z.jpg" />
             </div>
             <div className="content">
-              <div className="header">{props.selectedCard.destination}</div>
-              <div className="description"></div>
+              <div className="header">
+                {tripInfo.days} days in {tripInfo.destination}
+              </div>
+              <div className="description">
+                <p>
+                  Visiting {activityInfo.length} {activityParts[0]}
+                </p>
+                <p>
+                  Restaurants:{" "}
+                  {restaurantInfo[restaurantInfo.length - 1].rating}+
+                </p>
+                <p>
+                  {hotelInfo.length > 1
+                    ? "No hotel selected"
+                    : `${hotelInfo[0].name} ${hotelInfo[0].price}`}
+                </p>
+              </div>
             </div>
             <div className="extra content">
               <Button onClick={onButtonHandler}>View trip</Button>
@@ -87,7 +110,7 @@ const TripsList = props => {
     setViewCard(tripCard);
   };
 
-  const generateTripList = trips => {
+  const generateTripList = () => {
     let tripHeaders;
     if (gotTrips && props.trips) {
       let filteredList = props.trips.filter(
