@@ -18,7 +18,8 @@ const TripsList = props => {
     let response = await getTrips();
     if (response.status === 200) {
       let response2 = await getTrip(response.data[0].id);
-      props.setSelectedCard(response2.data);
+      props.setSelectedCard(response2.data)
+      debugger;
       props.setTrips(response.data);
       setGotTrips(true);
     }
@@ -26,11 +27,11 @@ const TripsList = props => {
 
   const onClickHandler = async event => {
     let response = await getTrip(event);
+    debugger
     props.setSelectedCard(response.data);
   };
 
   const onButtonHandler = async () => {
-    debugger
     props.setTrip(props.selectedCard.trip.id);
     props.setLng(props.selectedCard.trip.lng);
     props.setLat(props.selectedCard.trip.lat);
@@ -64,7 +65,7 @@ const TripsList = props => {
     generateTripList(props.trips);
   }, [props.selectedCard]);
 
-  const generateCard = () => {
+  const generateCard = async () => {
     let tripCard;
     if (gotTrips && props.selectedCard) {
       let tripParts = Object.keys(props.selectedCard);
@@ -73,11 +74,12 @@ const TripsList = props => {
       let activityInfo = props.selectedCard[tripParts[1]][activityParts[0]];
       let restaurantInfo = props.selectedCard[tripParts[1]][activityParts[1]];
       let hotelInfo = props.selectedCard[tripParts[2]];
+      debugger
       tripCard = (
         <div key={props.selectedCard.id} className={`trip-header`}>
           <div id="trip-card" className="ui card">
             <div className="image">
-              <img src="https://thumbnails.trvl-media.com/PUrr-BSAcHRWzkWDuOP2XTmK80I=/773x530/smart/filters:quality(60)/images.trvl-media.com/hotels/1000000/600000/598500/598487/30a71d36_z.jpg" />
+              <img src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${props.selectedCard.image}&sensor=false&maxwidth=400&key=${process.env.REACT_APP_GOOGLE_APIKEY}`} />
             </div>
             <div className="content">
               <div className="header">
@@ -113,9 +115,7 @@ const TripsList = props => {
   const generateTripList = () => {
     let tripHeaders;
     if (gotTrips && props.trips && props.selectedCard) {
-      debugger
       let filteredList = props.trips.filter(trip => trip.id !== props.selectedCard.trip.id)
-      debugger
       tripHeaders = filteredList.map(trip => {
         return (
           <div key={trip.id} className="trip-headers">
