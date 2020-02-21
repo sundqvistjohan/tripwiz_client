@@ -1,14 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Tab, Grid, GridColumn } from "semantic-ui-react";
+import { Tab, Grid, GridColumn, Button } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
-import { getActivities, getTrips, getRestaurants, getHotels } from "../modules/destination.js";
+import {
+  getActivities,
+  getTrips,
+  getRestaurants,
+  getHotels
+} from "../modules/destination.js";
 import ActivitiesList from "./ActivitiesList";
 import RestaurantsList from "./RestaurantsList";
 import HotelsList from "./HotelsList";
 import TripsList from "./TripsList";
+import { Redirect } from "react-router";
 
 const Result = props => {
+  const [redirect, setRedirect] = useState(false);
+
   const panes = [
     {
       menuItem: "Map",
@@ -61,8 +69,17 @@ const Result = props => {
   const getTripsData = async () => {
     let response = await getTrips();
     if (response.status === 200) {
-      props.setTrips(response.data)
+      props.setTrips(response.data);
     }
+  };
+
+  const createTripHandler = async () => {
+    if (props.authenticated) {
+      props.updateProgression(0)
+    } else {
+      props.updateProgression(-1)
+    }
+    setRedirect(true)
   };
 
   const setHotels = async () => {
@@ -72,24 +89,25 @@ const Result = props => {
 
   useEffect(() => {
     setActivities();
-    setRestaurants()
-    setHotels()
-    getTripsData()
+    setRestaurants();
+    setHotels();
+    getTripsData();
   }, [props.trip]);
 
   useEffect(() => {
     setActivities();
-    setRestaurants()
-    setHotels()
-    getTripsData()
+    setRestaurants();
+    setHotels();
+    getTripsData();
   }, []);
 
   return (
     <>
+      {redirect === true && <Redirect to="/trip" />}
       <div className="trip-section">
         <h1 className="result-title">
           <div className="resultTitle">
-          <span id="result-title-number">{props.days}</span>
+            <span id="result-title-number">{props.days}</span>
             <div id="result-underline">
               <span id="result-title-mid"> days in</span>
               <span id="result-dest"> {props.destination}</span>
@@ -97,12 +115,13 @@ const Result = props => {
           </div>
         </h1>
         <h5>Enjoy the {props.activityType}s!</h5>
+        <Button id="create-trip-button" onClick={createTripHandler}>Create new trip!</Button>
         <Grid>
           <GridColumn width={4}>
             <TripsList />
           </GridColumn>
           <GridColumn width={12}>
-            <div id="main2" >
+            <div id="main2">
               <Tab panes={panes} />
             </div>
           </GridColumn>
@@ -119,7 +138,9 @@ const mapStateToProps = state => {
     activities: state.activities,
     days: state.days,
     activityType: state.activityType,
-    restaurants: state.restaurants
+    restaurants: state.restaurants,
+    progression: state.progression,
+    authenticated: state.activities
   };
 };
 
@@ -139,6 +160,9 @@ const mapDispatchToProps = dispatch => {
     },
     setHotels: data => {
       dispatch({ type: "SET_HOTELS", payload: data });
+    },
+    updateProgression: value => {
+      dispatch({ type: "UPDATE_PROGRESSION", payload: value });
     }
   };
 };

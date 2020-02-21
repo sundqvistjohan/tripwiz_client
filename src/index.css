@@ -401,3 +401,20 @@ button#up {
   margin-bottom: 20px; 
 }
 
+#create-trip-button {
+  margin-left: 70%;
+  display: inline-block;
+  margin-bottom: 0;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: rgba(32, 178, 171, 0.603);
+  padding: 8px 12px;
+  font-size: 1.4rem;
+  border-radius: 3px;
+  border: 1px solid darkgrey;
+  text-decoration: none;
+  user-select: none;
+  color: white;
+}
+

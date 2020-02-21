@@ -45,6 +45,7 @@ const Trip = props => {
   };
 
   const findRestaurants = async () => {
+    debugger
     if (foodBudget && foodPreference) {
       let response = await addRestaurants(
         foodPreference,
@@ -139,7 +140,7 @@ const Trip = props => {
           <Button id="find-restaurants" onClick={findRestaurants}>
             Find Restaurants
           </Button>
-          {redirect === true && <Redirect to="/result" />}
+          {redirect === true && <Redirect to="/" />}
         </div>
       </div>
     </>
