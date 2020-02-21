@@ -22,12 +22,12 @@ const Trip = props => {
     { key: 6, value: "fine dining", text: "Fine dining" },
     { key: 7, value: "indian", text: "Indian" },
     { key: 8, value: "carribean", text: "Carribean" },
-    { key: 9, value: "everything", text: "Everything!" }
+    { key: 9, value: "", text: "Everything!" }
   ];
   const secondCuisines = (userChoice, cuisines) => {
     let newArray = [];
     for (var i = 0; i < cuisines.length; i++) {
-      if (cuisines[i].value !== userChoice) {
+      if (cuisines[i].value !== userChoice || cuisines[i].value !== "") {
         newArray.push(cuisines[i]);
       }
     }
