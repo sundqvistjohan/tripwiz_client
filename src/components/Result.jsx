@@ -74,7 +74,7 @@ const Result = props => {
   };
 
   const createTripHandler = async () => {
-    if (props.authenticated) {
+    if (props.authenticated === true) {
       props.updateProgression(0)
     } else {
       props.updateProgression(-1)
