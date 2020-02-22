@@ -1,6 +1,6 @@
 # TripWiz Client
 
-TripWiz is a trip planner, mainly for city get-aways, where a suggested itinerary is provided to you based on a few of your preferences. User authentication is through facebook login, and the client interface is built on React with redux, while the backend is Rails with various google and amedeus API's attached.
+TripWiz is a trip planner, mainly for city get-aways, that provides the user with a custom itinerary based on selected data. User authentication through Facebook, and the client interface is built with React, while the backend is built in Rails.
 
 ## Deployed Site
 https://tripwiz.netlify.com/
@@ -18,13 +18,19 @@ https://tripwiz.netlify.com/
 #### Clone repository
 ```
 $ git clone https://github.com/EevanR/tripwiz_client.git
+```
+or
+```
+$ git clone https://github.com/mantanquzzmo/tripwiz_client
+```
+```
 $ cd tripwiz_client
 ```
 
 #### Install dependencies
 Install Cypress and dependencies
 ```
-$ yarn
+$ yarn install
 ```
 Install Cypress Testing
 ```
@@ -45,8 +51,8 @@ Head to the deployed address listed above, or your local host with frontend runn
 ## Updates/Improvement plans
 - Monetization through subscriptions and Stripe payments
 - Your trips saved to your account
-- suggestions for most booked destinations
-- hotel and flight booking through amadeus
+- Suggestions for most booked destinations
+- Hotel and flight booking through amadeus-api
 
 ## License
 Created under the <a href="https://en.wikipedia.org/wiki/MIT_License">MIT License</a>.

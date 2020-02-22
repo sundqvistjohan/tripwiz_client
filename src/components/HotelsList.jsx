@@ -6,7 +6,6 @@ import { Button } from "semantic-ui-react";
 import { chooseHotel } from "../modules/destination.js";
 
 const HotelsList = props => {
-  const [gotHotelsData, setGotHotelsData] = useState(false);
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
   const [activeMarker, setActiveMarker] = useState({});
   const [selectedPlaces, setSelectedPlaces] = useState({});
@@ -59,7 +58,7 @@ const HotelsList = props => {
               <div id="price-box">
                 Deals from {hotel.price} {hotel.currency} / Night
               </div>
-              {props.hotels.length != 1 && (
+              {props.hotels.length !== 1 && (
                 <Button onClick={() => selectHotel(hotel.id, hotel.name)}>
                   Add to Itinerary
                 </Button>

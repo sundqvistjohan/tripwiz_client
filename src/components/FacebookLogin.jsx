@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { FacebookProvider, Login } from "react-facebook";
 import { Button, Icon } from "semantic-ui-react";
 import axios from "axios";
+import { Redirect } from "react-router";
 
 const FacebookLogin = props => {
+  const [redirect, setRedirect] = useState(false);
 
   if (localStorage.getItem("J-sunkAuth-Storage")) {
-    let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"))
-    if (headers['access-token'] === "test") {
+    let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
+    if (headers["access-token"] === "test") {
       props.updateProgression(props.progression + 1);
     }
   }
@@ -41,20 +43,36 @@ const FacebookLogin = props => {
   };
 
   return (
+    <>
     <div className="center-screen">
-      <h2 style={{ paddingBottom: "40px" }}>In order to get started...</h2>
+      {redirect === true && <Redirect to="/" />}
+      <h2 style={{ paddingBottom: "40px" }}>To create a trip:</h2>
       <FacebookProvider appId="175176387099386">
         <Login scope="email" onCompleted={handleResponse}>
           {({ loading, handleClick, data }) => (
-            <Button id="login-button" size="massive" color="facebook" onClick={handleClick}>
+            <Button
+              id="login-button"
+              size="massive"
+              color="facebook"
+              onClick={handleClick}
+            >
               <Icon name="facebook" />
               {!loading && `Login with Facebook`}
               {loading && `Loading...`}
             </Button>
           )}
         </Login>
+      
       </FacebookProvider>
     </div>
+      <Button
+      id="return-button"
+      size="large"
+      color="grey"
+      onClick={() => setRedirect(true)}
+    > Return
+</Button>
+</>
   );
 };
 

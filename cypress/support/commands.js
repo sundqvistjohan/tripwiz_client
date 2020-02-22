@@ -55,6 +55,12 @@ Cypress.Commands.add("chooseActivityType", () => {
     response: "fixture:trips_response.json",
     status: 200
   });
+  cy.route({
+    method: "GET",
+    url: "http://localhost:3000/api/v1/activity_types**",
+    response: "fixture:3_activities_displayed.json",
+    status: 200
+  });
   cy.get(".activities > :nth-child(3)")
     .first()
     .click();
@@ -74,6 +80,11 @@ Cypress.Commands.add("chooseHotel", () => {
     method: "POST",
     url: "http://localhost:3000/api/v1/hotels**",
     response: "fixture:inputDest.json"
+  });
+  cy.route({
+    method: "GET",
+    url: "http://localhost:3000/api/v1/hotels**",
+    response: "fixture:hotels_list_shown.json"
   });
   const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
     window.HTMLInputElement.prototype,
@@ -112,7 +123,7 @@ Cypress.Commands.add("chooseRestaurants", () => {
 Cypress.Commands.add("login", () => {
   cy.server();
   cy.window().then(win => win.localStorage.setItem('J-sunkAuth-Storage', JSON.stringify({"access-token":"test","cache-control":"max-age=0, private, must-revalidate","client":"AnhjYMEU01hUInQIYhAUQg","content-type":"application/json; charset=utf-8","token-type":"Bearer","expiry":1582910341,"uid":"10158128379853993"})))
-  cy.visit("/");
+  cy.visit("/trip");
   cy.route({
     method: "GET",
     url: "v3.1/me?access_token*",

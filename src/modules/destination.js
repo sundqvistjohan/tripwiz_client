@@ -75,7 +75,6 @@ const addHotels = async (budget, trip) => {
 const addRestaurants = async (preference, budget, trip, preference2) => {
   let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
-
     const response = await axios({
       method: "POST",
       url: "api/v1/activity_types",
@@ -127,7 +126,6 @@ const getHotels = async trip => {
   }
 };
 
-
 const getRestaurants = async trip => {
   let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
@@ -135,8 +133,8 @@ const getRestaurants = async trip => {
       url: "api/v1/activity_types",
       method: "GET",
       params: { trip: trip, activity_type: "restaurant" },
-      headers: headers 
-    });   
+      headers: headers
+    });
     return response;
   } catch (error) {
     return error;
@@ -190,11 +188,13 @@ const getTrips = async () => {
   }
 };
 
-const getTrip = async (id) => {
+const getTrip = async id => {
+  let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
     const response = await axios({
       url: `api/v1/trips/${id}`,
-      method: "GET"
+      method: "GET",
+      headers: headers
     });
     return response;
   } catch (error) {

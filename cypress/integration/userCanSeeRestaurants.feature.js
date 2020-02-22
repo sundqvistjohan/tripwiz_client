@@ -23,6 +23,6 @@ describe("User can see restaurants", () => {
     });
     cy.chooseRestaurants();
     cy.get("a").contains("Restaurants").click();
-    cy.get('#root').should('contain', 'Valentyne')
+    cy.get('#root').should('contain', 'Vasa Restaurant')
   });
 });
