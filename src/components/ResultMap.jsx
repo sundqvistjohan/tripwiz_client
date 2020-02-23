@@ -51,7 +51,7 @@ const ResultMap = props => {
             onClick={onMarkerClick}
             position={{ lat: hotel.lat, lng: hotel.lng }}
             icon={{
-              url: `/mapIcons/casino.png`,
+              url: `/mapIcons/hotel.png`,
               scaledSize: new props.google.maps.Size(40, 40)
             }}
           />
