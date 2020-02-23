@@ -45,7 +45,6 @@ const Trip = props => {
   };
 
   const findRestaurants = async () => {
-    debugger
     if (foodBudget && foodPreference) {
       let response = await addRestaurants(
         foodPreference,
