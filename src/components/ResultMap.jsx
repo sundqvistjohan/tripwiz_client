@@ -42,6 +42,25 @@ const ResultMap = props => {
     });
   }
 
+  if (props.hotels) {
+      marker = props.hotels.map(hotel => {
+        return (
+          <Marker
+            key={hotel.id}
+            name={hotel.name}
+            onClick={onMarkerClick}
+            position={{ lat: hotel.lat, lng: hotel.lng }}
+            icon={{
+              url: `/mapIcons/casino.png`,
+              scaledSize: new props.google.maps.Size(40, 40)
+            }}
+          />
+        );
+      });
+      activityMarkers.push(marker);
+    };
+  
+
   return (
     <>
       <h3 id="divider">Your Map</h3>
@@ -71,7 +90,8 @@ const mapStateToProps = state => {
     trip: state.trip,
     lat: state.lat,
     lng: state.lng,
-    activities: state.activities
+    activities: state.activities,
+    hotels: state.hotels
   };
 };
 
