@@ -8,7 +8,6 @@ import FacebookLogin from "./FacebookLogin";
 
 const Trip = props => {
   let currentView;
-
   switch (true) {
     case props.progression === -1:
       currentView = <FacebookLogin />;

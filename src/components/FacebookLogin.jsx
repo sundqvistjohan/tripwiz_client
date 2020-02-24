@@ -9,6 +9,10 @@ const FacebookLogin = props => {
   const [redirect, setRedirect] = useState(false);
 
   if (localStorage.getItem("J-sunkAuth-Storage")) {
+    props.updateProgression(props.progression + 1)
+  }
+
+  if (localStorage.getItem("J-sunkAuth-Storage")) {
     let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
     if (headers["access-token"] === "test") {
       props.updateProgression(props.progression + 1);
@@ -22,6 +26,7 @@ const FacebookLogin = props => {
       provider: "facebook"
     });
     if (response.status === 200) {
+      props.setCurrentUser(data.profile)
       props.changeAuth(true);
       setSession(response.data, response.headers);
       props.updateProgression(props.progression + 1);
@@ -62,7 +67,6 @@ const FacebookLogin = props => {
             </Button>
           )}
         </Login>
-      
       </FacebookProvider>
     </div>
       <Button
@@ -78,7 +82,8 @@ const FacebookLogin = props => {
 
 const mapStateToProps = state => {
   return {
-    progression: state.progression
+    progression: state.progression,
+    current_user: state.current_user
   };
 };
 
@@ -89,6 +94,9 @@ const mapDispatchToProps = dispatch => {
     },
     updateProgression: value => {
       dispatch({ type: "UPDATE_PROGRESSION", payload: value });
+    },
+    setCurrentUser: data => {
+      dispatch({ type: "SET_CURRENTUSER", payload: data });
     }
   };
 };

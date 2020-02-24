@@ -178,6 +178,10 @@ Button {
   display: none;
 }
 
+#main::-webkit-scrollbar { 
+  display: none;
+}
+
 div#activity-cards.ui.card {
   min-height: 450px;
   max-height: 450px;
@@ -219,7 +223,7 @@ header {
   padding-left: 2%;
   padding-top: 10px;
   color: white;
-  float: left;
+  display: inline-flex;
 }
 
 #progression-num {
@@ -379,7 +383,6 @@ button#up {
 
 #result-dest {
   font: 1.5em "Museo 700";
-  /* text-transform: uppercase; */
   letter-spacing: 0;
   display: inline-flex;
 }
@@ -418,3 +421,8 @@ button#up {
   color: white;
 }
 
+.header-right {
+  right: 0;
+  top: 0;
+  float: right;
+}
