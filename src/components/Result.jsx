@@ -16,6 +16,7 @@ import { Redirect } from "react-router";
 
 const Result = props => {
   const [redirect, setRedirect] = useState(false);
+  const [loading, setLoading] = useState("hidden");
 
   const panes = [
     {
@@ -75,11 +76,11 @@ const Result = props => {
 
   const createTripHandler = async () => {
     if (props.authenticated === true) {
-      props.updateProgression(0)
+      props.updateProgression(0);
     } else {
-      props.updateProgression(-1)
+      props.updateProgression(-1);
     }
-    setRedirect(true)
+    setRedirect(true);
   };
 
   const setHotels = async () => {
@@ -92,6 +93,8 @@ const Result = props => {
     setRestaurants();
     setHotels();
     getTripsData();
+    if (props.selectedCard) {
+      setLoading("visible")}
   }, [props.trip]);
 
   useEffect(() => {
@@ -107,15 +110,17 @@ const Result = props => {
       <div className="trip-section">
         <h1 className="result-title">
           <div className="resultTitle">
-            <span id="result-title-number">{props.days}</span>
+            <span id="result-title-number" style={{visibility: loading}}>{props.days}</span>
             <div id="result-underline">
-              <span id="result-title-mid"> days in</span>
+              <span id="result-title-mid" style={{visibility: loading}}> days in</span>
               <span id="result-dest"> {props.destination}</span>
             </div>
           </div>
         </h1>
-        <h5>Enjoy the {props.activityType}s!</h5>
-        <Button id="create-trip-button" onClick={createTripHandler}>Create new trip!</Button>
+        <h5 style={{visibility: loading}}>Enjoy the {props.activityType}s!</h5>
+        <Button id="create-trip-button" onClick={createTripHandler}>
+          Create new trip!
+        </Button>
         <Grid>
           <GridColumn width={4}>
             <TripsList />
@@ -140,7 +145,8 @@ const mapStateToProps = state => {
     activityType: state.activityType,
     restaurants: state.restaurants,
     progression: state.progression,
-    authenticated: state.activities
+    authenticated: state.activities,
+    selectedCard: state.selectedCard
   };
 };
 
