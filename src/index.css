@@ -219,11 +219,16 @@ div#activity-cards.ui.card {
 header {
   width: 100%;
   height: 40px;
-  padding-left: 2%;
-  padding-right: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
   padding-top: 10px;
   color: rgb(82, 80, 80);
   display: inline-flex;
+}
+
+header h5 {
+  padding-top: 5px;
+  margin-right: 10px;
 }
 
 .ui.inverted.menu {

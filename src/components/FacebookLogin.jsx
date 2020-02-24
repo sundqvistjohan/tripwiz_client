@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { FacebookProvider, Login } from "react-facebook";
+import { FacebookProvider, Login  } from "react-facebook";
 import { Button, Icon } from "semantic-ui-react";
 import axios from "axios";
 import { Redirect } from "react-router";
