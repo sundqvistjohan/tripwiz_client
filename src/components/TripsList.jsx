@@ -17,7 +17,7 @@ const TripsList = props => {
   const getTripsData = async () => {
     let response = await getTrips();
     if (response.status === 200) {
-      let response2 = await getTrip(response.data[0].id);
+      let response2 = await getTrip(response.data[response.data.length - 1].id);
       props.setSelectedCard(response2.data);
       props.setTrips(response.data);
       setGotTrips(true);
@@ -36,7 +36,7 @@ const TripsList = props => {
       props.setLat(props.selectedCard.trip.lat);
       props.setDays(props.selectedCard.trip.days);
       props.setDestination(props.selectedCard.trip.destination);
-      props.setActivityType(Object.keys(props.selectedCard.activity)[0])
+      props.setActivityType(Object.keys(props.selectedCard.activity)[0]);
       let response = await getActivities(props.selectedCard.trip.id);
       if (response.status === 200) {
         props.setActivities(response.data);
@@ -59,7 +59,7 @@ const TripsList = props => {
   useEffect(() => {
     generateCard(props.selectedCard);
     generateTripList(props.trips);
-    onButtonHandler()
+    onButtonHandler();
   }, [gotTrips]);
 
   useEffect(() => {
@@ -142,9 +142,7 @@ const TripsList = props => {
 
   return (
     <>
-      <div>
-        {viewCard && <h5 id="trips-column">Previous Trips</h5>}
-      </div>
+      <div>{viewCard && <h5 id="trips-column">Previous Trips</h5>}</div>
       {viewList}
       {viewCard}
     </>
