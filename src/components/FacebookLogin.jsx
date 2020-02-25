@@ -9,11 +9,7 @@ const FacebookLogin = props => {
   const [redirect, setRedirect] = useState(false);
 
   if (localStorage.getItem("J-sunkAuth-Storage")) {
-    let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
     props.updateProgression(props.progression + 1)
-    if (headers["access-token"] === "test") {
-      props.updateProgression(props.progression + 1);
-    }
   }
 
   const handleResponse = async data => {
