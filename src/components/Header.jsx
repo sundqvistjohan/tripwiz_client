@@ -16,7 +16,7 @@ const Header = props => {
       loggedIn = (
         <>
           <h5>Logged in as
-            <span style={{ color: '#4267b2' }}> {props.current_user.name}</span>
+            <span style={{ color: '#4267b2' }}> {props.currentUser.name}</span>
           </h5>
           <Button
             id="logout-button"
@@ -67,7 +67,7 @@ const Header = props => {
 const mapStateToProps = state => {
   return {
     progression: state.progression,
-    current_user: state.current_user,
+    currentUser: state.currentUser,
     authenticated: state.authenticated
   };
 };

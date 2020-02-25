@@ -17,11 +17,7 @@ https://tripwiz.netlify.com/
 ## To run locally
 #### Clone repository
 ```
-$ git clone https://github.com/EevanR/tripwiz_client.git
-```
-or
-```
-$ git clone https://github.com/mantanquzzmo/tripwiz_client
+$ git clone https://github.com/CraftAcademy/tripwiz_client.git
 ```
 ```
 $ cd tripwiz_client

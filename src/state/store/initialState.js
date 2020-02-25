@@ -19,6 +19,6 @@ const initialState = {
   selectedCard: null,
   trips: null,
   restaurants: null,
-  current_user: null
+  currentUser: null
 };
 export default initialState;
