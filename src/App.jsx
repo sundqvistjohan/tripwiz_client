@@ -4,11 +4,13 @@ import { connect } from "react-redux";
 import Result from "./components/Result.jsx"
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import EmbedMap from "./components/EmbedMap";
+import Header from "./components/Header"
 
 const App = (props) => {
 	
 	return (
 		<>
+			<Header />
 			<BrowserRouter>
 				<Switch>
           <Route exact path="/" component={Result} />
@@ -27,7 +29,6 @@ const mapStateToProps = state => {
 		progression: state.progression
 	};
 };
-
 
 export default connect(
 	mapStateToProps)(App);

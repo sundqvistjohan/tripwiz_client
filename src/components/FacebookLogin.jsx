@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { FacebookProvider, Login } from "react-facebook";
+import { FacebookProvider, Login  } from "react-facebook";
 import { Button, Icon } from "semantic-ui-react";
 import axios from "axios";
 import { Redirect } from "react-router";
@@ -9,10 +9,7 @@ const FacebookLogin = props => {
   const [redirect, setRedirect] = useState(false);
 
   if (localStorage.getItem("J-sunkAuth-Storage")) {
-    let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
-    if (headers["access-token"] === "test") {
-      props.updateProgression(props.progression + 1);
-    }
+    props.updateProgression(props.progression + 1)
   }
 
   const handleResponse = async data => {
@@ -22,6 +19,7 @@ const FacebookLogin = props => {
       provider: "facebook"
     });
     if (response.status === 200) {
+      props.setCurrentUser(data.profile)
       props.changeAuth(true);
       setSession(response.data, response.headers);
       props.updateProgression(props.progression + 1);
@@ -62,7 +60,6 @@ const FacebookLogin = props => {
             </Button>
           )}
         </Login>
-      
       </FacebookProvider>
     </div>
       <Button
@@ -78,7 +75,8 @@ const FacebookLogin = props => {
 
 const mapStateToProps = state => {
   return {
-    progression: state.progression
+    progression: state.progression,
+    currentUser: state.currentUser
   };
 };
 
@@ -89,6 +87,9 @@ const mapDispatchToProps = dispatch => {
     },
     updateProgression: value => {
       dispatch({ type: "UPDATE_PROGRESSION", payload: value });
+    },
+    setCurrentUser: data => {
+      dispatch({ type: "SET_CURRENTUSER", payload: data });
     }
   };
 };
