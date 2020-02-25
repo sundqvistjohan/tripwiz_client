@@ -110,7 +110,7 @@ const rootReducer = (state = initialState, action) => {
     case "SET_CURRENTUSER":
       return {
         ...state,
-        current_user: action.payload
+        currentUser: action.payload
       };
     default:
       return {

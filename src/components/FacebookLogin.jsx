@@ -7,13 +7,10 @@ import { Redirect } from "react-router";
 
 const FacebookLogin = props => {
   const [redirect, setRedirect] = useState(false);
-
-  if (localStorage.getItem("J-sunkAuth-Storage")) {
-    props.updateProgression(props.progression + 1)
-  }
-
+  
   if (localStorage.getItem("J-sunkAuth-Storage")) {
     let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
+    props.updateProgression(props.progression + 1);
     if (headers["access-token"] === "test") {
       props.updateProgression(props.progression + 1);
     }
@@ -83,7 +80,7 @@ const FacebookLogin = props => {
 const mapStateToProps = state => {
   return {
     progression: state.progression,
-    current_user: state.current_user
+    currentUser: state.currentUser
   };
 };
 
