@@ -429,3 +429,7 @@ button#up {
   user-select: none;
   color: white;
 }
+
+.landing {
+  background-color: burlywood;
+}
