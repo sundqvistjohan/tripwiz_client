@@ -1,0 +1,37 @@
+{
+  "data": {
+    "trip": {
+      "id": 9,
+      "destination": "Tokyo",
+      "lat": "35.6803997",
+      "lng": "139.7690174",
+      "created_at": "2020-02-25T17:18:23.415Z",
+      "updated_at": "2020-02-25T17:18:23.415Z",
+      "days": 3,
+      "user_id": 1
+    },
+    "activity": {
+      "night_club": "Array(2)"
+    },
+    "hotels": [
+      {
+        "id": 23,
+        "name": "Four Seasons Tokyo Marunouchi",
+        "lat": 35.67799,
+        "lng": 139.76705,
+        "price": "98870",
+        "address": "PACIFIC CENTURY PLACE MARUNOUCHI",
+        "url": "http://multimediarepository.amadeus.com/cmr/retrieve/hotel/660F897A8B524B16AC53F3584B127FDC",
+        "created_at": "2020-02-25T17:18:34.061Z",
+        "updated_at": "2020-02-25T17:18:34.061Z",
+        "trip_id": 9,
+        "rating": 5,
+        "currency": "JPY",
+        "description": "ROOM RATE ↵Deluxe Room 1 King Tokyo Station View 3-6 Fl. Wall To Ceiling ↵Windows. Full Marble Bathroom Soaking Tub. Separate Shower. Wc.",
+      }
+    ],
+    "image": "CmRaAAAAPdoMxNDXvAwF_T5kzI_LoyJPo2BfN6Geb0AcKV6cZF1Rv8rTw1GGIg15-5_d3RGO0Vb0RAra9p5xwYLD9igk4PRKbsSZJezjFXkvciHt5A-6ZLwudEyB9aPLbU4iMRR9EhBOkb1keUJBBEf96qFYUdosGhQ84deLoAGrhLbTlTaLuSnLiVOsPA"
+  },
+  "status": 200,
+  "statusText": "OK"
+}

@@ -50,11 +50,11 @@ const Header = props => {
     <>
       <header className="ui fixed inverted menu">
         <div className="inner">
-          <a href="/"><h5>
+          <a href="/"><h3>
             <span style={{ color: 'rgb(82, 80, 80)' }}>
-              TripWIZ
+              TripWiz
             </span>
-          </h5></a>
+          </h3></a>
         </div>
         <div className="right menu">
           {loggedIn}

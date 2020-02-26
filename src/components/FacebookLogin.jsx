@@ -42,7 +42,7 @@ const FacebookLogin = props => {
 
   return (
     <>
-      <div className="center-screen">
+      <div className="fb-login">
         {redirect === true && <Redirect to="/" />}
         <h2 style={{ paddingBottom: "40px" }}>To create a trip:</h2>
         <FacebookProvider appId="175176387099386">

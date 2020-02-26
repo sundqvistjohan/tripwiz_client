@@ -431,5 +431,131 @@ button#up {
 }
 
 .landing {
-  background-color: burlywood;
+  text-align: center;
+  background-color: white;
+  height: 100%;
+  margin-top: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+  padding-bottom: 8%;
+  color: rgb(65, 63, 63);
+}
+
+.fb-login {
+  /* width: 30%; */
+}
+
+.hero {
+  margin-top: 8%;
+  width: 100%;
+  display: inline-block;
+  color: rgb(65, 63, 63);
+}
+
+.greeting {
+  margin-top: 8%;
+  width: 30%;
+  float: left;
+  margin-left: 15%;
+}
+
+.login {
+  text-align: center;
+  margin-left: 55%;
+  width: 30%;
+  padding: 3%;
+  background-color: #fbfbfbe0;
+  border-radius: 25px 25px 25px 25px;
+  min-height: 420px;
+  max-height: 420px;
+  color: rgb(65, 63, 63);
+}
+
+.image-landing {
+  border: none;
+  height: 210px;
+}
+
+.landing-cards {
+  height: 300px;
+  max-width: 250px;
+  margin-bottom: 2%;
+}
+
+.description-landing {
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: 20px;
+  min-height: 20px;
+  font-size: 13px;
+}
+
+.description-landing::-webkit-scrollbar { 
+  display: none;
+}
+
+.landing-img {
+  width: 220px;
+  min-height: 210px;
+  max-height: 210px;
+}
+
+div#landing-grid.ui.stackable.four.column.grid {
+  top: 0!important;
+  min-height: 400px;
+  margin-bottom: -3%;
+}
+
+.ui.card, .ui.cards>.card {
+  box-shadow: none;
+}
+
+div#land.header {
+  color: rgb(65, 63, 63);
+}
+
+.grid-container {
+  text-align: left;
+  display: grid;
+  grid-template-rows: 460px 460px 460px;
+  grid-gap: 10px;
+}
+
+.grid-rows {
+  width: 100%;
+  display: inline-block;
+}
+
+.left {
+  float: left;
+}
+
+.right-top-bottom {
+  margin-top: 16%;
+  text-align: right;
+  width: 40%;
+  float: right;
+  padding-bottom: 20px;
+  border-bottom: 1px solid orange;
+}
+
+.left-mid {
+  text-align: left;
+  margin-top: 16%;
+  float: left;
+  width: 40%;
+  padding-bottom: 20px;
+  border-bottom: 1px solid orange;
+}
+
+.right-mid {
+  float: right;
+}
+
+.landing-footer {
+  padding: 40px;
+  text-align: right;
+  height: 100px;
+  background-color: rgb(204, 198, 198);
 }
