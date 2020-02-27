@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { Button, Icon } from "semantic-ui-react";
 
 const Header = props => {
 
   const logout = () => {
-    localStorage.removeItem("J-sunkAuth-Storage");
-    props.updateProgression(-1);
     props.changeAuth(false);
+    localStorage.removeItem("J-sunkAuth-Storage");
+    props.setLogout(true)
+    props.updateProgression(-1);
   }
 
   let loggedIn;
@@ -28,7 +29,7 @@ const Header = props => {
         </>
       );
       break;
-    case !props.authenticated && localStorage.getItem("J-sunkAuth-Storage") !== null:
+    case !props.authenticated && localStorage.getItem("J-sunkAuth-Storage") !== null || props.logout === false:
       loggedIn = (
         <>
           <h5>Logged in with
@@ -46,11 +47,17 @@ const Header = props => {
       break;
   }
 
+  useEffect(() => {
+    if (localStorage.getItem("J-sunkAuth-Storage") == null ) {
+      props.setLogout(true)
+    } 
+  }, []);
+
   return (
     <>
       <header className="ui fixed inverted menu">
         <div className="inner">
-          <a href="/"><h3>
+          <a href="/landing"><h3>
             <span style={{ color: 'rgb(82, 80, 80)' }}>
               TripWiz
             </span>
@@ -68,7 +75,9 @@ const mapStateToProps = state => {
   return {
     progression: state.progression,
     currentUser: state.currentUser,
-    authenticated: state.authenticated
+    authenticated: state.authenticated,
+    currentRoute: state.currentRoute,
+    logout: state.logout
   };
 };
 
@@ -79,6 +88,12 @@ const mapDispatchToProps = dispatch => {
     },
     updateProgression: value => {
       dispatch({ type: "UPDATE_PROGRESSION", payload: value });
+    },
+    setCurrentRoute: route => {
+      dispatch({ type: "SET_CURRENROUTE", payload: route });
+    },
+    setLogout: value => {
+      dispatch({ type: "SET_LOGOUT", payload: value });
     }
   };
 };

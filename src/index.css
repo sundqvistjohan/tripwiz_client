@@ -127,7 +127,7 @@ div#hotel-cards.ui.card {
   -webkit-box-pack: center;
   justify-content: center;
   min-height: 570px;
-  padding: 2%;
+  /* padding: 2%; */
 }
 
 .centerText {
@@ -209,7 +209,6 @@ div#activity-cards.ui.card {
   background-color: #fbfbfbe0;
   border-radius: 25px 25px 25px 25px;
   min-height: 650px;
-  max-height: 757px;
   max-width: 1440px;
   margin-bottom: 2%;
   overflow: scroll;
@@ -325,13 +324,16 @@ button#up {
 }
 
 .result-title {
+  text-align: center;
   padding-top: 5%;
   font-size: 50px;
   font-weight: 600;
   color: rgba(29, 29, 29, 0.719);
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  margin-right: 25%;
-  margin-left: 25%;
+  margin-right: 5%;
+  margin-left: 5%;
+  display: inline-block;
+  width: 90%;
 }
 
 .ui.grid {
@@ -372,10 +374,9 @@ button#up {
 }
 
 #result-title-number {
-  margin-top: 20px;
-  font-size: 3.1em;
-  float: left;
-  line-height: .52em;
+  margin-top: 40px;
+  font-size: 3.5em;
+  line-height: 1em;
   position: relative;
   z-index: 1;
   color: rgba(29, 29, 29, 0.719);
@@ -384,28 +385,19 @@ button#up {
 
 #result-title-mid {
   font-size: 25px;
-  margin-left: 8px;
-  float: left;
   letter-spacing: 0;
   color: rgba(214, 162, 83, 0.719);
 }
 
 #result-dest {
-  font: 1.5em "Museo 700";
-  letter-spacing: 0;
+  margin-left: 10px;
+  font: 2.5em "Museo 700";
+  letter-spacing: 3px;
   display: inline-flex;
 }
 
 #result-underline{
   margin-left: 20px;
-}
-
-.resultTitle {
-  display: inline-block;
-}
-
-.trip-headers {
-  opacity: 0.85;
 }
 
 #trips-column {
@@ -414,17 +406,17 @@ button#up {
 }
 
 #create-trip-button {
-  margin-left: 70%;
+  margin-left: 86%;
   display: inline-block;
   margin-bottom: 0;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  background-color: rgba(32, 178, 171, 0.603);
+  background-color: rgba(32, 178, 171, 0.466);
   padding: 8px 12px;
   font-size: 1.4rem;
   border-radius: 3px;
-  border: 1px solid darkgrey;
+  /* border: 1px solid darkgrey; */
   text-decoration: none;
   user-select: none;
   color: white;
@@ -444,6 +436,10 @@ button#up {
 
 .fb-login {
   /* width: 30%; */
+}
+
+#return-button {
+  margin-top: 30px;
 }
 
 .hero {
@@ -507,7 +503,7 @@ div#landing-grid.ui.stackable.four.column.grid {
   margin-bottom: -3%;
 }
 
-.ui.card, .ui.cards>.card {
+div#land-card.ui.card {
   box-shadow: none;
 }
 
@@ -518,7 +514,7 @@ div#land.header {
 .grid-container {
   text-align: left;
   display: grid;
-  grid-template-rows: 460px 460px 460px;
+  grid-template-rows: 34% 34% 34%;
   grid-gap: 10px;
 }
 
@@ -529,6 +525,7 @@ div#land.header {
 
 .left {
   float: left;
+  max-width: 56%;
 }
 
 .right-top-bottom {
@@ -551,6 +548,7 @@ div#land.header {
 
 .right-mid {
   float: right;
+  max-width: 56%;
 }
 
 .landing-footer {
@@ -558,4 +556,22 @@ div#land.header {
   text-align: right;
   height: 100px;
   background-color: rgb(204, 198, 198);
+}
+
+.screenshots {
+  padding-top: 35px;
+  max-width: 100%;
+}
+
+#create-trip-button-landing {
+  display: inline-block;
+  margin-bottom: 0;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgba(32, 178, 171, 0.603);
+  padding: 15px 20%;
+  font-size: 2rem;
+  border-radius: 3px;
+  user-select: none;
+  color: white;
 }

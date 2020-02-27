@@ -7,6 +7,11 @@ import Destination from "./Destination";
 import FacebookLogin from "./FacebookLogin";
 
 const Trip = props => {
+
+  if (localStorage.getItem("J-sunkAuth-Storage")) {
+    props.updateProgression(0)
+  }
+
   let currentView;
   switch (true) {
     case props.progression === -1:
@@ -50,4 +55,15 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Trip);
+const mapDispatchToProps = dispatch => {
+  return {
+    updateProgression: value => {
+      dispatch({ type: "UPDATE_PROGRESSION", payload: value });
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  )(Trip);

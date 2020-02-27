@@ -40,7 +40,7 @@ const Landing = () => {
     tripCards = images.map( trip => {
       return (
         <div className="landing-cards">
-          <div key={trip.id} className="ui card">
+          <div id="land-card" key={trip.id} className="ui card">
             <div className="image-landing">
               <img className="landing-img"
                 // src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${trip.data.image}&sensor=false&maxwidth=400&key=${process.env.REACT_APP_GOOGLE_APIKEY}`}
@@ -63,21 +63,21 @@ const Landing = () => {
     <>
       <div className="hero">
         <div className="greeting">
-          <h1>"Welcome to TripWiz"</h1>
+          <h1>Welcome to TripWiz.</h1>
           <br />
-          <h3>Some sentence about TripWiz maybe.</h3>
+          <h3>"Get there, and we'll show you around"</h3>
         </div>
         <div className="login"><FacebookLogin /></div>
       </div>
       <div className="landing">
-        <h3>Our Popular Destinations!</h3>
+        <h3>Popular Destinations!</h3>
         <div id="landing-grid" className="ui stackable four column grid">
           {tripCards}
         </div>
         <div className="grid-container">
           <div>
             <div className="left">
-              <img style={{height: 450, paddingTop: 35}} src="../screenshots/fullmap.png" alt="Map"/>
+              <img className="screenshots" src="../screenshots/fullmap.png" alt="Map"/>
             </div>
             <div className="right-top-bottom">
               <h3>Your hotels, activities, restaurants, based on your preferences, all conveniently placed on your map.</h3>
@@ -88,12 +88,12 @@ const Landing = () => {
               <h3>Here you have options... We make the suggestions, you make the final decision.</h3>
             </div>
             <div className="right-mid">
-              <img style={{height: 450, paddingTop: 35}} src="../screenshots/hotels.png" alt="Map"/>
+              <img className="screenshots" src="../screenshots/hotels.png" alt="Map"/>
             </div>
           </div>
           <div>
             <div className="left">
-              <img style={{height: 450, paddingTop: 35}} src="../screenshots/activities.png" alt="Map"/>
+              <img className="screenshots" src="../screenshots/activities.png" alt="Map"/>
             </div>
             <div className="right-top-bottom">
               <h3>Review each part of your custom itinerary, at any time, on your dashboard.</h3>

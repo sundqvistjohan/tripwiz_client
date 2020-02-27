@@ -108,15 +108,11 @@ const Result = props => {
     <>
       {redirect === true && <Redirect to="/trip" />}
       <div className="trip-section">
-        <h1 className="result-title">
-          <div className="resultTitle">
-            <span id="result-title-number" style={{visibility: loading}}>{props.days}</span>
-            <div id="result-underline">
-              <span id="result-title-mid" style={{visibility: loading}}> days in</span>
-              <span id="result-dest"> {props.destination}</span>
-            </div>
-          </div>
-        </h1>
+        <div className="result-title">
+          <span id="result-title-number" style={{visibility: loading}}>{props.days}</span>
+          <span id="result-title-mid" style={{visibility: loading}}> days in</span>
+          <span id="result-dest"> {props.destination}</span>
+        </div>
         <h5 style={{visibility: loading}}>Enjoy the {props.activityType}s!</h5>
         <Button id="create-trip-button" onClick={createTripHandler}>
           Create new trip!
