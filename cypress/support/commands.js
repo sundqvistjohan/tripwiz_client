@@ -6,7 +6,7 @@ Cypress.Commands.add(
         return cb({ coords: { latitude, longitude } });
       });
     };
-    cy.visit("/", {
+    cy.visit("/trip", {
       onBeforeLoad: win => {
         mockGeolocation(win, latitude, longitude);
       }
