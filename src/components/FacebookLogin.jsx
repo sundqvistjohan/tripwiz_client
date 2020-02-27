@@ -8,7 +8,7 @@ import { Redirect } from "react-router";
 const FacebookLogin = props => {
   const [redirect, setRedirect] = useState(false);
   const [redirectToTrip, setRedirectToTrip] = useState(false);
-  const [local, setLocal] = useState(false);
+  const [localStorageExists, setlocalStorageExists] = useState(false);
 
   const handleResponse = async data => {
     const response = await axios.post("/auth", {
@@ -54,14 +54,14 @@ const FacebookLogin = props => {
 
   useEffect(() => {
     if (localStorage.getItem("J-sunkAuth-Storage")) {
-      setLocal(true)
+      setlocalStorageExists(true)
       props.updateProgression(0)
     } 
   }, []);
 
   useEffect(() => {
     if (props.logout === true) {
-    setLocal(false)
+      setlocalStorageExists(false)
     }
   }, [props.logout]);
 
@@ -77,7 +77,7 @@ const FacebookLogin = props => {
         {redirect === true && <Redirect to="/result" />}
         {redirectToTrip === true && <Redirect to="/trip" />}
         <h2 style={{ paddingBottom: "40px" }}>To create a trip:</h2>
-        {local === false ? (
+        {localStorageExists === false ? (
           <FacebookProvider appId="175176387099386">
             <Login scope="email" onCompleted={handleResponse}>
               {({ loading, handleClick, data }) => (

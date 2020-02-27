@@ -15,12 +15,12 @@ const Landing = (props) => {
   };
   
   const getTripImage = () => { 
-    let stuff = []
+    let imageData = []
     viewList.forEach( async (element) => {
       let image = await getTrip(element.id)
-      stuff.push(image)
-      if (stuff.length === 5) {
-        setImages(stuff)
+      imageData.push(image)
+      if (imageData.length === 5) {
+        setImages(imageData)
       }
     })
   }
