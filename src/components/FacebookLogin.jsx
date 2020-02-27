@@ -105,7 +105,7 @@ const FacebookLogin = props => {
         size="large"
         color="grey"
         onClick={() => setRedirect(true)}
-      > To Dashboard
+      > Dashboard
       </Button>
     </>
   );
