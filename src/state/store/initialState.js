@@ -20,7 +20,7 @@ const initialState = {
   trips: null,
   restaurants: null,
   currentUser: null,
-  currentRoute: "",
+  currentRoute: "landing",
   logout: false
 };
 export default initialState;

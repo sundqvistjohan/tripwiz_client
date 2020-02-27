@@ -26,7 +26,7 @@ const Landing = (props) => {
   }
 
   useEffect(() => {
-    props.setCurrentRoute("landing")
+    props.updateProgression(-1)
     getTripsData();
   }, []);
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Restaurants from "./Restaurants";
 import Hotels from "./Hotels";
@@ -29,6 +29,10 @@ const Trip = props => {
       currentView = <Destination />;
   }
 
+  useEffect(() => {
+    props.setCurrentRoute("trip");
+  }, [])
+
   return (
     <>
       <div className="trip-section">
@@ -55,6 +59,9 @@ const mapDispatchToProps = dispatch => {
   return {
     updateProgression: value => {
       dispatch({ type: "UPDATE_PROGRESSION", payload: value });
+    },
+    setCurrentRoute: route => {
+      dispatch({ type: "SET_CURRENROUTE", payload: route });
     }
   };
 };

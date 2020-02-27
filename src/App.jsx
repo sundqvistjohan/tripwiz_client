@@ -15,7 +15,7 @@ const App = (props) => {
 			<BrowserRouter>
 				<Switch>
           <Route exact path="/result" component={Result} />
-          <Route exact path="/trip" component={Trip} />
+          <Route exact path="/trip" component={Trip}  />
 					<Route exact path="/" component={Landing} />
         </Switch>
 				{props.progression === 0 && (
@@ -28,7 +28,8 @@ const App = (props) => {
 
 const mapStateToProps = state => {
 	return {
-		progression: state.progression
+		progression: state.progression,
+		currentRoute: state.currentRoute
 	};
 };
 

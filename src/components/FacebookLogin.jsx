@@ -20,11 +20,12 @@ const FacebookLogin = props => {
       if (props.currentRoute === "landing") {
         props.setCurrentUser(data.profile)
         props.changeAuth(true);
-        setSession(response.data, response.headers);
         props.setCurrentRoute("trip")
+        setSession(response.data, response.headers);
         setRedirectToTrip(true)
       } else {
         props.setCurrentUser(data.profile)
+        props.setCurrentRoute("trip")
         props.changeAuth(true);
         setSession(response.data, response.headers);
         props.updateProgression(props.progression + 1);
@@ -47,6 +48,7 @@ const FacebookLogin = props => {
   };
 
   const createTripHandler = async () => {
+    props.setCurrentRoute("trip")
     setRedirectToTrip(true)
   };
 
@@ -62,6 +64,12 @@ const FacebookLogin = props => {
     setLocal(false)
     }
   }, [props.logout]);
+
+  useEffect(() => {
+    if (props.authenticated === true) {
+    props.updateProgression(0)
+    }
+  }, [props.authenticated]);
 
   return (
     <>
