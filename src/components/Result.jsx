@@ -23,7 +23,13 @@ const Result = props => {
       menuItem: "Map",
       render: () => (
         <Tab.Pane>
-          {props.activities ? <ResultMap /> : "Loading..."}
+          {props.activities && props.activities !== {} ? (
+            <ResultMap />
+          ) : (
+            <Button id="create-trip-button-loading" onClick={createTripHandler}>
+              Create new trip!
+            </Button>
+          )}
         </Tab.Pane>
       )
     },
@@ -56,6 +62,7 @@ const Result = props => {
       )
     }
   ];
+  debugger;
 
   const setActivities = async () => {
     let response = await getActivities(props.trip);
@@ -94,7 +101,8 @@ const Result = props => {
     setHotels();
     getTripsData();
     if (props.selectedCard) {
-      setLoading("visible")}
+      setLoading("visible");
+    }
   }, [props.trip]);
 
   useEffect(() => {
@@ -109,11 +117,18 @@ const Result = props => {
       {redirect === true && <Redirect to="/trip" />}
       <div className="trip-section">
         <div className="result-title">
-          <span id="result-title-number" style={{visibility: loading}}>{props.days}</span>
-          <span id="result-title-mid" style={{visibility: loading}}> days in</span>
+          <span id="result-title-number" style={{ visibility: loading }}>
+            {props.days}
+          </span>
+          <span id="result-title-mid" style={{ visibility: loading }}>
+            {" "}
+            days in
+          </span>
           <span id="result-dest"> {props.destination}</span>
         </div>
-        <h5 style={{visibility: loading}}>Enjoy the {props.activityType}s!</h5>
+        <h5 style={{ visibility: loading }}>
+          Enjoy the {props.activityType}s!
+        </h5>
         <Button id="create-trip-button" onClick={createTripHandler}>
           Create new trip!
         </Button>

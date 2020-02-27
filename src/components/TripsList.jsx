@@ -4,7 +4,8 @@ import {
   getActivities,
   getRestaurants,
   getHotels,
-  getTrip
+  getTrip,
+  objectEraser
 } from "../modules/destination.js";
 import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
@@ -16,7 +17,7 @@ const TripsList = props => {
 
   const getTripsData = async () => {
     let response = await getTrips();
-    if (response.status === 200) {
+    if (response.status === 200 && response.data.length > 0) {
       let response2 = await getTrip(response.data[response.data.length - 1].id);
       props.setSelectedCard(response2.data);
       props.setTrips(response.data);
@@ -76,8 +77,9 @@ const TripsList = props => {
       let activityInfo = props.selectedCard[tripParts[1]][activityParts[0]];
       let restaurantInfo = props.selectedCard[tripParts[1]][activityParts[1]];
       let hotelInfo = props.selectedCard[tripParts[2]];
+      debugger
       tripCard = (
-        <div key={props.selectedCard.id} className={`trip-header`}>
+        <div key={props.selectedCard.trip.id} className={`trip-header`}>
           <div id="trip-card" className="ui card">
             <div className="image">
               <img
@@ -107,6 +109,18 @@ const TripsList = props => {
               <Button color="blue" onClick={onButtonHandler}>
                 View trip
               </Button>
+              <button
+                id="remove-btn"
+                class="circular ui right floated red icon button"
+                onClick={async () => {
+                  await objectEraser("trips", props.selectedCard.trip.id);
+                  props.setSelectedCard(null)
+                  props.activities({})
+                  getTripsData();
+                }}
+              >
+                <i id="remove-btn-image" class="trash alternate outline icon"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -118,6 +132,7 @@ const TripsList = props => {
   const generateTripList = () => {
     let tripHeaders;
     if (gotTrips && props.trips && props.selectedCard) {
+      debugger;
       let filteredList = props.trips.filter(
         trip => trip.id !== props.selectedCard.trip.id
       );
@@ -142,7 +157,7 @@ const TripsList = props => {
 
   return (
     <>
-      <div>{viewCard && <h5 id="trips-column">Veiw Previous Trips</h5>}</div>
+      <div>{viewCard && <h5 id="trips-column">View Previous Trips</h5>}</div>
       {viewList}
       {viewCard}
     </>
