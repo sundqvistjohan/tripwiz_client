@@ -14,9 +14,9 @@ const App = (props) => {
 			<Header />
 			<BrowserRouter>
 				<Switch>
-          <Route exact path="/" component={Result} />
+          <Route exact path="/result" component={Result} />
           <Route exact path="/trip" component={Trip} />
-					<Route exact path="/landing" component={Landing} />
+					<Route exact path="/" component={Landing} />
         </Switch>
 				{props.progression === 0 && (
 					<EmbedMap />

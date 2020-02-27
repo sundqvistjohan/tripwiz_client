@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import FacebookLogin from "./FacebookLogin"
 import { getTrips, getTrip } from "../modules/destination.js";
+import { connect } from "react-redux";
 
-const Landing = () => {
+const Landing = (props) => {
   const [viewList, setViewList] = useState(null);
   const [images, setImages] = useState([]);
 
@@ -25,6 +26,7 @@ const Landing = () => {
   }
 
   useEffect(() => {
+    props.setCurrentRoute("landing")
     getTripsData();
   }, []);
 
@@ -108,4 +110,25 @@ const Landing = () => {
   )
 }
 
-export default Landing;
+const mapStateToProps = state => {
+  return {
+    currentRoute: state.currentRoute,
+    progression: state.progression
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setCurrentRoute: route => {
+      dispatch({ type: "SET_CURRENROUTE", payload: route });
+    },
+    updateProgression: value => {
+      dispatch({ type: "UPDATE_PROGRESSION", payload: value });
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  )(Landing);

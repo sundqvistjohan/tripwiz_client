@@ -47,17 +47,13 @@ const FacebookLogin = props => {
   };
 
   const createTripHandler = async () => {
-    if (props.authenticated === true) {
-      props.updateProgression(0);
-    } else {
-      props.updateProgression(-1);
-    }
-    setRedirect(true);
+    setRedirectToTrip(true)
   };
 
   useEffect(() => {
     if (localStorage.getItem("J-sunkAuth-Storage")) {
       setLocal(true)
+      props.updateProgression(0)
     } 
   }, []);
 
@@ -70,7 +66,7 @@ const FacebookLogin = props => {
   return (
     <>
       <div className="fb-login">
-        {redirect === true && <Redirect to="/" />}
+        {redirect === true && <Redirect to="/result" />}
         {redirectToTrip === true && <Redirect to="/trip" />}
         <h2 style={{ paddingBottom: "40px" }}>To create a trip:</h2>
         {local === false ? (

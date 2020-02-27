@@ -1,7 +1,7 @@
 describe("User can see restaurants", () => {
   beforeEach(() => {
     cy.server();
-    cy.visit("/landing");
+    cy.visit("/");
   });
 
   it("successfully", () => {

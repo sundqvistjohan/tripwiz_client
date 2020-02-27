@@ -8,10 +8,6 @@ import FacebookLogin from "./FacebookLogin";
 
 const Trip = props => {
 
-  if (localStorage.getItem("J-sunkAuth-Storage")) {
-    props.updateProgression(0)
-  }
-
   let currentView;
   switch (true) {
     case props.progression === -1:
