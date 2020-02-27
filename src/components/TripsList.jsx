@@ -142,7 +142,7 @@ const TripsList = props => {
 
   return (
     <>
-      <div>{viewCard && <h5 id="trips-column">Previous Trips</h5>}</div>
+      <div>{viewCard && <h5 id="trips-column">Veiw Previous Trips</h5>}</div>
       {viewList}
       {viewCard}
     </>

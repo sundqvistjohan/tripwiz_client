@@ -23,7 +23,7 @@ const Result = props => {
       menuItem: "Map",
       render: () => (
         <Tab.Pane>
-          <ResultMap />
+          {props.activities ? <ResultMap /> : "Loading..."}
         </Tab.Pane>
       )
     },
