@@ -1,7 +1,7 @@
 describe("User can see side cards", () => {
   beforeEach(() => {
     cy.server();
-    cy.visit("/result");
+    cy.visit("/trip");
   });
 
   it("successfully", () => {

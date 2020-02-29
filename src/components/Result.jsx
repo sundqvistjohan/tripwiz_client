@@ -101,8 +101,10 @@ const Result = props => {
     getTripsData();
     if (props.selectedCard) {
       setLoading("visible");
+    } else {
+      setLoading("hidden");
     }
-  }, [props.trip]);
+  }, [props.selectedCard]);
 
   useEffect(() => {
     setActivities();
