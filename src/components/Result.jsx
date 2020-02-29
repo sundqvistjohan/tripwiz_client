@@ -62,7 +62,6 @@ const Result = props => {
       )
     }
   ];
-  debugger;
 
   const setActivities = async () => {
     let response = await getActivities(props.trip);

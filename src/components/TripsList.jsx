@@ -77,7 +77,6 @@ const TripsList = props => {
       let activityInfo = props.selectedCard[tripParts[1]][activityParts[0]];
       let restaurantInfo = props.selectedCard[tripParts[1]][activityParts[1]];
       let hotelInfo = props.selectedCard[tripParts[2]];
-      debugger
       tripCard = (
         <div key={props.selectedCard.trip.id} className={`trip-header`}>
           <div id="trip-card" className="ui card">
@@ -115,7 +114,7 @@ const TripsList = props => {
                 onClick={async () => {
                   await objectEraser("trips", props.selectedCard.trip.id);
                   props.setSelectedCard(null)
-                  props.activities({})
+                  props.setActivities({})
                   getTripsData();
                 }}
               >
@@ -132,7 +131,6 @@ const TripsList = props => {
   const generateTripList = () => {
     let tripHeaders;
     if (gotTrips && props.trips && props.selectedCard) {
-      debugger;
       let filteredList = props.trips.filter(
         trip => trip.id !== props.selectedCard.trip.id
       );
