@@ -29,5 +29,6 @@ describe("User can see side cards", () => {
       response: "fixture:showcard_response_deleted.json",
       status: 200
     });
+    cy.get('#root').should('contain', 'St Petersburg')
   });
 });
