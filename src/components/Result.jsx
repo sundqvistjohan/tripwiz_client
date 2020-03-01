@@ -23,7 +23,7 @@ const Result = props => {
       menuItem: "Map",
       render: () => (
         <Tab.Pane>
-          {props.activities && props.activities === {} ? (
+          {props.activities && props.activities !== {} ? (
             <ResultMap />
           ) : (
             <Button id="create-trip-button-loading" onClick={createTripHandler}>
@@ -65,7 +65,11 @@ const Result = props => {
 
   const setActivities = async () => {
     let response = await getActivities(props.trip);
-    props.setActivities(response.data);
+    if (Object.keys(response.data).length !== 0) {
+      props.setActivities(response.data);
+    } else {
+      props.setActivities(null);
+    }
   };
 
   const setRestaurants = async () => {
@@ -125,7 +129,10 @@ const Result = props => {
             {" "}
             days in
           </span>
-          <span id="result-dest" style={{ visibility: loading }}> {props.destination}</span>
+          <span id="result-dest" style={{ visibility: loading }}>
+            {" "}
+            {props.destination}
+          </span>
         </div>
         <h5 style={{ visibility: loading }}>
           Enjoy the {props.activityType}s!

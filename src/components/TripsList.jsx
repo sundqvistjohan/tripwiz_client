@@ -56,7 +56,7 @@ const TripsList = props => {
   const onDeleteHandler = async () => {
       await objectEraser("trips", props.selectedCard.trip.id);
       props.setSelectedCard(null)
-      props.setActivities({})
+      props.setActivities(null)
       setGotTrips(false)
       getTripsData();
   }
