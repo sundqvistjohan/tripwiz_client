@@ -53,6 +53,14 @@ const TripsList = props => {
     }
   };
 
+  const onDeleteHandler = async () => {
+      await objectEraser("trips", props.selectedCard.trip.id);
+      props.setSelectedCard(null)
+      props.setActivities({})
+      setGotTrips(false)
+      getTripsData();
+  }
+
   useEffect(() => {
     getTripsData();
   }, []);
@@ -111,12 +119,7 @@ const TripsList = props => {
               <button
                 id="remove-btn"
                 class="circular ui right floated red icon button"
-                onClick={async () => {
-                  await objectEraser("trips", props.selectedCard.trip.id);
-                  props.setSelectedCard(null)
-                  props.setActivities({})
-                  getTripsData();
-                }}
+                onClick={onDeleteHandler}
               >
                 <i id="remove-btn-image" class="trash alternate outline icon"></i>
               </button>

@@ -125,7 +125,7 @@ const Result = props => {
             {" "}
             days in
           </span>
-          <span id="result-dest"> {props.destination}</span>
+          <span id="result-dest" style={{ visibility: loading }}> {props.destination}</span>
         </div>
         <h5 style={{ visibility: loading }}>
           Enjoy the {props.activityType}s!
