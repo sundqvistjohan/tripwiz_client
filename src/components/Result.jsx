@@ -17,13 +17,14 @@ import { Redirect } from "react-router";
 const Result = props => {
   const [redirect, setRedirect] = useState(false);
   const [loading, setLoading] = useState("hidden");
+  debugger
 
   const panes = [
     {
       menuItem: "Map",
       render: () => (
         <Tab.Pane>
-          {props.activities && props.activities !== {} ? (
+          {props.activities && props.activities === {} ? (
             <ResultMap />
           ) : (
             <Button id="create-trip-button-loading" onClick={createTripHandler}>
@@ -66,6 +67,7 @@ const Result = props => {
   const setActivities = async () => {
     let response = await getActivities(props.trip);
     props.setActivities(response.data);
+    debugger
   };
 
   const setRestaurants = async () => {
