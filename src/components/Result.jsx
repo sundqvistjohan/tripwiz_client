@@ -26,9 +26,7 @@ const Result = props => {
           {props.activities && props.activities !== {} ? (
             <ResultMap />
           ) : (
-            <Button id="create-trip-button-loading" onClick={createTripHandler}>
-              Create new trip!
-            </Button>
+            <Redirect to="/trip" />
           )}
         </Tab.Pane>
       )
