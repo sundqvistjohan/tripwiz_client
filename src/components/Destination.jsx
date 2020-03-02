@@ -50,6 +50,7 @@ const Destination = props => {
         props.setTrip(response.data.id);
         props.setMessage("");
         props.updateProgression(props.progression + 1);
+        setAlert("");
       } else {
         props.setMessage("Something went wrong.");
       }

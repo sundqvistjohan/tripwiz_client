@@ -55,6 +55,7 @@ const Trip = props => {
       if (response.status === 200) {
         props.setMessage("Trip succesfully created!");
         setRedirect(true);
+        setRestaurantsMessage("");
       } else {
         setRestaurantsMessage(
           "Couldn't find restaurants. Try some other food."
@@ -129,6 +130,7 @@ const Trip = props => {
             onClick={async () => {
               await objectEraser("hotels", props.trip);
               props.updateProgression(props.progression - 1);
+              setRestaurantsMessage("");
             }}
           >
             <Button.Content visible>Back one step</Button.Content>
