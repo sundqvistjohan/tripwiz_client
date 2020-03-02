@@ -40,7 +40,7 @@ const Header = props => {
             color="facebook"
             onClick={logout}
           >
-            <Icon name="facebook" />Logout
+            <Icon id="facebook-icon" name="facebook" />Logout
           </Button>
         </>
       );

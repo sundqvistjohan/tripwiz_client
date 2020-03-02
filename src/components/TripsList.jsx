@@ -4,7 +4,8 @@ import {
   getActivities,
   getRestaurants,
   getHotels,
-  getTrip
+  getTrip,
+  objectEraser
 } from "../modules/destination.js";
 import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
@@ -16,7 +17,7 @@ const TripsList = props => {
 
   const getTripsData = async () => {
     let response = await getTrips();
-    if (response.status === 200) {
+    if (response.status === 200 && response.data.length > 0) {
       let response2 = await getTrip(response.data[response.data.length - 1].id);
       props.setSelectedCard(response2.data);
       props.setTrips(response.data);
@@ -52,6 +53,14 @@ const TripsList = props => {
     }
   };
 
+  const onDeleteHandler = async () => {
+      await objectEraser("trips", props.selectedCard.trip.id);
+      props.setSelectedCard(null)
+      props.setActivities(null)
+      setGotTrips(false)
+      getTripsData();
+  }
+
   useEffect(() => {
     getTripsData();
   }, []);
@@ -77,7 +86,7 @@ const TripsList = props => {
       let restaurantInfo = props.selectedCard[tripParts[1]][activityParts[1]];
       let hotelInfo = props.selectedCard[tripParts[2]];
       tripCard = (
-        <div key={props.selectedCard.id} className={`trip-header`}>
+        <div key={props.selectedCard.trip.id} className={`trip-header`}>
           <div id="trip-card" className="ui card">
             <div className="image">
               <img
@@ -107,6 +116,13 @@ const TripsList = props => {
               <Button color="blue" onClick={onButtonHandler}>
                 View trip
               </Button>
+              <button
+                id="remove-btn"
+                class="circular ui right floated red icon button"
+                onClick={onDeleteHandler}
+              >
+                <i id="remove-btn-image" class="trash alternate outline icon"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -142,7 +158,7 @@ const TripsList = props => {
 
   return (
     <>
-      <div>{viewCard && <h5 id="trips-column">Veiw Previous Trips</h5>}</div>
+      <div>{viewCard && <h5 id="trips-column">View Previous Trips</h5>}</div>
       {viewList}
       {viewCard}
     </>

@@ -23,7 +23,11 @@ const Result = props => {
       menuItem: "Map",
       render: () => (
         <Tab.Pane>
-          {props.activities ? <ResultMap /> : "Loading..."}
+          {props.activities && props.activities !== {} ? (
+            <ResultMap />
+          ) : (
+            "Please begin by creating a trip"
+          )}
         </Tab.Pane>
       )
     },
@@ -59,7 +63,11 @@ const Result = props => {
 
   const setActivities = async () => {
     let response = await getActivities(props.trip);
-    props.setActivities(response.data);
+    if (Object.keys(response.data).length !== 0) {
+      props.setActivities(response.data);
+    } else {
+      props.setActivities(null);
+    }
   };
 
   const setRestaurants = async () => {
@@ -94,8 +102,11 @@ const Result = props => {
     setHotels();
     getTripsData();
     if (props.selectedCard) {
-      setLoading("visible")}
-  }, [props.trip]);
+      setLoading("visible");
+    } else {
+      setLoading("hidden");
+    }
+  }, [props.selectedCard]);
 
   useEffect(() => {
     setActivities();
@@ -109,11 +120,21 @@ const Result = props => {
       {redirect === true && <Redirect to="/trip" />}
       <div className="trip-section">
         <div className="result-title">
-          <span id="result-title-number" style={{visibility: loading}}>{props.days}</span>
-          <span id="result-title-mid" style={{visibility: loading}}> days in</span>
-          <span id="result-dest"> {props.destination}</span>
+          <span id="result-title-number" style={{ visibility: loading }}>
+            {props.days}
+          </span>
+          <span id="result-title-mid" style={{ visibility: loading }}>
+            {" "}
+            days in
+          </span>
+          <span id="result-dest" style={{ visibility: loading }}>
+            {" "}
+            {props.destination}
+          </span>
         </div>
-        <h5 style={{visibility: loading}}>Enjoy the {props.activityType}s!</h5>
+        <h5 style={{ visibility: loading }}>
+          Enjoy the {props.activityType}s!
+        </h5>
         <Button id="create-trip-button" onClick={createTripHandler}>
           Create new trip!
         </Button>
