@@ -18,14 +18,14 @@ const FacebookLogin = props => {
     });
     if (response.status === 200) {
       if (props.currentRoute === "landing") {
-        props.setCurrentUser(data.profile)
+        props.setCurrentUser(data.profile);
         props.changeAuth(true);
-        props.setCurrentRoute("trip")
+        props.setCurrentRoute("trip");
         setSession(response.data, response.headers);
-        setRedirectToTrip(true)
+        setRedirectToTrip(true);
       } else {
-        props.setCurrentUser(data.profile)
-        props.setCurrentRoute("trip")
+        props.setCurrentUser(data.profile);
+        props.setCurrentRoute("trip");
         props.changeAuth(true);
         setSession(response.data, response.headers);
         props.updateProgression(props.progression + 1);
@@ -48,26 +48,26 @@ const FacebookLogin = props => {
   };
 
   const createTripHandler = async () => {
-    props.setCurrentRoute("trip")
-    setRedirectToTrip(true)
+    props.setCurrentRoute("trip");
+    setRedirectToTrip(true);
   };
 
   useEffect(() => {
     if (localStorage.getItem("J-sunkAuth-Storage")) {
-      setlocalStorageExists(true)
-      props.updateProgression(0)
-    } 
+      setlocalStorageExists(true);
+      props.updateProgression(0);
+    }
   }, []);
 
   useEffect(() => {
     if (props.logout === true) {
-      setlocalStorageExists(false)
+      setlocalStorageExists(false);
     }
   }, [props.logout]);
 
   useEffect(() => {
     if (props.authenticated === true) {
-    props.updateProgression(0)
+      props.updateProgression(0);
     }
   }, [props.authenticated]);
 
@@ -105,7 +105,9 @@ const FacebookLogin = props => {
         size="large"
         color="grey"
         onClick={() => setRedirect(true)}
-      > Dashboard
+      >
+        {" "}
+        Dashboard
       </Button>
     </>
   );

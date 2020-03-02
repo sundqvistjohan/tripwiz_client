@@ -43,23 +43,22 @@ const ResultMap = props => {
   }
 
   if (props.hotels) {
-      marker = props.hotels.map(hotel => {
-        return (
-          <Marker
-            key={hotel.id}
-            name={hotel.name}
-            onClick={onMarkerClick}
-            position={{ lat: hotel.lat, lng: hotel.lng }}
-            icon={{
-              url: `/mapIcons/hotel.png`,
-              scaledSize: new props.google.maps.Size(40, 40)
-            }}
-          />
-        );
-      });
-      activityMarkers.push(marker);
-    };
-  
+    marker = props.hotels.map(hotel => {
+      return (
+        <Marker
+          key={hotel.id}
+          name={hotel.name}
+          onClick={onMarkerClick}
+          position={{ lat: hotel.lat, lng: hotel.lng }}
+          icon={{
+            url: `/mapIcons/hotel.png`,
+            scaledSize: new props.google.maps.Size(40, 40)
+          }}
+        />
+      );
+    });
+    activityMarkers.push(marker);
+  }
 
   return (
     <>
@@ -67,7 +66,7 @@ const ResultMap = props => {
       <div id="result-map">
         <Map
           google={props.google}
-          zoom={12}
+          zoom={13}
           initialCenter={{ lat: props.lat, lng: props.lng }}
           center={{ lat: props.lat, lng: props.lng }}
           style={{ width: "97%", height: "80%", position: "relative" }}
