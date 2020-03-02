@@ -26,7 +26,7 @@ const Result = props => {
           {props.activities && props.activities !== {} ? (
             <ResultMap />
           ) : (
-            <Redirect to="/trip" />
+            "Please begin by creating a trip"
           )}
         </Tab.Pane>
       )
