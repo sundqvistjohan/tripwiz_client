@@ -116,13 +116,13 @@ const TripsList = props => {
               <Button color="blue" onClick={onButtonHandler}>
                 View trip
               </Button>
-              <button
+              {props.authenticated && <button
                 id="remove-btn"
                 class="circular ui right floated red icon button"
                 onClick={onDeleteHandler}
               >
                 <i id="remove-btn-image" class="trash alternate outline icon"></i>
-              </button>
+              </button>}
             </div>
           </div>
         </div>
@@ -170,7 +170,8 @@ const mapStateToProps = state => {
     selectedCard: state.selectedCard,
     trips: state.trips,
     activityType: state.activityType,
-    restaurants: state.restaurants
+    restaurants: state.restaurants,
+    authenticated: state.authenticated
   };
 };
 
