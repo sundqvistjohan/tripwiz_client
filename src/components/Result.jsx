@@ -13,6 +13,7 @@ import RestaurantsList from "./RestaurantsList";
 import HotelsList from "./HotelsList";
 import TripsList from "./TripsList";
 import { Redirect } from "react-router";
+import Rating from "./Rating";
 
 const Result = props => {
   const [redirect, setRedirect] = useState(false);
@@ -35,9 +36,13 @@ const Result = props => {
       menuItem: "Activities",
       render: () => (
         <Tab.Pane>
+          {props.activities && props.activities !== {} ? (
           <div className="ui stackable four column grid">
             <ActivitiesList />
           </div>
+          ) : (
+            "Please begin by creating a trip"
+          )}
         </Tab.Pane>
       )
     },
@@ -45,9 +50,13 @@ const Result = props => {
       menuItem: "Restaurants",
       render: () => (
         <Tab.Pane>
+          {props.activities && props.activities !== {} ? (
           <div className="ui stackable four column grid">
             <RestaurantsList />
           </div>
+          ) : (
+            "Please begin by creating a trip"
+          )}
         </Tab.Pane>
       )
     },
@@ -55,7 +64,19 @@ const Result = props => {
       menuItem: "Hotel",
       render: () => (
         <Tab.Pane>
+          {props.activities && props.activities !== {} ? (
           <HotelsList />
+          ) : (
+            "Please begin by creating a trip"
+          )}
+        </Tab.Pane>
+      )
+    },
+    {
+      menuItem: "Rating",
+      render: () => (
+        <Tab.Pane>
+          <Rating />
         </Tab.Pane>
       )
     }
