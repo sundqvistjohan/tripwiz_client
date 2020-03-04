@@ -602,3 +602,7 @@ div#land.header {
   padding: 6px;
   margin-left: -15%;
 }
+
+#rating-message {
+  margin-top: 3%; 
+}

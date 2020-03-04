@@ -217,6 +217,21 @@ const objectEraser = async (component, trip, restaurant) => {
   }
 };
 
+const rateTrip = async (id, rating) => {
+  let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
+  try {
+    const response = await axios({
+      url: `api/v1/ratings`,
+      method: "POST",
+      params: { trip: id, rating: rating },
+      headers: headers
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
 export {
   getCoords,
   initializeTrip,
@@ -229,5 +244,6 @@ export {
   objectEraser,
   getTrips,
   getRestaurants,
-  getTrip
+  getTrip,
+  rateTrip
 };

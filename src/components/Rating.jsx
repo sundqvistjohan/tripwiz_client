@@ -1,20 +1,36 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Dropdown, Button, Icon } from "semantic-ui-react";
-import { addRestaurants, objectEraser } from "../modules/destination.js";
+import { Button} from "semantic-ui-react";
 import { sliderChoice } from "../helpers/methods.js";
-import { Redirect } from "react-router";
+import { rateTrip } from "../modules/destination.js"
+
 
 const Rating = props => {
-  const [foodBudget, setFoodBudget] = useState(null);
+  const [rating, setRating] = useState(null);
+  const [ratingMessage, setRatingMessage] = useState(null)
 
-  const rateTrip = () => {
-    
+  const clickHandler = async () => {
+    debugger
+    if (props.authenticated) {
+      let response = await rateTrip(props.trip, rating)
+      if (response.status === 200) {
+        setRatingMessage("Thank you for your rating!")
+        document.getElementById("rating-div").style.visibility = "hidden";
+      } else {
+        setRatingMessage("Something went wrong.")
+      }
+    } else {
+      setRatingMessage("You must login to rate a trip!")
+      setTimeout(() => {
+        setRatingMessage("")
+      }, 2000);
+    }
   }
 
   return (
     <>
-      <h3 id="rating-h3">Rate this trip to {props.destination}</h3>
+      <h3 id="rating-h3">Rate trip to {props.destination}</h3>
+      <div id="rating-div">
       <p>Scale: 1 - Poor, 5 - Excellent</p>
       <input
         type="range"
@@ -24,8 +40,7 @@ const Rating = props => {
         id="rating-slider"
         onChange={event => {
           sliderChoice(event);
-          setFoodBudget(event.target.value);
-          debugger;
+          setRating(event.target.value);
         }}
       ></input>
       <div className="range-values-rating">
@@ -45,16 +60,19 @@ const Rating = props => {
           <h3>✩✩✩✩✩</h3>
         </div>
       </div>
-      <Button id="rate-trip" onClick={rateTrip}>
+      <Button id="rate-trip" onClick={clickHandler}>
         Send rating!
       </Button>
+      </div>
+      <h3 id="rating-message">{ratingMessage}</h3>
     </>
   );
 };
 
 const mapStateToProps = state => ({
   authenticated: state.authenticated,
-  destination: state.destination
+  destination: state.destination,
+  trip: state.trip
 });
 const mapDispatchToProps = dispatch => {
   return {
