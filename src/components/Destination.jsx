@@ -26,6 +26,7 @@ const Destination = props => {
 
   const submitPlace = async e => {
     e.preventDefault();
+    if (e.target.place.value !== "") {
     let response = await getCoords(e.target.place.value);
     if (!response.error) {
       if (response.data.status !== "ZERO_RESULTS") {
@@ -39,6 +40,9 @@ const Destination = props => {
       }
     } else {
       props.setMessage(response.message);
+    }}
+    else {
+      props.setMessage("Must add a destination!")
     }
   };
 

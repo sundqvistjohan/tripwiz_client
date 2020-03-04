@@ -10,7 +10,6 @@ const Rating = props => {
   const [ratingMessage, setRatingMessage] = useState(null)
 
   const clickHandler = async () => {
-    debugger
     if (props.authenticated) {
       let response = await rateTrip(props.trip, rating)
       if (response.status === 200) {

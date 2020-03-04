@@ -85,6 +85,7 @@ const TripsList = props => {
       let activityInfo = props.selectedCard[tripParts[1]][activityParts[0]];
       let restaurantInfo = props.selectedCard[tripParts[1]][activityParts[1]];
       let hotelInfo = props.selectedCard[tripParts[2]];
+      let ratingInfo = props.selectedCard[tripParts[3]];
       tripCard = (
         <div key={props.selectedCard.trip.id} className={`trip-header`}>
           <div id="trip-card" className="ui card">
@@ -110,6 +111,7 @@ const TripsList = props => {
                     ? "No hotel selected"
                     : `${hotelInfo[0].name} ${hotelInfo[0].price}`}
                 </p>
+                <p>Rating {ratingInfo}</p>
               </div>
             </div>
             <div className="extra content">

@@ -84,7 +84,7 @@ const Result = props => {
 
   const setActivities = async () => {
     let response = await getActivities(props.trip);
-    if (Object.keys(response.data).length !== 0) {
+    if (response.data && Object.keys(response.data).length !== 0) {
       props.setActivities(response.data);
     } else {
       props.setActivities(null);
