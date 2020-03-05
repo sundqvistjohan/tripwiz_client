@@ -218,6 +218,7 @@ const objectEraser = async (component, trip, restaurant) => {
 };
 
 const rateTrip = async (id, rating) => {
+  debugger
   let headers = JSON.parse(localStorage.getItem("J-sunkAuth-Storage"));
   try {
     const response = await axios({
@@ -226,6 +227,7 @@ const rateTrip = async (id, rating) => {
       params: { trip: id, rating: rating },
       headers: headers
     });
+    debugger
     return response;
   } catch (error) {
     return error;

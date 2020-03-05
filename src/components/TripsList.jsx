@@ -85,7 +85,7 @@ const TripsList = props => {
       let activityInfo = props.selectedCard[tripParts[1]][activityParts[0]];
       let restaurantInfo = props.selectedCard[tripParts[1]][activityParts[1]];
       let hotelInfo = props.selectedCard[tripParts[2]];
-      let ratingInfo = props.selectedCard[tripParts[3]];
+      let rating = props.selectedCard[tripParts[4]];
       tripCard = (
         <div key={props.selectedCard.trip.id} className={`trip-header`}>
           <div id="trip-card" className="ui card">
@@ -94,11 +94,11 @@ const TripsList = props => {
                 src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${props.selectedCard.image}&sensor=false&maxwidth=400&key=${process.env.REACT_APP_GOOGLE_APIKEY}`}
               />
             </div>
-            <div className="content">
+            <div className="card-content">
               <div className="header">
                 {tripInfo.days} days in {tripInfo.destination}
               </div>
-              <div className="description">
+              <div className="card-description">
                 <p>
                   Visiting {activityInfo.length} {activityParts[0]}
                 </p>
@@ -111,7 +111,7 @@ const TripsList = props => {
                     ? "No hotel selected"
                     : `${hotelInfo[0].name} ${hotelInfo[0].price}`}
                 </p>
-                <p>Rating {ratingInfo}</p>
+                <p>User ratings: {rating} / 5</p>
               </div>
             </div>
             <div className="extra content">
