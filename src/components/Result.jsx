@@ -36,7 +36,7 @@ const Result = props => {
       render: () => (
         <Tab.Pane>
           <div className="ui stackable four column grid">
-            <ActivitiesList />
+            {props.trips.length === 0 ? ("Please begin by creating a trip" ) : (<ActivitiesList />)}
           </div>
         </Tab.Pane>
       )
@@ -46,7 +46,7 @@ const Result = props => {
       render: () => (
         <Tab.Pane>
           <div className="ui stackable four column grid">
-            <RestaurantsList />
+            {props.trips.length === 0 ? ("Please begin by creating a trip" ) : (<RestaurantsList />)}
           </div>
         </Tab.Pane>
       )
@@ -55,7 +55,7 @@ const Result = props => {
       menuItem: "Hotel",
       render: () => (
         <Tab.Pane>
-          <HotelsList />
+          {props.trips.length === 0 ? ("Please begin by creating a trip" ) : (<HotelsList />)}
         </Tab.Pane>
       )
     }
@@ -127,10 +127,14 @@ const Result = props => {
             {" "}
             days in
           </span>
-          <span id="result-dest" style={{ visibility: loading }}>
+          {props.destination === null ? (
+            "Your Dashboard"
+          ) : (
+            <span id="result-dest" style={{ visibility: loading }}>
             {" "}
             {props.destination}
-          </span>
+            </span>
+          )}
         </div>
         <h5 style={{ visibility: loading }}>
           Enjoy the {props.activityType}s!
@@ -157,6 +161,7 @@ const mapStateToProps = state => {
   return {
     destination: state.destination,
     trip: state.trip,
+    trips: state.trips,
     activities: state.activities,
     days: state.days,
     activityType: state.activityType,

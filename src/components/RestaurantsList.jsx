@@ -10,6 +10,7 @@ const RestaurantsList = props => {
   let restaurantCard;
 
   if (props.restaurants) {
+    debugger
     restaurantCard = props.restaurants.restaurant.map(restaurant => {
       return (
         <div className="restaurant-card">

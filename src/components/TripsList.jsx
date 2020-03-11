@@ -118,10 +118,10 @@ const TripsList = props => {
               </Button>
               <button
                 id="remove-btn"
-                class="circular ui right floated red icon button"
+                className="circular ui right floated red icon button"
                 onClick={onDeleteHandler}
               >
-                <i id="remove-btn-image" class="trash alternate outline icon"></i>
+                <i id="remove-btn-image" className="trash alternate outline icon"></i>
               </button>
             </div>
           </div>
@@ -158,7 +158,10 @@ const TripsList = props => {
 
   return (
     <>
-      <div>{viewCard && <h5 id="trips-column">View Previous Trips</h5>}</div>
+      <div>{viewCard && localStorage.getItem("J-sunkAuth-Storage") ? (
+        <h5 id="trips-column">Your Previous Trips</h5>) : (
+        <h5 id="trips-column">View Previous User Trips</h5>)} 
+      </div>
       {viewList}
       {viewCard}
     </>

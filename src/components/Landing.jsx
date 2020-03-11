@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import FacebookLogin from "./FacebookLogin";
 import { connect } from "react-redux";
 import data from "../data/popular_trips.json"
+import { Parallax } from "react-parallax"
 
 const Landing = (props) => {
   const popularTrips = data
+  const image1 = './screenshots/torontobackground.jpeg'
 
   useEffect(() => {
     props.updateProgression(-1)
@@ -36,14 +38,16 @@ const Landing = (props) => {
 
   return (
     <>
-      <div className="hero">
-        <div className="greeting">
-          <h1>Welcome to TripWiz.</h1>
-          <br />
-          <h3>"Get there, and we'll show you around"</h3>
-        </div>
-        <div className="login"><FacebookLogin /></div>
-      </div>
+      <Parallax bgImage={image1} strength={200}>
+        <div className="hero">
+          <div className="greeting">
+            <h1>Welcome to TripWiz.</h1>
+            <br />
+            <h3>"Wherever the destination, we'll show you around"</h3>
+          </div>
+          <div className="login"><FacebookLogin /></div>
+          </div>
+      </Parallax>
       <div className="landing">
         <h3>Popular Destinations</h3>
         <div id="landing-grid" className="ui stackable four column grid">
