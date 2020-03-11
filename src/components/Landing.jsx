@@ -25,10 +25,10 @@ const Landing = (props) => {
   //   })
   // }
 
-  // useEffect(() => {
-  //   props.updateProgression(-1)
-  //   getTripsData();
-  // }, []);
+  useEffect(() => {
+    props.updateProgression(-1)
+    // getTripsData();
+  }, []);
 
   // useEffect(() => {
   //   if (viewList != null) {
