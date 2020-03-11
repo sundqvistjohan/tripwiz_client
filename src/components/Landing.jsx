@@ -4,62 +4,62 @@ import { getTrips, getTrip } from "../modules/destination.js";
 import { connect } from "react-redux";
 
 const Landing = (props) => {
-  const [viewList, setViewList] = useState(null);
-  const [images, setImages] = useState([]);
+  // const [viewList, setViewList] = useState(null);
+  // const [images, setImages] = useState([]);
 
-  const getTripsData = async () => {
-    let response = await getTrips();
-    if (response.status === 200) {
-      setViewList(response.data);
-    }
-  };
+  // const getTripsData = async () => {
+  //   let response = await getTrips();
+  //   if (response.status === 200) {
+  //     setViewList(response.data);
+  //   }
+  // };
   
-  const getTripImage = () => { 
-    let imageData = []
-    viewList.forEach( async (element) => {
-      let image = await getTrip(element.id)
-      imageData.push(image)
-      if (imageData.length === 5) {
-        setImages(imageData)
-      }
-    })
-  }
+  // const getTripImage = () => { 
+  //   let imageData = []
+  //   viewList.forEach( async (element) => {
+  //     let image = await getTrip(element.id)
+  //     imageData.push(image)
+  //     if (imageData.length === 5) {
+  //       setImages(imageData)
+  //     }
+  //   })
+  // }
 
-  useEffect(() => {
-    props.updateProgression(-1)
-    getTripsData();
-  }, []);
+  // useEffect(() => {
+  //   props.updateProgression(-1)
+  //   getTripsData();
+  // }, []);
 
-  useEffect(() => {
-    if (viewList != null) {
-      getTripImage()
-    }
-  }, [viewList]);
+  // useEffect(() => {
+  //   if (viewList != null) {
+  //     getTripImage()
+  //   }
+  // }, [viewList]);
 
-  let tripCards;
+  // let tripCards;
 
-  if (images.length > 1) {
-    tripCards = images.map( trip => {
-      return (
-        <div className="landing-cards">
-          <div id="land-card" key={trip.id} className="ui card">
-            <div className="image-landing">
-              <img className="landing-img"
-                src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${trip.data.image}&sensor=false&maxwidth=400&key=${process.env.REACT_APP_GOOGLE_APIKEY}`}
-              />
-            </div>
-            <div className="content">
-              <div id="land" className="header">{trip.data.trip.destination}</div>
-              <div className="description-landing">
-                {Object.keys(trip.data.activity)[0]} get-away
-                <br />
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    });
-  }
+  // if (images.length > 1) {
+  //   tripCards = images.map( trip => {
+  //     return (
+  //       <div className="landing-cards">
+  //         <div id="land-card" key={trip.id} className="ui card">
+  //           <div className="image-landing">
+  //             <img className="landing-img"
+  //               src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${trip.data.image}&sensor=false&maxwidth=400&key=${process.env.REACT_APP_GOOGLE_APIKEY}`}
+  //             />
+  //           </div>
+  //           <div className="content">
+  //             <div id="land" className="header">{trip.data.trip.destination}</div>
+  //             <div className="description-landing">
+  //               {Object.keys(trip.data.activity)[0]} get-away
+  //               <br />
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     );
+  //   });
+  // }
 
   return (
     <>
@@ -72,10 +72,10 @@ const Landing = (props) => {
         <div className="login"><FacebookLogin /></div>
       </div>
       <div className="landing">
-        <h3>Popular Destinations!</h3>
-        <div id="landing-grid" className="ui stackable four column grid">
+        <h3>How it works:</h3>
+        {/* <div id="landing-grid" className="ui stackable four column grid">
           {tripCards}
-        </div>
+        </div> */}
         <div className="grid-container">
           <div>
             <div className="left">
