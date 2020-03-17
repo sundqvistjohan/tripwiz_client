@@ -37,9 +37,13 @@ const Result = props => {
       render: () => (
         <Tab.Pane>
           {props.activities && props.activities !== {} ? (
-          <div className="ui stackable four column grid">
-            {props.trips.length === 0 ? ("Please begin by creating a trip" ) : (<ActivitiesList />)}
-          </div>
+            <div className="ui stackable four column grid">
+              {props.trips.length === 0 ? (
+                "Please begin by creating a trip"
+              ) : (
+                <ActivitiesList />
+              )}
+            </div>
           ) : (
             "Please begin by creating a trip"
           )}
@@ -51,9 +55,13 @@ const Result = props => {
       render: () => (
         <Tab.Pane>
           {props.activities && props.activities !== {} ? (
-          <div className="ui stackable four column grid">
-            {props.trips.length === 0 ? ("Please begin by creating a trip" ) : (<RestaurantsList />)}
-          </div>
+            <div className="ui stackable four column grid">
+              {props.trips.length === 0 ? (
+                "Please begin by creating a trip"
+              ) : (
+                <RestaurantsList />
+              )}
+            </div>
           ) : (
             "Please begin by creating a trip"
           )}
@@ -65,7 +73,7 @@ const Result = props => {
       render: () => (
         <Tab.Pane>
           {props.activities && props.activities !== {} ? (
-          <HotelsList />
+            <HotelsList />
           ) : (
             "Please begin by creating a trip"
           )}
@@ -76,8 +84,11 @@ const Result = props => {
       menuItem: "Rating",
       render: () => (
         <Tab.Pane>
-          <Rating />
-          {props.trips.length === 0 ? ("Please begin by creating a trip" ) : (<HotelsList />)}
+          {props.activities && props.activities !== {} ? (
+            <Rating />
+          ) : (
+            "Please begin by creating a trip"
+          )}
         </Tab.Pane>
       )
     }
@@ -153,8 +164,8 @@ const Result = props => {
             "Your Dashboard"
           ) : (
             <span id="result-dest" style={{ visibility: loading }}>
-            {" "}
-            {props.destination}
+              {" "}
+              {props.destination}
             </span>
           )}
         </div>
