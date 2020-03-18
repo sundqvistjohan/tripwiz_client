@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Button } from "semantic-ui-react";
+import { Button, Dropdown } from "semantic-ui-react";
 import { sliderChoice } from "../helpers/methods.js";
 import { rateTrip, getRatingsData } from "../modules/destination.js";
 
 const Rating = props => {
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState([null, null, null, null]);
   const [ratingMessage, setRatingMessage] = useState(null);
   const [rate, setRate] = useState(null);
 
@@ -14,7 +14,6 @@ const Rating = props => {
       let response = await rateTrip(props.trip, rating);
       if (response.status === 200) {
         setRatingMessage("Thank you for your rating!");
-        document.getElementById("rating-div").style.visibility = "hidden";
       } else {
         setRatingMessage("Something went wrong.");
       }
@@ -31,12 +30,20 @@ const Rating = props => {
     if (response.status === 200 && response.data === null) {
       setRate(false);
     }
-    debugger;
   };
+
+  const options = [
+    { key: 1, text: "1", value: 1 },
+    { key: 2, text: "2", value: 2 },
+    { key: 3, text: "3", value: 3 },
+    { key: 4, text: "4", value: 4 },
+    { key: 5, text: "5", value: 5 }
+  ];
 
   useEffect(() => {
     getRatings();
   }, []);
+  debugger
 
   return (
     <>
@@ -44,41 +51,26 @@ const Rating = props => {
         "show rating"
       ) : (
         <>
-          <h3 id="rating-h3">Rate trip to {props.destination}</h3>
-          <div id="rating-div">
+          <div className="rating-div">
+            <h3 id="rating-h3">Rate trip to {props.destination}</h3>
             <p>Scale: 1 - Poor, 5 - Excellent</p>
-            <input
-              type="range"
-              name="rating"
-              min="1"
-              max="5"
-              id="rating-slider"
-              onChange={event => {
-                sliderChoice(event);
-                setRating(event.target.value);
-              }}
-            ></input>
-            <div className="range-values-rating">
-              <div className="scale" id="rating1">
-                <h3>✩</h3>
-              </div>
-              <div className="scale" id="rating2">
-                <h3>✩✩</h3>
-              </div>
-              <div className="scale" id="rating3">
-                <h3>✩✩✩</h3>
-              </div>
-              <div className="scale" id="rating4">
-                <h3>✩✩✩✩</h3>
-              </div>
-              <div className="scale" id="rating5">
-                <h3>✩✩✩✩✩</h3>
-              </div>
+            <div className="rating-item">
+              <p>Destination rating: x</p>
+              <Dropdown
+                id="dropdown1"
+                text="Rating"
+                fluid
+                selection
+                options={options}
+                onChange={(e, data) => {
+                  setRating([data.value, rating[1], rating[2], rating[3]])
+                }}
+              />
             </div>
-            <Button id="rate-trip" onClick={clickHandler}>
-              Send rating!
-            </Button>
           </div>
+          <Button id="rate-trip" onClick={clickHandler}>
+            Send rating!
+          </Button>
           <h3 id="rating-message">{ratingMessage}</h3>{" "}
         </>
       )}

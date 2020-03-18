@@ -607,3 +607,11 @@ div#land.header {
 .greeting h1 {
   font-weight: 600;
 }
+
+.rating-item {
+  background-color: blue;
+}
+
+.rating-div {
+  background-color: green;
+}
