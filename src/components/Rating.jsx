@@ -10,7 +10,8 @@ const Rating = props => {
   const [rate, setRate] = useState(null);
 
   const clickHandler = async () => {
-    if (props.authenticated) {
+    debugger
+    if (props) { //props.authenticated usually here
       let response = await rateTrip(props.trip, rating);
       if (response.status === 200) {
         setRatingMessage("Thank you for your rating!");
@@ -43,7 +44,6 @@ const Rating = props => {
   useEffect(() => {
     getRatings();
   }, []);
-  debugger
 
   return (
     <>
@@ -58,20 +58,21 @@ const Rating = props => {
               <p>Destination rating: x</p>
               <Dropdown
                 id="dropdown1"
-                text="Rating"
+                placeholder="Rating: Poor - 1, Excellent - 5"
                 fluid
                 selection
                 options={options}
                 onChange={(e, data) => {
                   setRating([data.value, rating[1], rating[2], rating[3]])
                 }}
+                
               />
             </div>
             <div className="rating-activities">
-              <p>Activity rating: x</p>
+              <p>Activity rating ({props.activityType}): x</p>
               <Dropdown
                 id="dropdown1"
-                text="Rating"
+                placeholder="Rating: Poor - 1, Excellent - 5"
                 fluid
                 selection
                 options={options}
@@ -84,7 +85,7 @@ const Rating = props => {
               <p>Restaurants rating: x</p>
               <Dropdown
                 id="dropdown1"
-                text="Rating"
+                placeholder="Rating: Poor - 1, Excellent - 5"
                 fluid
                 selection
                 options={options}
@@ -97,7 +98,7 @@ const Rating = props => {
               <p>Hotel rating: x</p>
               <Dropdown
                 id="dropdown1"
-                text="Rating"
+                placeholder="Rating: Poor - 1, Excellent - 5"
                 fluid
                 selection
                 options={options}
@@ -120,7 +121,8 @@ const Rating = props => {
 const mapStateToProps = state => ({
   authenticated: state.authenticated,
   destination: state.destination,
-  trip: state.trip
+  trip: state.trip,
+  activityType: state.activityType
 });
 const mapDispatchToProps = dispatch => {
   return {
