@@ -54,7 +54,7 @@ const Rating = props => {
           <div className="rating-div">
             <h3 id="rating-h3">Rate trip to {props.destination}</h3>
             <p>Scale: 1 - Poor, 5 - Excellent</p>
-            <div className="rating-item">
+            <div className="rating-destination">
               <p>Destination rating: x</p>
               <Dropdown
                 id="dropdown1"
@@ -64,6 +64,45 @@ const Rating = props => {
                 options={options}
                 onChange={(e, data) => {
                   setRating([data.value, rating[1], rating[2], rating[3]])
+                }}
+              />
+            </div>
+            <div className="rating-activities">
+              <p>Activity rating: x</p>
+              <Dropdown
+                id="dropdown1"
+                text="Rating"
+                fluid
+                selection
+                options={options}
+                onChange={(e, data) => {
+                  setRating([rating[0], data.value, rating[2], rating[3]])
+                }}
+              />
+            </div>
+            <div className="rating-restaurant">
+              <p>Restaurants rating: x</p>
+              <Dropdown
+                id="dropdown1"
+                text="Rating"
+                fluid
+                selection
+                options={options}
+                onChange={(e, data) => {
+                  setRating([rating[0], rating[1], data.value, rating[3]])
+                }}
+              />
+            </div>
+            <div className="rating-hotel">
+              <p>Hotel rating: x</p>
+              <Dropdown
+                id="dropdown1"
+                text="Rating"
+                fluid
+                selection
+                options={options}
+                onChange={(e, data) => {
+                  setRating([rating[0], rating[1], rating[2], data.value])
                 }}
               />
             </div>
