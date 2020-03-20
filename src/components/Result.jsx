@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Tab, Grid, GridColumn, Button } from "semantic-ui-react";
+import { Tab, Grid, GridColumn, Button, Dimmer, Loader, } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
 import {
   getActivities,

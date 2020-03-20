@@ -40,13 +40,19 @@ const Landing = (props) => {
     <>
       <Parallax bgImage={image1} strength={200}>
         <div className="hero">
-          <div className="greeting">
-            <h1>Welcome to TripWiz.</h1>
-            <br />
-            <h3>"Wherever the destination, we'll show you around"</h3>
+          <div className="col">
+            <div className="greeting">
+              <h1>Welcome to TripWiz.</h1>
+              <br />
+              <h3>"Wherever the destination, we'll show you around"</h3>
+            </div>
           </div>
-          <div className="login"><FacebookLogin /></div>
+          <div className="col">
+            <div className="login">
+              <FacebookLogin />
+            </div>
           </div>
+        </div>
       </Parallax>
       <div className="landing">
         <h3>Popular Destinations</h3>
@@ -55,26 +61,26 @@ const Landing = (props) => {
         </div>
         <div className="grid-container">
           <div>
-            <div className="left">
+            <div id="left" className="col">
               <img className="screenshots" src="../screenshots/fullmap.png" alt="Map" />
             </div>
-            <div className="right-top-bottom">
+            <div id="right-top-bottom" className="col">
               <h3>Your hotels, activities, restaurants, based on your preferences, all conveniently placed on your map.</h3>
             </div>
           </div>
           <div>
-            <div className="left-mid">
+            <div id="left-mid" className="col">
               <h3>Here you have options... We make the suggestions, you make the final decision.</h3>
             </div>
-            <div className="right-mid">
+            <div id="right-mid" className="col">
               <img className="screenshots" src="../screenshots/hotels.png" alt="Map" />
             </div>
           </div>
           <div>
-            <div className="left">
+            <div id="left" className="col">
               <img className="screenshots" src="../screenshots/activities.png" alt="Map" />
             </div>
-            <div className="right-top-bottom">
+            <div id="right-top-bottom" className="col">
               <h3>Review each part of your custom itinerary, at any time, on your dashboard.</h3>
             </div>
           </div>
