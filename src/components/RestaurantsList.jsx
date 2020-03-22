@@ -34,7 +34,6 @@ const RestaurantsList = props => {
 
   return (
     <>
-      <h5 id="tab-msg">Your Restaurant list</h5>
       {restaurantCard}
     </>
   );

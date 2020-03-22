@@ -19,24 +19,31 @@ const HotelsList = props => {
         setHotelMessage(
           `Here are the closest hotels to your activities. Please add one to your itinerary!`
         );
-      } else {
-        setHotelMessage(
-          `Ok, we've added ${response.data[0].name} to your itinerary`
-        );
       }
     }
   };
 
-  const selectHotel = async hotelId => {
+  const selectHotel = async (hotelId, hotelName) => {
     let response = await chooseHotel(props.trip, hotelId);
     if (response.status === 200) {
       await getHotelsShowData();
+      setHotelMessage(
+        `Ok, we've added ${hotelName} to your itinerary`
+      );
     } else {
       setHotelMessage("Oops, Something went wrong");
     }
   };
 
-  useEffect(() => {}, [props.hotels]);
+  useEffect(() => {
+    
+  }, [props.hotels]);
+
+  useEffect(() => {
+    {props.hotels.length > 1 && (
+      getHotelsShowData()
+    )}
+  }, [])
 
   let hotelCard;
 
@@ -97,7 +104,7 @@ const HotelsList = props => {
 
   return (
     <>
-      {hotelCard && <h5 id="hotel-msg">{hotelMessage}</h5>}
+      <h5 id="hotel-msg">{hotelMessage}</h5>
       <div className="ui stackable four column grid">{hotelCard}</div>
       {hotelCard && (
         <div className="hotels-map">

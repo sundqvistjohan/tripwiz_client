@@ -62,7 +62,6 @@ const ResultMap = props => {
 
   return (
     <>
-      <h3 id="divider">Your Map</h3>
       <div id="result-map">
         <Map
           google={props.google}

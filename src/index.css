@@ -118,7 +118,7 @@ div#hotel-cards.ui.card {
   min-height: 490px;
   max-height: 490px;
   max-width: 266px;
-  margin-bottom: 2%;
+  margin-bottom: 10px;
 } 
 
 .ui.stackable.four.column.grid {
@@ -126,7 +126,7 @@ div#hotel-cards.ui.card {
   text-align: center;
   -webkit-box-pack: center;
   justify-content: center;
-  min-height: 570px;
+  /* min-height: 570px; */
 }
 
 .centerText {
@@ -181,6 +181,10 @@ Button {
   display: none;
 }
 
+#main2::-webkit-scrollbar { 
+  display: none;
+}
+
 div#activity-cards.ui.card {
   min-height: 450px;
   max-height: 450px;
@@ -202,12 +206,15 @@ div#activity-cards.ui.card {
 }
 
 #main2 {
-  margin-top: 1%;
+  margin-top: 40px;
   padding: 3%;
-  margin-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #fbfbfbe0;
   border-radius: 25px 25px 25px 25px;
-  min-height: 650px;
+  min-height: 850px;
+  max-height: 115%;
+  width: 95%;
   max-width: 1440px;
   margin-bottom: 2%;
   overflow: scroll;
@@ -221,12 +228,12 @@ header {
   padding-right: 5%;
   padding-top: 10px;
   color: rgb(82, 80, 80);
-  display: inline-flex;
+  display: inline-block;
   padding-bottom: 5px;
 }
 
 header h5 {
-  padding-top: 5px;
+  margin-top: 8px!important;
   margin-right: 10px;
 }
 
@@ -307,7 +314,6 @@ button#up {
 #hotel-msg {
   width: 100%;
   padding: 2%;
-  border-bottom: 1px solid grey;
 }
 
 #up-arrow{
@@ -325,7 +331,7 @@ button#up {
 
 .result-title {
   text-align: center;
-  padding-top: 5%;
+  padding-top: 50px;
   font-size: 50px;
   font-weight: 600;
   color: rgba(29, 29, 29, 0.719);
@@ -403,12 +409,12 @@ button#up {
 #trips-column {
   margin-top: -30px;
   margin-bottom: 20px; 
+  font: 2.4em "Museo 700";
 }
 
 #create-trip-button {
-  margin-left: 80%;
-  display: inline-block;
-  margin-bottom: 0;
+  right: 6%;
+  position: fixed;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
@@ -501,6 +507,32 @@ button#up {
   #left-mid.col h3 {
     border-bottom: none;
     padding-bottom: 0;
+  }
+
+  .result-main {
+    height: 480px;
+  }
+
+  .result-left {
+    width: 100%!important;
+    margin-top: 20px;
+  }
+
+  .result-right {
+    margin-top: 40px;
+    width: 100%!important;
+  }
+
+  .ui.card {
+    margin: auto;
+  }
+
+  body {
+    background-size: inherit;
+  }
+
+  .fb {
+    font-size: 3vw;
   }
 }
 
@@ -632,4 +664,39 @@ div#land.header {
 
 .greeting h1 {
   font-weight: 600;
+}
+
+.result-main {
+  min-height: 600px;
+  width: 100%;
+  display: inline-block;
+  color: rgba(29, 29, 29, 0.863)
+}
+
+.result-main:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.result-left {
+  float: left;
+  width: 24%;
+  padding: 10px;
+  text-align: center;
+}
+
+.result-right {
+  float: left;
+  width: 76%;
+  padding: 10px;
+  text-align: center; 
+}
+
+h5#trips-column {
+  letter-spacing: 1.5px;
+}
+
+.right.menu {
+  font-size: 50%;
 }
