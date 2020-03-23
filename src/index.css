@@ -126,7 +126,6 @@ div#hotel-cards.ui.card {
   text-align: center;
   -webkit-box-pack: center;
   justify-content: center;
-  /* min-height: 570px; */
 }
 
 .centerText {
@@ -139,6 +138,10 @@ div#hotel-cards.ui.card {
   margin-top: 3%;
   margin-bottom: 20px;
   border-bottom: 1px solid lightgrey;
+}
+
+.ui.massive.button {
+  font-size: 1.5rem
 }
 
 .hotels-map {
@@ -199,7 +202,8 @@ div#activity-cards.ui.card {
   margin-right: 2%;
   min-height: 520px;
   max-height: 520px;
-  width: 500px;
+  width: 95%;
+  max-width: 500px;
   margin-top: 30px;
   overflow: scroll;
   overflow-x: hidden;
@@ -381,7 +385,7 @@ button#up {
 
 #result-title-number {
   margin-top: 40px;
-  font-size: 3.5em;
+  font-size: 3em;
   line-height: 1em;
   position: relative;
   z-index: 1;
@@ -398,12 +402,9 @@ button#up {
 #result-dest {
   margin-left: 10px;
   font: 2.5em "Museo 700";
-  letter-spacing: 3px;
+  letter-spacing: 1px;
   display: inline-flex;
-}
-
-#result-underline{
-  margin-left: 20px;
+  margin-bottom: 30px;
 }
 
 #trips-column {
@@ -413,18 +414,16 @@ button#up {
 }
 
 #create-trip-button {
-  right: 6%;
-  position: fixed;
+  margin-top: -60px;
+  float: right;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
   background-color: rgba(32, 178, 171, 0.466);
-  padding: 15px 15px;
-  font-size: 1.4rem;
+  padding: 10px 10px;
+  font: 1.5em "Museo 700";
   border-radius: 3px;
-  text-decoration: none;
-  user-select: none;
-  color: white;
+  color: rgba(29, 29, 29, 0.719);;
 }
 
 .landing {
@@ -534,6 +533,13 @@ button#up {
   .fb {
     font-size: 3vw;
   }
+
+  #create-trip-button {
+    float: none;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+
 }
 
 .greeting {
@@ -699,4 +705,20 @@ h5#trips-column {
 
 .right.menu {
   font-size: 50%;
+}
+
+#list.ui.card {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  cursor: pointer;
+}
+
+#trip-card.ui.card {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.ui.card>.image:not(.ui)>img, .ui.cards>.card>.image:not(.ui)>img {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }

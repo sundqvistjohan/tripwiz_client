@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import { Button, Icon } from "semantic-ui-react";
 
@@ -9,6 +9,7 @@ const Header = props => {
     localStorage.removeItem("J-sunkAuth-Storage");
     props.setLogout(true)
     props.updateProgression(-1);
+    window.location.href = '/';
   }
 
   let loggedIn;

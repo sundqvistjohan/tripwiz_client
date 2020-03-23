@@ -116,6 +116,7 @@ const TripsList = props => {
               <Button color="blue" onClick={onButtonHandler}>
                 View trip
               </Button>
+              {localStorage.getItem("J-sunkAuth-Storage") && (
               <button
                 id="remove-btn"
                 className="circular ui right floated red icon button"
@@ -123,6 +124,7 @@ const TripsList = props => {
               >
                 <i id="remove-btn-image" className="trash alternate outline icon"></i>
               </button>
+              )}
             </div>
           </div>
         </div>
@@ -140,7 +142,7 @@ const TripsList = props => {
       tripHeaders = filteredList.map(trip => {
         return (
           <div key={trip.id} className="trip-headers">
-            <div onClick={() => onClickHandler(trip.id)} className="ui card">
+            <div id="list" onClick={() => onClickHandler(trip.id)} className="ui card">
               <div className="content">
                 <div className="header">
                   <h5>
@@ -172,6 +174,7 @@ const TripsList = props => {
 
 const mapStateToProps = state => {
   return {
+    authenticated: state.authenticated,
     selectedCard: state.selectedCard,
     trips: state.trips,
     activityType: state.activityType,
