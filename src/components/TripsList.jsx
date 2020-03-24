@@ -54,12 +54,12 @@ const TripsList = props => {
   };
 
   const onDeleteHandler = async () => {
-      await objectEraser("trips", props.selectedCard.trip.id);
-      props.setSelectedCard(null)
-      props.setActivities(null)
-      setGotTrips(false)
-      getTripsData();
-  }
+    await objectEraser("trips", props.selectedCard.trip.id);
+    props.setSelectedCard(null);
+    props.setActivities(null);
+    setGotTrips(false);
+    getTripsData();
+  };
 
   useEffect(() => {
     getTripsData();
@@ -103,7 +103,7 @@ const TripsList = props => {
                   Visiting {activityInfo.length} {activityParts[0]}
                 </p>
                 <p>
-                  Restaurants:{" "}
+                  Restaurants:
                   {restaurantInfo[restaurantInfo.length - 1].rating}+
                 </p>
                 <p>
@@ -111,20 +111,24 @@ const TripsList = props => {
                     ? "No hotel selected"
                     : `${hotelInfo[0].name} ${hotelInfo[0].price}`}
                 </p>
-                <p>User ratings: {rating} / 5</p>
               </div>
             </div>
             <div className="extra content">
               <Button color="blue" onClick={onButtonHandler}>
                 View trip
               </Button>
-              {props.authenticated && <button
-                id="remove-btn"
-                className="circular ui right floated red icon button"
-                onClick={onDeleteHandler}
-              >
-                <i id="remove-btn-image" class="trash alternate outline icon"></i>
-              </button>}
+              {props.authenticated && (
+                <button
+                  id="remove-btn"
+                  className="circular ui right floated red icon button"
+                  onClick={onDeleteHandler}
+                >
+                  <i
+                    id="remove-btn-image"
+                    class="trash alternate outline icon"
+                  ></i>
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -160,9 +164,12 @@ const TripsList = props => {
 
   return (
     <>
-      <div>{viewCard && localStorage.getItem("J-sunkAuth-Storage") ? (
-        <h5 id="trips-column">Your Previous Trips</h5>) : (
-        <h5 id="trips-column">View Previous User Trips</h5>)} 
+      <div>
+        {viewCard && localStorage.getItem("J-sunkAuth-Storage") ? (
+          <h5 id="trips-column">Your Previous Trips</h5>
+        ) : (
+          <h5 id="trips-column">View Previous User Trips</h5>
+        )}
       </div>
       {viewList}
       {viewCard}
