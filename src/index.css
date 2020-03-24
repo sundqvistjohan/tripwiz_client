@@ -608,10 +608,10 @@ div#land.header {
   font-weight: 600;
 }
 
-.rating-item {
-  background-color: blue;
-}
-
 .rating-div {
-  background-color: green;
+  background-color: lightblue;
+  border: 1px solid white;
+  width: 30%;
+  display: inline-block;
+  margin: 1%;
 }

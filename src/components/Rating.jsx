@@ -55,9 +55,10 @@ const Rating = props => {
 
   return (
     <>
-      <div className="rating-div">
-        {rateData && rateData.destination_rating && !toggleButton[0] ? (
-          <>
+    <h3>Rating of {props.destination} trip</h3>
+      {rateData && rateData.destination_rating && !toggleButton[0] ? (
+        <>
+          <div className="rating-div">
             <p>Destination rating: {rateData.destination_rating}</p>
             <Button
               className="toggle-rating"
@@ -72,30 +73,32 @@ const Rating = props => {
             >
               Edit rating
             </Button>
-          </>
-        ) : (
-          <>
-            {rateData && (
-              <>
-                <div className="rating-box">
-                  <p>Destination rating: {rateData.destination_rating}</p>
-                  <Dropdown
-                    id="dropdown1"
-                    placeholder="Rating: Poor - 1, Excellent - 5"
-                    fluid
-                    selection
-                    options={options}
-                    onChange={(e, data) => {
-                      setRating([data.value, rating[1], rating[2], rating[3]]);
-                    }}
-                  />
-                </div>{" "}
-              </>
-            )}
-          </>
-        )}
-        {rateData && rateData.activities_rating && !toggleButton[1] ? (
-          <>
+          </div>
+        </>
+      ) : (
+        <>
+          {rateData && (
+            <>
+              <div className="rating-div">
+                <p>Destination rating: {rateData.destination_rating}</p>
+                <Dropdown
+                  id="dropdown1"
+                  placeholder="Rating: Poor - 1, Excellent - 5"
+                  fluid
+                  selection
+                  options={options}
+                  onChange={(e, data) => {
+                    setRating([data.value, rating[1], rating[2], rating[3]]);
+                  }}
+                />
+              </div>
+            </>
+          )}
+        </>
+      )}
+      {rateData && rateData.activities_rating && !toggleButton[1] ? (
+        <>
+          <div className="rating-div">
             <p>Activities rating: {rateData.activities_rating}</p>
             <Button
               className="toggle-rating"
@@ -110,32 +113,33 @@ const Rating = props => {
             >
               Edit rating
             </Button>
-          </>
-        ) : (
-          <>
-            {rateData && (
-              <>
-                <h3 id="rating-h3">Rate trip to {props.destination}</h3>
-                <p>Scale: 1 - Poor, 5 - Excellent</p>
-                <div className="rating-activities">
-                  <p>Activities rating: {rateData.activities_rating}</p>
-                  <Dropdown
-                    id="dropdown1"
-                    placeholder="Rating: Poor - 1, Excellent - 5"
-                    fluid
-                    selection
-                    options={options}
-                    onChange={(e, data) => {
-                      setRating([rating[0], data.value, rating[2], rating[3]]);
-                    }}
-                  />
-                </div>
-              </>
-            )}
-          </>
-        )}
-        {rateData && rateData.restaurants_rating && !toggleButton[2] ? (
-          <>
+          </div>
+        </>
+      ) : (
+        <>
+          {rateData && (
+            <>
+              <div className="rating-div">
+                <p>Activities rating: {rateData.activities_rating}</p>
+                <Dropdown
+                  id="dropdown1"
+                  placeholder="Rating: Poor - 1, Excellent - 5"
+                  fluid
+                  selection
+                  options={options}
+                  onChange={(e, data) => {
+                    setRating([rating[0], data.value, rating[2], rating[3]]);
+                  }}
+                />
+              </div>
+            </>
+          )}
+        </>
+      )}
+      <br />
+      {rateData && rateData.restaurants_rating && !toggleButton[2] ? (
+        <>
+          <div className="rating-div">
             <p>Restaurants rating: {rateData.restaurants_rating}</p>
             <Button
               className="toggle-rating"
@@ -150,31 +154,32 @@ const Rating = props => {
             >
               Edit rating
             </Button>
-          </>
-        ) : (
-          <>
-            {rateData && (
-              <>
-                <div className="rating-box">
-                  <p>Activities rating: {rateData.restaurants_rating}</p>
-                  <Dropdown
-                    id="dropdown1"
-                    placeholder="Rating: Poor - 1, Excellent - 5"
-                    fluid
-                    selection
-                    options={options}
-                    onChange={(e, data) => {
-                      setRating([rating[0], rating[1], data.value, rating[3]]);
-                    }}
-                  />
-                </div>
-              </>
-            )}
-          </>
-        )}
-        {rateData && rateData.restaurants_rating && !toggleButton[2] ? (
-          <>
-            <div className="rating-show"></div>
+          </div>
+        </>
+      ) : (
+        <>
+          {rateData && (
+            <>
+              <div className="rating-div">
+                <p>Activities rating: {rateData.restaurants_rating}</p>
+                <Dropdown
+                  id="dropdown1"
+                  placeholder="Rating: Poor - 1, Excellent - 5"
+                  fluid
+                  selection
+                  options={options}
+                  onChange={(e, data) => {
+                    setRating([rating[0], rating[1], data.value, rating[3]]);
+                  }}
+                />
+              </div>
+            </>
+          )}
+        </>
+      )}
+      {rateData && rateData.restaurants_rating && !toggleButton[2] ? (
+        <>
+          <div className="rating-div">
             <p>Restaurants rating: {rateData.restaurants_rating}</p>
             <Button
               className="toggle-rating"
@@ -189,34 +194,34 @@ const Rating = props => {
             >
               Edit rating
             </Button>
-          </>
-        ) : (
-          <>
-            {rateData && (
-              <>
-                <div className="rating-box">
-                  <p>Hotel rating: {rateData.hotel_rating}</p>
-                  <Dropdown
-                    id="dropdown1"
-                    placeholder="Rating: Poor - 1, Excellent - 5"
-                    fluid
-                    selection
-                    options={options}
-                    onChange={(e, data) => {
-                      setRating([rating[0], rating[1], rating[2], data.value]);
-                    }}
-                  />
-                </div>
-              </>
-            )}
-          </>
-        )}
-        <br />
-        <Button id="rate-trip" onClick={clickHandler}>
-          Send rating!
-        </Button>
-        <h3 id="rating-message">{ratingMessage}</h3>
-      </div>
+          </div>
+        </>
+      ) : (
+        <>
+          {rateData && (
+            <>
+              <div className="rating-div">
+                <p>Hotel rating: {rateData.hotel_rating}</p>
+                <Dropdown
+                  id="dropdown1"
+                  placeholder="Rating: Poor - 1, Excellent - 5"
+                  fluid
+                  selection
+                  options={options}
+                  onChange={(e, data) => {
+                    setRating([rating[0], rating[1], rating[2], data.value]);
+                  }}
+                />
+              </div>
+            </>
+          )}
+        </>
+      )}
+      <br />
+      <Button id="rate-trip" onClick={clickHandler}>
+        Send rating!
+      </Button>
+      <h3 id="rating-message">{ratingMessage}</h3>
     </>
   );
 };
