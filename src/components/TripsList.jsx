@@ -162,7 +162,7 @@ const TripsList = props => {
     <>
       <div>
         {viewCard && localStorage.getItem("J-sunkAuth-Storage") ? (
-          <h6 id="trips-column">Your Previous Trips</h6>) : (
+          <h6 id="trips-column">Your Trips</h6>) : (
           <h6 id="trips-column">View Previous User Trips</h6>
         )} 
       </div>

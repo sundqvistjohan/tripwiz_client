@@ -10,6 +10,7 @@ const HotelsList = props => {
   const [activeMarker, setActiveMarker] = useState({});
   const [selectedPlaces, setSelectedPlaces] = useState({});
   const [hotelMessage, setHotelMessage] = useState("");
+  const [currentHotels, setCurrentHotels] = useState(null)
 
   const getHotelsShowData = async () => {
     const response = await getHotels(props.trip);
@@ -19,7 +20,10 @@ const HotelsList = props => {
         setHotelMessage(
           `Here are the closest hotels to your activities. Please add one to your itinerary!`
         );
+      } else {
+        setHotelMessage("")
       }
+      setCurrentHotels(response.data[0].id)
     }
   };
 
@@ -36,7 +40,9 @@ const HotelsList = props => {
   };
 
   useEffect(() => {
-    
+    if (props.hotels[0].id !== currentHotels) {
+      getHotelsShowData()
+    }
   }, [props.hotels]);
 
   useEffect(() => {
@@ -90,6 +96,7 @@ const HotelsList = props => {
     markers = props.hotels.map(marker => {
       return (
         <Marker
+          key={marker.id}
           onClick={onMarkerClick}
           name={marker.name}
           position={{ lat: marker.lat, lng: marker.lng }}
@@ -106,7 +113,6 @@ const HotelsList = props => {
     <>
       <h5 id="hotel-msg">{hotelMessage}</h5>
       <div className="ui stackable four column grid">{hotelCard}</div>
-      {hotelCard && (
         <div className="hotels-map">
           <Map
             google={props.google}
@@ -116,6 +122,7 @@ const HotelsList = props => {
               lat: props.hotels[0].lat,
               lng: props.hotels[0].lng
             }}
+            center={{ lat: props.hotels[0].lat, lng: props.hotels[0].lng }}
           >
             {markers}
             <InfoWindow marker={activeMarker} visible={showingInfoWindow}>
@@ -125,7 +132,6 @@ const HotelsList = props => {
             </InfoWindow>
           </Map>
         </div>
-      )}
     </>
   );
 };

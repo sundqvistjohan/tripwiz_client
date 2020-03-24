@@ -119,7 +119,7 @@ const Result = props => {
     <>
       {redirect === true && <Redirect to="/trip" />}
       <div className="trip-section">
-        {props.trips === null ? (
+        {props.trips === null && props.activities === null ? (
           <Dimmer active inverted>
             <Loader size='large'>Loading</Loader>
           </Dimmer>) : (
