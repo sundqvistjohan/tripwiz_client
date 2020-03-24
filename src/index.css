@@ -217,11 +217,10 @@ div#activity-cards.ui.card {
   background-color: #fbfbfbe0;
   border-radius: 25px 25px 25px 25px;
   min-height: 850px;
-  max-height: 115%;
   width: 95%;
   max-width: 1440px;
   margin-bottom: 2%;
-  overflow: scroll;
+  /* overflow: scroll; */
   overflow-x: hidden;
 }
 
@@ -242,7 +241,7 @@ header h5 {
 }
 
 .ui.inverted.menu {
-  background-color: rgba(204, 198, 198, 0.77);
+  background-color: rgba(137, 136, 136, 0.77);
 }
 
 #progression-num {
@@ -642,7 +641,7 @@ div#land.header {
   padding: 40px;
   text-align: right;
   height: 100px;
-  background-color: rgb(204, 198, 198);
+  background-color: rgba(137, 136, 136, 0.77);
 }
 
 .screenshots {
@@ -718,7 +717,7 @@ h5#trips-column {
   border-top-right-radius: 15px;
 }
 
-.ui.card>.image:not(.ui)>img, .ui.cards>.card>.image:not(.ui)>img {
+#trip-list-image {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }

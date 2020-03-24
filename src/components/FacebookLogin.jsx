@@ -4,11 +4,13 @@ import { FacebookProvider, Login } from "react-facebook";
 import { Button, Icon } from "semantic-ui-react";
 import axios from "axios";
 import { Redirect } from "react-router";
+import { getTrips } from "../modules/destination.js";
 
 const FacebookLogin = props => {
   const [redirect, setRedirect] = useState(false);
   const [redirectToTrip, setRedirectToTrip] = useState(false);
   const [localStorageExists, setlocalStorageExists] = useState(false);
+  const [gotTrips, setGotTrips] = useState(false)
 
   const handleResponse = async data => {
     const response = await axios.post("/auth", {
@@ -52,10 +54,18 @@ const FacebookLogin = props => {
     setRedirectToTrip(true);
   };
 
+  const getTripsData = async () => {
+    let response = await getTrips();
+    if (response.data.length > 0) {
+      setGotTrips(true);
+    }
+  };
+  
   useEffect(() => {
     if (localStorage.getItem("J-sunkAuth-Storage")) {
       setlocalStorageExists(true);
       props.updateProgression(0);
+      getTripsData()
     }
   }, []);
 
@@ -100,15 +110,17 @@ const FacebookLogin = props => {
           </Button>
         )}
       </div>
-      <Button
-        id="return-button"
-        size="large"
-        color="grey"
-        onClick={() => setRedirect(true)}
-      >
-        {" "}
-        Dashboard
-      </Button>
+      {gotTrips === true && (
+        <Button
+          id="return-button"
+          size="large"
+          color="grey"
+          onClick={() => setRedirect(true)}
+        >
+          {" "}
+          Dashboard
+        </Button>
+      )}
     </>
   );
 };
