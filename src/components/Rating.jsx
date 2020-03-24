@@ -8,7 +8,12 @@ const Rating = props => {
   const [rating, setRating] = useState([null, null, null, null]);
   const [ratingMessage, setRatingMessage] = useState(null);
   let [rateData, setRateData] = useState(null);
-  const [toggleButton, setToggleButton] = useState([false, false, false, false]);
+  const [toggleButton, setToggleButton] = useState([
+    false,
+    false,
+    false,
+    false
+  ]);
 
   const clickHandler = async () => {
     if (props) {
@@ -33,7 +38,6 @@ const Rating = props => {
       setRateData(false);
     } else {
       setRateData(response.data);
-      debugger;
     }
   };
 
@@ -58,7 +62,6 @@ const Rating = props => {
             <Button
               className="toggle-rating"
               onClick={() => {
-                debugger;
                 setToggleButton([
                   true,
                   toggleButton[1],
@@ -72,21 +75,23 @@ const Rating = props => {
           </>
         ) : (
           <>
-            {rateData && (<><h3 id="rating-h3">Rate trip to {props.destination}</h3>
-            <p>Scale: 1 - Poor, 5 - Excellent</p>
-            <div className="rating-destination">
-              <p>Destination rating: {rateData.destination_rating}</p>
-              <Dropdown
-                id="dropdown1"
-                placeholder="Rating: Poor - 1, Excellent - 5"
-                fluid
-                selection
-                options={options}
-                onChange={(e, data) => {
-                  setRating([data.value, rating[1], rating[2], rating[3]]);
-                }}
-              />
-            </div> </>)}
+            {rateData && (
+              <>
+                <div className="rating-box">
+                  <p>Destination rating: {rateData.destination_rating}</p>
+                  <Dropdown
+                    id="dropdown1"
+                    placeholder="Rating: Poor - 1, Excellent - 5"
+                    fluid
+                    selection
+                    options={options}
+                    onChange={(e, data) => {
+                      setRating([data.value, rating[1], rating[2], rating[3]]);
+                    }}
+                  />
+                </div>{" "}
+              </>
+            )}
           </>
         )}
         {rateData && rateData.activities_rating && !toggleButton[1] ? (
@@ -107,24 +112,106 @@ const Rating = props => {
             </Button>
           </>
         ) : (
-          <>{rateData && <>
-            <h3 id="rating-h3">Rate trip to {props.destination}</h3>
-            <p>Scale: 1 - Poor, 5 - Excellent</p>
-            <div className="rating-activities">
-              <p>Activities rating: {rateData.activities_rating}</p>
-              <Dropdown
-                id="dropdown1"
-                placeholder="Rating: Poor - 1, Excellent - 5"
-                fluid
-                selection
-                options={options}
-                onChange={(e, data) => {
-                  setRating([rating[0], data.value, rating[2], rating[3]]);
-                }}
-              />
-            </div></>}
+          <>
+            {rateData && (
+              <>
+                <h3 id="rating-h3">Rate trip to {props.destination}</h3>
+                <p>Scale: 1 - Poor, 5 - Excellent</p>
+                <div className="rating-activities">
+                  <p>Activities rating: {rateData.activities_rating}</p>
+                  <Dropdown
+                    id="dropdown1"
+                    placeholder="Rating: Poor - 1, Excellent - 5"
+                    fluid
+                    selection
+                    options={options}
+                    onChange={(e, data) => {
+                      setRating([rating[0], data.value, rating[2], rating[3]]);
+                    }}
+                  />
+                </div>
+              </>
+            )}
           </>
         )}
+        {rateData && rateData.restaurants_rating && !toggleButton[2] ? (
+          <>
+            <p>Restaurants rating: {rateData.restaurants_rating}</p>
+            <Button
+              className="toggle-rating"
+              onClick={() => {
+                setToggleButton([
+                  toggleButton[0],
+                  toggleButton[1],
+                  true,
+                  toggleButton[3]
+                ]);
+              }}
+            >
+              Edit rating
+            </Button>
+          </>
+        ) : (
+          <>
+            {rateData && (
+              <>
+                <div className="rating-box">
+                  <p>Activities rating: {rateData.restaurants_rating}</p>
+                  <Dropdown
+                    id="dropdown1"
+                    placeholder="Rating: Poor - 1, Excellent - 5"
+                    fluid
+                    selection
+                    options={options}
+                    onChange={(e, data) => {
+                      setRating([rating[0], rating[1], data.value, rating[3]]);
+                    }}
+                  />
+                </div>
+              </>
+            )}
+          </>
+        )}
+        {rateData && rateData.restaurants_rating && !toggleButton[2] ? (
+          <>
+            <div className="rating-show"></div>
+            <p>Restaurants rating: {rateData.restaurants_rating}</p>
+            <Button
+              className="toggle-rating"
+              onClick={() => {
+                setToggleButton([
+                  toggleButton[0],
+                  toggleButton[1],
+                  true,
+                  toggleButton[3]
+                ]);
+              }}
+            >
+              Edit rating
+            </Button>
+          </>
+        ) : (
+          <>
+            {rateData && (
+              <>
+                <div className="rating-box">
+                  <p>Hotel rating: {rateData.hotel_rating}</p>
+                  <Dropdown
+                    id="dropdown1"
+                    placeholder="Rating: Poor - 1, Excellent - 5"
+                    fluid
+                    selection
+                    options={options}
+                    onChange={(e, data) => {
+                      setRating([rating[0], rating[1], rating[2], data.value]);
+                    }}
+                  />
+                </div>
+              </>
+            )}
+          </>
+        )}
+        <br />
         <Button id="rate-trip" onClick={clickHandler}>
           Send rating!
         </Button>
