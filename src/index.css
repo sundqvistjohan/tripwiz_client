@@ -359,7 +359,7 @@ button#up {
 .result-title {
   text-align: center;
   padding-top: 50px;
-  font-size: 55px;
+  font-size: 60px;
   font-weight: 600;
   color: rgba(29, 29, 29, 0.8);
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -446,11 +446,11 @@ button#up {
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  background-color: rgba(32, 178, 171, 0.466);
+  background-color: rgba(32, 178, 171, 0.85);
   padding: 10px 10px;
-  font: 1.5em "Museo 700";
+  color: white;
   border-radius: 3px;
-  color: rgba(29, 29, 29, 0.719);;
+  font-size: 18px;
 }
 
 .landing {
@@ -685,7 +685,7 @@ div#land.header {
   margin-bottom: 0;
   text-align: center;
   vertical-align: middle;
-  background-color: rgba(32, 178, 171, 0.603);
+  background-color: rgba(32, 178, 171, 0.85);
   padding: 15px 20%;
   font-size: 2rem;
   border-radius: 3px;

@@ -11,6 +11,7 @@ const FacebookLogin = props => {
   const [redirectToTrip, setRedirectToTrip] = useState(false);
   const [localStorageExists, setlocalStorageExists] = useState(false);
   const [gotTrips, setGotTrips] = useState(false)
+  const [userTripsExist, setUserTripsExist] = useState(null)
 
   const handleResponse = async data => {
     const response = await axios.post("/auth", {
@@ -22,9 +23,11 @@ const FacebookLogin = props => {
       if (props.currentRoute === "landing") {
         props.setCurrentUser(data.profile);
         props.changeAuth(true);
-        props.setCurrentRoute("trip");
+        setlocalStorageExists(true);
+        // props.setCurrentRoute("trip");
         setSession(response.data, response.headers);
-        setRedirectToTrip(true);
+        getTripsData();
+        // setRedirectToTrip(true);
       } else {
         props.setCurrentUser(data.profile);
         props.setCurrentRoute("trip");
@@ -56,8 +59,10 @@ const FacebookLogin = props => {
 
   const getTripsData = async () => {
     let response = await getTrips();
-    if (response.data.length > 0) {
-      setGotTrips(true);
+    if (response.data.length === 0) {
+      setUserTripsExist(0)
+    } else {
+      setUserTripsExist(1);
     }
   };
   
@@ -76,21 +81,23 @@ const FacebookLogin = props => {
   }, [props.logout]);
 
   useEffect(() => {
-    if (props.authenticated === true) {
-      props.updateProgression(0);
+    if (props.authenticated === true && userTripsExist === 0) {
+      props.setCurrentRoute("trip");
+      setRedirectToTrip(true);
+      // props.updateProgression(0);
     }
-  }, [props.authenticated]);
+  }, [userTripsExist]);
 
   return (
     <>
       <div className="fb-login">
         {redirect === true && <Redirect to="/result" />}
         {redirectToTrip === true && <Redirect to="/trip" />}
-        <h2 style={{ paddingBottom: "40px" }}>To create a trip:</h2>
+        <h2 style={{ paddingBottom: "40px" }}>To get started:</h2>
         {localStorageExists === false ? (
           <FacebookProvider appId="175176387099386">
             <Login scope="email" onCompleted={handleResponse}>
-              {({ loading, handleClick, data }) => (
+              {({ loading, handleClick }) => (
                 <Button
                   id="login-button"
                   size="massive"
@@ -106,11 +113,11 @@ const FacebookLogin = props => {
           </FacebookProvider>
         ) : (
           <Button id="create-trip-button-landing" onClick={createTripHandler}>
-            Click here!
+            Create Trip!
           </Button>
         )}
       </div>
-      {gotTrips === true && (
+      {userTripsExist === 1 && (
         <Button
           id="return-button"
           size="large"
