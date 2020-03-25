@@ -56,8 +56,8 @@ const HotelsList = props => {
   if (props.hotels) {
     hotelCard = props.hotels.map(hotel => {
       return (
-        <div className="centerText">
-          <div id="hotel-cards" key={hotel.id} className="ui card">
+        <div key={hotel.id} className="centerText">
+          <div id="hotel-cards" className="ui card">
             <div className="image">
               <img src={hotel.url} />
             </div>

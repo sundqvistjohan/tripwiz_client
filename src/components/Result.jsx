@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Tab, Grid, GridColumn, Button, Dimmer, Loader, } from "semantic-ui-react";
+import { Tab, Button, Dimmer, Loader, } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
 import {
   getActivities,
@@ -143,7 +143,7 @@ const Result = props => {
               </div>
               <h5 style={{ visibility: loading }}>
                 Enjoy the {props.activityType}s!
-            </h5>
+              </h5>
               <div id="main2">
                 <div className="result-main">
                   <div className="result-left"><TripsList /></div>
