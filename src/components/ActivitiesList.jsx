@@ -37,7 +37,6 @@ const ActivitiesList = props => {
 
   return (
     <>
-      <h5 id="tab-msg">Your activities</h5>
       {activityCard}
     </>
   );

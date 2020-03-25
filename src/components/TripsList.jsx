@@ -90,7 +90,7 @@ const TripsList = props => {
         <div key={props.selectedCard.trip.id} className={`trip-header`}>
           <div id="trip-card" className="ui card">
             <div className="image">
-              <img
+              <img  id="trip-list-image"
                 src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${props.selectedCard.image}&sensor=false&maxwidth=400&key=${process.env.REACT_APP_GOOGLE_APIKEY}`}
               />
             </div>
@@ -117,7 +117,7 @@ const TripsList = props => {
               <Button color="blue" onClick={onButtonHandler}>
                 View trip
               </Button>
-              {props.authenticated && (
+              {localStorage.getItem("J-sunkAuth-Storage") && (
                 <button
                   id="remove-btn"
                   className="circular ui right floated red icon button"
@@ -146,7 +146,7 @@ const TripsList = props => {
       tripHeaders = filteredList.map(trip => {
         return (
           <div key={trip.id} className="trip-headers">
-            <div onClick={() => onClickHandler(trip.id)} className="ui card">
+            <div id="list" onClick={() => onClickHandler(trip.id)} className="ui card">
               <div className="content">
                 <div className="header">
                   <h5>
@@ -166,10 +166,9 @@ const TripsList = props => {
     <>
       <div>
         {viewCard && localStorage.getItem("J-sunkAuth-Storage") ? (
-          <h5 id="trips-column">Your Previous Trips</h5>
-        ) : (
-          <h5 id="trips-column">View Previous User Trips</h5>
-        )}
+          <h6 id="trips-column">Your Trips</h6>) : (
+          <h6 id="trips-column">View Previous User Trips</h6>
+        )} 
       </div>
       {viewList}
       {viewCard}
@@ -179,6 +178,7 @@ const TripsList = props => {
 
 const mapStateToProps = state => {
   return {
+    authenticated: state.authenticated,
     selectedCard: state.selectedCard,
     trips: state.trips,
     activityType: state.activityType,

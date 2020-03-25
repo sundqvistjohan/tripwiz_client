@@ -9,6 +9,7 @@ const Header = props => {
     localStorage.removeItem("J-sunkAuth-Storage");
     props.setLogout(true)
     props.updateProgression(-1);
+    window.location.href = '/';
   }
 
   let loggedIn;
@@ -16,7 +17,7 @@ const Header = props => {
     case props.authenticated:
       loggedIn = (
         <>
-          <h5>Logged in as
+          <h5 className="fb">Logged in as
             <span style={{ color: '#4267b2' }}> {props.currentUser.name}</span>
           </h5>
           <Button
@@ -32,7 +33,7 @@ const Header = props => {
     case !props.authenticated && localStorage.getItem("J-sunkAuth-Storage") !== null || props.logout === false:
       loggedIn = (
         <>
-          <h5>Logged in with
+          <h5 className="fb" >Logged in with
             <span style={{ color: '#4267b2' }}> Facebook</span>
           </h5>
           <Button
