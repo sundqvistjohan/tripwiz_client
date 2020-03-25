@@ -59,10 +59,12 @@ const FacebookLogin = props => {
 
   const getTripsData = async () => {
     let response = await getTrips();
-    if (response.data.length === 0) {
-      setUserTripsExist(0)
-    } else {
-      setUserTripsExist(1);
+    if (response.status === 200) {
+      if (response.data.length === 0) {
+        setUserTripsExist(0)
+      } else {
+        setUserTripsExist(1);
+      }
     }
   };
   

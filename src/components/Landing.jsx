@@ -16,8 +16,8 @@ const Landing = (props) => {
 
   tripCards = popularTrips.map(trip => {
     return (
-      <div className="landing-cards">
-        <div id="land-card" key={trip.id} className="ui card">
+      <div key={trip.id} className="landing-cards">
+        <div id="land-card" className="ui card">
           <div className="image-landing">
             <img className="landing-img"
               src={trip.image}
