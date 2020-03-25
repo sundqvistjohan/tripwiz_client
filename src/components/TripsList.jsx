@@ -54,12 +54,12 @@ const TripsList = props => {
   };
 
   const onDeleteHandler = async () => {
-      await objectEraser("trips", props.selectedCard.trip.id);
-      props.setSelectedCard(null)
-      props.setActivities(null)
-      setGotTrips(false)
-      getTripsData();
-  }
+    await objectEraser("trips", props.selectedCard.trip.id);
+    props.setSelectedCard(null);
+    props.setActivities(null);
+    setGotTrips(false);
+    getTripsData();
+  };
 
   useEffect(() => {
     getTripsData();
@@ -85,6 +85,7 @@ const TripsList = props => {
       let activityInfo = props.selectedCard[tripParts[1]][activityParts[0]];
       let restaurantInfo = props.selectedCard[tripParts[1]][activityParts[1]];
       let hotelInfo = props.selectedCard[tripParts[2]];
+      let rating = props.selectedCard[tripParts[4]];
       tripCard = (
         <div key={props.selectedCard.trip.id} className={`trip-header`}>
           <div id="trip-card" className="ui card">
@@ -93,16 +94,16 @@ const TripsList = props => {
                 src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${props.selectedCard.image}&sensor=false&maxwidth=400&key=${process.env.REACT_APP_GOOGLE_APIKEY}`}
               />
             </div>
-            <div className="content">
+            <div className="card-content">
               <div className="header">
                 {tripInfo.days} days in {tripInfo.destination}
               </div>
-              <div className="description">
+              <div className="card-description">
                 <p>
                   Visiting {activityInfo.length} {activityParts[0]}
                 </p>
                 <p>
-                  Restaurants:{" "}
+                  Restaurants:
                   {restaurantInfo[restaurantInfo.length - 1].rating}+
                 </p>
                 <p>
@@ -116,14 +117,17 @@ const TripsList = props => {
               <Button color="blue" onClick={onButtonHandler}>
                 View trip
               </Button>
-              {localStorage.getItem("J-sunkAuth-Storage") && (
-              <button
-                id="remove-btn"
-                className="circular ui right floated red icon button"
-                onClick={onDeleteHandler}
-              >
-                <i id="remove-btn-image" className="trash alternate outline icon"></i>
-              </button>
+              {props.authenticated && (
+                <button
+                  id="remove-btn"
+                  className="circular ui right floated red icon button"
+                  onClick={onDeleteHandler}
+                >
+                  <i
+                    id="remove-btn-image"
+                    class="trash alternate outline icon"
+                  ></i>
+                </button>
               )}
             </div>
           </div>
@@ -178,7 +182,8 @@ const mapStateToProps = state => {
     selectedCard: state.selectedCard,
     trips: state.trips,
     activityType: state.activityType,
-    restaurants: state.restaurants
+    restaurants: state.restaurants,
+    authenticated: state.authenticated
   };
 };
 

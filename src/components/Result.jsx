@@ -13,6 +13,7 @@ import RestaurantsList from "./RestaurantsList";
 import HotelsList from "./HotelsList";
 import TripsList from "./TripsList";
 import { Redirect } from "react-router";
+import Rating from "./Rating";
 
 const Result = props => {
   const [redirect, setRedirect] = useState(false);
@@ -35,9 +36,17 @@ const Result = props => {
       menuItem: "Activities",
       render: () => (
         <Tab.Pane>
-          <div className="ui stackable four column grid">
-            {props.trips.length === 0 ? ("Please begin by creating a trip") : (<ActivitiesList />)}
-          </div>
+          {props.activities && props.activities !== {} ? (
+            <div className="ui stackable four column grid">
+              {props.trips.length === 0 ? (
+                "Please begin by creating a trip"
+              ) : (
+                <ActivitiesList />
+              )}
+            </div>
+          ) : (
+            "Please begin by creating a trip"
+          )}
         </Tab.Pane>
       )
     },
@@ -45,9 +54,17 @@ const Result = props => {
       menuItem: "Restaurants",
       render: () => (
         <Tab.Pane>
-          <div className="ui stackable four column grid">
-            {props.trips.length === 0 ? ("Please begin by creating a trip") : (<RestaurantsList />)}
-          </div>
+          {props.activities && props.activities !== {} ? (
+            <div className="ui stackable four column grid">
+              {props.trips.length === 0 ? (
+                "Please begin by creating a trip"
+              ) : (
+                <RestaurantsList />
+              )}
+            </div>
+          ) : (
+            "Please begin by creating a trip"
+          )}
         </Tab.Pane>
       )
     },
@@ -55,7 +72,23 @@ const Result = props => {
       menuItem: "Hotel",
       render: () => (
         <Tab.Pane>
-          {props.trips.length === 0 ? ("Please begin by creating a trip") : (<HotelsList />)}
+          {props.activities && props.activities !== {} ? (
+            <HotelsList />
+          ) : (
+            "Please begin by creating a trip"
+          )}
+        </Tab.Pane>
+      )
+    },
+    {
+      menuItem: "Rating",
+      render: () => (
+        <Tab.Pane>
+          {props.activities && props.activities !== {} ? (
+            <Rating />
+          ) : (
+            "Please begin by creating a trip"
+          )}
         </Tab.Pane>
       )
     }
@@ -63,7 +96,7 @@ const Result = props => {
 
   const setActivities = async () => {
     let response = await getActivities(props.trip);
-    if (Object.keys(response.data).length !== 0) {
+    if (response.data && Object.keys(response.data).length !== 0) {
       props.setActivities(response.data);
     } else {
       props.setActivities(null);
