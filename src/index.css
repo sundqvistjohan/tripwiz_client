@@ -3,7 +3,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: grey;
-  background-repeat: repeat;
+  /* background-repeat: repeat; */
   background-size: cover;
   font-family: 'open sans',arial,sans-serif;
   background-image: url('https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1601&q=80');
@@ -208,6 +208,10 @@ Button {
   display: none;
 }
 
+#restaurant::-webkit-scrollbar { 
+  display: none;
+}
+
 div#activity-cards.ui.card {
   min-height: 450px;
   max-height: 450px;
@@ -355,7 +359,7 @@ button#up {
 .result-title {
   text-align: center;
   padding-top: 50px;
-  font-size: 50px;
+  font-size: 55px;
   font-weight: 600;
   color: rgba(29, 29, 29, 0.8);
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -384,6 +388,11 @@ button#up {
   min-height: 400px;
   margin-bottom: 5%;
   max-width: 280px;
+}
+
+#restaurant.content {
+  height: 130px;
+  overflow: scroll;
 }
 
 #tab-msg {
@@ -524,6 +533,10 @@ button#up {
   #left-mid.col h3 {
     border-bottom: none;
     padding-bottom: 0;
+  }
+
+  .result-title {
+    font-size: 6vw;
   }
 
   .result-main {
@@ -751,4 +764,5 @@ h5#trips-column {
   width: 30%;
   display: inline-block;
   margin: 1%;
+  padding: 2%;
 }

@@ -17,7 +17,7 @@ const RestaurantsList = props => {
             <div className="image">
               <img img alt="" src="https://i.pinimg.com/564x/80/75/fd/8075fd3160e87f2aff474f53c2ecbcb2.jpg" />
             </div>
-            <div className="content">
+            <div id="restaurant" className="content">
               <div className="header">{restaurant.name}</div>
               <div>{restaurant.address}</div>
             </div>

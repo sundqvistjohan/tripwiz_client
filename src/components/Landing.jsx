@@ -38,13 +38,16 @@ const Landing = (props) => {
 
   return (
     <>
-      <Parallax bgImage={image1} strength={200}>
+      <Parallax 
+        bgImage={image1} 
+        strength={-150}
+        >
         <div className="hero">
           <div className="col">
             <div className="greeting">
               <h1>Welcome to TripWiz.</h1>
               <br />
-              <h3>"Wherever the destination, we'll show you around"</h3>
+              <h3>Wherever the destination, we'll show you around</h3>
             </div>
           </div>
           <div className="col">

@@ -102,7 +102,7 @@ const HotelsList = props => {
           position={{ lat: marker.lat, lng: marker.lng }}
           icon={{
             url: `/mapIcons/hotel.png`,
-            scaledSize: new props.google.maps.Size(40, 40)
+            scaledSize: new props.google.maps.Size(60, 60)
           }}
         />
       );

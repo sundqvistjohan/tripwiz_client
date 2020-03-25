@@ -52,7 +52,7 @@ const ResultMap = props => {
           position={{ lat: hotel.lat, lng: hotel.lng }}
           icon={{
             url: `/mapIcons/hotel.png`,
-            scaledSize: new props.google.maps.Size(40, 40)
+            scaledSize: new props.google.maps.Size(60, 60)
           }}
         />
       );

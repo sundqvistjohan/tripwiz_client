@@ -117,7 +117,7 @@ const TripsList = props => {
               <Button color="blue" onClick={onButtonHandler}>
                 View trip
               </Button>
-              {props.authenticated && (
+              {localStorage.getItem("J-sunkAuth-Storage") && (
                 <button
                   id="remove-btn"
                   className="circular ui right floated red icon button"
