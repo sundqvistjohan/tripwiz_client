@@ -241,10 +241,11 @@ div#activity-cards.ui.card {
   background-color: #fbfbfbe0;
   border-radius: 25px 25px 25px 25px;
   min-height: 850px;
+  max-height: 1250px;
   width: 95%;
-  max-width: 1440px;
+  max-width: 1440px; 
   margin-bottom: 2%;
-  /* overflow: scroll; */
+  overflow: scroll;
   overflow-x: hidden;
 }
 
