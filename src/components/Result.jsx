@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Tab, Grid, GridColumn, Button } from "semantic-ui-react";
+import { Tab, Button, Dimmer, Loader, } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
 import {
   getActivities,
@@ -27,8 +27,8 @@ const Result = props => {
           {props.activities && props.activities !== {} ? (
             <ResultMap />
           ) : (
-            "Please begin by creating a trip"
-          )}
+              "Please begin by creating a trip"
+            )}
         </Tab.Pane>
       )
     },
@@ -115,19 +115,19 @@ const Result = props => {
     }
   };
 
-  const createTripHandler = async () => {
+  const setHotels = async () => {
+    let response = await getHotels(props.trip);
+    props.setHotels(response.data);
+  };
+
+  const createTripHandler = () => {
     if (props.authenticated === true) {
       props.updateProgression(0);
     } else {
       props.updateProgression(-1);
     }
     setRedirect(true);
-  };
-
-  const setHotels = async () => {
-    let response = await getHotels(props.trip);
-    props.setHotels(response.data);
-  };
+  }
 
   useEffect(() => {
     setActivities();
@@ -152,39 +152,45 @@ const Result = props => {
     <>
       {redirect === true && <Redirect to="/trip" />}
       <div className="trip-section">
-        <div className="result-title">
-          <span id="result-title-number" style={{ visibility: loading }}>
-            {props.days}
-          </span>
-          <span id="result-title-mid" style={{ visibility: loading }}>
-            {" "}
-            days in
-          </span>
-          {props.destination === null ? (
-            "Your Dashboard"
-          ) : (
-            <span id="result-dest" style={{ visibility: loading }}>
-              {" "}
-              {props.destination}
-            </span>
+        {props.trips === null && props.activities === null ? (
+          <Dimmer active inverted>
+            <Loader size='large'>Loading</Loader>
+          </Dimmer>) : (
+            <>
+              <div className="result-title">
+                <span id="result-title-number" style={{ visibility: loading }}>
+                  {props.days}
+                </span>
+                <span id="result-title-mid" style={{ visibility: loading }}>
+                  {" "}
+                days in
+              </span>
+                {props.destination === null ? (
+                  "Your Dashboard"
+                ) : (
+                    <span id="result-dest" style={{ visibility: loading }}>
+                      {" "}
+                      {props.destination}
+                    </span>
+                  )}
+              </div>
+              <h5 style={{ visibility: loading }}>
+                Enjoy the {props.activityType}s!
+              </h5>
+              <div id="main2">
+                <div className="result-main">
+                  <div className="result-left"><TripsList /></div>
+                  <div className="result-right">
+                    <h5 id="trips-column">& Itinerary</h5>
+                    <Button id="create-trip-button" onClick={createTripHandler}>
+                      Create new trip!
+                    </Button>
+                    <Tab panes={panes} />
+                  </div>
+                </div>
+              </div>
+            </>
           )}
-        </div>
-        <h5 style={{ visibility: loading }}>
-          Enjoy the {props.activityType}s!
-        </h5>
-        <Button id="create-trip-button" onClick={createTripHandler}>
-          Create new trip!
-        </Button>
-        <Grid>
-          <GridColumn width={4}>
-            <TripsList />
-          </GridColumn>
-          <GridColumn width={12}>
-            <div id="main2">
-              <Tab panes={panes} />
-            </div>
-          </GridColumn>
-        </Grid>
       </div>
     </>
   );

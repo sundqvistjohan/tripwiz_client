@@ -22,7 +22,7 @@ describe("User can see restaurants", () => {
       status: 200
     });
     cy.chooseRestaurants();
-    cy.get("a").contains("Restaurants").click();
+    cy.get(".result-right").contains("Restaurants").click();
     cy.get('#root').should('contain', 'Vasa Restaurant')
   });
 });

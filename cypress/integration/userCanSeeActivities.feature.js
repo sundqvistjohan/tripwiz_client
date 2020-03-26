@@ -10,7 +10,7 @@ describe("User can see activities", () => {
     cy.chooseActivityType();
     cy.chooseHotel();
     cy.chooseRestaurants();
-    cy.get("a").contains("Activities").click();
+    cy.get(".result-right").contains("Activities").click();
     cy.get('#root').should('contain', 'Vasa Gallery')
 
   });
