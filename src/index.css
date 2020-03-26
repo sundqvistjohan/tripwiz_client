@@ -223,13 +223,16 @@ div#activity-cards.ui.card {
 }
 
 #main2 {
-  margin-top: 1%;
+  margin-top: 40px;
   padding: 3%;
-  margin-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #fbfbfbe0;
   border-radius: 25px 25px 25px 25px;
-  min-height: 650px;
-  max-width: 1440px;
+  min-height: 850px;
+  max-height: 1250px;
+  width: 95%;
+  max-width: 1440px; 
   margin-bottom: 2%;
   overflow: scroll;
   overflow-x: hidden;
