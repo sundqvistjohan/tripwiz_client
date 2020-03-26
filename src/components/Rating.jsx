@@ -154,7 +154,7 @@ const Rating = props => {
       ) : (
         <>
           <div className="rating-div">
-            <p>Activities rating: {rateData && rateData.restaurants_rating}</p>
+            <p>Restaurants rating: {rateData && rateData.restaurants_rating}</p>
             <Dropdown
               id="dropdown1"
               placeholder="Poor - 1, Excellent - 5"
@@ -168,18 +168,18 @@ const Rating = props => {
           </div>
         </>
       )}
-      {rateData && rateData.restaurants_rating && !toggleButton[2] ? (
+      {rateData && rateData.hotel_rating && !toggleButton[2] ? (
         <>
           <div className="rating-div">
-            <p>Restaurants rating: {rateData.restaurants_rating}</p>
+            <p>Hotel rating: {rateData.hotel_rating}</p>
             <Button
               className="toggle-rating"
               onClick={() => {
                 setToggleButton([
                   toggleButton[0],
                   toggleButton[1],
-                  true,
-                  toggleButton[3]
+                  toggleButton[2],
+                  true
                 ]);
               }}
             >
