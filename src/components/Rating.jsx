@@ -64,8 +64,8 @@ const Rating = props => {
       {rateData && rateData.destination_rating && !toggleButton[0] ? (
         <>
           <div className="rating-div">
-            <p>Destination rating: {rateData.destination_rating}</p>
-            <Button
+            <p>Destination rating: <b>{rateData.destination_rating}</b></p>
+            <Button content='Standard' basic
               className="toggle-rating"
               onClick={() => {
                 setToggleButton([
@@ -76,14 +76,14 @@ const Rating = props => {
                 ]);
               }}
             >
-              Edit rating
+              Edit
             </Button>
           </div>
         </>
       ) : (
         <>
           <div className="rating-div">
-            <p>Destination rating: {rateData && rateData.destination_rating}</p>
+            <p>Destination rating: <b>{rateData && rateData.destination_rating}</b></p>
             <Dropdown
               id="dropdown1"
               placeholder="Poor - 1, Excellent - 5"
@@ -100,8 +100,8 @@ const Rating = props => {
       {rateData && rateData.activities_rating && !toggleButton[1] ? (
         <>
           <div className="rating-div">
-            <p>Activities rating: {rateData.activities_rating}</p>
-            <Button
+            <p>Activities rating: <b>{rateData.activities_rating}</b></p>
+            <Button content='Standard' basic
               className="toggle-rating"
               onClick={() => {
                 setToggleButton([
@@ -112,14 +112,14 @@ const Rating = props => {
                 ]);
               }}
             >
-              Edit rating
+              Edit
             </Button>
           </div>
         </>
       ) : (
         <>
           <div className="rating-div">
-            <p>Activities rating: {rateData && rateData.activities_rating}</p>
+            <p>Activities rating: <b>{rateData && rateData.activities_rating}</b></p>
             <Dropdown
               id="dropdown1"
               placeholder="Poor - 1, Excellent - 5"
@@ -137,8 +137,8 @@ const Rating = props => {
       {rateData && rateData.restaurants_rating && !toggleButton[2] ? (
         <>
           <div className="rating-div">
-            <p>Restaurants rating: {rateData.restaurants_rating}</p>
-            <Button
+            <p>Restaurants rating: <b>{rateData.restaurants_rating}</b></p>
+            <Button content='Standard' basic
               className="toggle-rating"
               onClick={() => {
                 setToggleButton([
@@ -149,14 +149,14 @@ const Rating = props => {
                 ]);
               }}
             >
-              Edit rating
+              Edit
             </Button>
           </div>
         </>
       ) : (
         <>
           <div className="rating-div">
-            <p>Restaurants rating: {rateData && rateData.restaurants_rating}</p>
+            <p>Restaurants rating: <b>{rateData && rateData.restaurants_rating}</b></p>
             <Dropdown
               id="dropdown1"
               placeholder="Poor - 1, Excellent - 5"
@@ -173,8 +173,8 @@ const Rating = props => {
       {rateData && rateData.hotel_rating && !toggleButton[2] ? (
         <>
           <div className="rating-div">
-            <p>Hotel rating: {rateData.hotel_rating}</p>
-            <Button
+            <p>Hotel rating: <b>{rateData.hotel_rating}</b></p>
+            <Button content='Standard' basic
               className="toggle-rating"
               onClick={() => {
                 setToggleButton([
@@ -185,14 +185,14 @@ const Rating = props => {
                 ]);
               }}
             >
-              Edit rating
+              Edit
             </Button>
           </div>
         </>
       ) : (
         <>
           <div className="rating-div">
-            <p>Hotel rating: {rateData && rateData.hotel_rating}</p>
+            <p>Hotel rating: <b>{rateData && rateData.hotel_rating}</b></p>
             <Dropdown
               id="dropdown1"
               placeholder="Poor - 1, Excellent - 5"
@@ -207,10 +207,10 @@ const Rating = props => {
         </>
       )}
       <br />
-      <Button id="rate-trip" onClick={clickHandler}>
+      <Button color='teal' id="rate-trip" onClick={clickHandler}>
         Submit rating!
       </Button>
-      <h3 id="rating-message">{ratingMessage}</h3>
+      <h4 id="rating-message">{ratingMessage}</h4>
     </>
   );
 };
