@@ -103,7 +103,7 @@ const TripsList = props => {
                   Visiting {activityInfo.length} {activityParts[0]}
                 </p>
                 <p>
-                  Restaurants:
+                  Restaurants:{" "}
                   {restaurantInfo[restaurantInfo.length - 1].rating}+
                 </p>
                 <p>

@@ -20,6 +20,8 @@ const Rating = props => {
       let response = await rateTrip(props.trip, rating);
       if (response.status === 200) {
         setRatingMessage("Thank you for your rating!");
+        getRatings()
+        setToggleButton([false, false, false, false])
       } else {
         setRatingMessage("Something went wrong.");
       }
@@ -206,7 +208,7 @@ const Rating = props => {
       )}
       <br />
       <Button id="rate-trip" onClick={clickHandler}>
-        Send rating!
+        Submit rating!
       </Button>
       <h3 id="rating-message">{ratingMessage}</h3>
     </>
