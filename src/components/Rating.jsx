@@ -82,7 +82,7 @@ const Rating = props => {
         </>
       ) : (
         <>
-          <div className="rating-div">
+          <div className="rating-div" id="destination-rating">
             <p>Destination rating: <b>{rateData && rateData.destination_rating}</b></p>
             <Dropdown
               id="dropdown1"
