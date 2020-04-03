@@ -49,7 +49,7 @@ describe("User can see restaurants", () => {
     });
     cy.get(".active > .visible > :nth-child(3)").click();
     cy.get("#rate-trip").click();
-    cy.get("#root")
+    cy.get("#destination-rating")
       .contains("Destination rating: 4")
       .click();
   });

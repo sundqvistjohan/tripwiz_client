@@ -63,7 +63,7 @@ const Rating = props => {
       <h3>Rating of {props.destination} trip</h3>
       {rateData && rateData.destination_rating && !toggleButton[0] ? (
         <>
-          <div className="rating-div">
+          <div className="rating-div" id="destination-rating">
             <p>Destination rating: <b>{rateData.destination_rating}</b></p>
             <Button content='Standard' basic
               className="toggle-rating"
@@ -99,7 +99,7 @@ const Rating = props => {
       )}
       {rateData && rateData.activities_rating && !toggleButton[1] ? (
         <>
-          <div className="rating-div">
+          <div className="rating-div" id="activities-rating">
             <p>Activities rating: <b>{rateData.activities_rating}</b></p>
             <Button content='Standard' basic
               className="toggle-rating"
@@ -118,7 +118,7 @@ const Rating = props => {
         </>
       ) : (
         <>
-          <div className="rating-div">
+          <div className="rating-div" id="activities-rating">
             <p>Activities rating: <b>{rateData && rateData.activities_rating}</b></p>
             <Dropdown
               id="dropdown1"
@@ -136,7 +136,7 @@ const Rating = props => {
       <br />
       {rateData && rateData.restaurants_rating && !toggleButton[2] ? (
         <>
-          <div className="rating-div">
+          <div className="rating-div" id="restaurants-rating">
             <p>Restaurants rating: <b>{rateData.restaurants_rating}</b></p>
             <Button content='Standard' basic
               className="toggle-rating"
@@ -155,7 +155,7 @@ const Rating = props => {
         </>
       ) : (
         <>
-          <div className="rating-div">
+          <div className="rating-div" id="restaurants-rating">
             <p>Restaurants rating: <b>{rateData && rateData.restaurants_rating}</b></p>
             <Dropdown
               id="dropdown1"
@@ -172,7 +172,7 @@ const Rating = props => {
       )}
       {rateData && rateData.hotel_rating && !toggleButton[2] ? (
         <>
-          <div className="rating-div">
+          <div className="rating-div" id="hotel-rating">
             <p>Hotel rating: <b>{rateData.hotel_rating}</b></p>
             <Button content='Standard' basic
               className="toggle-rating"
@@ -191,7 +191,7 @@ const Rating = props => {
         </>
       ) : (
         <>
-          <div className="rating-div">
+          <div className="rating-div" id="hotel-rating">
             <p>Hotel rating: <b>{rateData && rateData.hotel_rating}</b></p>
             <Dropdown
               id="dropdown1"
