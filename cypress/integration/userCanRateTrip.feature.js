@@ -36,7 +36,7 @@ describe("User can see restaurants", () => {
     cy.get("#destination-rating").click();
     cy.route({
       method: "POST",
-      url: "http://localhost:3000/api/v1/ratings?trip=5**",
+      url: "http://localhost:3000/api/v1/ratings?trip**",
       response: {
         status: 200
       }
@@ -49,8 +49,19 @@ describe("User can see restaurants", () => {
     });
     cy.get(".active > .visible > :nth-child(3)").click();
     cy.get("#rate-trip").click();
-    cy.get("#destination-rating")
-      .contains("Destination rating: 4")
-      .click();
+    cy.get("#destination-rating").contains("Destination rating: 4");
+
+
+    cy.route({
+      method: "GET",
+      url: "http://localhost:3000/api/v1/ratings/**",
+      response: "fixture:ratings_response_2.json",
+      status: 200
+    });
+    cy.get("#destination-rating").click();
+    cy.get("#destination-rating").click();
+    cy.get(".active > .visible > :nth-child(5)").click();
+    cy.get("#rate-trip").click();
+    cy.get("#destination-rating").contains("Destination rating: 5");
   });
 });

@@ -234,6 +234,7 @@ const rateTrip = async (id, rating) => {
     });
     return response;
   } catch (error) {
+    debugger
     if (error.response.status) {
       try {
         const response = await axios({
