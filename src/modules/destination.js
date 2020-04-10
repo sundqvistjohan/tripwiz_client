@@ -270,6 +270,18 @@ const getRatingsData = async id => {
   }
 };
 
+const getHighScoreData = async ()=> {
+  try {
+    const response = await axios({
+      url: `api/v1/ratings`,
+      method: "GET"
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
 export {
   getCoords,
   initializeTrip,
@@ -284,5 +296,6 @@ export {
   getRestaurants,
   getTrip,
   rateTrip,
-  getRatingsData
+  getRatingsData,
+  getHighScoreData
 };

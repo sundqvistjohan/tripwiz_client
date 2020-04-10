@@ -3,10 +3,6 @@ import { connect } from "react-redux";
 
 const RestaurantsList = props => {
 
-  useEffect(() => {
-
-  }, []);
-
   let restaurantCard;
 
   if (props.restaurants) {
