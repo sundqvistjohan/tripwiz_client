@@ -95,7 +95,6 @@ const Landing = (props) => {
       <div className="landing-footer">
         <p>Made by a couple of guys.</p>
       </div>
-      <HighScore />
     </>
   )
 }
