@@ -3,6 +3,7 @@ import FacebookLogin from "./FacebookLogin";
 import { connect } from "react-redux";
 import data from "../data/popular_trips.json"
 import { Parallax } from "react-parallax"
+import HighScore from "./HighScore.jsx"
 
 const Landing = (props) => {
   const popularTrips = data
@@ -94,6 +95,7 @@ const Landing = (props) => {
       <div className="landing-footer">
         <p>Made by a couple of guys.</p>
       </div>
+      <HighScore />
     </>
   )
 }
