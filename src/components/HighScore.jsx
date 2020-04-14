@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
 import { getHighScoreData } from "../modules/destination.js";
 
 const HighScore = () => {
+  
   const [highScoreData, setHighScoreData] = useState(null);
 
   const getHighScore = async () => {
@@ -82,10 +82,24 @@ const HighScore = () => {
           <h4>Destination with best restaurants!</h4>
           <p>{highScoreData["restaurants"][0].destination}</p>
           <p>{highScoreData["restaurants"][0].rating}</p> <br />
-          <p>{highScoreData["restaurants"][1] && highScoreData["restaurants"][1].destination}</p>
-          <p>{highScoreData["restaurants"][1] && highScoreData["restaurants"][1].rating}</p> <br />
-          <p>{highScoreData["restaurants"][2] && highScoreData["restaurants"][2].destination}</p>
-          <p>{highScoreData["restaurants"][2] && highScoreData["restaurants"][2].rating}</p> <br />
+          <p>
+            {highScoreData["restaurants"][1] &&
+              highScoreData["restaurants"][1].destination}
+          </p>
+          <p>
+            {highScoreData["restaurants"][1] &&
+              highScoreData["restaurants"][1].rating}
+          </p>{" "}
+          <br />
+          <p>
+            {highScoreData["restaurants"][2] &&
+              highScoreData["restaurants"][2].destination}
+          </p>
+          <p>
+            {highScoreData["restaurants"][2] &&
+              highScoreData["restaurants"][2].rating}
+          </p>{" "}
+          <br />
         </div>
       )}
       {highScoreData && highScoreData["hotel"][0] && (
@@ -93,28 +107,20 @@ const HighScore = () => {
           <h4>Destination with best hotel!</h4>
           <p>{highScoreData["hotel"][0].destination}</p>
           <p>{highScoreData["hotel"][0].rating}</p> <br />
-          <p>{highScoreData["hotel"][1] && highScoreData["hotel"][1].destination}</p>
-          <p>{highScoreData["hotel"][1] && highScoreData["hotel"][1].rating}</p> <br />
-          <p>{highScoreData["hotel"][2] && highScoreData["hotel"][2].destination}</p>
-          <p>{highScoreData["hotel"][2] && highScoreData["hotel"][2].rating}</p> <br />
+          <p>
+            {highScoreData["hotel"][1] && highScoreData["hotel"][1].destination}
+          </p>
+          <p>{highScoreData["hotel"][1] && highScoreData["hotel"][1].rating}</p>{" "}
+          <br />
+          <p>
+            {highScoreData["hotel"][2] && highScoreData["hotel"][2].destination}
+          </p>
+          <p>{highScoreData["hotel"][2] && highScoreData["hotel"][2].rating}</p>{" "}
+          <br />
         </div>
       )}
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    progression: state.progression,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    changeAuth: (auth) => {
-      dispatch({ type: "CHANGE_AUTHENTICATED", payload: auth });
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(HighScore);
+export default HighScore
