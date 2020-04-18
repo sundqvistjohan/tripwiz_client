@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getHighScoreData } from "../modules/destination.js";
 
-const HighScore = () => {
+const Ranking = () => {
   
   const [highScoreData, setHighScoreData] = useState(null);
 
@@ -19,10 +19,11 @@ const HighScore = () => {
   }, []);
 
   return (
-    <div className="highscore-div">
+    <div className="highscore-div-main">
+      <h5>Top rated destination by:</h5>
       {highScoreData && highScoreData["destination"][0] && (
-        <div className="destination-hs">
-          <h4>Top Rated Destinations!</h4>
+        <div className="highscore-div">
+          <h5>Destination!</h5>
           <p>{highScoreData["destination"][0].destination}</p>
           <p>{highScoreData["destination"][0].rating}</p> <br />
           <p>
@@ -46,8 +47,8 @@ const HighScore = () => {
         </div>
       )}
       {highScoreData && highScoreData["activities"][0] && (
-        <div className="activities-hs">
-          <h4>Destination with best activities!</h4>
+        <div className="highscore-div">
+          <h5>Activities!</h5>
           <p>
             {highScoreData["activities"][0].destination}{" "}
             {highScoreData.activities[0].activity}
@@ -78,8 +79,8 @@ const HighScore = () => {
         </div>
       )}
       {highScoreData && highScoreData["restaurants"][0] && (
-        <div className="restaurants-hs">
-          <h4>Destination with best restaurants!</h4>
+        <div className="highscore-div">
+          <h5>Restaurants!</h5>
           <p>{highScoreData["restaurants"][0].destination}</p>
           <p>{highScoreData["restaurants"][0].rating}</p> <br />
           <p>
@@ -94,7 +95,7 @@ const HighScore = () => {
           <p>
             {highScoreData["restaurants"][2] &&
               highScoreData["restaurants"][2].destination}
-          </p>
+          </p>s
           <p>
             {highScoreData["restaurants"][2] &&
               highScoreData["restaurants"][2].rating}
@@ -103,8 +104,8 @@ const HighScore = () => {
         </div>
       )}
       {highScoreData && highScoreData["hotel"][0] && (
-        <div className="hotel-hs">
-          <h4>Destination with best hotel!</h4>
+        <div className="highscore-div">
+          <h5>Hotel!</h5>
           <p>{highScoreData["hotel"][0].destination}</p>
           <p>{highScoreData["hotel"][0].rating}</p> <br />
           <p>
@@ -123,4 +124,4 @@ const HighScore = () => {
   );
 };
 
-export default HighScore
+export default Ranking

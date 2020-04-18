@@ -9,8 +9,8 @@ import { getTrips } from "../modules/destination.js";
 const FacebookLogin = props => {
   const [redirect, setRedirect] = useState(false);
   const [redirectToTrip, setRedirectToTrip] = useState(false);
+  const [redirectToRanking, setRedirectToRanking] = useState(false);
   const [localStorageExists, setlocalStorageExists] = useState(false);
-  const [gotTrips, setGotTrips] = useState(false)
   const [userTripsExist, setUserTripsExist] = useState(null)
 
   const handleResponse = async data => {
@@ -24,10 +24,8 @@ const FacebookLogin = props => {
         props.setCurrentUser(data.profile);
         props.changeAuth(true);
         setlocalStorageExists(true);
-        // props.setCurrentRoute("trip");
         setSession(response.data, response.headers);
         getTripsData();
-        // setRedirectToTrip(true);
       } else {
         props.setCurrentUser(data.profile);
         props.setCurrentRoute("trip");
@@ -95,6 +93,7 @@ const FacebookLogin = props => {
       <div className="fb-login">
         {redirect === true && <Redirect to="/result" />}
         {redirectToTrip === true && <Redirect to="/trip" />}
+        {redirectToRanking === true && <Redirect to="/ranking" />}
         <h2 style={{ paddingBottom: "40px" }}>To get started:</h2>
         {localStorageExists === false ? (
           <FacebookProvider appId="175176387099386">
@@ -128,6 +127,17 @@ const FacebookLogin = props => {
         >
           {" "}
           Dashboard
+        </Button>
+      )}
+            {(
+        <Button
+          id="return-button"
+          size="large"
+          color="grey"
+          onClick={() => setRedirectToRanking(true)}
+        >
+          {" "}
+          Ranking
         </Button>
       )}
     </>

@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import EmbedMap from "./components/EmbedMap";
 import Header from "./components/Header"
 import Landing from "./components/Landing"
+import Ranking from "./components/Ranking"
 
 const App = (props) => {
 	
@@ -17,6 +18,7 @@ const App = (props) => {
           <Route exact path="/result" component={Result} />
           <Route exact path="/trip" component={Trip}  />
 					<Route exact path="/" component={Landing} />
+					<Route exact path="/ranking" component={Ranking} />
         </Switch>
 				{props.progression === 0 && (
 					<EmbedMap />

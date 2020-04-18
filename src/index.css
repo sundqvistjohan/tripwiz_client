@@ -767,3 +767,8 @@ h5#trips-column {
   margin: 1%;
   padding: 2%;
 }
+
+.highscore-div {
+  border: 1px solid grey;
+  width: 15%;
+}
