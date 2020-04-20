@@ -201,7 +201,9 @@ const Result = (props) => {
                   <Button id="create-trip-button" onClick={createTripHandler}>
                     Create new trip!
                   </Button>
+                  <div className="panes">
                   <Tab panes={panes} />
+                  </div>
                 </div>
               </div>
             </div>

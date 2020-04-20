@@ -5,12 +5,12 @@ import {
   getRestaurants,
   getHotels,
   getTrip,
-  objectEraser
+  objectEraser,
 } from "../modules/destination.js";
 import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 
-const TripsList = props => {
+const TripsList = (props) => {
   const [gotTrips, setGotTrips] = useState(false);
   const [viewCard, setViewCard] = useState(null);
   const [viewList, setViewList] = useState(null);
@@ -25,7 +25,7 @@ const TripsList = props => {
     }
   };
 
-  const onClickHandler = async event => {
+  const onClickHandler = async (event) => {
     let response = await getTrip(event);
     props.setSelectedCard(response.data);
   };
@@ -61,6 +61,16 @@ const TripsList = props => {
     getTripsData();
   };
 
+  const capitalize = (str) => {
+    str = str.toLowerCase()
+    str = str.split(" ");
+
+    for (var i = 0, x = str.length; i < x; i++) {
+      str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+    }
+    return str.join(" ");
+  }
+
   useEffect(() => {
     getTripsData();
   }, []);
@@ -90,7 +100,8 @@ const TripsList = props => {
         <div key={props.selectedCard.trip.id} className={`trip-header`}>
           <div id="trip-card" className="ui card">
             <div className="image">
-              <img  id="trip-list-image"
+              <img
+                id="trip-list-image"
                 src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${props.selectedCard.image}&sensor=false&maxwidth=400&key=${process.env.REACT_APP_GOOGLE_APIKEY}`}
               />
             </div>
@@ -103,13 +114,15 @@ const TripsList = props => {
                   Visiting {activityInfo.length} {activityParts[0]}
                 </p>
                 <p>
-                  Restaurants:{" "}
+                  Restaurants rated:{" "}
                   {restaurantInfo[restaurantInfo.length - 1].rating}+
                 </p>
                 <p>
                   {hotelInfo.length > 1
                     ? "No hotel selected"
-                    : `${hotelInfo[0].name} ${hotelInfo[0].price}`}
+                    : `${capitalize(hotelInfo[0].name)} ${
+                        Math.floor(hotelInfo[0].price)
+                      }`}{" $/pn"}
                 </p>
               </div>
             </div>
@@ -141,12 +154,16 @@ const TripsList = props => {
     let tripHeaders;
     if (gotTrips && props.trips && props.selectedCard) {
       let filteredList = props.trips.filter(
-        trip => trip.id !== props.selectedCard.trip.id
+        (trip) => trip.id !== props.selectedCard.trip.id
       );
-      tripHeaders = filteredList.map(trip => {
+      tripHeaders = filteredList.map((trip) => {
         return (
           <div key={trip.id} className="trip-headers">
-            <div id="list" onClick={() => onClickHandler(trip.id)} className="ui card">
+            <div
+              id="list"
+              onClick={() => onClickHandler(trip.id)}
+              className="ui card"
+            >
               <div className="content">
                 <div className="header">
                   <h5>
@@ -166,9 +183,10 @@ const TripsList = props => {
     <>
       <div>
         {viewCard && localStorage.getItem("J-sunkAuth-Storage") ? (
-          <h6 id="trips-column">Your Trips</h6>) : (
+          <h6 id="trips-column">Your Trips</h6>
+        ) : (
           <h6 id="trips-column">View Previous User Trips</h6>
-        )} 
+        )}
       </div>
       {viewList}
       {viewCard}
@@ -176,52 +194,52 @@ const TripsList = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     authenticated: state.authenticated,
     selectedCard: state.selectedCard,
     trips: state.trips,
     activityType: state.activityType,
     restaurants: state.restaurants,
-    authenticated: state.authenticated
+    authenticated: state.authenticated,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setSelectedCard: data => {
+    setSelectedCard: (data) => {
       dispatch({ type: "SET_SELECTEDCARD", payload: data });
     },
-    setTrips: data => {
+    setTrips: (data) => {
       dispatch({ type: "SET_TRIPS", payload: data });
     },
-    setTrip: id => {
+    setTrip: (id) => {
       dispatch({ type: "SET_TRIP", payload: id });
     },
-    setActivities: data => {
+    setActivities: (data) => {
       dispatch({ type: "SET_ACTIVITIES", payload: data });
     },
-    setLat: lat => {
+    setLat: (lat) => {
       dispatch({ type: "CHANGE_LAT", payload: lat });
     },
-    setLng: lng => {
+    setLng: (lng) => {
       dispatch({ type: "CHANGE_LNG", payload: lng });
     },
-    setRestaurants: data => {
+    setRestaurants: (data) => {
       dispatch({ type: "SET_RESTAURANTS", payload: data });
     },
-    setHotels: data => {
+    setHotels: (data) => {
       dispatch({ type: "SET_HOTELS", payload: data });
     },
-    setDestination: dest => {
+    setDestination: (dest) => {
       dispatch({ type: "SET_DEST", payload: dest });
     },
-    setDays: days => {
+    setDays: (days) => {
       dispatch({ type: "SET_DAYS", payload: days });
     },
-    setActivityType: data => {
+    setActivityType: (data) => {
       dispatch({ type: "GOT_ACTIVITYTYPE", payload: data });
-    }
+    },
   };
 };
 

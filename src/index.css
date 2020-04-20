@@ -450,7 +450,7 @@ button#up {
   vertical-align: middle;
   cursor: pointer;
   background-color: rgba(32, 178, 171, 0.85);
-  padding: 25px 15px;
+  padding: 15px 15px;
   color: white;
   border-radius: 5px;
   font-size: 18px;
@@ -783,4 +783,8 @@ h5#trips-column {
 .result-title-div {
   zoom: 80%;
   margin-right: -40%;
+}
+
+.panes {
+  margin-top: -3%;
 }
