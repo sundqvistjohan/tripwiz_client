@@ -325,6 +325,7 @@ header h5 {
   max-height: 950px;
   height: 100vh;
   text-align: center;
+  zoom: 80%;
 }
 
 #progression-num {
@@ -368,6 +369,7 @@ button#up {
   margin-left: 5%;
   display: inline-block;
   width: 90%;
+  zoom: 80%;
 }
 
 .ui.grid {
@@ -771,4 +773,10 @@ h5#trips-column {
 .highscore-div {
   border: 1px solid grey;
   width: 15%;
+  display: inline-block;
+}
+
+.highscore-div-main {
+  text-align: center;
+  margin-top: 10%
 }
