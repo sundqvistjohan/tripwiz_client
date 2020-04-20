@@ -234,7 +234,7 @@ div#activity-cards.ui.card {
 }
 
 #main2 {
-  margin-top: 40px;
+  margin-top: 15px;
   padding: 3%;
   margin-left: auto;
   margin-right: auto;
@@ -325,7 +325,7 @@ header h5 {
   max-height: 950px;
   height: 100vh;
   text-align: center;
-  zoom: 80%;
+  zoom: 75%;
 }
 
 #progression-num {
@@ -416,17 +416,18 @@ button#up {
 
 #result-title-number {
   margin-top: 40px;
-  font-size: 3em;
+  font-size: 1.8em;
   line-height: 1em;
   position: relative;
   z-index: 1;
+  color: rgb(0, 0, 0);
 }
 
 
 #result-title-mid {
-  font-size: 25px;
+  font-size: 1em;
   letter-spacing: 0;
-  color: rgba(214, 162, 83, 0.719);
+  color: rgba(221, 150, 42, 0.89);
 }
 
 #result-dest {
@@ -444,15 +445,14 @@ button#up {
 }
 
 #create-trip-button {
-  margin-top: -60px;
   float: right;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
   background-color: rgba(32, 178, 171, 0.85);
-  padding: 10px 10px;
+  padding: 25px 15px;
   color: white;
-  border-radius: 3px;
+  border-radius: 5px;
   font-size: 18px;
 }
 
@@ -546,10 +546,6 @@ button#up {
     height: 480px;
   }
 
-  .result-left {
-    width: 100%!important;
-    margin-top: 20px;
-  }
 
   .result-right {
     margin-top: 40px;
@@ -728,6 +724,7 @@ div#land.header {
   width: 24%;
   padding: 10px;
   text-align: center;
+  margin-top: 4.8%;
 }
 
 .result-right {
@@ -739,6 +736,8 @@ div#land.header {
 
 h5#trips-column {
   letter-spacing: 1.5px;
+  display: inline-block;
+
 }
 
 .right.menu {
@@ -779,4 +778,9 @@ h5#trips-column {
 .highscore-div-main {
   text-align: center;
   margin-top: 10%
+}
+
+.result-title-div {
+  zoom: 80%;
+  margin-right: -40%;
 }

@@ -68,7 +68,7 @@ const ResultMap = props => {
           zoom={13}
           initialCenter={{ lat: props.lat, lng: props.lng }}
           center={{ lat: props.lat, lng: props.lng }}
-          style={{ width: "97%", height: "80%", position: "relative" }}
+          style={{ width: "97%", height: "95%", position: "relative" }}
         >
           {activityMarkers}
           <InfoWindow marker={activeMarker} visible={showInfoWindow}>

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Tab, Button, Dimmer, Loader, } from "semantic-ui-react";
+import { Tab, Button, Dimmer, Loader } from "semantic-ui-react";
 import ResultMap from "./ResultMap";
 import {
   getActivities,
   getTrips,
   getRestaurants,
-  getHotels
+  getHotels,
 } from "../modules/destination.js";
 import ActivitiesList from "./ActivitiesList";
 import RestaurantsList from "./RestaurantsList";
@@ -15,7 +15,7 @@ import TripsList from "./TripsList";
 import { Redirect } from "react-router";
 import Rating from "./Rating";
 
-const Result = props => {
+const Result = (props) => {
   const [redirect, setRedirect] = useState(false);
   const [loading, setLoading] = useState("hidden");
 
@@ -27,10 +27,10 @@ const Result = props => {
           {props.activities && props.activities !== {} ? (
             <ResultMap />
           ) : (
-              "Please begin by creating a trip"
-            )}
+            "Please begin by creating a trip"
+          )}
         </Tab.Pane>
-      )
+      ),
     },
     {
       menuItem: "Activities",
@@ -48,7 +48,7 @@ const Result = props => {
             "Please begin by creating a trip"
           )}
         </Tab.Pane>
-      )
+      ),
     },
     {
       menuItem: "Restaurants",
@@ -66,7 +66,7 @@ const Result = props => {
             "Please begin by creating a trip"
           )}
         </Tab.Pane>
-      )
+      ),
     },
     {
       menuItem: "Hotel",
@@ -78,7 +78,7 @@ const Result = props => {
             "Please begin by creating a trip"
           )}
         </Tab.Pane>
-      )
+      ),
     },
     {
       menuItem: "Rating",
@@ -90,8 +90,8 @@ const Result = props => {
             "Please begin by creating a trip"
           )}
         </Tab.Pane>
-      )
-    }
+      ),
+    },
   ];
 
   const setActivities = async () => {
@@ -127,7 +127,7 @@ const Result = props => {
       props.updateProgression(-1);
     }
     setRedirect(true);
-  }
+  };
 
   useEffect(() => {
     setActivities();
@@ -154,49 +154,65 @@ const Result = props => {
       <div className="trip-section">
         {props.trips === null && props.activities === null ? (
           <Dimmer active inverted>
-            <Loader size='large'>Loading</Loader>
-          </Dimmer>) : (
-            <>
-              <div className="result-title">
-                <span id="result-title-number" style={{ visibility: loading }}>
-                  {props.days}
-                </span>
-                <span id="result-title-mid" style={{ visibility: loading }}>
-                  {" "}
-                days in
-              </span>
-                {props.destination === null ? (
-                  "Your Dashboard"
-                ) : (
-                    <span id="result-dest" style={{ visibility: loading }}>
-                      {" "}
-                      {props.destination}
-                    </span>
-                  )}
-              </div>
-              <h5 style={{ visibility: loading }}>
-                Enjoy the {props.activityType}s!
-              </h5>
-              <div id="main2">
-                <div className="result-main">
-                  <div className="result-left"><TripsList /></div>
-                  <div className="result-right">
-                    <h5 id="trips-column">& Itinerary</h5>
-                    <Button id="create-trip-button" onClick={createTripHandler}>
-                      Create new trip!
-                    </Button>
-                    <Tab panes={panes} />
-                  </div>
+            <Loader size="large">Loading</Loader>
+          </Dimmer>
+        ) : (
+          <>
+            <div className="result-title"></div>
+            <div id="main2">
+              <div className="result-main">
+                <div className="result-left">
+                  <TripsList />
+                </div>
+                <div className="result-right">
+                  <h5 id="trips-column">
+                    <div className="result-title-div">
+                      {props.destination === null ? (
+                        "Your Dashboard"
+                      ) : (
+                        <span id="result-dest" style={{ visibility: loading }}>
+                          {" "}
+                          {props.destination}
+                        </span>
+                      )}
+                      <span
+                        id="result-title-mid"
+                        style={{ visibility: loading }}
+                      >
+                        {" "}
+                        in
+                      </span>
+                      <span
+                        id="result-title-number"
+                        style={{ visibility: loading }}
+                      >
+                        {" "}
+                        {props.days}
+                      </span>
+                      <span
+                        id="result-title-mid"
+                        style={{ visibility: loading }}
+                      >
+                        {" "}
+                        days
+                      </span>
+                    </div>
+                  </h5>
+                  <Button id="create-trip-button" onClick={createTripHandler}>
+                    Create new trip!
+                  </Button>
+                  <Tab panes={panes} />
                 </div>
               </div>
-            </>
-          )}
+            </div>
+          </>
+        )}
       </div>
     </>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     destination: state.destination,
     trip: state.trip,
@@ -207,30 +223,30 @@ const mapStateToProps = state => {
     restaurants: state.restaurants,
     progression: state.progression,
     authenticated: state.activities,
-    selectedCard: state.selectedCard
+    selectedCard: state.selectedCard,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setActivities: data => {
+    setActivities: (data) => {
       dispatch({ type: "SET_ACTIVITIES", payload: data });
     },
-    setRestaurants: data => {
+    setRestaurants: (data) => {
       dispatch({ type: "SET_RESTAURANTS", payload: data });
     },
-    setSelectedCard: data => {
+    setSelectedCard: (data) => {
       dispatch({ type: "SET_SELECTEDCARD", payload: data });
     },
-    setTrips: data => {
+    setTrips: (data) => {
       dispatch({ type: "SET_TRIPS", payload: data });
     },
-    setHotels: data => {
+    setHotels: (data) => {
       dispatch({ type: "SET_HOTELS", payload: data });
     },
-    updateProgression: value => {
+    updateProgression: (value) => {
       dispatch({ type: "UPDATE_PROGRESSION", payload: value });
-    }
+    },
   };
 };
 
