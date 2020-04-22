@@ -62,14 +62,14 @@ const TripsList = (props) => {
   };
 
   const capitalize = (str) => {
-    str = str.toLowerCase()
+    str = str.toLowerCase();
     str = str.split(" ");
 
     for (var i = 0, x = str.length; i < x; i++) {
       str[i] = str[i][0].toUpperCase() + str[i].substr(1);
     }
     return str.join(" ");
-  }
+  };
 
   useEffect(() => {
     getTripsData();
@@ -92,10 +92,18 @@ const TripsList = (props) => {
       let tripParts = Object.keys(props.selectedCard);
       let tripInfo = props.selectedCard[tripParts[0]];
       let activityParts = Object.keys(props.selectedCard[tripParts[1]]);
+      let activityPartsDisplay;
+      if (activityParts[0] !== "art_gallery") {
+        activityPartsDisplay = activityParts[0].split("_").join(" ") + "s";
+      } else {
+        activityPartsDisplay = "art galleries";
+      }
       let activityInfo = props.selectedCard[tripParts[1]][activityParts[0]];
+      if (activityInfo.length === 1) {
+        activityPartsDisplay = activityParts[0].split("_").join(" ");
+      }
       let restaurantInfo = props.selectedCard[tripParts[1]][activityParts[1]];
       let hotelInfo = props.selectedCard[tripParts[2]];
-      let rating = props.selectedCard[tripParts[4]];
       tripCard = (
         <div key={props.selectedCard.trip.id} className={`trip-header`}>
           <div id="trip-card" className="ui card">
@@ -111,7 +119,7 @@ const TripsList = (props) => {
               </div>
               <div className="card-description">
                 <p>
-                  Visiting {activityInfo.length} {activityParts[0]}
+                  Visiting {activityInfo.length} {activityPartsDisplay}
                 </p>
                 <p>
                   Restaurants rated:{" "}
@@ -120,9 +128,10 @@ const TripsList = (props) => {
                 <p>
                   {hotelInfo.length > 1
                     ? "No hotel selected"
-                    : `${capitalize(hotelInfo[0].name)} ${
-                        Math.floor(hotelInfo[0].price)
-                      }`}{" $/pn"}
+                    : `${capitalize(hotelInfo[0].name)} ${Math.floor(
+                        hotelInfo[0].price
+                      )}`}
+                  {" $/pn"}
                 </p>
               </div>
             </div>
