@@ -9,6 +9,7 @@ import {
 } from "../modules/destination.js";
 import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
+import { capitalize } from "../helpers/methods.js"
 
 const TripsList = (props) => {
   const [gotTrips, setGotTrips] = useState(false);
@@ -59,16 +60,6 @@ const TripsList = (props) => {
     props.setActivities(null);
     setGotTrips(false);
     getTripsData();
-  };
-
-  const capitalize = (str) => {
-    str = str.toLowerCase();
-    str = str.split(" ");
-
-    for (var i = 0, x = str.length; i < x; i++) {
-      str[i] = str[i][0].toUpperCase() + str[i].substr(1);
-    }
-    return str.join(" ");
   };
 
   useEffect(() => {
