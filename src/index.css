@@ -770,15 +770,15 @@ h5#trips-column {
 }
 
 .highscore-div {
-  border: 1px solid grey;
-  width: 15%;
   display: inline-block;
+  text-align: left;
+  padding: 1%;
+  margin-top: 4%;
+  background: rgba(255, 255, 255, 0.438);
+  width: 60%;
+  height: 90%;
 }
 
-.highscore-div-main {
-  text-align: center;
-  margin-top: 10%;
-}
 
 .result-title-div {
   zoom: 80%;
@@ -787,4 +787,29 @@ h5#trips-column {
 
 .panes {
   margin-top: -3%;
+}
+
+.highscore-div-main {
+  margin: auto;
+  margin-top: 10%; 
+  text-align: center;
+  max-width: 500px;
+  min-width: 150px;
+  padding: 1%;
+  background-color: #fbfbfbe0;
+  border-radius: 25px 25px 25px 25px;
+  min-height: 420px;
+  max-height: 420px;
+  color: rgb(65, 63, 63);
+}
+
+.ranking-buttons {
+  margin-top: 5%;
+  padding: 1%;
+}
+
+
+.ranking-title {
+  margin-top: 5%;
+  padding: 1%;
 }
