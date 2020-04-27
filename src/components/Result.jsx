@@ -25,7 +25,9 @@ const Result = (props) => {
       render: () => (
         <Tab.Pane>
           {props.activities && props.activities !== {} ? (
-            <ResultMap />
+            <div className="result-map-transform">
+              <ResultMap />
+            </div>
           ) : (
             "Please begin by creating a trip"
           )}
@@ -202,7 +204,7 @@ const Result = (props) => {
                     Create new trip!
                   </Button>
                   <div className="panes">
-                  <Tab panes={panes} />
+                    <Tab panes={panes} />
                   </div>
                 </div>
               </div>

@@ -234,7 +234,6 @@ div#activity-cards.ui.card {
 }
 
 #main2 {
-  margin-top: 15px;
   padding: 3%;
   margin-left: auto;
   margin-right: auto;
@@ -325,7 +324,6 @@ header h5 {
   max-height: 950px;
   height: 100vh;
   text-align: center;
-  zoom: 75%;
 }
 
 #progression-num {
@@ -370,6 +368,7 @@ button#up {
   display: inline-block;
   width: 90%;
   zoom: 80%;
+  font-size: 6vw;
 }
 
 .ui.grid {
@@ -538,9 +537,6 @@ button#up {
     padding-bottom: 0;
   }
 
-  .result-title {
-    font-size: 6vw;
-  }
 
   .result-main {
     height: 480px;

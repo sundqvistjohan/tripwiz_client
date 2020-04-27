@@ -6,18 +6,18 @@ import axios from "axios";
 import { Redirect } from "react-router";
 import { getTrips } from "../modules/destination.js";
 
-const FacebookLogin = props => {
+const FacebookLogin = (props) => {
   const [redirect, setRedirect] = useState(false);
   const [redirectToTrip, setRedirectToTrip] = useState(false);
   const [redirectToRanking, setRedirectToRanking] = useState(false);
   const [localStorageExists, setlocalStorageExists] = useState(false);
-  const [userTripsExist, setUserTripsExist] = useState(null)
+  const [userTripsExist, setUserTripsExist] = useState(null);
 
-  const handleResponse = async data => {
+  const handleResponse = async (data) => {
     const response = await axios.post("/auth", {
       uid: data.profile.id,
       email: data.profile.email,
-      provider: "facebook"
+      provider: "facebook",
     });
     if (response.status === 200) {
       if (props.currentRoute === "landing") {
@@ -45,7 +45,7 @@ const FacebookLogin = props => {
       ["content-type"]: headers["content-type"],
       ["token-type"]: "Bearer",
       expiry: data["expiry"],
-      uid: data["uid"]
+      uid: data["uid"],
     };
     localStorage.setItem(storageKey, JSON.stringify(session));
   };
@@ -59,18 +59,18 @@ const FacebookLogin = props => {
     let response = await getTrips();
     if (response.status === 200) {
       if (response.data.length === 0) {
-        setUserTripsExist(0)
+        setUserTripsExist(0);
       } else {
         setUserTripsExist(1);
       }
     }
   };
-  
+
   useEffect(() => {
     if (localStorage.getItem("J-sunkAuth-Storage")) {
       setlocalStorageExists(true);
       props.updateProgression(0);
-      getTripsData()
+      getTripsData();
     }
   }, []);
 
@@ -129,7 +129,7 @@ const FacebookLogin = props => {
           Dashboard
         </Button>
       )}
-            {(
+      {userTripsExist === 1 && (
         <Button
           id="return-button"
           size="large"
@@ -144,33 +144,33 @@ const FacebookLogin = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     progression: state.progression,
     currentUser: state.currentUser,
     currentRoute: state.currentRoute,
     authenticated: state.authenticated,
-    logout: state.logout
+    logout: state.logout,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    changeAuth: auth => {
+    changeAuth: (auth) => {
       dispatch({ type: "CHANGE_AUTHENTICATED", payload: auth });
     },
-    updateProgression: value => {
+    updateProgression: (value) => {
       dispatch({ type: "UPDATE_PROGRESSION", payload: value });
     },
-    setCurrentUser: data => {
+    setCurrentUser: (data) => {
       dispatch({ type: "SET_CURRENTUSER", payload: data });
     },
-    setCurrentRoute: route => {
+    setCurrentRoute: (route) => {
       dispatch({ type: "SET_CURRENROUTE", payload: route });
     },
-    setLogout: value => {
+    setLogout: (value) => {
       dispatch({ type: "SET_LOGOUT", payload: value });
-    }
+    },
   };
 };
 

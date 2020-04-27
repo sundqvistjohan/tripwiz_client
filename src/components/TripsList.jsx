@@ -84,7 +84,7 @@ const TripsList = (props) => {
       let tripInfo = props.selectedCard[tripParts[0]];
       let activityParts = Object.keys(props.selectedCard[tripParts[1]]);
       let activityPartsDisplay;
-      if (activityParts[0] !== "art_gallery") {
+      if (activityParts[0] && activityParts[0] !== "art_gallery") {
         activityPartsDisplay = activityParts[0].split("_").join(" ") + "s";
       } else {
         activityPartsDisplay = "art galleries";
