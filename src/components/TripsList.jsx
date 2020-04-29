@@ -5,12 +5,13 @@ import {
   getRestaurants,
   getHotels,
   getTrip,
-  objectEraser
+  objectEraser,
 } from "../modules/destination.js";
 import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
+import { capitalize } from "../helpers/methods.js"
 
-const TripsList = props => {
+const TripsList = (props) => {
   const [gotTrips, setGotTrips] = useState(false);
   const [viewCard, setViewCard] = useState(null);
   const [viewList, setViewList] = useState(null);
@@ -25,7 +26,7 @@ const TripsList = props => {
     }
   };
 
-  const onClickHandler = async event => {
+  const onClickHandler = async (event) => {
     let response = await getTrip(event);
     props.setSelectedCard(response.data);
   };
@@ -82,15 +83,24 @@ const TripsList = props => {
       let tripParts = Object.keys(props.selectedCard);
       let tripInfo = props.selectedCard[tripParts[0]];
       let activityParts = Object.keys(props.selectedCard[tripParts[1]]);
+      let activityPartsDisplay;
+      if (activityParts[0] && activityParts[0] !== "art_gallery") {
+        activityPartsDisplay = activityParts[0].split("_").join(" ") + "s";
+      } else {
+        activityPartsDisplay = "art galleries";
+      }
       let activityInfo = props.selectedCard[tripParts[1]][activityParts[0]];
+      if (activityInfo.length === 1) {
+        activityPartsDisplay = activityParts[0].split("_").join(" ");
+      }
       let restaurantInfo = props.selectedCard[tripParts[1]][activityParts[1]];
       let hotelInfo = props.selectedCard[tripParts[2]];
-      let rating = props.selectedCard[tripParts[4]];
       tripCard = (
         <div key={props.selectedCard.trip.id} className={`trip-header`}>
           <div id="trip-card" className="ui card">
             <div className="image">
-              <img  id="trip-list-image"
+              <img
+                id="trip-list-image"
                 src={`https://maps.googleapis.com/maps/api/place/photo?photoreference=${props.selectedCard.image}&sensor=false&maxwidth=400&key=${process.env.REACT_APP_GOOGLE_APIKEY}`}
               />
             </div>
@@ -100,16 +110,19 @@ const TripsList = props => {
               </div>
               <div className="card-description">
                 <p>
-                  Visiting {activityInfo.length} {activityParts[0]}
+                  Visiting {activityInfo.length} {activityPartsDisplay}
                 </p>
                 <p>
-                  Restaurants:
+                  Restaurants rated:{" "}
                   {restaurantInfo[restaurantInfo.length - 1].rating}+
                 </p>
                 <p>
                   {hotelInfo.length > 1
                     ? "No hotel selected"
-                    : `${hotelInfo[0].name} ${hotelInfo[0].price}`}
+                    : `${capitalize(hotelInfo[0].name)} ${Math.floor(
+                        hotelInfo[0].price
+                      )}`}
+                  {" $/pn"}
                 </p>
               </div>
             </div>
@@ -141,12 +154,16 @@ const TripsList = props => {
     let tripHeaders;
     if (gotTrips && props.trips && props.selectedCard) {
       let filteredList = props.trips.filter(
-        trip => trip.id !== props.selectedCard.trip.id
+        (trip) => trip.id !== props.selectedCard.trip.id
       );
-      tripHeaders = filteredList.map(trip => {
+      tripHeaders = filteredList.map((trip) => {
         return (
           <div key={trip.id} className="trip-headers">
-            <div id="list" onClick={() => onClickHandler(trip.id)} className="ui card">
+            <div
+              id="list"
+              onClick={() => onClickHandler(trip.id)}
+              className="ui card"
+            >
               <div className="content">
                 <div className="header">
                   <h5>
@@ -166,9 +183,10 @@ const TripsList = props => {
     <>
       <div>
         {viewCard && localStorage.getItem("J-sunkAuth-Storage") ? (
-          <h6 id="trips-column">Your Trips</h6>) : (
+          <h6 id="trips-column">Your Trips</h6>
+        ) : (
           <h6 id="trips-column">View Previous User Trips</h6>
-        )} 
+        )}
       </div>
       {viewList}
       {viewCard}
@@ -176,52 +194,52 @@ const TripsList = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     authenticated: state.authenticated,
     selectedCard: state.selectedCard,
     trips: state.trips,
     activityType: state.activityType,
     restaurants: state.restaurants,
-    authenticated: state.authenticated
+    authenticated: state.authenticated,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setSelectedCard: data => {
+    setSelectedCard: (data) => {
       dispatch({ type: "SET_SELECTEDCARD", payload: data });
     },
-    setTrips: data => {
+    setTrips: (data) => {
       dispatch({ type: "SET_TRIPS", payload: data });
     },
-    setTrip: id => {
+    setTrip: (id) => {
       dispatch({ type: "SET_TRIP", payload: id });
     },
-    setActivities: data => {
+    setActivities: (data) => {
       dispatch({ type: "SET_ACTIVITIES", payload: data });
     },
-    setLat: lat => {
+    setLat: (lat) => {
       dispatch({ type: "CHANGE_LAT", payload: lat });
     },
-    setLng: lng => {
+    setLng: (lng) => {
       dispatch({ type: "CHANGE_LNG", payload: lng });
     },
-    setRestaurants: data => {
+    setRestaurants: (data) => {
       dispatch({ type: "SET_RESTAURANTS", payload: data });
     },
-    setHotels: data => {
+    setHotels: (data) => {
       dispatch({ type: "SET_HOTELS", payload: data });
     },
-    setDestination: dest => {
+    setDestination: (dest) => {
       dispatch({ type: "SET_DEST", payload: dest });
     },
-    setDays: days => {
+    setDays: (days) => {
       dispatch({ type: "SET_DAYS", payload: days });
     },
-    setActivityType: data => {
+    setActivityType: (data) => {
       dispatch({ type: "GOT_ACTIVITYTYPE", payload: data });
-    }
+    },
   };
 };
 
